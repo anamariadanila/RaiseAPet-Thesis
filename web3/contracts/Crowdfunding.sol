@@ -58,6 +58,8 @@ contract Crowdfunding is Permissions {
     require(bytes(_title).length > 0, "Title must not be empty");
     require(bytes(_description).length > 0, "Description must not be empty");
     require(bytes(_image).length > 0, "Image must not be empty");
+    
+    
 
     cause.owner = _owner;
     cause.title = _title;
