@@ -1,9 +1,15 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
+import "@thirdweb-dev/contracts/extension/Permissions.sol";
 
-contract Crowdfunding {
-  
+contract CrowdfundingRoles is Permissions {
+  constructor() {
+    _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+  }
+
+  bytes32 public constant DONATOR_ROLE = keccak256("DONATOR_ROLE");
+
   enum CauseStatus {
     Open,
     Deleted
@@ -44,7 +50,7 @@ contract Crowdfunding {
     uint256 _deadline,
     string memory _image,
     string memory _category
-  ) public returns (uint256) {
+  ) public onlyRole(DEFAULT_ADMIN_ROLE) {
     Cause storage cause = causes[causeCount];
 
     require(_goal > 0, "Goal must be greater than 0");
@@ -65,11 +71,9 @@ contract Crowdfunding {
 
     causeCount++;
     numberOfCauses = causeCount - 1;
-    return numberOfCauses;
-    
   }
 
-  function donateToCause(uint256 _id) public payable {
+  function donateToCause(uint256 _id) public payable onlyRole(DONATOR_ROLE) {
     Cause storage cause = causes[_id];
     require(cause.status == CauseStatus.Open, "Cause must be open");
     require(msg.value > 0, "Donation must be greater than 0");
@@ -88,7 +92,7 @@ contract Crowdfunding {
     string memory _description,
     string memory _image,
     uint256 deadline
-  ) public returns(bool) {
+  ) public onlyRole(DEFAULT_ADMIN_ROLE) {
     require(
       msg.sender == causes[_id].owner,
       "You are not the owner of this cause"
@@ -102,7 +106,6 @@ contract Crowdfunding {
     causes[_id].description = _description;
     causes[_id].image = _image;
     causes[_id].deadline = deadline;
-    return true;
   }
 
   function refund(uint256 _id) internal {
@@ -117,7 +120,7 @@ contract Crowdfunding {
     }
   }
 
-  function deleteCause(uint256 _id) public returns(bool){
+  function deleteCause(uint256 _id) public onlyRole(DEFAULT_ADMIN_ROLE) {
     require(causes[_id].status == CauseStatus.Open, "Cause must be open");
     require(
       msg.sender == causes[_id].owner,
@@ -125,7 +128,6 @@ contract Crowdfunding {
     );
     causes[_id].status = CauseStatus.Deleted;
     refund(_id);
-    return true;
   }
 
   function getDonators(
