@@ -14,10 +14,14 @@ export const getDesignTokens = (mode) => ({
       : {
           // palette values for dark mode
           primary: {
-            main: "#fff",
+            main: "#180f2b",
           },
           secondary: {
             main: "#bebfc2",
+          },
+          background: {
+            default: "#180f2b",
+            paper: "#180f2b",
           },
         }),
   },

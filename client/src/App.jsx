@@ -5,6 +5,12 @@ import { Route, Routes } from "react-router-dom";
 import { getDesignTokens } from "./utils/theme.js";
 
 import Sidebar from "./components/Sidebar.jsx";
+import Home from "./pages/Home.jsx";
+import Campaigns from "./pages/Campaigns.jsx";
+import CampaignDetails from "./pages/CampaignDetails.jsx";
+import CreateCampaign from "./pages/CreateCampaign.jsx";
+import Profile from "./pages/Profile.jsx";
+import Chat from "./pages/Chat.jsx";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
@@ -17,18 +23,16 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route
-          path="/campaign-details/:id"
-          element={<h1>Campaigns details</h1>}
-        />
-        <Route path="/campaigns" element={<h1>Campaigns</h1>} />
-        <Route path="/create-campaign" element={<h1>create campaign</h1>} />
-        <Route path="/profile" element={<h1>Profile</h1>} />
-        <Route path="/chat" element={<h1>Chat</h1>} />
-      </Routes>
       <Sidebar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+        <Route path="/campaigns" element={<Campaigns />} />
+        <Route path="/create-campaign" element={<CreateCampaign />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/chat" element={<Chat />} />
+      </Routes>
     </ThemeProvider>
   );
 };

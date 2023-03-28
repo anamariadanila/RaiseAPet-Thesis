@@ -6,20 +6,41 @@ import IconButton from "@mui/material/IconButton";
 import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
 import { useNavigate } from "react-router-dom";
 import { sidebarIcons } from "../constants/index.jsx";
+import logo from "../assets/logo.png";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   return (
     <Box component="div" sx={{ display: "flex", flexDirection: "column" }}>
+      <Box
+        sx={{
+          width: "7vh",
+          height: "7vh",
+          borderRadius: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          ml: "5vh",
+          mt: "2vh",
+          ":hover": {
+            background: "transparent",
+          },
+        }}
+      >
+        <IconButton onClick={() => navigate("/")}>
+          <img src={logo} alt="logo" width="80px" height="80px" />
+        </IconButton>
+      </Box>
       <AppBar
         position="static"
         sx={{
-          width: "8vh",
+          width: "7vh",
           height: "80vh",
           ml: "5vh",
-          mt: "10vh",
+          mt: "3vh",
           mb: "5vh",
-          borderRadius: "40px",
+          borderRadius: "10px",
         }}
       >
         <Toolbar
@@ -42,8 +63,12 @@ export default function Sidebar() {
               width: "100%",
             }}
           >
-            {sidebarIcons.map((icon) => (
-              <IconButton color="secondary" onClick={() => navigate(icon.link)}>
+            {sidebarIcons.map((icon, index) => (
+              <IconButton
+                color="secondary"
+                onClick={() => navigate(icon.link)}
+                key={index}
+              >
                 {icon.icon}
               </IconButton>
             ))}
