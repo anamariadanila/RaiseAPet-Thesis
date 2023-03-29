@@ -18,10 +18,12 @@ contract CrowdfundingRoles is Permissions {
   struct Cause {
     address owner;
     address[] donators;
+    string ownerName;
     string title;
     string description;
     string image;
     string category;
+    string ONGDescription;
     uint256 goal;
     uint256 deadline;
     uint256 totalDonated;
@@ -49,7 +51,9 @@ contract CrowdfundingRoles is Permissions {
     uint256 _goal,
     uint256 _deadline,
     string memory _image,
-    string memory _category
+    string memory _category,
+    string memory _ownerName,
+    string memory _ONGDescription
   ) public onlyRole(DEFAULT_ADMIN_ROLE) {
     Cause storage cause = causes[causeCount];
 
@@ -68,6 +72,8 @@ contract CrowdfundingRoles is Permissions {
     cause.category = _category;
     cause.status = CauseStatus.Open;
     cause.totalDonated = 0;
+    cause.ownerName = _ownerName;
+    cause.ONGDescription = _ONGDescription;
 
     causeCount++;
     numberOfCauses = causeCount - 1;
