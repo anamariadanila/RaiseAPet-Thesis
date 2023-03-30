@@ -11,6 +11,8 @@ import CampaignDetails from "./pages/CampaignDetails.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
 import Profile from "./pages/Profile.jsx";
 import Chat from "./pages/Chat.jsx";
+import Navbar from "./components/Navbar.jsx";
+import Settings from "./pages/Settings.jsx";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
@@ -23,6 +25,7 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
+      <Navbar />
       <Sidebar />
 
       <Routes>
@@ -32,6 +35,7 @@ const App = () => {
         <Route path="/create-campaign" element={<CreateCampaign />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </ThemeProvider>
   );

@@ -23,6 +23,10 @@ export const getDesignTokens = (mode) => ({
             default: "#180f2b",
             paper: "#180f2b",
           },
+          button: {
+            main: "#370fbb",
+            connected: "#b57ff7",
+          },
         }),
   },
 });

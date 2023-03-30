@@ -12,7 +12,7 @@ export default function Sidebar() {
   const navigate = useNavigate();
   return (
     <Box component="div" sx={{ display: "flex", flexDirection: "column" }}>
-      <Box
+      {/* <Box
         sx={{
           width: "7vh",
           height: "7vh",
@@ -31,7 +31,7 @@ export default function Sidebar() {
         <IconButton onClick={() => navigate("/")}>
           <img src={logo} alt="logo" width="80px" height="80px" />
         </IconButton>
-      </Box>
+      </Box> */}
       <AppBar
         position="static"
         sx={{
