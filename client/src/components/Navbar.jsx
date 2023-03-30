@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import Search from "./Search";
 import Filter from "./Filter";
 import Logo from "./Logo";
+import ButtonConnect from "./ButtonConnect";
+// import { Avatar } from "@mui/material";
+import UserAvatar from "./Avatar";
 
 const Navbar = () => {
   return (
@@ -18,18 +21,39 @@ const Navbar = () => {
       <Box>
         <Logo />
       </Box>
-
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          width: "100%",
-          p: "0 3vh",
+          width: "80%",
+          alignItems: "center",
         }}
       >
-        <Search />
-        <Filter />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "60%",
+            alignItems: "center",
+          }}
+        >
+          <Search />
+          <Filter />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "20%",
+          }}
+        >
+          <ButtonConnect />
+          <UserAvatar />
+        </Box>
       </Box>
     </Box>
   );

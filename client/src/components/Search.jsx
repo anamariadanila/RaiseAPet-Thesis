@@ -30,13 +30,14 @@ const Search = () => {
         }}
         sx={{
           "& .MuiInputLabel-outlined": {
-            color: "button.connected",
+            color: "button.main",
           },
 
           "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
             {
               borderColor: "secondary.main",
             },
+          borderRadius: "30px",
         }}
       />
     </Box>
