@@ -50,7 +50,6 @@ const App = () => {
             flexDirection: "column",
             justifyContent: "space-between",
             ml: "20vh",
-            width: "100%",
           }}
         >
           <Navbar />

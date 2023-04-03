@@ -23,7 +23,7 @@ const Navbar = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          width: "80%",
+          width: "90%",
           alignItems: "center",
         }}
       >
