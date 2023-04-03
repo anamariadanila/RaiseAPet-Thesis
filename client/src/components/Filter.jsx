@@ -35,23 +35,7 @@ const Filter = () => {
           {...params}
           label="Animal Type"
           variant="filled"
-          sx={{
-            "& .MuiInputLabel-outlined .MuiInput-colorSecondary": {
-              color: "secondary",
-            },
-            "& .MuiFormLabel-root": {
-              color: "secondary",
-            },
-
-            "& .MuiFilledInput-root": {
-              color: "secondary",
-            },
-
-            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-              {
-                borderColor: "secondary",
-              },
-          }}
+          color="secondary"
         />
       )}
     />

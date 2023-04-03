@@ -4,7 +4,6 @@ import Search from "./Search";
 import Filter from "./Filter";
 import Logo from "./Logo";
 import ButtonConnect from "./ButtonConnect";
-// import { Avatar } from "@mui/material";
 import UserAvatar from "./Avatar";
 
 const Navbar = () => {

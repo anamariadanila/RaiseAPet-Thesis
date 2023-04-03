@@ -17,7 +17,6 @@ const Logo = () => {
         justifyContent: "center",
         flexDirection: "column",
         ml: "5vh",
-        // mt: "2vh",
         ":hover": {
           background: "transparent",
         },

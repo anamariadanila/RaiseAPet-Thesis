@@ -19,6 +19,7 @@ const Search = () => {
         id="outlined-basic"
         label="Search"
         variant="filled"
+        color="secondary"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -29,14 +30,6 @@ const Search = () => {
           ),
         }}
         sx={{
-          "& .MuiInputLabel-outlined": {
-            color: "secondary",
-          },
-
-          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-            {
-              borderColor: "secondary",
-            },
           borderRadius: "30px",
         }}
       />
