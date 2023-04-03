@@ -8,7 +8,11 @@ const UserAvatar = () => {
   console.log("avatar");
   return (
     <Stack direction="row">
-      <Avatar alt="avatar" src={avatar} sx={{ width: 70, height: 70 }} />
+      <Avatar
+        alt="avatar"
+        src={avatar}
+        sx={{ width: 70, height: 70, mt: "1vh" }}
+      />
     </Stack>
   );
 };

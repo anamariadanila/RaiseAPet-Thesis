@@ -24,7 +24,7 @@ export const getDesignTokens = (mode) => ({
             paper: "#180f2b",
           },
           button: {
-            main: "#69accc",
+            main: "#b47afe",
           },
           connected: {
             main: "#f9b368",

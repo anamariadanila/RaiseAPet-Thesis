@@ -13,6 +13,7 @@ import Profile from "./pages/Profile.jsx";
 import Chat from "./pages/Chat.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Settings from "./pages/Settings.jsx";
+import Box from "@mui/material/Box";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
@@ -24,19 +25,40 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-
-      <Navbar />
-      <Sidebar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-        <Route path="/campaigns" element={<Campaigns />} />
-        <Route path="/create-campaign" element={<CreateCampaign />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
+      <Box
+        sx={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box>
+          <Navbar />
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            mt: "10vh",
+          }}
+        >
+          <Sidebar />
+        </Box>
+        <Box>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+            <Route path="/campaigns" element={<Campaigns />} />
+            <Route path="/create-campaign" element={<CreateCampaign />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 };

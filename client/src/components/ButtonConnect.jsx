@@ -8,7 +8,7 @@ const ButtonConnect = () => {
       <Button
         variant="contained"
         size="large"
-        sx={{ height: "8vh", width: "10vw", mt: "1vh", borderRadius: "90px" }}
+        sx={{ height: "7vh", width: "8vw", mt: "1vh", borderRadius: "90px" }}
         color="button"
       >
         Connect
