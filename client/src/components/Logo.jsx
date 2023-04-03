@@ -24,7 +24,7 @@ const Logo = () => {
       }}
     >
       <IconButton onClick={() => navigate("/")}>
-        <img src={logo} alt="logo" width="80px" height="80px" />
+        <img src={logo} alt="logo" width="90px" height="90px" />
       </IconButton>
     </Box>
   );

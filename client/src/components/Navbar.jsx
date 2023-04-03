@@ -51,7 +51,7 @@ const Navbar = () => {
             width: "20%",
           }}
         >
-          <ButtonConnect />
+          <ButtonConnect title={"Connect"} />
           <UserAvatar />
         </Box>
       </Box>

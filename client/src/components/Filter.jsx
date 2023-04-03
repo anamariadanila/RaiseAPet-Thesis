@@ -37,19 +37,19 @@ const Filter = () => {
           variant="filled"
           sx={{
             "& .MuiInputLabel-outlined .MuiInput-colorSecondary": {
-              color: "secondary.main",
+              color: "secondary",
             },
             "& .MuiFormLabel-root": {
-              color: "secondary.main",
+              color: "secondary",
             },
 
             "& .MuiFilledInput-root": {
-              color: "secondary.main",
+              color: "secondary",
             },
 
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
               {
-                borderColor: "secondary.main",
+                borderColor: "secondary",
               },
           }}
         />
