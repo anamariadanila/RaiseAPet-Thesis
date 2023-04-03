@@ -16,10 +16,8 @@ const Navbar = () => {
         alignItems: "center",
         mt: "2vh",
       }}
+      position="static"
     >
-      <Box>
-        <Logo />
-      </Box>
       <Box
         sx={{
           display: "flex",
@@ -48,6 +46,7 @@ const Navbar = () => {
             flexDirection: "row",
             justifyContent: "space-around",
             width: "20%",
+            alignItems: "center",
           }}
         >
           <ButtonConnect title={"Connect"} />

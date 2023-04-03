@@ -33,20 +33,29 @@ const App = () => {
           justifyContent: "space-between",
         }}
       >
-        <Box>
-          <Navbar />
-        </Box>
         <Box
           sx={{
             position: "absolute",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            mt: "10vh",
+            mt: "2vh",
           }}
         >
           <Sidebar />
         </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            ml: "20vh",
+            width: "100%",
+          }}
+        >
+          <Navbar />
+        </Box>
+
         <Box>
           <Routes>
             <Route path="/" element={<Home />} />

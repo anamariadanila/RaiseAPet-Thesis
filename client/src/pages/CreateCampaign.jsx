@@ -92,7 +92,9 @@ const CreateCampaign = () => {
                 id="outlined-required"
                 label="ONG name"
                 color="secondary"
-                sx={{ width: "20rem" }}
+                sx={{
+                  width: "20rem",
+                }}
               />
               <TextField
                 required

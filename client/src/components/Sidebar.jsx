@@ -11,8 +11,12 @@ import logo from "../assets/logo.png";
 export default function Sidebar() {
   const navigate = useNavigate();
   return (
-    <Box component="div" sx={{ display: "flex", flexDirection: "column" }}>
-      {/* <Box
+    <Box
+      component="div"
+      sx={{ display: "flex", flexDirection: "column" }}
+      position="fixed"
+    >
+      <Box
         sx={{
           width: "7vh",
           height: "7vh",
@@ -22,7 +26,7 @@ export default function Sidebar() {
           justifyContent: "center",
           flexDirection: "column",
           ml: "5vh",
-          mt: "2vh",
+          mt: "1vh",
           ":hover": {
             background: "transparent",
           },
@@ -31,14 +35,14 @@ export default function Sidebar() {
         <IconButton onClick={() => navigate("/")}>
           <img src={logo} alt="logo" width="80px" height="80px" />
         </IconButton>
-      </Box> */}
+      </Box>
       <AppBar
         position="static"
         sx={{
           width: "7vh",
           height: "80vh",
           ml: "5vh",
-          mt: "4vh",
+          mt: "5vh",
           mb: "5vh",
           borderRadius: "10px",
         }}
