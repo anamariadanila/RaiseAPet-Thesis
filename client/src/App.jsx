@@ -39,7 +39,6 @@ const App = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            mt: "2vh",
           }}
         >
           <Sidebar />

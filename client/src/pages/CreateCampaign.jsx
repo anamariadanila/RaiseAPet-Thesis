@@ -31,7 +31,7 @@ const CreateCampaign = () => {
     goal: "",
     deadline: "",
     name: "",
-    ong: "",
+    ongDetails: "",
     status: "",
   });
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,14 @@ const CreateCampaign = () => {
   const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
 
-  const handleSubmit = async (e) => {};
+  const handleFormChange = (type, e) => {
+    setFormDetails({ ...formDetails, [type]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formDetails);
+  };
 
   return (
     <Container
@@ -55,6 +62,7 @@ const CreateCampaign = () => {
         height: "100%",
         pt: "2rem",
         pb: "2rem",
+        flexWrap: "wrap",
       }}
     >
       <Container
@@ -102,6 +110,7 @@ const CreateCampaign = () => {
                 mb: "4rem",
                 flexDirection: "row",
                 width: "100%",
+                flexWrap: "wrap",
               }}
             >
               <TextField
@@ -111,12 +120,16 @@ const CreateCampaign = () => {
                 sx={{
                   width: "20rem",
                 }}
+                value={formDetails.name}
+                onChange={(e) => handleFormChange("name", e)}
               />
               <TextField
                 required
                 label="Campaign title"
                 color="secondary"
                 sx={{ width: "20rem" }}
+                value={formDetails.title}
+                onChange={(e) => handleFormChange("title", e)}
               />
 
               <TextField
@@ -126,6 +139,7 @@ const CreateCampaign = () => {
                 sx={{ width: "20rem" }}
                 color="secondary"
                 defaultValue=""
+                onChange={(e) => handleFormChange("category", e)}
               >
                 {optionsCategory.map((option, index) => (
                   <MenuItem key={index} value={option}>
@@ -143,6 +157,8 @@ const CreateCampaign = () => {
                 width: "100%",
               }}
               color="secondary"
+              value={formDetails.description}
+              onChange={(e) => handleFormChange("description", e)}
             />
             <Box
               sx={{
@@ -153,6 +169,7 @@ const CreateCampaign = () => {
                 mr: "6rem",
                 flexDirection: "row",
                 width: "100%",
+                flexWrap: "wrap",
               }}
             >
               <TextField
@@ -162,6 +179,8 @@ const CreateCampaign = () => {
                 type="number"
                 sx={{ width: "20rem" }}
                 inputProps={{ step: "0.1" }}
+                value={formDetails.goal}
+                onChange={(e) => handleFormChange("goal", e)}
               />
               <TextField
                 required
@@ -171,6 +190,8 @@ const CreateCampaign = () => {
                   width: "20rem",
                   "& input": { color: "secondary.main" },
                 }}
+                value={formDetails.deadline}
+                onChange={(e) => handleFormChange("deadline", e)}
               />
               <TextField
                 required
@@ -179,6 +200,7 @@ const CreateCampaign = () => {
                 sx={{ width: "20rem" }}
                 color="secondary"
                 defaultValue=""
+                onChange={(e) => handleFormChange("status", e)}
               >
                 {optionsStatus.map((option, index) => (
                   <MenuItem key={index} value={option}>
@@ -199,6 +221,8 @@ const CreateCampaign = () => {
                   width: "100%",
                 }}
                 color="secondary"
+                value={formDetails.image}
+                onChange={(e) => handleFormChange("image", e)}
               />
             </Box>
             <TextField
@@ -211,6 +235,8 @@ const CreateCampaign = () => {
                 mt: "4rem",
               }}
               color="secondary"
+              value={formDetails.ongDetails}
+              onChange={(e) => handleFormChange("ong", e)}
             />
             <Box sx={{ mt: "2rem" }}>
               <ButtonConnect title={"Submit"} btnType="submit" />

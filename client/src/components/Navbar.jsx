@@ -30,13 +30,17 @@ const Navbar = () => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-evenly",
+            justifyContent: "center",
             width: "80%",
             alignItems: "center",
           }}
         >
-          <Search />
-          <Filter />
+          <Box sx={{ ml: "2rem", mr: "2rem" }}>
+            <Search />
+          </Box>
+          <Box sx={{ ml: "2rem", mr: "2rem" }}>
+            <Filter />
+          </Box>
         </Box>
 
         <Box

@@ -29,6 +29,9 @@ export const getDesignTokens = (mode) => ({
           connected: {
             main: "#f9b368",
           },
+          icon: {
+            main: "#D6B9ED",
+          },
         }),
   },
 });

@@ -12,39 +12,14 @@ export default function Sidebar() {
   const navigate = useNavigate();
   return (
     <Box
-      component="div"
-      sx={{ display: "flex", flexDirection: "column" }}
+      sx={{ display: "flex", flexDirection: "column", height: "100%" }}
       position="fixed"
     >
-      <Box
-        sx={{
-          width: "7vh",
-          height: "7vh",
-          borderRadius: "10px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          ml: "5vh",
-          mt: "1vh",
-          ":hover": {
-            background: "transparent",
-          },
-        }}
-      >
-        <IconButton onClick={() => navigate("/")}>
-          <img src={logo} alt="logo" width="80px" height="80px" />
-        </IconButton>
-      </Box>
       <AppBar
         position="static"
         sx={{
-          width: "7vh",
-          height: "80vh",
-          ml: "5vh",
-          mt: "5vh",
-          mb: "5vh",
-          borderRadius: "10px",
+          width: "6rem",
+          height: "100%",
         }}
       >
         <Toolbar
@@ -67,6 +42,9 @@ export default function Sidebar() {
               width: "100%",
             }}
           >
+            <IconButton onClick={() => navigate("/")}>
+              <img src={logo} alt="logo" width="80px" height="80px" />
+            </IconButton>
             {sidebarIcons.map((icon, index) => (
               <IconButton
                 color="secondary"
@@ -83,6 +61,7 @@ export default function Sidebar() {
                 sx={{
                   fontSize: "2rem",
                   m: "0.5rem",
+                  color: "icon.main",
                 }}
               />
             </IconButton>

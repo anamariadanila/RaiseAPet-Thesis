@@ -3,34 +3,55 @@ import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutl
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 export const sidebarIcons = [
   {
-    icon: <GridViewOutlinedIcon sx={{ fontSize: "2rem", m: "0.5rem" }} />,
+    icon: (
+      <GridViewOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+      />
+    ),
     link: "/campaigns",
   },
   {
     icon: (
-      <CreateNewFolderOutlinedIcon sx={{ fontSize: "2rem", m: "0.5rem" }} />
+      <CreateNewFolderOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+      />
     ),
     link: "/create-campaign",
   },
   {
-    icon: <AccountCircleOutlinedIcon sx={{ fontSize: "2rem", m: "0.5rem" }} />,
+    icon: (
+      <AccountCircleOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+      />
+    ),
     link: "/profile",
   },
   {
-    icon: <ChatOutlinedIcon sx={{ fontSize: "2rem", m: "0.5rem" }} />,
+    icon: (
+      <ChatOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+      />
+    ),
     link: "/chat",
   },
   {
-    icon: <SettingsOutlinedIcon sx={{ fontSize: "2rem", m: "0.5rem" }} />,
+    icon: (
+      <SettingsOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+      />
+    ),
     link: "/settings",
   },
   {
-    icon: <LogoutOutlinedIcon sx={{ fontSize: "2rem", m: "0.5rem" }} />,
+    icon: (
+      <LogoutOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+      />
+    ),
     link: "/",
   },
 ];
