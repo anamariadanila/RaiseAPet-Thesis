@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import { imageAvailable } from "../utils/functions";
 import Autocomplete from "@mui/material/Autocomplete";
 import MenuItem from "@mui/material/MenuItem";
+import { useAppContext } from "../context";
 
 const optionsCategory = [
   "Cat",
@@ -23,6 +24,7 @@ const optionsCategory = [
 const optionsStatus = ["Open", "Deleted"];
 
 const CreateCampaign = () => {
+  const { createCause } = useAppContext();
   const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState({
     title: "",
@@ -45,7 +47,22 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formDetails);
+
+    imageAvailable(formDetails.image, async (isOk) => {
+      if (isOk) {
+        setLoading(true);
+        await createCause({
+          ...formDetails,
+          goal: ethers.utils.parseUnits(formDetails.goal, 18), //wei value
+        });
+        setLoading(false);
+        navigate("/");
+      } else {
+        setFormDetails({ ...formDetails, image: "" });
+      }
+    });
+
+    console.log("din createCam", formDetails);
   };
 
   return (
@@ -212,7 +229,6 @@ const CreateCampaign = () => {
             <Box sx={{ mt: "4rem", color: "secondary.main" }}>
               <label htmlFor="imgUrl">Image URL*</label>
               <TextField
-                required
                 id="imgUrl"
                 type="file"
                 accept="image/*"
@@ -236,8 +252,9 @@ const CreateCampaign = () => {
               }}
               color="secondary"
               value={formDetails.ongDetails}
-              onChange={(e) => handleFormChange("ong", e)}
+              onChange={(e) => handleFormChange("ongDetails", e)}
             />
+
             <Box sx={{ mt: "2rem" }}>
               <ButtonConnect title={"Submit"} btnType="submit" />
             </Box>
