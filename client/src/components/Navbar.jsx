@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Search from "./Search";
 import Filter from "./Filter";
-import Logo from "./Logo";
 import ButtonConnect from "./ButtonConnect";
 import UserAvatar from "./Avatar";
 
@@ -23,7 +22,7 @@ const Navbar = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          width: "90%",
+          width: "100%",
           alignItems: "center",
         }}
       >
@@ -31,8 +30,8 @@ const Navbar = () => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-around",
-            width: "60%",
+            justifyContent: "space-evenly",
+            width: "80%",
             alignItems: "center",
           }}
         >
@@ -45,7 +44,7 @@ const Navbar = () => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-around",
-            width: "20%",
+            width: "15%",
             alignItems: "center",
           }}
         >

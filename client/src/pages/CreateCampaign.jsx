@@ -7,6 +7,20 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { imageAvailable } from "../utils/functions";
+import Autocomplete from "@mui/material/Autocomplete";
+import MenuItem from "@mui/material/MenuItem";
+
+const optionsCategory = [
+  "Cat",
+  "Dog",
+  "Parrot",
+  "Fish",
+  "Horse",
+  "Cow",
+  "Rabbit",
+];
+
+const optionsStatus = ["Open", "Deleted"];
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
@@ -21,6 +35,9 @@ const CreateCampaign = () => {
     status: "",
   });
   const [loading, setLoading] = useState(false);
+
+  const [value, setValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState("");
 
   const handleSubmit = async (e) => {};
 
@@ -80,7 +97,7 @@ const CreateCampaign = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                mt: "4rem",
+                mt: "5rem",
                 mr: "6rem",
                 mb: "4rem",
                 flexDirection: "row",
@@ -89,7 +106,6 @@ const CreateCampaign = () => {
             >
               <TextField
                 required
-                id="outlined-required"
                 label="ONG name"
                 color="secondary"
                 sx={{
@@ -98,24 +114,31 @@ const CreateCampaign = () => {
               />
               <TextField
                 required
-                id="outlined-required"
                 label="Campaign title"
                 color="secondary"
                 sx={{ width: "20rem" }}
               />
+
               <TextField
                 required
-                id="outlined-required"
+                select
                 label="Category"
-                color="secondary"
                 sx={{ width: "20rem" }}
-              />
+                color="secondary"
+                defaultValue=""
+              >
+                {optionsCategory.map((option, index) => (
+                  <MenuItem key={index} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Box>
             <TextField
-              placeholder="Campaign Description"
+              required
+              placeholder="Campaign Description *"
               multiline
               rows={6}
-              maxRows={20}
               sx={{
                 width: "100%",
               }}
@@ -134,39 +157,55 @@ const CreateCampaign = () => {
             >
               <TextField
                 required
-                id="outlined-required"
-                label="ONG name"
+                label="Goal"
                 color="secondary"
+                type="number"
                 sx={{ width: "20rem" }}
+                inputProps={{ step: "0.1" }}
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Campaign title"
                 color="secondary"
-                sx={{ width: "20rem" }}
+                type="date"
+                sx={{
+                  width: "20rem",
+                  "& input": { color: "secondary.main" },
+                }}
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Category"
-                color="secondary"
+                select
+                label="Status"
                 sx={{ width: "20rem" }}
+                color="secondary"
+                defaultValue=""
+              >
+                {optionsStatus.map((option, index) => (
+                  <MenuItem key={index} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Box>
+            <Box sx={{ mt: "4rem", color: "secondary.main" }}>
+              <label htmlFor="imgUrl">Image URL*</label>
+              <TextField
+                required
+                id="imgUrl"
+                type="file"
+                accept="image/*"
+                placeholder="Image URL*"
+                sx={{
+                  width: "100%",
+                }}
+                color="secondary"
               />
             </Box>
             <TextField
-              placeholder="Campaign Description"
-              sx={{
-                width: "100%",
-                mt: "4rem",
-              }}
-              color="secondary"
-            />
-            <TextField
-              placeholder="ONG Presentation"
+              required
+              placeholder="ONG Presentation*"
               multiline
               rows={6}
-              maxRows={20}
               sx={{
                 width: "100%",
                 mt: "4rem",
@@ -174,7 +213,7 @@ const CreateCampaign = () => {
               color="secondary"
             />
             <Box sx={{ mt: "2rem" }}>
-              <ButtonConnect title={"Submit"} />
+              <ButtonConnect title={"Submit"} btnType="submit" />
             </Box>
           </form>
         </Box>
