@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 import "@thirdweb-dev/contracts/extension/Permissions.sol";
 
-contract CrowdfundingRoles is Permissions {
+contract DonateToCause is Permissions {
   constructor() {
     _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
   }
@@ -54,6 +54,7 @@ contract CrowdfundingRoles is Permissions {
     string memory _category,
     string memory _ownerName,
     string memory _ONGDescription
+  
     
   ) public onlyRole(DEFAULT_ADMIN_ROLE) {
     Cause storage cause = causes[causeCount];
