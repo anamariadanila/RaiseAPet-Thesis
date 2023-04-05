@@ -11,7 +11,8 @@ const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const { contract } = useContract(
-    "0x22723a365b1fa71E7fD331A59cC4Fa1798Cc7D7E"
+    // "0x22723a365b1fa71E7fD331A59cC4Fa1798Cc7D7E"
+    "0x0ac3f1fA80a3Abcc68907178727f15eBec396aA8"
   );
   const address = useAddress();
   const connectWallet = useMetamask();
@@ -20,7 +21,7 @@ export const ContextProvider = ({ children }) => {
     contract,
     "createCause"
   );
-
+  console.log(address);
   const showCampaign = async (formData) => {
     try {
       const data = await createCause([
@@ -39,12 +40,14 @@ export const ContextProvider = ({ children }) => {
       console.log("eroare", err);
     }
   };
+
   return (
     <Context.Provider
       value={{
         address,
         contract,
         createCause: showCampaign,
+        connectWallet,
       }}
     >
       {children}

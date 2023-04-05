@@ -4,8 +4,19 @@ import Search from "./Search";
 import Filter from "./Filter";
 import ButtonConnect from "./ButtonConnect";
 import UserAvatar from "./Avatar";
+import { useAppContext } from "../context";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { address, connectWallet } = useAppContext();
+  const handleClick = () => {
+    if (address) {
+      navigate("/create-campaign");
+    } else {
+      connectWallet();
+    }
+  };
   return (
     <Box
       sx={{
@@ -52,7 +63,11 @@ const Navbar = () => {
             alignItems: "center",
           }}
         >
-          <ButtonConnect title={"Connect"} />
+          <ButtonConnect
+            title={!address ? "Connect" : "Create Campaign"}
+            btnType="button"
+            handleClick={handleClick}
+          />
           <UserAvatar />
         </Box>
       </Box>

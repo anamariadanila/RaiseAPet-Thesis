@@ -7,7 +7,6 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { imageAvailable } from "../utils/functions";
-import Autocomplete from "@mui/material/Autocomplete";
 import MenuItem from "@mui/material/MenuItem";
 import { useAppContext } from "../context";
 
@@ -27,14 +26,15 @@ const CreateCampaign = () => {
   const { createCause } = useAppContext();
   const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState({
+    ownerName: "",
     title: "",
+    category: "",
     description: "",
     image: "",
     goal: "",
     deadline: "",
-    name: "",
-    ongDetails: "",
-    status: "",
+    ONGDescription: "",
+    // status: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -58,11 +58,12 @@ const CreateCampaign = () => {
         setLoading(false);
         navigate("/");
       } else {
+        alert("Image is not available");
         setFormDetails({ ...formDetails, image: "" });
       }
     });
 
-    console.log("din createCam", formDetails);
+    // console.log("din create camp", formDetails);
   };
 
   return (
@@ -138,7 +139,7 @@ const CreateCampaign = () => {
                   width: "20rem",
                 }}
                 value={formDetails.name}
-                onChange={(e) => handleFormChange("name", e)}
+                onChange={(e) => handleFormChange("ownerName", e)}
               />
               <TextField
                 required
@@ -210,7 +211,7 @@ const CreateCampaign = () => {
                 value={formDetails.deadline}
                 onChange={(e) => handleFormChange("deadline", e)}
               />
-              <TextField
+              {/* <TextField
                 required
                 select
                 label="Status"
@@ -224,14 +225,13 @@ const CreateCampaign = () => {
                     {option}
                   </MenuItem>
                 ))}
-              </TextField>
+              </TextField> */}
             </Box>
             <Box sx={{ mt: "4rem", color: "secondary.main" }}>
               <label htmlFor="imgUrl">Image URL*</label>
               <TextField
                 id="imgUrl"
-                type="file"
-                accept="image/*"
+                type="url"
                 placeholder="Image URL*"
                 sx={{
                   width: "100%",
@@ -252,11 +252,11 @@ const CreateCampaign = () => {
               }}
               color="secondary"
               value={formDetails.ongDetails}
-              onChange={(e) => handleFormChange("ongDetails", e)}
+              onChange={(e) => handleFormChange("ONGDescription", e)}
             />
 
             <Box sx={{ mt: "2rem" }}>
-              <ButtonConnect title={"Submit"} btnType="submit" />
+              <ButtonConnect title="Submit" btnType="submit" />
             </Box>
           </form>
         </Box>
