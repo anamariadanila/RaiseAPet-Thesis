@@ -38,16 +38,6 @@ const Login = () => {
       </Box>
       <LoginLayout>
         <SelectUserType />
-        <Typography
-          variant="h5"
-          align="center"
-          sx={{ fontWeight: "bold", fontSize: 18, mt: "3rem", mb: "1rem" }}
-        >
-          Don't have an account? Register{" "}
-          <Link href="/register" color="#fff">
-            here.
-          </Link>
-        </Typography>
       </LoginLayout>
 
       <ButtonConnect

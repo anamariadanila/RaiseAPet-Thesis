@@ -12,6 +12,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import ButtonConnect from "./ButtonConnect";
+import { Typography } from "@mui/material";
+import Link from "@mui/material/Link";
+import metamask from "../assets/metamask.png";
 
 const SelectUserType = () => {
   const [type, setType] = React.useState("");
@@ -44,7 +47,13 @@ const SelectUserType = () => {
           <MenuItem value="ONG">ONG</MenuItem>
           <MenuItem value="Donator">Donator</MenuItem>
         </Select>
-        <FormHelperText>Select user type</FormHelperText>
+        {type === "ONG" ? (
+          <FormHelperText>ONG selected</FormHelperText>
+        ) : type === "Donator" ? (
+          <FormHelperText>Donator selected</FormHelperText>
+        ) : (
+          <FormHelperText>Select user type</FormHelperText>
+        )}
       </FormControl>
       {type === "ONG" ? (
         <Box>
@@ -97,9 +106,20 @@ const SelectUserType = () => {
           </Box>
         </Box>
       ) : type === "Donator" ? (
-        <ButtonConnect title="Connect" btnType="button" />
+        <ButtonConnect title="Connect " btnType="button" img={metamask} />
       ) : (
-        <Box> </Box>
+        <Box>
+          <Typography
+            variant="h5"
+            align="center"
+            sx={{ fontWeight: "bold", fontSize: 18, mt: "3rem", mb: "1rem" }}
+          >
+            Don't have an account? Register{" "}
+            <Link href="/register" color="#fff">
+              here.
+            </Link>
+          </Typography>
+        </Box>
       )}
     </Box>
   );

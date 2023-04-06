@@ -2,7 +2,7 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-const ButtonConnect = ({ title, btnType, handleClick }) => {
+const ButtonConnect = ({ title, btnType, handleClick, img }) => {
   return (
     <Stack spacing={2} direction="row">
       <Button
@@ -20,6 +20,7 @@ const ButtonConnect = ({ title, btnType, handleClick }) => {
         onClick={handleClick}
       >
         {title}
+        {img && <img src={img} alt="image" width="30px" height="30px" />}
       </Button>
     </Stack>
   );
