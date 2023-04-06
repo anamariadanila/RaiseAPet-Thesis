@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import { imageAvailable } from "../utils/functions";
 import MenuItem from "@mui/material/MenuItem";
 import { useAppContext } from "../context";
-import Layout from "../layouts/Layout";
+import MainLayout from "../layouts/MainLayout";
 
 const optionsCategory = [
   "Cat",
@@ -57,7 +57,7 @@ const CreateCampaign = () => {
           goal: ethers.utils.parseUnits(formDetails.goal, 18), //wei value
         });
         setLoading(false);
-        navigate("/home");
+        navigate("/");
       } else {
         alert("Image is not available");
         setFormDetails({ ...formDetails, image: "" });
@@ -66,7 +66,7 @@ const CreateCampaign = () => {
   };
 
   return (
-    <Layout>
+    <MainLayout>
       <Container
         sx={{
           bgcolor: "#231c34",
@@ -211,21 +211,6 @@ const CreateCampaign = () => {
                   value={formDetails.deadline}
                   onChange={(e) => handleFormChange("deadline", e)}
                 />
-                {/* <TextField
-                required
-                select
-                label="Status"
-                sx={{ width: "20rem" }}
-                color="secondary"
-                defaultValue=""
-                onChange={(e) => handleFormChange("status", e)}
-              >
-                {optionsStatus.map((option, index) => (
-                  <MenuItem key={index} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </TextField> */}
               </Box>
               <Box sx={{ mt: "4rem", color: "secondary.main" }}>
                 <label htmlFor="imgUrl">Image URL*</label>
@@ -262,7 +247,7 @@ const CreateCampaign = () => {
           </Box>
         </Container>
       </Container>
-    </Layout>
+    </MainLayout>
   );
 };
 
