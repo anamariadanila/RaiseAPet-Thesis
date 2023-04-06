@@ -30,8 +30,8 @@ export default function Sidebar() {
             flexDirection: "column",
             height: "100%",
             width: "100%",
-            mt: "2vh",
-            mb: "2vh",
+            mt: "1.5rem",
+            mb: "1.5rem",
           }}
         >
           <Box
@@ -42,7 +42,7 @@ export default function Sidebar() {
               width: "100%",
             }}
           >
-            <IconButton onClick={() => navigate("/")}>
+            <IconButton onClick={() => navigate("/home")}>
               <img src={logo} alt="logo" width="80px" height="80px" />
             </IconButton>
             {sidebarIcons.map((icon, index) => (

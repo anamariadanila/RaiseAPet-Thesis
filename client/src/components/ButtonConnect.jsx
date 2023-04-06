@@ -8,7 +8,13 @@ const ButtonConnect = ({ title, btnType, handleClick }) => {
       <Button
         variant="contained"
         size="large"
-        sx={{ height: "6vh", width: "7vw", mt: "1vh", borderRadius: "90px" }}
+        sx={{
+          height: "6vh",
+          width: "7vw",
+          mt: "1vh",
+          borderRadius: "90px",
+          fontWeight: "bold",
+        }}
         color="button"
         type={btnType}
         onClick={handleClick}

@@ -57,14 +57,12 @@ const CreateCampaign = () => {
           goal: ethers.utils.parseUnits(formDetails.goal, 18), //wei value
         });
         setLoading(false);
-        navigate("/");
+        navigate("/home");
       } else {
         alert("Image is not available");
         setFormDetails({ ...formDetails, image: "" });
       }
     });
-
-    // console.log("din create camp", formDetails);
   };
 
   return (
