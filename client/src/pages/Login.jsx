@@ -3,6 +3,7 @@ import { Box, TextField, Typography, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ButtonConnect from "../components/ButtonConnect";
 import LoginLayout from "../layouts/LoginRegisterLayout";
+import SelectUserType from "../components/SelectUserType";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,10 +37,7 @@ const Login = () => {
         </Typography>
       </Box>
       <LoginLayout>
-        <TextField sx={{ mt: "2rem" }}>aici</TextField>
-        <TextField sx={{ mt: "2rem" }}>aici</TextField>
-        <TextField>aici</TextField>
-        <TextField>aici</TextField>
+        <SelectUserType />
         <Typography
           variant="h5"
           align="center"
@@ -51,8 +49,7 @@ const Login = () => {
           </Link>
         </Typography>
       </LoginLayout>
-      {/* </Container>
-      </Container> */}
+
       <ButtonConnect
         title="Next"
         handleClick={() => {

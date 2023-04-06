@@ -21,7 +21,7 @@ export const ContextProvider = ({ children }) => {
     contract,
     "createCause"
   );
-  console.log(address);
+
   const showCampaign = async (formData) => {
     try {
       const data = await createCause([
