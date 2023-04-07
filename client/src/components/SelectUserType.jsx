@@ -39,7 +39,7 @@ const SelectUserType = () => {
         flexDirection: "column",
       }}
     >
-      <FormControl sx={{ m: 1, minWidth: 120 }} color="secondary">
+      <FormControl sx={{ m: 1, minWidth: "25ch" }} color="secondary">
         <Select value={type} onChange={handleChange} displayEmpty>
           <MenuItem value="">
             <em>Select type</em>
