@@ -16,7 +16,7 @@ import { Typography } from "@mui/material";
 import Link from "@mui/material/Link";
 import metamask from "../assets/metamask.png";
 
-const SelectUserType = () => {
+const SelectUserType = ({ showMessage, title, ifRegister }) => {
   const [type, setType] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -95,6 +95,42 @@ const SelectUserType = () => {
               label="Password"
             />
           </FormControl>
+          {ifRegister && (
+            <FormControl
+              sx={{
+                m: 1,
+                width: "25ch",
+              }}
+              variant="outlined"
+              color="secondary"
+              required
+            >
+              <InputLabel htmlFor="outlined-adornment-password-2">
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                autoComplete="off"
+                id="outlined-adornment-password-2"
+                inputProps={{
+                  autoComplete: "new-password",
+                }}
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+          )}
           <Box
             sx={{
               display: "flex",
@@ -102,23 +138,25 @@ const SelectUserType = () => {
               alignItems: "center",
             }}
           >
-            <ButtonConnect title="Connect" btnType="button" />
+            <ButtonConnect title={title} btnType="button" />
           </Box>
         </Box>
       ) : type === "Donator" ? (
         <ButtonConnect title="Connect " btnType="button" img={metamask} />
       ) : (
         <Box>
-          <Typography
-            variant="h5"
-            align="center"
-            sx={{ fontWeight: "bold", fontSize: 18, mt: "3rem", mb: "1rem" }}
-          >
-            Don't have an account? Register{" "}
-            <Link href="/register" color="#fff">
-              here.
-            </Link>
-          </Typography>
+          {showMessage && (
+            <Typography
+              variant="h5"
+              align="center"
+              sx={{ fontWeight: "bold", fontSize: 18, mt: "3rem", mb: "1rem" }}
+            >
+              Don't have an account? Register{" "}
+              <Link href="/register" color="#fff">
+                here.
+              </Link>
+            </Typography>
+          )}
         </Box>
       )}
     </Box>

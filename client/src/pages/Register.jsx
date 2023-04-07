@@ -1,6 +1,7 @@
 import React from "react";
-import LoginLayout from "../layouts/LoginRegisterLayout";
+import LoginRegisterLayout from "../layouts/LoginRegisterLayout";
 import { Box, TextField, Typography, Link } from "@mui/material";
+import SelectUserType from "../components/SelectUserType";
 
 const Register = () => {
   return (
@@ -32,12 +33,13 @@ const Register = () => {
           Register
         </Typography>
       </Box>
-      <LoginLayout>
-        <TextField sx={{ mt: "2rem" }}>aici</TextField>
-        <TextField sx={{ mt: "2rem" }}>aici</TextField>
-        <TextField>aici</TextField>
-        <TextField>aici</TextField>
-      </LoginLayout>
+      <LoginRegisterLayout>
+        <SelectUserType
+          showMessage={false}
+          title={"Register"}
+          ifRegister={true}
+        />
+      </LoginRegisterLayout>
     </Box>
   );
 };

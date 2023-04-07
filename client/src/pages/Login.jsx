@@ -37,7 +37,11 @@ const Login = () => {
         </Typography>
       </Box>
       <LoginLayout>
-        <SelectUserType />
+        <SelectUserType
+          showMessage={true}
+          title={"Connect"}
+          ifRegister={false}
+        />
       </LoginLayout>
 
       <ButtonConnect
