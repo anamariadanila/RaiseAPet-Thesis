@@ -1,6 +1,6 @@
 import React from "react";
 import LoginRegisterLayout from "../layouts/LoginRegisterLayout";
-import { Box, TextField, Typography, Link } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import SelectUserType from "../components/SelectUserType";
 
 const Register = () => {

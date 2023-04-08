@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, TextField, Typography, Link } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ButtonConnect from "../components/ButtonConnect";
 import LoginLayout from "../layouts/LoginRegisterLayout";
@@ -48,6 +48,12 @@ const Login = () => {
         title="Next"
         handleClick={() => {
           navigate("/create-campaign");
+        }}
+      />
+      <ButtonConnect
+        title="Register"
+        handleClick={() => {
+          navigate("/register");
         }}
       />
     </Box>
