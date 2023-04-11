@@ -14,6 +14,10 @@ export default defineConfig({
     "process.env": {},
   },
   server: {
+    hmr: {
+      host: "localhost",
+      protocol: "ws",
+    },
     port: 3000,
   },
 });

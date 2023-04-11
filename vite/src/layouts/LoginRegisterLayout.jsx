@@ -7,7 +7,9 @@ const LoginLayout = ({ children }) => {
     <Container
       sx={{
         bgcolor: "#231c34",
-        m: "10rem",
+        ml: "10rem",
+        mr: "10rem",
+        mb: "5rem",
         mt: "5rem",
         borderRadius: "15px",
         display: "flex",
