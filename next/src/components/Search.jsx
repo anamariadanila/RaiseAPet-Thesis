@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 const Search = () => {
   return (

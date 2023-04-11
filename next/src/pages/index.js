@@ -5,7 +5,6 @@ import LoginLayout from "@/layouts/LoginRegisterLayout";
 import SelectUserType from "@/components/SelectUserType";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
 
 export default function Home() {

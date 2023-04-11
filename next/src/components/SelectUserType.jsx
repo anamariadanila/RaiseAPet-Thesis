@@ -13,7 +13,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import ButtonConnect from "./ButtonConnect";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import metamask from "../assets/metamask.png";
 import { useAppContext } from "../context";

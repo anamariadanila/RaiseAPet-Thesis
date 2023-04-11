@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { getDesignTokens } from "@/utils/theme";
 import { ContextProvider } from "@/context";
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
+import "../styles/styles.css";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
