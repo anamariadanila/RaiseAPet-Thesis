@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, CardMedia, Container } from "@mui/material";
+import { Box, CardMedia, Container, Typography } from "@mui/material";
 import loginImg from "../assets/login.png";
 
-const LoginLayout = ({ children }) => {
+const LoginLayout = ({ children, messageTitle }) => {
   return (
     <Container
       sx={{

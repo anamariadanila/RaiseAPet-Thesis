@@ -19,7 +19,7 @@ import metamask from "../assets/metamask.png";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 
-const SelectUserType = ({ showMessage, title, ifRegister }) => {
+const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -71,8 +71,44 @@ const SelectUserType = ({ showMessage, title, ifRegister }) => {
           flexDirection: "column",
         }}
       >
-        <FormControl sx={{ m: 1, minWidth: "25ch" }} color="secondary">
-          <Select value={type} onChange={handleChange} displayEmpty>
+        <FormControl
+          sx={{
+            m: 1,
+            width: "25ch",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          color="secondary"
+        >
+          {type !== "ONG" && type !== "Donator" && (
+            <Box
+              sx={{
+                bgcolor: "#3b3247",
+                height: "4rem",
+                borderRadius: "15px",
+                width: "60%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: "2rem",
+              }}
+            >
+              <Typography
+                variant="h5"
+                align="center"
+                sx={{ fontWeight: "bold", fontSize: 23 }}
+              >
+                {messageTitle}
+              </Typography>
+            </Box>
+          )}
+          <Select
+            value={type}
+            onChange={handleChange}
+            displayEmpty
+            sx={{ minWidth: "25ch" }}
+          >
             <MenuItem value="">
               <em>Select type</em>
             </MenuItem>
@@ -87,6 +123,7 @@ const SelectUserType = ({ showMessage, title, ifRegister }) => {
             <FormHelperText>Select user type</FormHelperText>
           )}
         </FormControl>
+
         {type === "ONG" ? (
           <Box
             sx={{
@@ -194,7 +231,7 @@ const SelectUserType = ({ showMessage, title, ifRegister }) => {
           <ButtonConnect
             title="Connect "
             btnType="button"
-            img={metamask}
+            img={metamask.src}
             handleClick={handleClick}
           />
         ) : (

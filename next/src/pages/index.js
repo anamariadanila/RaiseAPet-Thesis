@@ -3,6 +3,9 @@ import { Typography, Box } from "@mui/material";
 import ButtonConnect from "@/components/ButtonConnect";
 import LoginLayout from "@/layouts/LoginRegisterLayout";
 import SelectUserType from "@/components/SelectUserType";
+import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -36,19 +39,26 @@ export default function Home() {
               mt: "5rem",
             }}
           >
+            <InputAdornment position="start">
+              <PetsOutlinedIcon fontSize="medium" />
+            </InputAdornment>
             <Typography
               variant="h4"
               align="center"
               sx={{ fontWeight: "bold", fontSize: 30 }}
             >
-              Login
+              Welcome
             </Typography>
+            <InputAdornment position="end" fontSize="large">
+              <PetsOutlinedIcon />
+            </InputAdornment>
           </Box>
-          <LoginLayout>
+          <LoginLayout messageTitle={"Login"}>
             <SelectUserType
               showMessage={true}
               title={"Connect"}
               ifRegister={false}
+              messageTitle={"Login"}
             />
           </LoginLayout>
 
