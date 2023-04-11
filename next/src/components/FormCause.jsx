@@ -1,11 +1,11 @@
 import React from "react";
 import { ethers } from "ethers";
-import ButtonConnect from "../components/ButtonConnect";
+import ButtonConnect from "./ButtonConnect";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
-const FormCampaign = () => {
+const FormCause = () => {
   return (
     <Container
       sx={{
@@ -31,7 +31,7 @@ const FormCampaign = () => {
           align="center"
           sx={{ fontWeight: "bold", fontSize: 25 }}
         >
-          Create a Campaign
+          Create a Cause
         </Typography>
         <form action=""></form>
       </Box>
@@ -39,4 +39,4 @@ const FormCampaign = () => {
   );
 };
 
-export default FormCampaign;
+export default FormCause;

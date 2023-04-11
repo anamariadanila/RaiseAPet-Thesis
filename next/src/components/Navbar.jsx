@@ -5,7 +5,6 @@ import Filter from "./Filter";
 import ButtonConnect from "./ButtonConnect";
 import UserAvatar from "./Avatar";
 import { useAppContext } from "../context";
-
 import { useRouter } from "next/router";
 
 const Navbar = () => {
@@ -13,7 +12,7 @@ const Navbar = () => {
   const { address, connectWallet } = useAppContext();
   const handleClick = () => {
     if (address) {
-      router.push("/create-campaign");
+      router.push("/create-cause");
     } else {
       connectWallet();
     }
@@ -65,7 +64,7 @@ const Navbar = () => {
           }}
         >
           <ButtonConnect
-            title={!address ? "Connect" : "Create Campaign"}
+            title={!address ? "Connect" : "Create Cause"}
             btnType="button"
             handleClick={handleClick}
           />

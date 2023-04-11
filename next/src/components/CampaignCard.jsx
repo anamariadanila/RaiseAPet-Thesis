@@ -1,7 +1,7 @@
 import React from "react";
 
-const CampaignCard = () => {
-  return <div>CampaignCard</div>;
+const CauseCard = () => {
+  return <div>CauseCard</div>;
 };
 
-export default CampaignCard;
+export default CauseCard;

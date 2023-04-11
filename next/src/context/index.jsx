@@ -22,7 +22,7 @@ export const ContextProvider = ({ children }) => {
     "createCause"
   );
 
-  const showCampaign = async (formData) => {
+  const showCause = async (formData) => {
     try {
       const data = await createCause([
         address,
@@ -46,7 +46,7 @@ export const ContextProvider = ({ children }) => {
       value={{
         address,
         contract,
-        createCause: showCampaign,
+        createCause: showCause,
         connectWallet,
       }}
     >

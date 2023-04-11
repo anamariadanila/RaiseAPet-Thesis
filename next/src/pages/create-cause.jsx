@@ -24,7 +24,7 @@ const optionsCategory = [
 
 const optionsStatus = ["Open", "Deleted"];
 
-const CreateCampaign = () => {
+const CreateCause = () => {
   const { createCause } = useAppContext();
   const router = useRouter();
   const [formDetails, setFormDetails] = useState({
@@ -114,7 +114,7 @@ const CreateCampaign = () => {
                 align="center"
                 sx={{ fontWeight: "bold", fontSize: 25 }}
               >
-                Create a Campaign
+                Create a Cause
               </Typography>
             </Box>
             <Box
@@ -150,7 +150,7 @@ const CreateCampaign = () => {
                   />
                   <TextField
                     required
-                    label="Campaign title"
+                    label="Cause title"
                     color="secondary"
                     sx={{ width: "20rem" }}
                     value={formDetails.title}
@@ -175,7 +175,7 @@ const CreateCampaign = () => {
                 </Box>
                 <TextField
                   required
-                  placeholder="Campaign Description *"
+                  placeholder="Cause Description *"
                   multiline
                   rows={6}
                   sx={{
@@ -259,4 +259,4 @@ const CreateCampaign = () => {
   );
 };
 
-export default CreateCampaign;
+export default CreateCause;
