@@ -1,8 +1,8 @@
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { getDesignTokens } from "@/utils/theme";
-import { ContextProvider } from "@/context";
+import { getDesignTokens } from "../utils/theme.js";
+import { ContextProvider } from "../context";
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "../styles/styles.css";
 
@@ -14,7 +14,14 @@ export const ColorModeContext = React.createContext({
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThirdwebProvider activeChain={ChainId.Goerli}>
+    <ThirdwebProvider
+      activeChain={ChainId.Goerli}
+      authConfig={{
+        authUrl: "/api/auth",
+        domain: "crowdfundingong.com",
+        loginRedirect: "/home",
+      }}
+    >
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <ContextProvider>

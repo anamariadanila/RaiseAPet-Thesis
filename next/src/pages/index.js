@@ -1,14 +1,15 @@
 import Head from "next/head";
 import { Typography, Box } from "@mui/material";
-import ButtonConnect from "@/components/ButtonConnect";
-import LoginLayout from "@/layouts/LoginRegisterLayout";
-import SelectUserType from "@/components/SelectUserType";
+import ButtonConnect from "../components/ButtonConnect";
+import LoginLayout from "../layouts/LoginRegisterLayout";
+import SelectUserType from "../components/SelectUserType";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
+
   return (
     <>
       <Head>
