@@ -19,6 +19,7 @@ import metamask from "../assets/metamask.png";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
+import { validationLogin, validationRegister } from "../lib/validation";
 
 const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [type, setType] = useState("");
@@ -46,7 +47,6 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     // const confirmPassword = formElements.confirmPassword.value;
     // console.log(ongCode, password, confirmPassword);
     if (!ifRegister) {
-      //remove confirmPassword from values
       delete values.confirmPassword;
     }
     console.log(values);
@@ -58,8 +58,11 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
       password: "",
       confirmPassword: "",
     },
+    validate: ifRegister ? validationRegister : validationLogin,
     onSubmit: handleSubmit,
   });
+
+  console.log(formik.errors);
 
   const router = useRouter();
 
@@ -161,6 +164,15 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
               {...formik.getFieldProps("ongCode")}
               autoComplete="off"
             />
+            {formik.errors.ongCode ? (
+              <Typography
+                variant="h6"
+                align="center"
+                sx={{ fontSize: 14, color: "#A8373A" }}
+              >
+                {formik.errors.ongCode}
+              </Typography>
+            ) : null}
             {/* <FormControl
               sx={{ m: 1, width: "25ch" }}
               variant="outlined"
@@ -217,6 +229,15 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                   }
                   label="Password"
                 />
+                {formik.errors.password ? (
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    sx={{ fontSize: 14, color: "#A8373A" }}
+                  >
+                    {formik.errors.password}
+                  </Typography>
+                ) : null}
               </FormControl>
 
               {ifRegister && (
@@ -257,8 +278,17 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    label="Password"
+                    label="Confirm password"
                   />
+                  {formik.errors.confirmPassword ? (
+                    <Typography
+                      variant="h6"
+                      align="center"
+                      sx={{ fontSize: 14, color: "#A8373A" }}
+                    >
+                      {formik.errors.confirmPassword}
+                    </Typography>
+                  ) : null}
                 </FormControl>
               )}
             </Box>
