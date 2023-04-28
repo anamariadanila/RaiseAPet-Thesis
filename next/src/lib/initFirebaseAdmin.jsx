@@ -7,7 +7,6 @@ import { getFirestore } from "firebase-admin/firestore";
 export default function initializeFirebaseServer() {
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
   const privateKey = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n");
-  console.log("privateKey", privateKey);
   const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
   if (admin.apps.length === 0) {

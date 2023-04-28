@@ -18,12 +18,17 @@ import Link from "@mui/material/Link";
 import metamask from "../assets/metamask.png";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
+import { useFormik } from "formik";
 
 const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -33,14 +38,28 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     setType(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formElements = event.currentTarget.elements;
-    const ongCode = formElements.ongCode.value;
-    const password = formElements.password.value;
-    const confirmPassword = formElements.confirmPassword.value;
-    console.log(ongCode, password, confirmPassword);
+  const handleSubmit = async (values) => {
+    // event.preventDefault();
+    // const formElements = event.currentTarget.elements;
+    // const ongCode = formElements.ongCode.value;
+    // const password = formElements.password.value;
+    // const confirmPassword = formElements.confirmPassword.value;
+    // console.log(ongCode, password, confirmPassword);
+    if (!ifRegister) {
+      //remove confirmPassword from values
+      delete values.confirmPassword;
+    }
+    console.log(values);
   };
+
+  const formik = useFormik({
+    initialValues: {
+      ongCode: "",
+      password: "",
+      confirmPassword: "",
+    },
+    onSubmit: handleSubmit,
+  });
 
   const router = useRouter();
 
@@ -63,7 +82,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
       }}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={formik.handleSubmit}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -139,7 +158,26 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
               color="secondary"
               sx={{ m: 1, width: "25ch" }}
               name="ongCode"
+              {...formik.getFieldProps("ongCode")}
+              autoComplete="off"
             />
+            {/* <FormControl
+              sx={{ m: 1, width: "25ch" }}
+              variant="outlined"
+              color="secondary"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.ongCode}
+            >
+              <InputLabel htmlFor="outlined-adornment-ong">ONG Code</InputLabel>
+              <OutlinedInput
+                name="ongCode"
+                autoComplete="off"
+                id="outlined-adornment-ong"
+                type="text"
+                label="ONG Code"
+              />
+            </FormControl> */}
             <Box
               sx={{
                 display: "flex",
@@ -152,6 +190,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                 variant="outlined"
                 color="secondary"
                 required
+                {...formik.getFieldProps("password")}
               >
                 <InputLabel htmlFor="outlined-adornment-password">
                   Password
@@ -179,6 +218,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                   label="Password"
                 />
               </FormControl>
+
               {ifRegister && (
                 <FormControl
                   sx={{
@@ -188,6 +228,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                   variant="outlined"
                   color="secondary"
                   required
+                  {...formik.getFieldProps("confirmPassword")}
                 >
                   <InputLabel htmlFor="outlined-adornment-password-2">
                     Confirm Password
@@ -199,16 +240,20 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                     inputProps={{
                       autoComplete: "new-password",
                     }}
-                    type={showPassword ? "text" : "password"}
+                    type={showConfirmPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
+                          onClick={handleClickShowConfirmPassword}
                           onMouseDown={handleMouseDownPassword}
                           edge="end"
                         >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                          {showConfirmPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }

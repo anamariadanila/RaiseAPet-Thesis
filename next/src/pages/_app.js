@@ -5,6 +5,7 @@ import { getDesignTokens } from "../utils/theme.js";
 import { ContextProvider } from "../context";
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "../styles/styles.css";
+import { SessionProvider } from "next-auth/react";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
@@ -12,22 +13,24 @@ export const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
 });
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, session }) {
   return (
-    <ThirdwebProvider
-      activeChain={ChainId.Goerli}
-      authConfig={{
-        authUrl: "/api/auth",
-        domain: "crowdfundingong.com",
-        loginRedirect: "/home",
-      }}
-    >
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <ContextProvider>
-          <Component {...pageProps} />
-        </ContextProvider>
-      </ThemeProvider>
-    </ThirdwebProvider>
+    <SessionProvider session={session}>
+      <ThirdwebProvider
+        activeChain={ChainId.Goerli}
+        authConfig={{
+          authUrl: "/api/auth",
+          domain: "crowdfundingong.com",
+          loginRedirect: "/home",
+        }}
+      >
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <ContextProvider>
+            <Component {...pageProps} />
+          </ContextProvider>
+        </ThemeProvider>
+      </ThirdwebProvider>
+    </SessionProvider>
   );
 }

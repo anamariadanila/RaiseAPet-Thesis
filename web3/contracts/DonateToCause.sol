@@ -89,6 +89,7 @@ contract DonateToCause is Permissions {
     cause.donations.push(msg.value);
 
     (bool success, ) = payable(cause.owner).call{ value: msg.value }("");
+    // Best practice: payment least. Why do we need a message with the ammount that the donator sent if he know how much he sent.
     if (success) {
       cause.totalDonated += msg.value;
     }
@@ -117,6 +118,7 @@ contract DonateToCause is Permissions {
   }
 
   function refund(uint256 _id) internal {
+    // for consuma mult gas - refactorizare
     for (uint256 i = 0; i < donatorsOf[_id].length; i++) {
       address _owner = donatorsOf[_id][i].owner;
       uint256 _amount = donatorsOf[_id][i].amount;
