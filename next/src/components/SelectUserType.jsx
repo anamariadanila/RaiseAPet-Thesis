@@ -67,7 +67,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const { address, connectWallet } = useAppContext();
   const handleClick = () => {
     if (address) {
-      router.push("/home");
+      router.push("/campaigns");
     } else {
       connectWallet();
     }

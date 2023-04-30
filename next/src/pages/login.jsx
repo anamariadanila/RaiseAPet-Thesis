@@ -36,7 +36,7 @@ export default function Login() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              mt: "5rem",
+              mt: "3rem",
             }}
           >
             <InputAdornment position="start">
@@ -47,7 +47,7 @@ export default function Login() {
               align="center"
               sx={{ fontWeight: "bold", fontSize: 30 }}
             >
-              Welcome
+              Welcome back
             </Typography>
             <InputAdornment position="end" fontSize="large">
               <PetsOutlinedIcon />
