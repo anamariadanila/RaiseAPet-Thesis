@@ -12,7 +12,7 @@ const Navbar = () => {
   const { address, connectWallet } = useAppContext();
   const handleClick = () => {
     if (address) {
-      router.push("/create-cause");
+      router.push("/create-campaign");
     } else {
       connectWallet();
     }
@@ -64,7 +64,7 @@ const Navbar = () => {
           }}
         >
           <ButtonConnect
-            title={!address ? "Connect" : "Create Cause"}
+            title={!address ? "Connect" : "Create Campaign"}
             btnType="button"
             handleClick={handleClick}
           />

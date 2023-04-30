@@ -32,6 +32,9 @@ export const getDesignTokens = (mode) => ({
           icon: {
             main: "#D6B9ED",
           },
+          error: {
+            main: "#A8373A",
+          },
         }),
   },
 });

@@ -32,7 +32,7 @@ const Register = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            mt: "5rem",
+            mt: "3rem",
           }}
         >
           <InputAdornment position="start">

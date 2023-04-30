@@ -2,7 +2,6 @@ import React from "react";
 import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import { useAuth } from "@thirdweb-dev/react";
 import { getDoc } from "firebase/firestore";
-
 import { serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { signInWithCustomToken } from "firebase/auth";
 import initializeFirebaseClient from "../lib/initFirebase";

@@ -4,14 +4,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Container from "@mui/material/Container";
 import loginImg from "../assets/login.png";
 
-const LoginLayout = ({ children, messageTitle }) => {
+const LoginLayout = ({ children }) => {
   return (
     <Container
       sx={{
         bgcolor: "#231c34",
         ml: "10rem",
         mr: "10rem",
-        mt: "5rem",
+        mt: "3rem",
         borderRadius: "15px",
         display: "flex",
         justifyContent: "space-between",
@@ -33,7 +33,7 @@ const LoginLayout = ({ children, messageTitle }) => {
         sx={{
           bgcolor: "#887C9F",
           width: "55%",
-          height: "430px",
+          height: "500px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

@@ -36,7 +36,7 @@ export default function Home() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              mt: "5rem",
+              mt: "3rem",
             }}
           >
             <InputAdornment position="start">
@@ -65,7 +65,7 @@ export default function Home() {
           <ButtonConnect
             title="Next"
             handleClick={() => {
-              router.push("/create-cause");
+              router.push("/create-campaign");
             }}
           />
           <ButtonConnect

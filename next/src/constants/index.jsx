@@ -12,7 +12,7 @@ export const sidebarIcons = [
         sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
       />
     ),
-    link: "/causes",
+    link: "/campaigns",
   },
   {
     icon: (
@@ -20,7 +20,7 @@ export const sidebarIcons = [
         sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
       />
     ),
-    link: "/create-cause",
+    link: "/create-campaign",
   },
   {
     icon: (

@@ -65,7 +65,7 @@ export default function Login() {
           <ButtonConnect
             title="Next"
             handleClick={() => {
-              router.push("/create-cause");
+              router.push("/create-campaign");
             }}
           />
           <ButtonConnect

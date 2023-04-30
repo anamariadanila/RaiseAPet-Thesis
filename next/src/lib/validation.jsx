@@ -37,15 +37,14 @@ export const validationRegister = (values) => {
   if (!values.password) {
     errors.password = "Password is required";
   } else if (values.password.length < 8 || values.password.length > 20) {
-    errors.password =
-      "Password must be at least 8 characters and less then 20 characters";
+    errors.password = "Password must be between 8 and 20 characters";
   } else if (
     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\$%\^&\*])(?=.{8,})/.test(
       values.password
     )
   ) {
     errors.password =
-      "Password must contain at least one uppercase, lowercase, number and special character";
+      "Must contain at least one uppercase, lowercase, number and special character";
   } else if (values.password.includes(" ")) {
     errors.password = "Password must not contain spaces";
   }
@@ -53,14 +52,14 @@ export const validationRegister = (values) => {
   if (!values.confirmPassword) {
     errors.confirmPassword = "Confirm password is required";
   } else if (values.confirmPassword !== values.password) {
-    errors.confirmPassword = "Confirm password must be same as password";
+    errors.confirmPassword = "Confirm password must be the same as password";
   } else if (
     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\$%\^&\*])(?=.{8,})/.test(
       values.confirmPassword
     )
   ) {
     errors.confirmPassword =
-      "Password must contain at least one uppercase, lowercase, number and special character";
+      "Must contain at least one uppercase, lowercase, number and special character";
   } else if (values.confirmPassword.includes(" ")) {
     errors.confirmPassword = "Confirm password must not contain spaces";
   }

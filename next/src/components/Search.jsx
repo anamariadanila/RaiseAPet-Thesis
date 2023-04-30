@@ -20,6 +20,10 @@ const Search = () => {
         label="Search"
         variant="filled"
         color="secondary"
+        autoComplete="off"
+        inputProps={{
+          autoComplete: "off",
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

@@ -62,8 +62,6 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     onSubmit: handleSubmit,
   });
 
-  console.log(formik.errors);
-
   const router = useRouter();
 
   const { address, connectWallet } = useAppContext();
@@ -155,50 +153,47 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
               flexDirection: "column",
             }}
           >
-            <TextField
-              required
-              label="ONG Code"
-              color="secondary"
-              sx={{ m: 1, width: "25ch" }}
-              name="ongCode"
-              {...formik.getFieldProps("ongCode")}
-              autoComplete="off"
-            />
-            {formik.errors.ongCode ? (
-              <Typography
-                variant="h6"
-                align="center"
-                sx={{ fontSize: 14, color: "#A8373A" }}
-              >
-                {formik.errors.ongCode}
-              </Typography>
-            ) : null}
-            {/* <FormControl
-              sx={{ m: 1, width: "25ch" }}
-              variant="outlined"
-              color="secondary"
-              required
-              onChange={formik.handleChange}
-              value={formik.values.ongCode}
-            >
-              <InputLabel htmlFor="outlined-adornment-ong">ONG Code</InputLabel>
-              <OutlinedInput
-                name="ongCode"
-                autoComplete="off"
-                id="outlined-adornment-ong"
-                type="text"
-                label="ONG Code"
-              />
-            </FormControl> */}
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+              <TextField
+                required
+                label="ONG Code"
+                color="secondary"
+                sx={{ m: 1, width: "25ch" }}
+                name="ongCode"
+                {...formik.getFieldProps("ongCode")}
+                autoComplete="off"
+              />
+              {formik.errors.ongCode && formik.touched.ongCode ? (
+                <Typography
+                  align="left"
+                  sx={{
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "30ch",
+                  }}
+                >
+                  {formik.errors.ongCode}
+                </Typography>
+              ) : null}
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <FormControl
-                sx={{ m: 1, width: "25ch" }}
+                sx={{
+                  m: 1,
+                  width: "25ch",
+                }}
                 variant="outlined"
                 color="secondary"
                 required
@@ -229,23 +224,32 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                   }
                   label="Password"
                 />
-                {formik.errors.password ? (
-                  <Typography
-                    variant="h6"
-                    align="center"
-                    sx={{ fontSize: 14, color: "#A8373A" }}
-                  >
-                    {formik.errors.password}
-                  </Typography>
-                ) : null}
               </FormControl>
-
-              {ifRegister && (
-                <FormControl
+              {formik.errors.password && formik.touched.password ? (
+                <Typography
+                  variant="h6"
+                  align="left"
                   sx={{
-                    m: 1,
-                    width: "25ch",
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "35ch",
                   }}
+                >
+                  {formik.errors.password}
+                </Typography>
+              ) : null}
+            </Box>
+
+            {ifRegister && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <FormControl
+                  sx={{ m: 1, width: "25ch" }}
                   variant="outlined"
                   color="secondary"
                   required
@@ -280,18 +284,25 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                     }
                     label="Confirm password"
                   />
-                  {formik.errors.confirmPassword ? (
-                    <Typography
-                      variant="h6"
-                      align="center"
-                      sx={{ fontSize: 14, color: "#A8373A" }}
-                    >
-                      {formik.errors.confirmPassword}
-                    </Typography>
-                  ) : null}
                 </FormControl>
-              )}
-            </Box>
+                {formik.errors.confirmPassword &&
+                formik.touched.confirmPassword ? (
+                  <Typography
+                    variant="h6"
+                    align="left"
+                    sx={{
+                      fontSize: 12,
+                      color: "error.main",
+                      ml: 1,
+                      width: "35ch",
+                    }}
+                  >
+                    {formik.errors.confirmPassword}
+                  </Typography>
+                ) : null}
+              </Box>
+            )}
+
             <Box
               sx={{
                 display: "flex",
