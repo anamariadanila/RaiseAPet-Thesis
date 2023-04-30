@@ -71,7 +71,7 @@ const FormCampaign = () => {
       <MainLayout>
         <Container
           sx={{
-            bgcolor: "#231c34",
+            bgcolor: "createCampBg.main",
             mt: "5vh",
             mb: "2vh",
             borderRadius: "15px",
@@ -95,7 +95,7 @@ const FormCampaign = () => {
           >
             <Box
               sx={{
-                bgcolor: "#3b3247",
+                bgcolor: "textBg.main",
                 height: "5rem",
                 borderRadius: "15px",
                 width: "40%",

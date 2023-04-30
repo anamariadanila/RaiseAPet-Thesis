@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import BoxCount from "../components/BoxCount";
 
 const CampaignDetails = () => {
   return (
@@ -10,6 +11,7 @@ const CampaignDetails = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div>Campaign Details</div>
+      <BoxCount />
     </>
   );
 };

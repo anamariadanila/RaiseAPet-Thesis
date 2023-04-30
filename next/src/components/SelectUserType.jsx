@@ -104,7 +104,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
           {type !== "ONG" && type !== "Donator" && (
             <Box
               sx={{
-                bgcolor: "#3b3247",
+                bgcolor: "textBg.main",
                 height: "4rem",
                 borderRadius: "15px",
                 width: "60%",

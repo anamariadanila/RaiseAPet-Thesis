@@ -8,7 +8,7 @@ const LoginLayout = ({ children }) => {
   return (
     <Container
       sx={{
-        bgcolor: "#231c34",
+        bgcolor: "createCampBg.main",
         ml: "10rem",
         mr: "10rem",
         mt: "3rem",
@@ -31,7 +31,7 @@ const LoginLayout = ({ children }) => {
       </Box>
       <Container
         sx={{
-          bgcolor: "#887C9F",
+          bgcolor: "containerBg.main",
           width: "55%",
           height: "500px",
           display: "flex",

@@ -25,7 +25,7 @@ const Register = () => {
       >
         <Box
           sx={{
-            bgcolor: "#3b3247",
+            bgcolor: "textBg.main",
             height: "5rem",
             borderRadius: "15px",
             width: "25%",

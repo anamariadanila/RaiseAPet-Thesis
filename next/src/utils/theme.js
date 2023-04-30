@@ -35,6 +35,21 @@ export const getDesignTokens = (mode) => ({
           error: {
             main: "#A8373A",
           },
+          boxValue: {
+            main: "#341f4d",
+          },
+          boxDescription: {
+            main: "#462a67",
+          },
+          textBg: {
+            main: "#3b3247",
+          },
+          containerBg: {
+            main: "#887C9F",
+          },
+          createCampBg: {
+            main: "#231c34",
+          },
         }),
   },
 });

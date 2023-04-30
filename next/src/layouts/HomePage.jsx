@@ -47,7 +47,7 @@ const HomePage = () => {
 
         <Box
           sx={{
-            bgcolor: "#3b3247",
+            bgcolor: "textBg.main",
             height: "5rem",
             borderRadius: "15px",
             width: "25%",
@@ -79,7 +79,7 @@ const HomePage = () => {
         >
           <Container
             sx={{
-              bgcolor: "#887C9F",
+              bgcolor: "containerBg.main",
               width: "80%",
               height: "600px",
               display: "flex",
@@ -103,7 +103,7 @@ const HomePage = () => {
                   fontWeight: "bold",
                   fontSize: 24,
                   width: "70%",
-                  color: "#3b3247",
+                  color: "textBg.main",
                 }}
               >
                 Support animal welfare ONG and help them save and improve the
