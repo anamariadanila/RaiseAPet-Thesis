@@ -49,9 +49,9 @@ const Navbar = () => {
           <Box sx={{ ml: "2rem", mr: "2rem" }}>
             <Search />
           </Box>
-          <Box sx={{ ml: "2rem", mr: "2rem" }}>
+          {/* <Box sx={{ ml: "2rem", mr: "2rem" }}>
             <Filter />
-          </Box>
+          </Box> */}
         </Box>
 
         <Box

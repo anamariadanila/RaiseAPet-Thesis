@@ -68,12 +68,6 @@ export default function Login() {
               router.push("/create-campaign");
             }}
           />
-          <ButtonConnect
-            title="Register"
-            handleClick={() => {
-              router.push("/register");
-            }}
-          />
         </Box>
       </main>
     </>

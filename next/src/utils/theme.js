@@ -35,10 +35,10 @@ export const getDesignTokens = (mode) => ({
           error: {
             main: "#A8373A",
           },
-          boxValue: {
+          boxDescription: {
             main: "#341f4d",
           },
-          boxDescription: {
+          boxValue: {
             main: "#462a67",
           },
           textBg: {

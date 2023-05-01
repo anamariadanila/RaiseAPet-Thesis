@@ -19,7 +19,7 @@ export default function Sidebar() {
       <AppBar
         position="static"
         sx={{
-          width: "6rem",
+          width: "4.5rem",
           height: "100%",
         }}
       >
