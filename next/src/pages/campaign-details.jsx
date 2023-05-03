@@ -1,11 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import BoxCount from "../components/BoxCount";
-import FundCard from "../components/FundCard";
 import { Box } from "@mui/material";
 import CampaignDetailsImg from "../components/CampaignDetailsImg";
 import MainLayout from "../layouts/MainLayout";
 import { Typography } from "@mui/material";
+import CampaignDetailsInfo from "../components/CampaignDetailsInfo";
 
 const CampaignDetails = () => {
   return (
@@ -37,32 +36,7 @@ const CampaignDetails = () => {
             }}
           >
             <CampaignDetailsImg />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                width: "70%",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  align="center"
-                  sx={{ fontWeight: "bold", fontSize: 25 }}
-                >
-                  Title
-                </Typography>
-              </Box>
-            </Box>
+            <CampaignDetailsInfo />
           </Box>
           <Box sx={{ ml: "8rem", mr: "5rem", mt: "3rem", width: "80%" }}>
             <Typography

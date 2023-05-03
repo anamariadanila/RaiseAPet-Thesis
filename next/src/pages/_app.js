@@ -21,7 +21,7 @@ export default function App({ Component, pageProps, session }) {
         authConfig={{
           authUrl: "/api/auth",
           domain: "crowdfundingong.com",
-          loginRedirect: "/home",
+          loginRedirect: "/campaigns",
         }}
       >
         <ThemeProvider theme={darkTheme}>
