@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Search from "./Search";
-import Filter from "./Filter";
 import ButtonConnect from "./ButtonConnect";
 import UserAvatar from "./Avatar";
 import { useAppContext } from "../context";
