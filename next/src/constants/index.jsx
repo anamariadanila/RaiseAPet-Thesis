@@ -2,7 +2,6 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 export const sidebarIcons = [
@@ -45,13 +44,5 @@ export const sidebarIcons = [
       />
     ),
     link: "/settings",
-  },
-  {
-    icon: (
-      <LogoutOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
-    ),
-    link: "/",
   },
 ];

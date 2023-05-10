@@ -28,6 +28,7 @@ const HomePage = () => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
+          width: "100%",
         }}
       >
         <Box
@@ -35,9 +36,8 @@ const HomePage = () => {
             display: "flex",
             alignItems: "flex-start",
             flexDirection: "column",
-            width: "100%",
+            width: "95%",
             mt: "1rem",
-            ml: "1.5rem",
           }}
         >
           <IconButton onClick={() => router.push("/")}>
@@ -73,7 +73,7 @@ const HomePage = () => {
 
         <Box
           sx={{
-            width: "80%",
+            width: "90%",
             mt: "3rem",
           }}
         >

@@ -20,11 +20,14 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationLogin, validationRegister } from "../lib/validation";
+import { signIn } from "next-auth/react";
 
 const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -39,17 +42,98 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     setType(event.target.value);
   };
 
-  const handleSubmit = async (values) => {
-    // event.preventDefault();
-    // const formElements = event.currentTarget.elements;
-    // const ongCode = formElements.ongCode.value;
-    // const password = formElements.password.value;
-    // const confirmPassword = formElements.confirmPassword.value;
-    // console.log(ongCode, password, confirmPassword);
-    if (!ifRegister) {
+  const { address, connectWallet } = useAppContext();
+
+  const handleClick = async (values) => {
+    try {
       delete values.confirmPassword;
+      delete values.ongCode;
+      delete values.password;
+      const newVal = { address, type };
+      const valForDonator = { address, type };
+      console.log(newVal);
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newVal),
+      };
+      console.log(options);
+
+      if (ifRegister) {
+        const response = await fetch(
+          "http://localhost:3000/api/auth/register",
+          options
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data && !data.error) {
+              router.push("/login");
+            }
+          });
+
+        const data = await response.json();
+        console.log(data);
+      } else {
+        if (address) {
+          router.push("/campaigns");
+        } else {
+          connectWallet();
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
-    console.log(values);
+  };
+  const handleClickRegister = () => {
+    connectWallet();
+    //de vazut daca deja exista un cont cu adresa asta sa apara eroare else se face conectare
+  };
+
+  const onSubmit = async (values) => {
+    const newVal = { ...values, address, type };
+    const valForDonator = { address, type };
+    console.log(newVal);
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(type === "ONG" ? newVal : valForDonator),
+    };
+    console.log(options);
+
+    if (ifRegister) {
+      const response = await fetch(
+        "http://localhost:3000/api/auth/register",
+        options
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data && !data.error) {
+            router.push("/login");
+          }
+        });
+
+      const data = await response.json();
+      console.log(data);
+    } else {
+      delete values.confirmPassword;
+      const status = await signIn("credentials", {
+        redirect: false,
+        ongCode: values.ongCode,
+        password: values.password,
+        callbackUrl: "/campaigns",
+      });
+      console.log(status);
+
+      if (status.ok) {
+        if (address) {
+          router.push(status.url);
+        } else {
+          connectWallet();
+        }
+      }
+    }
   };
 
   const formik = useFormik({
@@ -59,19 +143,8 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
       confirmPassword: "",
     },
     validate: ifRegister ? validationRegister : validationLogin,
-    onSubmit: handleSubmit,
+    onSubmit,
   });
-
-  const router = useRouter();
-
-  const { address, connectWallet } = useAppContext();
-  const handleClick = () => {
-    if (address) {
-      router.push("/campaigns");
-    } else {
-      connectWallet();
-    }
-  };
 
   return (
     <Box
@@ -310,7 +383,11 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                 alignItems: "center",
               }}
             >
-              <ButtonConnect title={title} btnType="submit" />
+              <ButtonConnect
+                title={title}
+                btnType="submit"
+                handleClick={handleClickRegister}
+              />
             </Box>
           </Box>
         ) : type === "Donator" ? (

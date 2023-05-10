@@ -20,7 +20,7 @@ const TableHome = () => {
 
   return (
     <>
-      <Box>
+      <Box sx={{ width: "100%" }}>
         <Stack
           direction="row"
           divider={
@@ -32,7 +32,7 @@ const TableHome = () => {
           }
           spacing={2}
         >
-          <Item> 0 Projects</Item>
+          <Item>0 Projects</Item>
           <Item>0 Donators</Item>
           <Item>0 ETH Donated</Item>
         </Stack>

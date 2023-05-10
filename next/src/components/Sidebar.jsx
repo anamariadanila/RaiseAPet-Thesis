@@ -4,13 +4,18 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 import { useRouter } from "next/router";
 import { sidebarIcons } from "../constants/index.jsx";
 import logo from "../assets/logo.png";
+import { signOut } from "next-auth/react";
 
-export default function Sidebar() {
+export default function Sidebar({}) {
   const router = useRouter();
+  const handleSignOut = () => {
+    signOut();
+  };
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -55,6 +60,11 @@ export default function Sidebar() {
                 {icon.icon}
               </IconButton>
             ))}
+            <IconButton color="secondary" onClick={handleSignOut}>
+              <LogoutOutlinedIcon
+                sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+              />
+            </IconButton>
           </Box>
           <Box>
             <IconButton color="secondary" aria-label="dashboard">
