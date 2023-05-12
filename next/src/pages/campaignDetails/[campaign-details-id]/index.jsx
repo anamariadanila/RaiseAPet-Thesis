@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Box } from "@mui/material";
-import CampaignDetailsImg from "../components/CampaignDetailsImg";
-import MainLayout from "../layouts/MainLayout";
+import CampaignDetailsImg from "../../../components/CampaignDetailsImg";
+import MainLayout from "../../../layouts/MainLayout";
 import { Typography } from "@mui/material";
-import CampaignDetailsInfo from "../components/CampaignDetailsInfo";
+import CampaignDetailsInfo from "../../../components/CampaignDetailsInfo";
 import { useRouter } from "next/router";
-import { useAppContext } from "../context";
+import { useAppContext } from "../../../context";
 import { ethers } from "ethers";
-import { days } from "../utils/functions";
+import { days } from "../../../utils/functions";
 
 const CampaignDetails = () => {
   const router = useRouter();

@@ -38,22 +38,20 @@ export const ContextProvider = ({ children }) => {
   });
 
   const structuredCampaigns = (campaigns) => {
-    campaigns
-      .map((campaign) => ({
-        id: campaign.id.toNumber(),
-        owner: campaign.owner.toLowerCase(),
-        title: campaign.title,
-        description: campaign.description,
-        timestamp: new Date(campaign.timestamp.toNumber()).getTime(),
-        deadline: new Date(campaign.deadline.toNumber()).getTime(),
-        date: toDate(campaign.timestamp.toNumber() * 1000),
-        image: campaign.image,
-        raised: parseInt(campaign.raised._hex) / 10 ** 18,
-        cost: parseInt(campaign.cost._hex) / 10 ** 18,
-        donations: campaign.donations.toNumber(),
-        status: campaign.status,
-      }))
-      .reverse();
+    campaigns.map((campaign) => ({
+      id: campaign.id.toNumber(),
+      owner: campaign.owner.toLowerCase(),
+      title: campaign.title,
+      description: campaign.description,
+      timestamp: new Date(campaign.timestamp.toNumber()).getTime(),
+      deadline: new Date(campaign.deadline.toNumber()).getTime(),
+      date: toDate(campaign.timestamp.toNumber() * 1000),
+      image: campaign.image,
+      raised: parseInt(campaign.raised._hex) / 10 ** 18,
+      cost: parseInt(campaign.cost._hex) / 10 ** 18,
+      donations: campaign.donations,
+      status: campaign.status,
+    }));
   };
 
   const structuredDonators = (donators) => {
@@ -63,6 +61,15 @@ export const ContextProvider = ({ children }) => {
       timestamp: new Date(donator.timestamp.toNumber() * 1000).toJSON(),
       amount: parseInt(donator.amount._hex) / 10 ** 18,
     }));
+  };
+
+  const toDate = (timestamp) => {
+    const date = new Date(timestamp);
+    const dd = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
+    const mm =
+      date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+    const yyyy = date.getFullYear();
+    return `${yyyy}-${mm}-${dd}`;
   };
 
   const createCampaignHandler = async (form) => {
@@ -123,11 +130,31 @@ export const ContextProvider = ({ children }) => {
 
   const getCampaigns = async () => {
     try {
-      // const campaigns = await contract.getCampaigns();
+      //-------------------
+      // const campaigns = await contract.call("getCampaigns");
+      // const structCampaigns = structuredCampaigns(campaigns);
+      // console.log("structCampaigns", structCampaigns);
+      // return structCampaigns;
+      //-------------------
       const campaigns = await contract.call("getCampaigns");
-      const structCampaigns = structuredCampaigns(campaigns);
-
-      return structCampaigns;
+      const parsedCampaings = campaigns
+        .map((campaign, i) => ({
+          id: campaign.id.toNumber(),
+          owner: campaign.owner.toLowerCase(),
+          title: campaign.title,
+          description: campaign.description,
+          timestamp: new Date(campaign.timestamp.toNumber()).getTime(),
+          deadline: new Date(campaign.deadline.toNumber()).getTime(),
+          date: toDate(campaign.timestamp.toNumber() * 1000),
+          image: campaign.image,
+          raised: parseInt(campaign.raised._hex) / 10 ** 18,
+          cost: parseInt(campaign.cost._hex) / 10 ** 18,
+          //de pus la donations .toNumber()
+          donations: campaign.donations,
+          status: campaign.status,
+        }))
+        .reverse();
+      return parsedCampaings;
     } catch (e) {
       console.log("error", e);
     }
@@ -153,7 +180,7 @@ export const ContextProvider = ({ children }) => {
       return structCampaign;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(error.message));
+      alert(JSON.stringify(e.message));
     }
   };
 
@@ -161,17 +188,24 @@ export const ContextProvider = ({ children }) => {
     try {
       // const donators = await contract.getDonators(id);
       const donators = await contract.call("getDonators", id);
-      const structDonators = structuredDonators(donators);
-      return structDonators;
+      // const structDonators = structuredDonators(donators);
+
+      const parsedDonators = donators.map((donator) => ({
+        owner: donator.owner.toLowerCase(),
+        refunding: donator.refunding,
+        timestamp: new Date(donator.timestamp.toNumber() * 1000).toJSON(),
+        amount: parseInt(donator.amount._hex) / 10 ** 18,
+      }));
+      return parsedDonators;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(error.message));
+      alert(JSON.stringify(e.message));
     }
   };
 
-  const donateToCampaign = async (id, amount) => {
+  const donateToCampaign = async (id, amountDonated) => {
     try {
-      const amount = ethers.utils.parseEther(amount);
+      const amount = ethers.utils.parseEther(amountDonated);
       const data = await contract.call("donateToCampaign", id, {
         value: amount._hex,
       });
@@ -179,17 +213,8 @@ export const ContextProvider = ({ children }) => {
       return data;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(error.message));
+      alert(JSON.stringify(e.message));
     }
-  };
-
-  const toDate = (timestamp) => {
-    const date = new Date(timestamp);
-    const dd = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
-    const mm =
-      date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
-    const yyyy = date.getFullYear();
-    return `${yyyy}-${mm}-${dd}`;
   };
 
   const payoutCampaign = async (id) => {
@@ -199,10 +224,10 @@ export const ContextProvider = ({ children }) => {
       return data;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(error.message));
+      alert(JSON.stringify(e.message));
     }
   };
-
+  //TODO: pt ong de facut getOngs, getOng si statisticsOng
   return (
     <Context.Provider
       value={{

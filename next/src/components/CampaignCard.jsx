@@ -5,36 +5,172 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
-import cat2 from "../assets/cat2.jpeg";
 import Identicons from "react-identicons";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { daysLeft } from "../utils/functions";
+import { truncate } from "../utils/functions";
 
-const CampaignCard = () => {
+const CampaignCard = ({
+  owner,
+  title,
+  description,
+  timestamp,
+  deadline,
+  date,
+  image,
+  raised,
+  cost,
+  status,
+  handleClick,
+}) => {
+  const remainingDays = daysLeft(deadline);
+  const dateTime = new Date(timestamp * 1000);
+  const timeFormatted = dateTime.toLocaleTimeString("en-GB");
+  const dateFormatted = dateTime.toLocaleDateString("en-GB");
+
+  const expired = new Date().getTime() > Number(deadline + "000");
+
   return (
-    <Box sx={{ ml: "7rem" }}>
-      <Card sx={{ maxWidth: 300, maxHeight: 500, borderRadius: "1rem" }}>
+    <Box sx={{ mt: "2rem" }}>
+      <Card
+        sx={{ maxWidth: 300, maxHeight: 500, borderRadius: "1rem" }}
+        onClick={handleClick}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
             height="250"
-            src={cat2.src}
+            src={image}
             sx={{ borderRadius: "1rem" }}
           />
           <CardContent>
+            {expired ? (
+              <Box
+                sx={{
+                  backgroundColor: "#c72c2c",
+                  borderRadius: "30px",
+                  width: "30%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    mb: "0.3rem",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Expired
+                </Typography>
+              </Box>
+            ) : status == 0 ? (
+              <Box
+                sx={{
+                  backgroundColor: "#c72c2c",
+                  borderRadius: "30px",
+                  width: "30%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    mb: "0.3rem",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Open
+                </Typography>
+              </Box>
+            ) : status == 1 ? (
+              <Box
+                sx={{
+                  backgroundColor: "#4ca84c",
+                  borderRadius: "30px",
+                  width: "30%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    mb: "0.3rem",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Accepted
+                </Typography>
+              </Box>
+            ) : status == 2 ? (
+              <Box
+                sx={{
+                  backgroundColor: "#b3b1b5",
+                  borderRadius: "30px",
+                  width: "30%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    mb: "0.3rem",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Reverted
+                </Typography>
+              </Box>
+            ) : status == 3 ? (
+              <Box
+                sx={{
+                  backgroundColor: "#c72c2c",
+                  borderRadius: "30px",
+                  width: "30%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    mb: "0.3rem",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Deleted
+                </Typography>
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  backgroundColor: "#e39639",
+                  borderRadius: "30px",
+                  width: "30%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    mb: "0.3rem",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Paid
+                </Typography>
+              </Box>
+            )}
+
             <Typography
-              sx={{ fontSize: 14, mb: "0.3rem" }}
+              variant="h5"
+              sx={{ fontSize: 21, mb: "0.3rem", fontWeight: "bold" }}
+            >
+              {title}
+            </Typography>
+            <Typography
+              sx={{ fontSize: 16, mb: "0.3rem" }}
               color="secondary.main"
             >
-              Status
-            </Typography>
-            <Typography variant="h5" sx={{ fontSize: 23, mb: "0.3rem" }}>
-              Help cat
-            </Typography>
-            <Typography
-              sx={{ fontSize: 14, mb: "0.3rem" }}
-              color="secondary.main"
-            >
-              Description
+              {description}
             </Typography>
             <Box
               sx={{
@@ -56,13 +192,13 @@ const CampaignCard = () => {
                   }}
                   color="secondary.main"
                 >
-                  2 ETH
+                  {cost} ETH
                 </Typography>
                 <Typography
                   sx={{ fontSize: 15, mb: "0.3rem" }}
                   color="secondary.main"
                 >
-                  Raised of total
+                  {raised} ETH raised
                 </Typography>
               </Box>
               <Box>
@@ -77,7 +213,7 @@ const CampaignCard = () => {
                   }}
                   color="secondary.main"
                 >
-                  16
+                  {remainingDays}
                 </Typography>
                 <Typography
                   sx={{ fontSize: 15, mb: "0.3rem" }}
@@ -107,7 +243,7 @@ const CampaignCard = () => {
               >
                 <Identicons
                   size={30}
-                  string="0x7aF963cEcB3E3E3Aa9EaBdA8F6D3DcCf7b1aFf4a"
+                  string={owner}
                   bg="#D9D9D9"
                   style={{ borderRadius: "20rem" }}
                 />
@@ -115,7 +251,7 @@ const CampaignCard = () => {
                   sx={{ fontSize: 16, ml: "0.5rem" }}
                   color="secondary.main"
                 >
-                  by 0x7...Ff4a
+                  by {truncate(owner, 4, 4, 11)}
                 </Typography>
               </Box>
             </Box>

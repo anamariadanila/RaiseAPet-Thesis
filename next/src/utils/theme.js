@@ -50,6 +50,9 @@ export const getDesignTokens = (mode) => ({
           createCampBg: {
             main: "#231c34",
           },
+          white: {
+            main: "#ffffff",
+          },
         }),
   },
 });

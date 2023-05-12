@@ -5,15 +5,16 @@ import ButtonConnect from "./ButtonConnect";
 import UserAvatar from "./Avatar";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
+import { truncate } from "../utils/functions";
 
 const Navbar = () => {
   const router = useRouter();
-  const { address, connectWallet } = useAppContext();
+  const { address, connect } = useAppContext();
   const handleClick = () => {
     if (address) {
       router.push("/create-campaign");
     } else {
-      connectWallet();
+      connect();
     }
   };
   return (
@@ -48,9 +49,6 @@ const Navbar = () => {
           <Box sx={{ ml: "2rem", mr: "2rem" }}>
             <Search />
           </Box>
-          {/* <Box sx={{ ml: "2rem", mr: "2rem" }}>
-            <Filter />
-          </Box> */}
         </Box>
 
         <Box
@@ -63,8 +61,9 @@ const Navbar = () => {
           }}
         >
           <ButtonConnect
-            title={!address ? "Connect" : "Create Campaign"}
-            btnType="button"
+            title={
+              !address ? "Connect" : `Connected ${truncate(address, 4, 4, 11)}`
+            }
             handleClick={handleClick}
           />
           <UserAvatar />
@@ -73,5 +72,5 @@ const Navbar = () => {
     </Box>
   );
 };
-
+//TODO: Hamburger menu
 export default Navbar;

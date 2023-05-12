@@ -28,6 +28,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const router = useRouter();
+  // console.log(router.locale);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -42,7 +43,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     setType(event.target.value);
   };
 
-  const { address, connectWallet } = useAppContext();
+  const { address, connect } = useAppContext();
 
   const handleClick = async (values) => {
     try {
@@ -78,7 +79,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
         if (address) {
           router.push("/campaigns");
         } else {
-          connectWallet();
+          connect();
         }
       }
     } catch (error) {
@@ -86,7 +87,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     }
   };
   const handleClickRegister = () => {
-    connectWallet();
+    connect();
     //de vazut daca deja exista un cont cu adresa asta sa apara eroare else se face conectare
   };
 
@@ -130,7 +131,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
         if (address) {
           router.push(status.url);
         } else {
-          connectWallet();
+          connect();
         }
       }
     }

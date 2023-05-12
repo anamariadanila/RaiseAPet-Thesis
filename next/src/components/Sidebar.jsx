@@ -5,16 +5,26 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-
+import { useDisconnect } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import { sidebarIcons } from "../constants/index.jsx";
 import logo from "../assets/logo.png";
 import { signOut } from "next-auth/react";
+import { useAppContext } from "../context/index.jsx";
 
 export default function Sidebar({}) {
   const router = useRouter();
+  const { address } = useAppContext();
+  const disconnect = useDisconnect();
   const handleSignOut = () => {
-    signOut();
+    if (address) {
+      disconnect();
+      router.push("/");
+      //aici notificare cum ca nu e inregistrat si nu poate face logout
+    }
+
+    //aici de vazut in functie de tip, daca e ong trb facut signOut cu next-auth si disconnect de la portofel, daca e donator
+    //doar disconnect de la portofel
   };
   return (
     <Box

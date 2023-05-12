@@ -34,6 +34,7 @@
     "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hooks-global-state": "^2.1.0",
     "react-identicons": "^1.2.5",
     "thirdweb": "^0.10.11"
   },
