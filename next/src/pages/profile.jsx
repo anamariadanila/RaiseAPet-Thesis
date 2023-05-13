@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import MainLayout from "../layouts/MainLayout";
+import { useAppContext } from "../context";
+import DisplayCampaigns from "../components/DisplayCampaigns";
+import { getGlobalState } from "../globalState";
 
 const Profile = () => {
+  const [loading, setLoading] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
+
+  const { address, contract, getUserCampaigns, getDonatedCampaigns } =
+    useAppContext();
+  const type = getGlobalState("type");
+
+  const fetchCampaigns = async () => {
+    if (type === "ONG") {
+      setLoading(true);
+      const data = await getUserCampaigns();
+      console.log("data", data);
+      setCampaigns(data);
+      setLoading(false);
+    } else if (type === "Donator") {
+      setLoading(true);
+      const data = await getDonatedCampaigns();
+      console.log("data", data);
+      setCampaigns(data);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (contract) {
+      fetchCampaigns();
+    }
+  }, [address, contract]);
   return (
     <>
       <Head>
@@ -12,7 +43,13 @@ const Profile = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MainLayout></MainLayout>
+      <MainLayout>
+        <DisplayCampaigns
+          title="All campaigns"
+          loading={loading}
+          campaigns={campaigns}
+        />
+      </MainLayout>
     </>
   );
 };

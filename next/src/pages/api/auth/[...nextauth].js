@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import connectMongo from "../../../database/connection";
-import Users from "../../../schema/schema";
+// import Users from "../../../schema/schema";
 import { compare } from "bcryptjs";
 import Ong from "../../../schema/ongSchema";
 

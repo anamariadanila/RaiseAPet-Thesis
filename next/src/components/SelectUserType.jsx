@@ -21,14 +21,25 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationLogin, validationRegister } from "../lib/validation";
 import { signIn } from "next-auth/react";
+import {
+  useAddress,
+  ConnectWallet,
+  useConnect,
+  metamaskWallet,
+  useMetamask,
+} from "@thirdweb-dev/react";
+import { setGlobalState } from "../globalState";
+
+const metamaskW = metamaskWallet();
 
 const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const { connect, address } = useAppContext();
+
   const router = useRouter();
-  // console.log(router.locale);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -43,22 +54,20 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     setType(event.target.value);
   };
 
-  const { address, connect } = useAppContext();
+  // const connect = useConnect();
 
   const handleClick = async (values) => {
     try {
+      // TODO: NEVER USE DELETE IN OBJECTS, USE SPREAD OPERATOR, IT'S NOT GOOD PRACTICE
       delete values.confirmPassword;
       delete values.ongCode;
       delete values.password;
       const newVal = { address, type };
-      const valForDonator = { address, type };
-      console.log(newVal);
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newVal),
       };
-      console.log(options);
 
       if (ifRegister) {
         const response = await fetch(
@@ -67,40 +76,36 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data && !data.error) {
+              connect();
               router.push("/login");
             }
           });
 
         const data = await response.json();
-        console.log(data);
+      } else if (address) {
+        router.push("/campaigns");
       } else {
-        if (address) {
-          router.push("/campaigns");
-        } else {
-          connect();
-        }
+        connect();
       }
     } catch (error) {
       console.log(error);
     }
   };
   const handleClickRegister = () => {
-    connect();
+    connect(metamaskW);
+    // connect();
     //de vazut daca deja exista un cont cu adresa asta sa apara eroare else se face conectare
   };
 
   const onSubmit = async (values) => {
     const newVal = { ...values, address, type };
     const valForDonator = { address, type };
-    console.log(newVal);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(type === "ONG" ? newVal : valForDonator),
     };
-    console.log(options);
 
     if (ifRegister) {
       const response = await fetch(
@@ -109,14 +114,12 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data && !data.error) {
             router.push("/login");
           }
         });
 
       const data = await response.json();
-      console.log(data);
     } else {
       delete values.confirmPassword;
       const status = await signIn("credentials", {
@@ -146,6 +149,8 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     validate: ifRegister ? validationRegister : validationLogin,
     onSubmit,
   });
+
+  setGlobalState("type", type);
 
   return (
     <Box

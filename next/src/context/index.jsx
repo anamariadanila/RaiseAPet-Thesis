@@ -6,7 +6,6 @@ import {
   useContractWrite,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
-import { EditionMetadataWithOwnerOutputSchema } from "@thirdweb-dev/sdk";
 
 const Context = createContext();
 
@@ -184,6 +183,16 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const getUserCampaigns = async () => {
+    const allCampaigns = await getCampaigns();
+
+    const userCampaigns = allCampaigns.filter(
+      (campaign) => campaign.owner === address.toLowerCase()
+    );
+
+    return userCampaigns;
+  };
+
   const getDonators = async (id) => {
     try {
       // const donators = await contract.getDonators(id);
@@ -217,6 +226,16 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const getDonatedCampaigns = async () => {
+    const allCampaigns = await getCampaigns();
+
+    const donatedCampaigns = allCampaigns.filter((campaign) =>
+      campaign.donations?.find((donation) => donation.owner === address)
+    );
+
+    return donatedCampaigns;
+  };
+
   const payoutCampaign = async (id) => {
     try {
       const data = await contract.call("payoutCampaign", id);
@@ -244,6 +263,8 @@ export const ContextProvider = ({ children }) => {
         donateToCampaign,
         getDonators,
         payoutCampaign,
+        getUserCampaigns,
+        getDonatedCampaigns,
       }}
     >
       {children}

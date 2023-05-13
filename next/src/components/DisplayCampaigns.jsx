@@ -7,9 +7,20 @@ import { daysLeft } from "../utils/functions";
 
 const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
+
   const handleRoute = (campaign) => {
-    router.push(`/campaign-details`, { state: campaign });
+    router.push(
+      {
+        pathname: `/campaignDetails/campaign-details-${campaign.id}`,
+        query: { campaign: campaign },
+      },
+      `/campaignDetails/campaign-details-${campaign.id}` //send whole campaign to campaign details page
+
+      // const { campaign } = router.query;
+      // console.log(campaign);
+    );
   };
+
   return (
     <>
       <Box
@@ -38,9 +49,9 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             display: "flex",
             flexWrap: "wrap",
             mt: "2rem",
-            flexDirection: "column",
+            flexDirection: "row",
             alignItems: "left",
-            justifyContent: "center",
+            justifyContent: "space-around",
             width: "100%",
           }}
         >
@@ -52,7 +63,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "row",
                 alignItems: "left",
                 justifyContent: "center",
               }}
@@ -71,10 +82,17 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
 
           {!loading &&
             campaigns.length > 0 &&
-            campaigns.map((campaign) => (
-              <Box>
+            campaigns.map((campaign, i) => (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                key={campaign.id}
+              >
                 <CampaignCard
-                  key={campaign.id}
                   {...campaign}
                   handleClick={() => handleRoute(campaign)}
                 />

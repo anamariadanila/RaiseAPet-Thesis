@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import Identicons from "react-identicons";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import { daysLeft } from "../utils/functions";
 import { truncate } from "../utils/functions";
 
@@ -16,7 +15,6 @@ const CampaignCard = ({
   description,
   timestamp,
   deadline,
-  date,
   image,
   raised,
   cost,
@@ -161,14 +159,15 @@ const CampaignCard = ({
             )}
 
             <Typography
-              variant="h5"
               sx={{ fontSize: 21, mb: "0.3rem", fontWeight: "bold" }}
+              noWrap
             >
               {title}
             </Typography>
             <Typography
               sx={{ fontSize: 16, mb: "0.3rem" }}
               color="secondary.main"
+              noWrap
             >
               {description}
             </Typography>

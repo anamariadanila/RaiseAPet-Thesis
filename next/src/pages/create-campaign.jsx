@@ -10,6 +10,7 @@ import { imageAvailable } from "../utils/functions";
 import { useAppContext } from "../context";
 import MainLayout from "../layouts/MainLayout";
 import Head from "next/head";
+import Loader from "../components/Loader";
 
 const CreateCampaign = () => {
   const { createCampaign } = useAppContext();
@@ -23,9 +24,6 @@ const CreateCampaign = () => {
   });
 
   const [loading, setLoading] = useState(false);
-
-  const [value, setValue] = useState("");
-  const [inputValue, setInputValue] = useState("");
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
@@ -42,7 +40,7 @@ const CreateCampaign = () => {
           cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
         });
         setLoading(false);
-        router.push("/");
+        router.push("/campaigns");
       } else {
         alert("Image is not available");
         setFormDetails({ ...formDetails, image: "" });
@@ -85,6 +83,16 @@ const CreateCampaign = () => {
           >
             <Box
               sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+              {loading && <Loader />}
+            </Box>
+            <Box
+              sx={{
                 bgcolor: "textBg.main",
                 height: "5rem",
                 borderRadius: "15px",
@@ -102,6 +110,7 @@ const CreateCampaign = () => {
                 Create a Campaign
               </Typography>
             </Box>
+
             <Box
               sx={{
                 display: "flex",

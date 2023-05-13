@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, TextField, Container, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import ButtonConnect from "./ButtonConnect";
 
 const FundCard = () => {

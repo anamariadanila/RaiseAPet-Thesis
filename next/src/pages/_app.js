@@ -19,8 +19,8 @@ export default function App({ Component, pageProps, session }) {
       <ThirdwebProvider
         activeChain={ChainId.Goerli}
         authConfig={{
-          authUrl: "/api/auth",
-          domain: "crowdfundingong.com",
+          authUrl: "/api/auth/register",
+          domain: "http://localhost:3000",
           loginRedirect: "/campaigns",
         }}
       >

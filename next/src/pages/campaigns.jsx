@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import MainLayout from "../layouts/MainLayout";
-import CampaignCard from "../components/CampaignCard";
 import { useAppContext } from "../context";
 import DisplayCampaigns from "../components/DisplayCampaigns";
 
@@ -14,16 +13,13 @@ const Campaigns = () => {
   const fetchCampaigns = async () => {
     setLoading(true);
     const data = await getCampaigns();
-    console.log("data", data);
     setCampaigns(data);
     setLoading(false);
   };
 
   useEffect(() => {
     if (contract) {
-      console.log("contract");
       fetchCampaigns();
-      console.log("aici");
     }
   }, [address, contract]);
 
@@ -42,7 +38,6 @@ const Campaigns = () => {
           loading={loading}
           campaigns={campaigns}
         />
-        {/* <CampaignCard /> */}
       </MainLayout>
     </>
   );

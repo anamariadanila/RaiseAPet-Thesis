@@ -5,6 +5,7 @@ const { setGlobalState, getGlobalState, useGlobalState } = createGlobalState({
   campaign: null,
   statistics: null,
   donators: [],
+  type: null,
 });
 
 export { setGlobalState, getGlobalState, useGlobalState };

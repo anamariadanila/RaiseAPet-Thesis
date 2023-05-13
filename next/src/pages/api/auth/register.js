@@ -11,17 +11,17 @@ export default async function handler(req, res) {
 
     const checkIfExists = await Ongs.findOne({ ongCode });
     if (checkIfExists)
-      return res.status(422).json({ message: "Ong already exists." });
+      return res.status(409).json({ message: "Ong already exists." });
 
     const singleOng = await Ongs.findOne({ address });
     if (singleOng)
-      return res.status(422).json({
+      return res.status(409).json({
         error: "Address already exists. Can't be 2 users with same address",
       });
 
     Ongs.create({
       ongCode,
-      password: await hash(password, 12),
+      password: type === "ONG" ? await hash(password, 12) : null,
       address,
       type: type,
     })
