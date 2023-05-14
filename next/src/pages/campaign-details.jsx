@@ -20,6 +20,9 @@ const CampaignDetails = () => {
   // const remainingDays = days(state.deadline);
   // console.log(remainingDays);
   console.log(router.asPath);
+  //access campaign id from url
+  // const id = router.asPath.split("-")[2];
+  //access campaign from url
 
   const fetchDonators = async () => {
     const data = await getDonators(router.query.id);

@@ -1,13 +1,12 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const BoxCount = ({ value, description }) => {
   return (
     <Box
       sx={{
-        // bgcolor: "boxValue.main",
         bgcolor: "createCampBg.main",
-        width: "13rem",
+        width: "6rem",
         height: "7rem",
         borderRadius: "7px",
         display: "flex",
@@ -26,15 +25,19 @@ const BoxCount = ({ value, description }) => {
           height: "60%",
         }}
       >
-        value
-        {value}
+        <Typography
+          textAlign="center"
+          sx={{ fontWeight: "bold", fontSize: "24px" }}
+        >
+          {value}
+        </Typography>
       </Box>
 
       <Box
         sx={{
           bgcolor: "boxDescription.main",
-          width: "13rem",
-          height: "2.5rem",
+          width: "6rem",
+          height: "2.7rem",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -42,8 +45,9 @@ const BoxCount = ({ value, description }) => {
           borderBottomLeftRadius: "7px",
         }}
       >
-        description
-        {description}
+        <Typography textAlign="center" sx={{ fontWeight: "bold" }}>
+          {description}
+        </Typography>
       </Box>
     </Box>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import MainLayout from "../layouts/MainLayout";
-import { useAppContext } from "../context";
-import DisplayCampaigns from "../components/DisplayCampaigns";
+import MainLayout from "../../layouts/MainLayout";
+import { useAppContext } from "../../context";
+import DisplayCampaigns from "../../components/DisplayCampaigns";
 
 const Campaigns = () => {
   const [loading, setLoading] = useState(false);
@@ -18,9 +18,7 @@ const Campaigns = () => {
   };
 
   useEffect(() => {
-    if (contract) {
-      fetchCampaigns();
-    }
+    if (contract) fetchCampaigns();
   }, [address, contract]);
 
   return (

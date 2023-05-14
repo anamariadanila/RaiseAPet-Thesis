@@ -18,6 +18,7 @@ const ButtonConnect = ({ title, btnType, handleClick, img, style }) => {
         color="button"
         type={btnType}
         onClick={handleClick}
+        style={style}
       >
         {title}
         {img && <img src={img} alt="image" width="30px" height="30px" />}

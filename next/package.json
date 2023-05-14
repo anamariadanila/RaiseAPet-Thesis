@@ -36,6 +36,7 @@
     "react-dom": "18.2.0",
     "react-hooks-global-state": "^2.1.0",
     "react-identicons": "^1.2.5",
+    "swr": "^2.1.5",
     "thirdweb": "^0.10.11"
   },
   "devDependencies": {

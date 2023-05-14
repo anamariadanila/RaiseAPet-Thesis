@@ -150,7 +150,9 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     onSubmit,
   });
 
-  setGlobalState("type", type);
+  localStorage.setItem("type", type);
+  // setGlobalState("type", type);
+  console.log("type", type);
 
   return (
     <Box

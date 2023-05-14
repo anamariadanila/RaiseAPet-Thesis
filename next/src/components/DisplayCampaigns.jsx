@@ -4,20 +4,19 @@ import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import CampaignCard from "./CampaignCard";
 import { daysLeft } from "../utils/functions";
+import { setGlobalState } from "../globalState";
 
 const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
 
   const handleRoute = (campaign) => {
+    setGlobalState("campaign", campaign);
     router.push(
       {
-        pathname: `/campaignDetails/campaign-details-${campaign.id}`,
+        pathname: `/campaigns/${campaign.id}`,
         query: { campaign: campaign },
       },
-      `/campaignDetails/campaign-details-${campaign.id}` //send whole campaign to campaign details page
-
-      // const { campaign } = router.query;
-      // console.log(campaign);
+      `/campaigns/${campaign.id}` //send whole campaign to campaign details page
     );
   };
 
@@ -40,7 +39,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
           <Typography
             sx={{ fontSize: "25px", fontWeight: "bold", color: "white.main" }}
           >
-            {title} ({campaigns.length})
+            {title} ({campaigns?.length})
           </Typography>
         </Box>
 
@@ -50,16 +49,17 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             flexWrap: "wrap",
             mt: "2rem",
             flexDirection: "row",
-            alignItems: "left",
+            alignItems: "center",
             justifyContent: "space-around",
-            width: "100%",
+            width: "80%",
+            ml: "6rem",
           }}
         >
           {loading && (
             <img src={loader.src} alt="loader" width="100" height="100" />
           )}
 
-          {!loading && campaigns.length === 0 && (
+          {!loading && campaigns?.length === 0 && (
             <Box
               sx={{
                 display: "flex",
@@ -81,7 +81,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
           )}
 
           {!loading &&
-            campaigns.length > 0 &&
+            campaigns?.length > 0 &&
             campaigns.map((campaign, i) => (
               <Box
                 sx={{

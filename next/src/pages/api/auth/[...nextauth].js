@@ -24,7 +24,9 @@ export default NextAuth({
         );
 
         if (!checkPassword || result.ongCode !== credentials.ongCode) {
-          throw new Error("Invalid credentials!");
+          throw new Error(
+            "Invalid credentials or address does not match! Please select correct metamask address!"
+          );
         }
 
         return result;

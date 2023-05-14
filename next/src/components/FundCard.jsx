@@ -34,6 +34,7 @@ const FundCard = () => {
           Donate to this campaign
         </Typography>
       </Box>
+      <Box></Box>
       <Box sx={{ mt: "2rem" }}>
         <TextField
           required
@@ -47,12 +48,12 @@ const FundCard = () => {
           sx={{ width: "18rem" }}
         />
       </Box>
-      <Box
+      {/* <Box
         sx={{
           mt: "2rem",
         }}
-      >
-        <Typography
+      > */}
+      {/* <Typography
           variant="h4"
           align="center"
           sx={{
@@ -69,8 +70,8 @@ const FundCard = () => {
           }}
         >
           Help this campaign because you believe in it.
-        </Typography>
-      </Box>
+        </Typography> */}
+      {/* </Box> */}
       <Box sx={{ mt: "1rem" }}>
         <ButtonConnect title="Donate" btnType="button" />
       </Box>

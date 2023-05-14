@@ -18,8 +18,11 @@ export default function Sidebar({}) {
   const disconnect = useDisconnect();
   const handleSignOut = () => {
     if (address) {
+      console.log("address", address);
       disconnect();
       router.push("/");
+      localStorage.removeItem("type");
+
       //aici notificare cum ca nu e inregistrat si nu poate face logout
     }
 

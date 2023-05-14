@@ -3,34 +3,40 @@ import Head from "next/head";
 import MainLayout from "../layouts/MainLayout";
 import { useAppContext } from "../context";
 import DisplayCampaigns from "../components/DisplayCampaigns";
-import { getGlobalState } from "../globalState";
+import { getGlobalState, useGlobalState } from "../globalState";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
+  // const [type, setType] = useGlobalState("type");
+  // console.log("type", type);
 
   const { address, contract, getUserCampaigns, getDonatedCampaigns } =
     useAppContext();
-  const type = getGlobalState("type");
 
   const fetchCampaigns = async () => {
-    if (type === "ONG") {
-      setLoading(true);
-      const data = await getUserCampaigns();
-      console.log("data", data);
-      setCampaigns(data);
-      setLoading(false);
-    } else if (type === "Donator") {
-      setLoading(true);
-      const data = await getDonatedCampaigns();
-      console.log("data", data);
-      setCampaigns(data);
-      setLoading(false);
+    if (typeof window !== "undefined") {
+      const type = localStorage.getItem("type");
+
+      if (type === "ONG") {
+        const data = await getUserCampaigns();
+        console.log("data", data, type);
+        setCampaigns(data);
+        setLoading(false);
+      } else if (type === "Donator") {
+        setLoading(true);
+
+        const data = await getDonatedCampaigns();
+        console.log("data", data, type);
+        setCampaigns(data);
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
     if (contract) {
+      const type = localStorage.getItem("type");
       fetchCampaigns();
     }
   }, [address, contract]);

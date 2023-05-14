@@ -136,23 +136,22 @@ export const ContextProvider = ({ children }) => {
       // return structCampaigns;
       //-------------------
       const campaigns = await contract.call("getCampaigns");
-      const parsedCampaings = campaigns
-        .map((campaign, i) => ({
-          id: campaign.id.toNumber(),
-          owner: campaign.owner.toLowerCase(),
-          title: campaign.title,
-          description: campaign.description,
-          timestamp: new Date(campaign.timestamp.toNumber()).getTime(),
-          deadline: new Date(campaign.deadline.toNumber()).getTime(),
-          date: toDate(campaign.timestamp.toNumber() * 1000),
-          image: campaign.image,
-          raised: parseInt(campaign.raised._hex) / 10 ** 18,
-          cost: parseInt(campaign.cost._hex) / 10 ** 18,
-          //de pus la donations .toNumber()
-          donations: campaign.donations,
-          status: campaign.status,
-        }))
-        .reverse();
+      const parsedCampaings = campaigns.map((campaign, i) => ({
+        id: campaign.id.toNumber(),
+        owner: campaign.owner.toLowerCase(),
+        title: campaign.title,
+        description: campaign.description,
+        timestamp: new Date(campaign.timestamp.toNumber()).getTime(),
+        deadline: new Date(campaign.deadline.toNumber()).getTime(),
+        date: toDate(campaign.timestamp.toNumber() * 1000),
+        image: campaign.image,
+        raised: parseInt(campaign.raised._hex) / 10 ** 18,
+        cost: parseInt(campaign.cost._hex) / 10 ** 18,
+        //de pus la donations .toNumber()
+        donations: campaign.donations?.toNumber(),
+        status: campaign.status,
+      }));
+
       return parsedCampaings;
     } catch (e) {
       console.log("error", e);
@@ -174,7 +173,7 @@ export const ContextProvider = ({ children }) => {
   const getCampaign = async (id) => {
     try {
       // const campaign = await contract.getCampaign(id);
-      const campaign = await contract.call("getCampaign", id);
+      const campaign = await contract.call("getCampaign", [id]);
       const structCampaign = structuredCampaigns([campaign])[0];
       return structCampaign;
     } catch (e) {
@@ -196,7 +195,8 @@ export const ContextProvider = ({ children }) => {
   const getDonators = async (id) => {
     try {
       // const donators = await contract.getDonators(id);
-      const donators = await contract.call("getDonators", id);
+      const donators = await contract.call("getDonators", [id]);
+
       // const structDonators = structuredDonators(donators);
 
       const parsedDonators = donators.map((donator) => ({
@@ -247,6 +247,7 @@ export const ContextProvider = ({ children }) => {
     }
   };
   //TODO: pt ong de facut getOngs, getOng si statisticsOng
+
   return (
     <Context.Provider
       value={{

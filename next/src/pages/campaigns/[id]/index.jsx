@@ -8,36 +8,48 @@ import CampaignDetailsInfo from "../../../components/CampaignDetailsInfo";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../../context";
 import { ethers } from "ethers";
-import { days } from "../../../utils/functions";
+import { useGlobalState, getGlobalState } from "../../../globalState";
 
 const CampaignDetails = () => {
-  const router = useRouter();
-  const { donateToCampaig, getDonators, contract, address } = useAppContext();
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
   const [donators, setDonators] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);
+  const router = useRouter();
+  const id = router.query.id;
+  const { donateToCampaig, getDonators, contract, address, getCampaigns } =
+    useAppContext();
 
-  // const remainingDays = days(state.deadline);
-  // console.log(remainingDays);
-  console.log(router.asPath);
-
-  const fetchDonators = async () => {
-    const data = await getDonators(router.query.id);
-
-    setDonators(data);
+  const fetchCampaigns = async () => {
+    setLoading(true);
+    const data = await getCampaigns();
+    setCampaigns(data);
+    setLoading(false);
   };
 
-  // useEffect(() => {
-  //   if (contract) fetchDonators();
-  // }, [contract, address]);
+  console.log("campaigns", campaigns);
+
+  useEffect(() => {
+    if (contract) fetchCampaigns();
+  }, [address, contract]);
+
+  const fetchDonators = async () => {
+    const data = await getDonators(id);
+    setDonators(data);
+    console.log("donators", donators);
+  };
+
+  useEffect(() => {
+    if (contract) fetchDonators();
+  }, [contract, address]);
 
   // const handleDonate = async () => {
-  //   setIsLoading(true);
+  //   setLoading(true);
 
   //   await donate(state.id, amount);
 
   //   router.push("/");
-  //   setIsLoading(false);
+  //   setLoading(false);
   // };
 
   return (
@@ -72,17 +84,41 @@ const CampaignDetails = () => {
             <CampaignDetailsImg />
             <CampaignDetailsInfo />
           </Box>
-          <Box sx={{ ml: "8rem", mr: "5rem", mt: "3rem", width: "80%" }}>
-            <Typography
-              variant="h4"
-              align="left"
-              sx={{ fontWeight: "bold", fontSize: 25 }}
+          <Box
+            sx={{
+              ml: "8rem",
+              mr: "5rem",
+              mt: "3rem",
+
+              width: "80%",
+            }}
+          >
+            <Box
+              sx={{
+                bgcolor: "textBg.main",
+                borderRadius: "15px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
             >
-              Story
-            </Typography>
-            <Typography variant="h4" align="left" sx={{ fontSize: 18 }}>
-              descrierea
-            </Typography>
+              <Box sx={{ mb: "1rem", mt: "1rem" }}>
+                <Typography
+                  variant="h4"
+                  align="left"
+                  sx={{ fontWeight: "bold", fontSize: 25 }}
+                >
+                  Story
+                </Typography>
+              </Box>
+              <Box sx={{ pb: "2rem" }}>
+                <Typography variant="h4" align="left" sx={{ fontSize: 18 }}>
+                  {campaigns[id]?.description}
+                </Typography>
+              </Box>
+            </Box>
           </Box>
           <Box sx={{ ml: "8rem", mr: "5rem", mt: "3rem", width: "80%" }}>
             Tabel
