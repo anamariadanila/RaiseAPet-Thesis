@@ -22,6 +22,10 @@ export const validationLogin = (values) => {
     errors.password = "Password must not contain spaces";
   }
 
+  if (!values.address) {
+    errors.address = "Address is required";
+  }
+
   return errors;
 };
 

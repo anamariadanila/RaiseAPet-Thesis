@@ -21,14 +21,7 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationLogin, validationRegister } from "../lib/validation";
 import { signIn } from "next-auth/react";
-import {
-  useAddress,
-  ConnectWallet,
-  useConnect,
-  metamaskWallet,
-  useMetamask,
-} from "@thirdweb-dev/react";
-import { setGlobalState } from "../globalState";
+import { metamaskWallet } from "@thirdweb-dev/react";
 
 const metamaskW = metamaskWallet();
 
@@ -132,6 +125,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
         redirect: false,
         ongCode: values.ongCode,
         password: values.password,
+        address: values.address,
         callbackUrl: "/campaigns",
       });
       console.log(status);
@@ -151,6 +145,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
       ongCode: "",
       password: "",
       confirmPassword: "",
+      address: "",
     },
     validate: ifRegister ? validationRegister : validationLogin,
     onSubmit,
@@ -266,6 +261,37 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
                   }}
                 >
                   {formik.errors.ongCode}
+                </Typography>
+              ) : null}
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <TextField
+                required
+                label="ONG Address"
+                placeholder="Last 6 characters"
+                color="secondary"
+                sx={{ m: 1, width: "25ch" }}
+                name="address"
+                {...formik.getFieldProps("address")}
+                autoComplete="off"
+              />
+              {formik.errors.address && formik.touched.address ? (
+                <Typography
+                  align="left"
+                  sx={{
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "30ch",
+                  }}
+                >
+                  {formik.errors.address}
                 </Typography>
               ) : null}
             </Box>
