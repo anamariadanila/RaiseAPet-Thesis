@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import CampaignCard from "./CampaignCard";
-import { daysLeft } from "../utils/functions";
 import { setGlobalState } from "../globalState";
+import { useAppContext } from "../context";
 
 const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
@@ -29,8 +29,9 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
           justifyContent: "center",
           flexDirection: "column",
           ml: "7rem",
+          mr: "7rem",
           mb: "2rem",
-          width: "100%",
+          width: "90%",
         }}
       >
         <Box
@@ -90,7 +91,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
                   alignItems: "center",
                   justifyContent: "center",
                 }}
-                key={campaign.id}
+                key={campaign?.id}
               >
                 <CampaignCard
                   {...campaign}

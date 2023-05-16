@@ -27,7 +27,7 @@ export const barPercentage = (goal, amonutRaised) => {
 };
 
 export const truncate = (text, startChars, endChars, maxLength) => {
-  if (text.length > maxLength) {
+  if (text?.length > maxLength) {
     let start = text.substring(0, startChars);
     let end = text.substring(text.length - endChars, text.length);
     while (start.length + end.length < maxLength) {
@@ -45,4 +45,10 @@ export const daysRemaining = (days) => {
   days = moment(days);
   days = days.diff(todaysDate, "days");
   return days == 1 ? "1 day" : days + " days";
+};
+
+export const isFutureDate = (date) => {
+  const today = new Date();
+  const deadline = new Date(date);
+  return deadline > today;
 };

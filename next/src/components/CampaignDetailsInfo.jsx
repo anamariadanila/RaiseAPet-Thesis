@@ -7,8 +7,8 @@ import { useAppContext } from "../context";
 import Container from "@mui/material/Container";
 import BoxCount from "./BoxCount";
 import { useRouter } from "next/router";
-import FundCard from "./FundCard";
 import ButtonConnect from "./ButtonConnect";
+import Loader from "./Loader";
 
 const CampaignDetailsInfo = () => {
   const router = useRouter();
@@ -16,12 +16,20 @@ const CampaignDetailsInfo = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
   const [donators, setDonators] = useState([]);
+  const [amount, setAmount] = useState("");
   const id = router.query.id;
 
   const expired =
     new Date().getTime() > Number(campaigns[id]?.deadline + "000");
   const remainingDays = daysLeft(campaigns[id]?.deadline);
-  const { address, getDonators, contract, getCampaigns } = useAppContext();
+  const { address, getDonators, contract, getCampaigns, donateToCampaign } =
+    useAppContext();
+
+  useEffect(() => {
+    if (address) {
+      localStorage.setItem("address", address);
+    }
+  }, []);
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -46,6 +54,14 @@ const CampaignDetailsInfo = () => {
     if (contract) fetchDonators();
   }, [contract, address]);
 
+  const handleDonate = async () => {
+    setLoading(true);
+    await donateToCampaign(id, amount);
+    router.push("/campaigns");
+    setLoading(false);
+  };
+
+  console.log(campaigns[id]?.cost, campaigns[id]?.raised);
   return (
     <Container
       sx={{
@@ -80,8 +96,10 @@ const CampaignDetailsInfo = () => {
             backgroundColor: "textBg.main",
             height: "80%",
             flexWrap: "wrap",
+            borderRadius: "15px",
           }}
         >
+          {loading && <Loader />}
           <Box
             sx={{
               display: "flex",
@@ -246,30 +264,44 @@ const CampaignDetailsInfo = () => {
               }}
             >
               <Box sx={{ mr: "1rem" }}>
-                <Identicon size={25} string={address} bg="white" />
+                <Identicon
+                  size={25}
+                  string={campaigns[id]?.owner.toLowerCase()}
+                  bg="white"
+                />
               </Box>
               <Box>
                 <Typography
                   align="center"
                   sx={{ fontWeight: "bold", fontSize: 15 }}
                 >
-                  {address?.toLowerCase()}
+                  {campaigns[id]?.owner.toLowerCase()}
                 </Typography>
               </Box>
             </Box>
 
             <Box
               sx={{
-                backgroundColor: "#4acd8d",
-                width: `${barPercentage(
-                  campaigns[id]?.cost,
-                  campaigns[id]?.raised
-                )}%`,
-                maxWidth: "100%",
-                mt: "1rem",
+                position: "relative",
+                width: "25rem",
+                height: "0.5rem",
+                backgroundColor: "#b9b8ba",
+                borderRadius: "30px",
               }}
             >
-              bara
+              <Box
+                sx={{
+                  backgroundColor: "#4acd8d",
+                  width: `${barPercentage(
+                    campaigns[id]?.cost,
+                    campaigns[id]?.raised
+                  )}%`,
+                  maxWidth: "100%",
+                  mt: "1rem",
+                  height: "100%",
+                  borderRadius: "30px",
+                }}
+              ></Box>
             </Box>
 
             <Box
@@ -288,13 +320,15 @@ const CampaignDetailsInfo = () => {
                   color="secondary"
                   type="number"
                   inputProps={{
-                    step: "0.01",
-                    min: "0",
+                    step: 0.01,
+                    min: 0,
                   }}
+                  value={amount}
                   sx={{ width: "14rem" }}
+                  onChange={(e) => setAmount(e.target.value)}
                 />
               </Box>
-              <Box sx={{}}>
+              <Box>
                 <ButtonConnect
                   title="Donate"
                   btnType="button"
@@ -302,6 +336,7 @@ const CampaignDetailsInfo = () => {
                     width: "7rem",
                     height: "3rem",
                   }}
+                  handleClick={handleDonate}
                 />
               </Box>
             </Box>
@@ -315,6 +350,8 @@ const CampaignDetailsInfo = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
+            height: "90%",
+            mt: "1rem",
           }}
         >
           <BoxCount value={remainingDays} description={"Days left"} />
@@ -322,108 +359,10 @@ const CampaignDetailsInfo = () => {
             value={campaigns[id]?.raised}
             description={`Raised of ${campaigns[id]?.cost} ETH`}
           />
-          <BoxCount value={donators} description={"Total donators"} />
+          <BoxCount value={donators?.length} description={"Total donators"} />
         </Box>
       </Box>
     </Container>
-    // <Container
-    //   sx={{
-    //     bgcolor: "containerBg.main",
-    //     width: "60%",
-    //     height: "400px",
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //     flexDirection: "column",
-    //     borderRadius: "15px",
-    //   }}
-    // >
-    //   <Box
-    //     sx={{
-    //       display: "flex",
-    //       justifyContent: "center",
-    //       alignItems: "flex-start",
-    //       flexDirection: "column",
-    //       width: "80%",
-    //       ml: "4rem",
-    //     }}
-    //   >
-    //     <Box
-    //       sx={{
-    //         display: "flex",
-    //         justifyContent: "center",
-    //         alignItems: "center",
-    //         flexDirection: "column",
-    //       }}
-    //     >
-    //       <Typography
-    //         variant="h4"
-    //         align="center"
-    //         sx={{ fontWeight: "bold", fontSize: 25 }}
-    //       >
-    //         {campaign.title}
-    //       </Typography>
-    //     </Box>
-    //     <Box
-    //       sx={{
-    //         display: "flex",
-    //         justifyContent: "space-between",
-    //         alignItems: "center",
-    //         flexDirection: "row",
-    //         width: "70%",
-    //       }}
-    //     >
-    //       <Box
-    //         sx={{
-    //           display: "flex",
-    //           justifyContent: "center",
-    //           alignItems: "flex-start",
-    //           flexDirection: "column",
-    //           width: "70%",
-    //           mt: "1rem",
-    //         }}
-    //       >
-
-    //       </Box>
-
-    //       <Typography
-    //         variant="h4"
-    //         align="center"
-    //         sx={{ fontWeight: "bold", fontSize: 14 }}
-    //       >
-    //         {remainingDays} Days left
-    //       </Typography>
-    //     </Box>
-    //     <Box
-    //       sx={{
-    //         display: "flex",
-    //         justifyContent: "space-between",
-    //         alignItems: "center",
-    //         flexDirection: "row",
-    //         width: "80%",
-    //       }}
-    //     >
-    //       <Typography
-    //         variant="h4"
-    //         align="center"
-    //         sx={{ fontWeight: "bold", fontSize: 14 }}
-    //       >
-    //         <Identicon size={25} string={address} bg="white" />
-    //         {/* la string trebuie pusa adresa pt a fi unica si a genera imagini diferite */}
-    //         {address}
-    //       </Typography>
-
-    //       <Typography
-    //         variant="h4"
-    //         align="center"
-    //         sx={{ fontWeight: "bold", fontSize: 14 }}
-    //       >
-    //         {campaign.donators} Donators
-    //       </Typography>
-    //     </Box>
-    //     <Box>bara</Box>
-    //   </Box>
-    // </Container>
   );
 };
 

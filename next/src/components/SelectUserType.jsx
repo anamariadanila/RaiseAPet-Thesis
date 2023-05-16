@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
@@ -38,6 +38,12 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { connect, address } = useAppContext();
+
+  // useEffect(() => {
+  //   if (address) {
+  //     localStorage.setItem("address", address);
+  //   }
+  // }, []);
 
   const router = useRouter();
 

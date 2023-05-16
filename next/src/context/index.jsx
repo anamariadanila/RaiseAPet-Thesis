@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import {
   useAddress,
   useContract,
@@ -28,6 +28,8 @@ export const ContextProvider = ({ children }) => {
 
   const address = useAddress();
   const connect = useMetamask();
+
+  // localStorage.setItem("address", address);
 
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),
@@ -147,7 +149,6 @@ export const ContextProvider = ({ children }) => {
         image: campaign.image,
         raised: parseInt(campaign.raised._hex) / 10 ** 18,
         cost: parseInt(campaign.cost._hex) / 10 ** 18,
-        //de pus la donations .toNumber()
         donations: campaign.donations?.toNumber(),
         status: campaign.status,
       }));
@@ -183,10 +184,11 @@ export const ContextProvider = ({ children }) => {
   };
 
   const getUserCampaigns = async () => {
+    console.log("adresa aici", address);
     const allCampaigns = await getCampaigns();
 
     const userCampaigns = allCampaigns.filter(
-      (campaign) => campaign.owner === address.toLowerCase()
+      (campaign) => campaign.owner === address?.toLowerCase()
     );
 
     return userCampaigns;
@@ -194,22 +196,38 @@ export const ContextProvider = ({ children }) => {
 
   const getDonators = async (id) => {
     try {
-      // const donators = await contract.getDonators(id);
       const donators = await contract.call("getDonators", [id]);
 
-      // const structDonators = structuredDonators(donators);
-
-      const parsedDonators = donators.map((donator) => ({
-        owner: donator.owner.toLowerCase(),
-        refunding: donator.refunding,
-        timestamp: new Date(donator.timestamp.toNumber() * 1000).toJSON(),
-        amount: parseInt(donator.amount._hex) / 10 ** 18,
-      }));
+      const parsedDonators = donators.map((donator) => [
+        donator.owner.toLowerCase(),
+        donator.refunding,
+        new Date(donator.timestamp.toNumber() * 1000).toJSON(),
+        parseInt(donator.amount._hex) / 10 ** 18,
+      ]);
       return parsedDonators;
     } catch (e) {
       console.log("error", e);
       alert(JSON.stringify(e.message));
     }
+  };
+
+  const getCampaignsByDonator = async (address) => {
+    const allCampaigns = await getCampaigns();
+
+    const campaignsByDonator = [];
+
+    for (let i = 0; i < allCampaigns.length; i++) {
+      const donators = await getDonators(allCampaigns[i].id);
+
+      const hasDonated = donators.some(
+        (donator) => donator[0].toLowerCase() === address?.toLowerCase()
+      );
+
+      if (hasDonated) {
+        campaignsByDonator.push(allCampaigns[i]);
+      }
+    }
+    return campaignsByDonator;
   };
 
   const donateToCampaign = async (id, amountDonated) => {
@@ -229,8 +247,11 @@ export const ContextProvider = ({ children }) => {
   const getDonatedCampaigns = async () => {
     const allCampaigns = await getCampaigns();
 
+    const donators = JSON.parse(localStorage.getItem("donators"));
+
     const donatedCampaigns = allCampaigns.filter((campaign) =>
-      campaign.donations?.find((donation) => donation.owner === address)
+      // idsDonatedTo?.includes(campaign.id) ? campaign : null
+      donators[0] === address.toLowerCase() ? campaign : null
     );
 
     return donatedCampaigns;
@@ -246,6 +267,7 @@ export const ContextProvider = ({ children }) => {
       alert(JSON.stringify(e.message));
     }
   };
+
   //TODO: pt ong de facut getOngs, getOng si statisticsOng
 
   return (
@@ -266,6 +288,7 @@ export const ContextProvider = ({ children }) => {
         payoutCampaign,
         getUserCampaigns,
         getDonatedCampaigns,
+        getCampaignsByDonator,
       }}
     >
       {children}

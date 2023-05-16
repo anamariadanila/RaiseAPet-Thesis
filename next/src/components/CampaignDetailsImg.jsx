@@ -7,9 +7,12 @@ import { useAppContext } from "../context";
 const CampaignDetailsImg = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
   const id = router.query.id;
+
   const { contract, address, getCampaigns } = useAppContext();
+
   const fetchCampaigns = async () => {
     setLoading(true);
     const data = await getCampaigns();

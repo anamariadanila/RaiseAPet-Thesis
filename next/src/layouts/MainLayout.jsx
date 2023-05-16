@@ -11,6 +11,8 @@ const Layout = ({ children }) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        height: "100%",
+        width: "100%",
       }}
     >
       <Box
@@ -19,6 +21,8 @@ const Layout = ({ children }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          height: "100%",
+          width: "20%",
         }}
       >
         <Sidebar />

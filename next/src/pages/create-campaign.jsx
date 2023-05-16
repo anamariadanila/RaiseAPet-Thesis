@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import { imageAvailable } from "../utils/functions";
+import { imageAvailable, isFutureDate } from "../utils/functions";
 import { useAppContext } from "../context";
 import MainLayout from "../layouts/MainLayout";
 import Head from "next/head";
@@ -44,6 +44,21 @@ const CreateCampaign = () => {
       } else {
         alert("Image is not available");
         setFormDetails({ ...formDetails, image: "" });
+      }
+    });
+
+    isFutureDate(formDetails.deadline, async (isOk) => {
+      if (isOk) {
+        setLoading(true);
+        await createCampaign({
+          ...formDetails,
+          cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
+        });
+        setLoading(false);
+        router.push("/campaigns");
+      } else {
+        alert("Date is not available");
+        setFormDetails({ ...formDetails, deadline: "" });
       }
     });
   };
@@ -171,7 +186,7 @@ const CreateCampaign = () => {
                     color="secondary"
                     type="number"
                     sx={{ width: "20rem" }}
-                    inputProps={{ step: "0.01" }}
+                    inputProps={{ step: "0.01", min: "0" }}
                     value={formDetails.cost}
                     onChange={(e) => handleFormChange("cost", e)}
                   />

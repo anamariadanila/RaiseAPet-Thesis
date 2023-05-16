@@ -7,18 +7,19 @@ import { Typography } from "@mui/material";
 import CampaignDetailsInfo from "../../../components/CampaignDetailsInfo";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../../context";
-import { ethers } from "ethers";
-import { useGlobalState, getGlobalState } from "../../../globalState";
+import Loader from "../../../components/Loader";
+import TableDonators from "../../../components/TableDonators";
 
 const CampaignDetails = () => {
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
   const [donators, setDonators] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
+
   const router = useRouter();
   const id = router.query.id;
-  const { donateToCampaig, getDonators, contract, address, getCampaigns } =
-    useAppContext();
+
+  const { getDonators, contract, address, getCampaigns } = useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -27,14 +28,13 @@ const CampaignDetails = () => {
     setLoading(false);
   };
 
-  console.log("campaigns", campaigns);
-
   useEffect(() => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
 
   const fetchDonators = async () => {
     const data = await getDonators(id);
+
     setDonators(data);
     console.log("donators", donators);
   };
@@ -42,15 +42,6 @@ const CampaignDetails = () => {
   useEffect(() => {
     if (contract) fetchDonators();
   }, [contract, address]);
-
-  // const handleDonate = async () => {
-  //   setLoading(true);
-
-  //   await donate(state.id, amount);
-
-  //   router.push("/");
-  //   setLoading(false);
-  // };
 
   return (
     <>
@@ -69,6 +60,7 @@ const CampaignDetails = () => {
             flexDirection: "column",
           }}
         >
+          {loading && <Loader />}
           <Box
             sx={{
               display: "flex",
@@ -84,6 +76,7 @@ const CampaignDetails = () => {
             <CampaignDetailsImg />
             <CampaignDetailsInfo />
           </Box>
+
           <Box
             sx={{
               ml: "8rem",
@@ -120,8 +113,50 @@ const CampaignDetails = () => {
               </Box>
             </Box>
           </Box>
-          <Box sx={{ ml: "8rem", mr: "5rem", mt: "3rem", width: "80%" }}>
-            Tabel
+
+          <Box
+            sx={{
+              ml: "8rem",
+              mr: "5rem",
+              mt: "3rem",
+
+              width: "80%",
+            }}
+          >
+            <Box
+              sx={{
+                bgcolor: "textBg.main",
+                borderRadius: "15px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Box sx={{ mb: "1rem", mt: "1rem" }}>
+                <Typography
+                  variant="h4"
+                  align="left"
+                  sx={{ fontWeight: "bold", fontSize: 25 }}
+                >
+                  Donators
+                </Typography>
+              </Box>
+              {/* <Box sx={{ pb: "2rem" }}>
+                {donators.length > 0 ? (
+                  donators.map((donator, i) => (
+                    <Box key={i}>
+                      {" "}
+                      {donator[0]} {donator[3]}
+                    </Box>
+                  ))
+                ) : (
+                  <Box> No donators yet </Box>
+                )}
+              </Box> */}
+              <TableDonators donators={donators} />
+            </Box>
           </Box>
         </Box>
       </MainLayout>

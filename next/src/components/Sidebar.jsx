@@ -7,15 +7,18 @@ import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useDisconnect } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
-import { sidebarIcons } from "../constants/index.jsx";
+import { sidebarIcons, donatorIcons } from "../constants/index.jsx";
 import logo from "../assets/logo.png";
 import { signOut } from "next-auth/react";
 import { useAppContext } from "../context/index.jsx";
+import { useEffect } from "react";
 
 export default function Sidebar({}) {
   const router = useRouter();
   const { address } = useAppContext();
   const disconnect = useDisconnect();
+  // const type = localStorage.getItem("type");
+
   const handleSignOut = () => {
     if (address) {
       console.log("address", address);
@@ -29,6 +32,9 @@ export default function Sidebar({}) {
     //aici de vazut in functie de tip, daca e ong trb facut signOut cu next-auth si disconnect de la portofel, daca e donator
     //doar disconnect de la portofel
   };
+
+  //get type from getType request from api
+
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -61,7 +67,14 @@ export default function Sidebar({}) {
               width: "100%",
             }}
           >
-            <IconButton onClick={() => router.push("/")}>
+            <IconButton
+              onClick={() =>
+                localStorage.getItem("type") === "ONG" ||
+                localStorage.getItem("type") === "Donator"
+                  ? router.push("/campaigns")
+                  : router.push("/")
+              }
+            >
               <img src={logo.src} alt="logo" width="80px" height="80px" />
             </IconButton>
             {sidebarIcons.map((icon, index) => (
@@ -73,6 +86,7 @@ export default function Sidebar({}) {
                 {icon.icon}
               </IconButton>
             ))}
+
             <IconButton color="secondary" onClick={handleSignOut}>
               <LogoutOutlinedIcon
                 sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
