@@ -33,12 +33,6 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const { connect, address } = useAppContext();
   console.log("address", address);
 
-  // useEffect(() => {
-  //   if (address) {
-  //     localStorage.setItem("address", address);
-  //   }
-  // }, []);
-
   const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);

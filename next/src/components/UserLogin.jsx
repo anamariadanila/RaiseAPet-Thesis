@@ -22,25 +22,18 @@ import { useFormik } from "formik";
 import { validationLogin } from "../lib/validation";
 import { signIn } from "next-auth/react";
 
-const UserLogin = ({ title, messageTitle, showMessage }) => {
+const UserLogin = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  console.log(type, "aixiß");
 
   const { connect, address } = useAppContext();
 
-  // useEffect(() => {
-  //   if (address) {
-  //     localStorage.setItem("address", address);
-  //   }
-  // }, []);
-
+  const addressFromContext = address;
   const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -97,44 +90,21 @@ const UserLogin = ({ title, messageTitle, showMessage }) => {
   };
 
   const onSubmit = async (values) => {
-    const newVal = { ...values, address, type };
-    const valForDonator = { address, type };
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(type === "ONG" ? newVal : valForDonator),
-    };
+    const status = await signIn("credentials", {
+      redirect: false,
+      ongCode: values.ongCode,
+      password: values.password,
 
-    if (ifRegister) {
-      const response = await fetch(
-        "http://localhost:3000/api/auth/register",
-        options
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && !data.error) {
-            router.push("/login");
-          }
-        });
+      // callbackUrl: "/campaigns",
+    });
+    console.log(status);
 
-      const data = await response.json();
-    } else {
-      delete values.confirmPassword;
-      const status = await signIn("credentials", {
-        redirect: false,
-        ongCode: values.ongCode,
-        password: values.password,
-        address: values.address,
-        callbackUrl: "/campaigns",
-      });
-      console.log(status);
-
-      if (status.ok) {
-        if (address) {
-          router.push(status.url);
-        } else {
-          connect();
-        }
+    if (status.ok) {
+      if (address) {
+        router.push("/campaigns");
+        connect();
+      } else {
+        connect();
       }
     }
   };
@@ -143,274 +113,222 @@ const UserLogin = ({ title, messageTitle, showMessage }) => {
     initialValues: {
       ongCode: "",
       password: "",
-      // address: "",
     },
     validate: validationLogin,
     onSubmit,
   });
 
   return (
-    <>
-      <Box
-        sx={{
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <form
+        onSubmit={formik.handleSubmit}
+        style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
         }}
       >
-        <form
-          onSubmit={formik.handleSubmit}
-          style={{
+        <FormControl
+          sx={{
+            m: 1,
+            width: "25ch",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection: "column",
           }}
+          color="secondary"
         >
-          <FormControl
+          {type !== "ONG" && type !== "Donator" && (
+            <Box
+              sx={{
+                bgcolor: "textBg.main",
+                height: "4rem",
+                borderRadius: "15px",
+                width: "60%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: "2rem",
+              }}
+            >
+              <Typography
+                variant="h5"
+                align="center"
+                sx={{ fontWeight: "bold", fontSize: 23 }}
+              >
+                {messageTitle}
+              </Typography>
+            </Box>
+          )}
+          <Select
+            value={type}
+            onChange={handleChange}
+            displayEmpty
+            sx={{ minWidth: "25ch" }}
+          >
+            <MenuItem value="">
+              <em>Select type</em>
+            </MenuItem>
+            <MenuItem value="ONG">ONG</MenuItem>
+            <MenuItem value="Donator">Donator</MenuItem>
+          </Select>
+          {type === "ONG" ? (
+            <FormHelperText>ONG selected</FormHelperText>
+          ) : type === "Donator" ? (
+            <FormHelperText>Donator selected</FormHelperText>
+          ) : (
+            <FormHelperText>Select user type</FormHelperText>
+          )}
+        </FormControl>
+
+        {type === "ONG" ? (
+          <Box
             sx={{
-              m: 1,
-              width: "25ch",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              flexDirection: "column",
             }}
-            color="secondary"
           >
-            {type !== "ONG" && type !== "Donator" && (
-              <Box
-                sx={{
-                  bgcolor: "textBg.main",
-                  height: "4rem",
-                  borderRadius: "15px",
-                  width: "60%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  mb: "2rem",
-                }}
-              >
-                <Typography
-                  variant="h5"
-                  align="center"
-                  sx={{ fontWeight: "bold", fontSize: 23 }}
-                >
-                  {messageTitle}
-                </Typography>
-              </Box>
-            )}
-            <Select
-              value={type}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ minWidth: "25ch" }}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
-              <MenuItem value="">
-                <em>Select type</em>
-              </MenuItem>
-              <MenuItem value="ONG">ONG</MenuItem>
-              <MenuItem value="Donator">Donator</MenuItem>
-            </Select>
-            {type === "ONG" ? (
-              <FormHelperText>ONG selected</FormHelperText>
-            ) : type === "Donator" ? (
-              <FormHelperText>Donator selected</FormHelperText>
-            ) : (
-              <FormHelperText>Select user type</FormHelperText>
-            )}
-          </FormControl>
+              <TextField
+                required
+                label="ONG Code"
+                color="secondary"
+                sx={{ m: 1, width: "25ch" }}
+                name="ongCode"
+                {...formik.getFieldProps("ongCode")}
+                autoComplete="off"
+              />
+              {formik.errors.ongCode && formik.touched.ongCode ? (
+                <Typography
+                  align="left"
+                  sx={{
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "30ch",
+                  }}
+                >
+                  {formik.errors.ongCode}
+                </Typography>
+              ) : null}
+            </Box>
 
-          {type === "ONG" ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <FormControl
+                sx={{
+                  m: 1,
+                  width: "25ch",
+                }}
+                variant="outlined"
+                color="secondary"
+                required
+                {...formik.getFieldProps("password")}
+              >
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  name="password"
+                  autoComplete="off"
+                  id="outlined-adornment-password"
+                  inputProps={{
+                    autoComplete: "new-password",
+                  }}
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+              {formik.errors.password && formik.touched.password ? (
+                <Typography
+                  variant="h6"
+                  align="left"
+                  sx={{
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "35ch",
+                  }}
+                >
+                  {formik.errors.password}
+                </Typography>
+              ) : null}
+            </Box>
+
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                flexDirection: "column",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <TextField
-                  required
-                  label="ONG Code"
-                  color="secondary"
-                  sx={{ m: 1, width: "25ch" }}
-                  name="ongCode"
-                  {...formik.getFieldProps("ongCode")}
-                  autoComplete="off"
-                />
-                {formik.errors.ongCode && formik.touched.ongCode ? (
-                  <Typography
-                    align="left"
-                    sx={{
-                      fontSize: 12,
-                      color: "error.main",
-                      ml: 1,
-                      width: "30ch",
-                    }}
-                  >
-                    {formik.errors.ongCode}
-                  </Typography>
-                ) : null}
-              </Box>
-
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <TextField
-                  required
-                  label="ONG Address"
-                  placeholder="Last 6 characters"
-                  color="secondary"
-                  sx={{ m: 1, width: "25ch" }}
-                  name="address"
-                  {...formik.getFieldProps("address")}
-                  autoComplete="off"
-                />
-                {formik.errors.address && formik.touched.address ? (
-                  <Typography
-                    align="left"
-                    sx={{
-                      fontSize: 12,
-                      color: "error.main",
-                      ml: 1,
-                      width: "30ch",
-                    }}
-                  >
-                    {formik.errors.address}
-                  </Typography>
-                ) : null}
-              </Box> */}
-
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <FormControl
-                  sx={{
-                    m: 1,
-                    width: "25ch",
-                  }}
-                  variant="outlined"
-                  color="secondary"
-                  required
-                  {...formik.getFieldProps("password")}
-                >
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Password
-                  </InputLabel>
-                  <OutlinedInput
-                    name="password"
-                    autoComplete="off"
-                    id="outlined-adornment-password"
-                    inputProps={{
-                      autoComplete: "new-password",
-                    }}
-                    type={showPassword ? "text" : "password"}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    label="Password"
-                  />
-                </FormControl>
-                {formik.errors.password && formik.touched.password ? (
-                  <Typography
-                    variant="h6"
-                    align="left"
-                    sx={{
-                      fontSize: 12,
-                      color: "error.main",
-                      ml: 1,
-                      width: "35ch",
-                    }}
-                  >
-                    {formik.errors.password}
-                  </Typography>
-                ) : null}
-              </Box>
-
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <ButtonConnect
-                  title={title}
-                  btnType="submit"
-                  handleClick={handleClickRegister}
-                />
-              </Box>
-              <Box>
-                <Typography
-                  variant="h5"
-                  align="center"
-                  sx={{
-                    fontWeight: "bold",
-                    fontSize: 18,
-                    mt: "3rem",
-                    mb: "1rem",
-                  }}
-                >
-                  Don't have an account? Register{" "}
-                  <Link href="/register" color="#fff">
-                    here.
-                  </Link>
-                </Typography>
-              </Box>
+              <ButtonConnect
+                title={title}
+                btnType="submit"
+                // handleClick={handleClickRegister}
+              />
             </Box>
-          ) : type === "Donator" ? (
-            <ButtonConnect
-              title="Connect "
-              btnType="button"
-              img={metamask.src}
-              handleClick={handleClick}
-            />
-          ) : (
-            <Box>
-              {showMessage && (
-                <Typography
-                  variant="h5"
-                  align="center"
-                  sx={{
-                    fontWeight: "bold",
-                    fontSize: 18,
-                    mt: "3rem",
-                    mb: "1rem",
-                  }}
-                >
-                  Don't have an account? Register{" "}
-                  <Link href="/register" color="#fff">
-                    here.
-                  </Link>
-                </Typography>
-              )}
-            </Box>
-          )}
-        </form>
-      </Box>
-    </>
+          </Box>
+        ) : type === "Donator" ? (
+          <ButtonConnect
+            title="Connect "
+            btnType="button"
+            img={metamask.src}
+            handleClick={handleClick}
+          />
+        ) : null}
+        <Box>
+          {type !== "Donator" && type !== "ONG" ? (
+            <Typography
+              variant="h5"
+              align="center"
+              sx={{
+                fontWeight: "bold",
+                fontSize: 18,
+                mt: "3rem",
+                mb: "1rem",
+              }}
+            >
+              Don't have an account? Register{" "}
+              <Link href="/register" color="#fff">
+                here.
+              </Link>
+            </Typography>
+          ) : null}
+        </Box>
+      </form>
+    </Box>
   );
 };
 

@@ -85,6 +85,7 @@ const UserRegister = ({ title, messageTitle }) => {
       ongCode: "",
       password: "",
       confirmPassword: "",
+      address: "",
     },
     validate: validationRegister,
     onSubmit,

@@ -15,7 +15,7 @@ const handler = NextAuth({
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
         //aici se verifica in baza de date daca exista user ul sau nu
-        const res = await fetch("http://localhost:3000/api/login", {
+        const res = await fetch("http://localhost:3000/api/loginOng", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
