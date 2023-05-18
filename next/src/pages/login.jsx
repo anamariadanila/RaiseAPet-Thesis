@@ -6,6 +6,8 @@ import SelectUserType from "../components/SelectUserType";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useRouter } from "next/router";
+import UserLogin from "../components/Userlogin";
+import { useConnect, useMetamask } from "@thirdweb-dev/react";
 
 export default function Login() {
   const router = useRouter();
@@ -54,6 +56,11 @@ export default function Login() {
             </InputAdornment>
           </Box>
           <LoginLayout messageTitle={"Login"}>
+            {/* <UserLogin
+              showMessage={true}
+              title={"Connect"}
+              messageTitle={"Login"}
+            /> */}
             <SelectUserType
               showMessage={true}
               title={"Connect"}

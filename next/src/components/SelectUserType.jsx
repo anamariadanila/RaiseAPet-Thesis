@@ -31,6 +31,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { connect, address } = useAppContext();
+  console.log("address", address);
 
   // useEffect(() => {
   //   if (address) {
@@ -55,6 +56,39 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
 
   // const connect = useConnect();
 
+  const handleRegister = async (event) => {
+    event.preventDefault();
+
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address, type }),
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/auth/registerDonator",
+        options
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to register");
+      }
+
+      const data = await response.json();
+
+      if (!data || data.error) {
+        throw new Error("Registration failed");
+      }
+
+      await connect();
+      router.push("/campaigns");
+    } catch (error) {
+      console.error(error);
+      alert("Registration failed");
+    }
+  };
+
   const handleClick = async (values) => {
     try {
       // TODO: NEVER USE DELETE IN OBJECTS, USE SPREAD OPERATOR, IT'S NOT GOOD PRACTICE
@@ -62,6 +96,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
       delete values.ongCode;
       delete values.password;
       const newVal = { address, type };
+      console.log(newVal);
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -70,7 +105,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
 
       if (ifRegister) {
         const response = await fetch(
-          "http://localhost:3000/api/auth/register",
+          "http://localhost:3000/api/auth/registerDonator",
           options
         )
           .then((res) => res.json())
@@ -80,8 +115,21 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
               router.push("/login");
             }
           });
+        // const response = await fetch(
+        //   "http://localhost:3000/api/auth/registerDonator",
+        //   options
+        // );
+        // if (response.ok) {
+        //   const data = await response.json();
+        //   if (data && !data.error) {
+        //     connect();
+        //     router.push("/login");
+        //   }
+        // }
 
         const data = await response.json();
+        console.log(data);
+        console.log(address);
       } else if (address) {
         router.push("/campaigns");
       } else {
@@ -151,7 +199,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
     onSubmit,
   });
 
-  localStorage.setItem("type", type);
+  // localStorage.setItem("type", type);
   // setGlobalState("type", type);
   console.log("type", type);
 
@@ -435,7 +483,7 @@ const SelectUserType = ({ showMessage, title, ifRegister, messageTitle }) => {
             title="Connect "
             btnType="button"
             img={metamask.src}
-            handleClick={handleClick}
+            handleClick={handleRegister}
           />
         ) : (
           <Box>

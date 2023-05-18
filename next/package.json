@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.0",
     "@next-auth/firebase-adapter": "^2.0.1",
+    "@prisma/client": "^4.14.1",
     "@thirdweb-dev/auth": "^3.0.15",
     "@thirdweb-dev/react": "^3.11.9-nightly-45d2ffcf-20230426154510",
     "@thirdweb-dev/sdk": "^3.10.11",
@@ -42,6 +43,7 @@
     "thirdweb": "^0.10.11"
   },
   "devDependencies": {
-    "mongoose": "^7.1.0"
+    "mongoose": "^7.1.0",
+    "prisma": "^4.14.1"
   }
 }
