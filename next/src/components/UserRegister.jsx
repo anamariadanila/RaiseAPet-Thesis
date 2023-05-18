@@ -14,13 +14,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import ButtonConnect from "./ButtonConnect";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import metamask from "../assets/metamask.png";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import { validationLogin, validationRegister } from "../lib/validation";
-import { signIn } from "next-auth/react";
+import { validationRegister } from "../lib/validation";
 
 const UserRegister = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
@@ -28,12 +26,6 @@ const UserRegister = ({ title, messageTitle }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { connect, address } = useAppContext();
-
-  // useEffect(() => {
-  //   if (address) {
-  //     localStorage.setItem("address", address);
-  //   }
-  // }, []);
 
   console.log(type);
 
@@ -52,90 +44,40 @@ const UserRegister = ({ title, messageTitle }) => {
     setType(event.target.value);
   };
 
-  const handleClickRegister = () => {
-    connect();
+  console.log(address);
 
-    //de vazut daca deja exista un cont cu adresa asta sa apara eroare else se face conectare
-  };
-
-  // const connect = useConnect();
-
+  //for Donator
   const handleClick = async () => {
-    try {
-      // TODO: NEVER USE DELETE IN OBJECTS, USE SPREAD OPERATOR, IT'S NOT GOOD PRACTICE
-      const newVal = { address, type };
-      console.log(newVal);
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newVal),
-      };
-
-      await fetch("/api/auth/register", options)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && !data.error) {
-            connect();
-            router.push("/login");
-          }
-        });
-
-      if (address) {
-        router.push("/campaigns");
-      } else {
-        connect();
-      }
-      //   } else if (address) {
-      //     router.push("/campaigns");
-      //   } else {
-      //     connect();
-      //   }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const onSubmit = async (values) => {
-    // const newVal = { ...values, address, type };
-    // const valForDonator = { address, type };
-    // const options = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(type === "ONG" ? newVal : valForDonator),
-    // };
-
-    const response = await fetch(
-      "http://localhost:3000/api/auth/register",
-      options
-    )
+    const newVal = { address, type };
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newVal),
+    };
+    await fetch("http://localhost:3000/api/registerDonator", options)
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.error) {
           router.push("/login");
         }
       });
+  };
 
-    const data = await response.json();
-    // } else {
-    //   delete values.confirmPassword;
-    //   const status = await signIn("credentials", {
-    //     redirect: false,
-    //     ongCode: values.ongCode,
-    //     password: values.password,
-    //     address: values.address,
-    //     callbackUrl: "/campaigns",
-    //   });
-    //   console.log(status);
-
-    //   if (status.ok) {
-    //     if (address) {
-    //       router.push(status.url);
-    //     } else {
-    //       connect();
-    //     }
-    //   }
-    // }
-    console.log(data);
+  //for ONG
+  const onSubmit = async (values) => {
+    const newVal = { ...values, address, type };
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newVal),
+    };
+    await fetch("http://localhost:3000/api/registerOng", options)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && !data.error) {
+          router.push("/login");
+        }
+      });
   };
 
   const formik = useFormik({
@@ -387,7 +329,7 @@ const UserRegister = ({ title, messageTitle }) => {
                 <ButtonConnect
                   title={title}
                   btnType="submit"
-                  handleClick={handleClickRegister}
+                  // handleClick={handleClickRegister}
                 />
               </Box>
             </Box>

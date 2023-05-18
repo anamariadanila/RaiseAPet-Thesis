@@ -61,10 +61,15 @@ export default function Login() {
               title={"Connect"}
               messageTitle={"Login"}
             /> */}
-            <SelectUserType
+            {/* <SelectUserType
               showMessage={true}
               title={"Connect"}
               ifRegister={false}
+              messageTitle={"Login"}
+            /> */}
+            <UserLogin
+              showMessage={true}
+              title={"Connect"}
               messageTitle={"Login"}
             />
           </LoginLayout>

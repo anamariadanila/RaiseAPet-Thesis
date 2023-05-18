@@ -57,10 +57,15 @@ const Register = () => {
             title={"Register"}
             messageTitle={"Register"}
           /> */}
-          <SelectUserType
+          {/* <SelectUserType
             showMessage={false}
             title={"Register"}
             ifRegister={true}
+            messageTitle={"Register"}
+          /> */}
+          <UserRegister
+            showMessage={true}
+            title={"Register"}
             messageTitle={"Register"}
           />
         </LoginLayout>
