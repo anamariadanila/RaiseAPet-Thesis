@@ -1,3 +1,4 @@
+"useClient";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,17 +21,17 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationLogin } from "../lib/validation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const UserLogin = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { data: session } = useSession();
 
   console.log(type, "aixiß");
 
   const { connect, address } = useAppContext();
 
-  const addressFromContext = address;
   const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -50,62 +51,77 @@ const UserLogin = ({ title, messageTitle }) => {
 
   // const connect = useConnect();
 
-  const handleClick = async (values) => {
-    //asta era pentru dinator
-    try {
-      // TODO: NEVER USE DELETE IN OBJECTS, USE SPREAD OPERATOR, IT'S NOT GOOD PRACTICE
-      //aici era pt register
-      delete values.confirmPassword;
-      delete values.ongCode;
-      delete values.password;
-      const newVal = { address, type };
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newVal),
-      };
+  // const handleClick = async (values) => {
+  //   //asta era pentru dinator
+  //   try {
+  //     // TODO: NEVER USE DELETE IN OBJECTS, USE SPREAD OPERATOR, IT'S NOT GOOD PRACTICE
+  //     //aici era pt register
+  //     delete values.confirmPassword;
+  //     delete values.ongCode;
+  //     delete values.password;
+  //     const newVal = { address, type };
+  //     const options = {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(newVal),
+  //     };
 
-      if (ifRegister) {
-        const response = await fetch(
-          "http://localhost:3000/api/auth/register",
-          options
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            if (data && !data.error) {
-              connect();
-              router.push("/login");
-            }
-          });
+  //     if (ifRegister) {
+  //       const response = await fetch(
+  //         "http://localhost:3000/api/auth/register",
+  //         options
+  //       )
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           if (data && !data.error) {
+  //             connect();
+  //             router.push("/login");
+  //           }
+  //         });
 
-        const data = await response.json();
-      } else if (address) {
-        router.push("/campaigns");
-      } else {
-        connect();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //       const data = await response.json();
+  //     } else if (address) {
+  //       router.push("/campaigns");
+  //     } else {
+  //       connect();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const onSubmit = async (values) => {
     const status = await signIn("credentials", {
       redirect: false,
       ongCode: values.ongCode,
       password: values.password,
-
-      // callbackUrl: "/campaigns",
+      address: address,
+      type: type,
+      callbackUrl: "/campaigns",
     });
-    console.log(status);
+
+    console.log(status, "status");
 
     if (status.ok) {
-      if (address) {
-        router.push("/campaigns");
-        connect();
-      } else {
-        connect();
-      }
+      router.push("/campaigns");
+      connect();
+    } else {
+      connect();
+    }
+  };
+
+  const onSubmitDonator = async () => {
+    const status = await signIn("credentials", {
+      redirect: false,
+      address: address,
+      type: type,
+      callbackUrl: "/campaigns",
+    });
+
+    console.log(status, "status");
+    if (status.ok) {
+      router.push("/campaigns");
+      connect();
     }
   };
 
@@ -118,6 +134,7 @@ const UserLogin = ({ title, messageTitle }) => {
     onSubmit,
   });
 
+  console.log(session?.user, "session");
   return (
     <Box
       sx={{
@@ -305,7 +322,7 @@ const UserLogin = ({ title, messageTitle }) => {
             title="Connect "
             btnType="button"
             img={metamask.src}
-            handleClick={handleClick}
+            handleClick={onSubmitDonator}
           />
         ) : null}
         <Box>

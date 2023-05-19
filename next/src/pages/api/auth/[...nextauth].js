@@ -1,42 +1,49 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import prisma from "../../../lib/prisma";
+import * as bcrypt from "bcrypt";
+import { compare } from "bcrypt";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
 
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        //aici se verifica in baza de date daca exista user ul sau nu
-        const res = await fetch("http://localhost:3000/api/loginOng", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ongCode: credentials?.ongCode,
-            password: credentials?.password,
-          }),
-        });
-        const user = await res.json();
+        if (!req.body)
+          return res.status(404).json({ error: "Don't have data" });
 
-        //aici trebuie facut un POST request catre server cu datele de login, adica la api de login
+        if (req.body.type === "ONG") {
+          const result = await prisma.users.findFirst({
+            where: {
+              ongCode: credentials?.ongCode,
+            },
+          });
+          if (!result) {
+            throw new Error("No user Found");
+          }
 
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user; //pe care il avem din login api
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null; // in session va fi null
+          if (result.address !== req.body.address) {
+            throw new Error("Invalid Address" + req.body.type);
+          }
 
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+          const match = await compare(credentials.password, result.password);
+          if (!match || result.ongCode !== credentials.ongCode) {
+            throw new Error("Invalid credentials");
+          }
+          return result;
+        } else if (req.body.type === "Donator") {
+          const result = await prisma.users.findFirst({
+            where: {
+              address: credentials?.address,
+            },
+          });
+
+          if (!result || result.type !== "Donator") {
+            throw new Error("No user Found! Register First...!");
+          }
+          return result;
         }
       },
     }),
@@ -58,4 +65,4 @@ const handler = NextAuth({
   // },
 });
 
-export default handler; //we can have it in app
+export default handler;
