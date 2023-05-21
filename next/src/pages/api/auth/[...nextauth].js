@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "../../../lib/prisma";
 import { compare } from "bcrypt";
+import { signJwtAccessToken, verifyJwtAccessToken } from "../../../lib/jwt";
+import { redirect } from "next/dist/server/api-utils";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -16,7 +18,7 @@ const handler = NextAuth({
           return res.status(404).json({ error: "Don't have data" });
 
         if (req.body.type === "ONG") {
-          const user = await prisma.users.findFirst({
+          let user = await prisma.users.findFirst({
             where: {
               ongCode: credentials?.ongCode,
             },
@@ -33,10 +35,21 @@ const handler = NextAuth({
           if (user.address !== userAddress) {
             throw new Error("Invalid Address" + req.body.address);
           }
+          const accessToken = signJwtAccessToken(user);
+
+          user = { ...user, accessToken };
+
+          const verifyToken = verifyJwtAccessToken(accessToken);
+          console.log(verifyToken);
+          if (!verifyToken) {
+            throw new Error("Invalid Token, login again");
+          }
+
           return user;
         }
+
         if (req.body.type === "Donator") {
-          const user = await prisma.users.findFirst({
+          let user = await prisma.users.findFirst({
             where: {
               address: credentials?.address,
             },
@@ -47,6 +60,8 @@ const handler = NextAuth({
               "No user Found! Register First...!" + req.body.address
             );
           }
+          const accessToken = signJwtAccessToken(user);
+          user = { ...user, accessToken };
           return user;
         }
       },
@@ -57,7 +72,7 @@ const handler = NextAuth({
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.SECRET_KEY,
+  // secret: process.env.SECRET_KEY,
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

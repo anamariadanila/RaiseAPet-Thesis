@@ -27,8 +27,8 @@ const CreateCampaign = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // const { data: session, status } = useSession({ required: true });
-  // console.log(session?.user, status);
+  const { data: session, status } = useSession({ required: true });
+  console.log(session?.user, status);
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });

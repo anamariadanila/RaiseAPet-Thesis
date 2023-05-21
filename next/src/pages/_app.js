@@ -28,15 +28,14 @@ export default function App({ Component, pageProps, session }) {
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           <ContextProvider>
-            {/* {Component.auth ? (
+            {Component.auth ? (
               <Auth>
-                {" "}
                 <Component {...pageProps} />
               </Auth>
             ) : (
               <Component {...pageProps} />
-            )} */}
-            <Component {...pageProps} />
+            )}
+            {/* <Component {...pageProps} /> */}
           </ContextProvider>
         </ThemeProvider>
       </ThirdwebProvider>

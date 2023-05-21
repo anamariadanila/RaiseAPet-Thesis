@@ -1,9 +1,31 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import { Box, Typography } from "@mui/material";
+import { isJwtExpired, verifyJwtAccessToken } from "../lib/jwt";
+import { signOut } from "next-auth/react";
+import { useDisconnect } from "@thirdweb-dev/react";
+import { useRouter } from "next/router";
 
 const Auth = ({ children }) => {
+  const disconnect = useDisconnect();
+  const router = useRouter();
   const { data: session, status } = useSession({ required: true });
+  console.log(session, "session");
+
+  if (session && session?.user?.user?.accessToken) {
+    const tokenExpired = isJwtExpired(session?.user?.user?.accessToken);
+    console.log(tokenExpired, "tokenExpired");
+
+    if (tokenExpired) {
+      disconnect();
+      signOut({
+        redirect: false,
+        callbackUrl: "/",
+      });
+      //   router.push("/");
+    }
+  }
+
   if (status === "loading") {
     return (
       <Box
