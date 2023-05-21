@@ -6,6 +6,7 @@ import { ContextProvider } from "../context";
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "../styles/styles.css";
 import { SessionProvider } from "next-auth/react";
+import Auth from "../components/Auth.jsx";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
@@ -27,7 +28,14 @@ export default function App({ Component, pageProps, session }) {
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           <ContextProvider>
-            <Component {...pageProps} />
+            {Component.auth ? (
+              <Auth>
+                {" "}
+                <Component {...pageProps} />
+              </Auth>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </ContextProvider>
         </ThemeProvider>
       </ThirdwebProvider>

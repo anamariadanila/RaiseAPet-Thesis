@@ -164,4 +164,6 @@ const CampaignDetails = () => {
   );
 };
 
+CampaignDetails.auth = true;
+
 export default CampaignDetails;

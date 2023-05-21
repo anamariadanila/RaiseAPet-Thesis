@@ -60,4 +60,6 @@ const Profile = () => {
   );
 };
 
+Profile.auth = true;
+
 export default Profile;

@@ -10,6 +10,7 @@ const handler = NextAuth({
       name: "Credentials",
 
       async authorize(credentials, req) {
+        const userAddress = await req.body.address;
         if (!req.body)
           return res.status(404).json({ error: "Don't have data" });
 
@@ -28,8 +29,8 @@ const handler = NextAuth({
             throw new Error("Invalid credentials");
           }
 
-          if (user.address !== (await req.body.address)) {
-            throw new Error("Invalid Address");
+          if (user.address !== userAddress) {
+            throw new Error("Invalid Address" + req.body.address);
           }
           return user;
         }
@@ -67,6 +68,9 @@ const handler = NextAuth({
       session.user = token;
       return session;
     },
+  },
+  pages: {
+    signIn: "/login",
   },
 });
 
