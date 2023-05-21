@@ -86,6 +86,7 @@ const HomePage = () => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
+              borderRadius: "15px",
             }}
           >
             <Box

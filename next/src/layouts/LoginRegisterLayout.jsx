@@ -38,6 +38,7 @@ const LoginLayout = ({ children }) => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
+          borderRadius: "15px",
         }}
       >
         {children}

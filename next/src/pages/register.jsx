@@ -2,11 +2,12 @@ import React from "react";
 import LoginLayout from "../layouts/LoginRegisterLayout";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import SelectUserType from "../components/SelectUserType";
 import Head from "next/head";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import UserRegister from "../components/UserRegister";
+import { IconButton } from "@mui/material";
+import logo from "../assets/logo.png";
 
 const Register = () => {
   return (
@@ -25,6 +26,19 @@ const Register = () => {
           flexDirection: "column",
         }}
       >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            flexDirection: "column",
+            width: "95%",
+            mt: "1rem",
+          }}
+        >
+          <IconButton onClick={() => router.push("/")}>
+            <img src={logo.src} alt="logo" width="80px" height="80px" />
+          </IconButton>
+        </Box>
         <Box
           sx={{
             bgcolor: "textBg.main",
