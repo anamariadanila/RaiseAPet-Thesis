@@ -11,6 +11,10 @@ import { useAppContext } from "../context";
 import MainLayout from "../layouts/MainLayout";
 import Head from "next/head";
 import Loader from "../components/Loader";
+import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { GetServerSideProps } from "next";
+import { Link } from "@mui/material";
 
 const CreateCampaign = () => {
   const { createCampaign } = useAppContext();
@@ -24,6 +28,9 @@ const CreateCampaign = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  const { data: session, status } = useSession();
+  console.log(session?.user, status);
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
@@ -62,6 +69,41 @@ const CreateCampaign = () => {
       }
     });
   };
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "unauthenticated") {
+    return (
+      <Box
+        sx={{
+          bgcolor: "textBg.main",
+          height: "5rem",
+          borderRadius: "15px",
+          width: "60%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          mt: "3rem",
+          ml: "20%",
+          mr: "20%",
+        }}
+      >
+        <Typography
+          align="center"
+          sx={{
+            fontSize: "25px",
+          }}
+        >
+          Access denied. Please login or register first{" "}
+          <Link href="/" color="#fff">
+            here.
+          </Link>
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <>

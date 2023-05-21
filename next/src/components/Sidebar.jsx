@@ -23,8 +23,11 @@ export default function Sidebar({}) {
     if (address) {
       console.log("address", address);
       disconnect();
+      signOut({
+        redirect: false,
+        callbackUrl: "/",
+      });
       router.push("/");
-      localStorage.removeItem("type");
 
       //aici notificare cum ca nu e inregistrat si nu poate face logout
     }

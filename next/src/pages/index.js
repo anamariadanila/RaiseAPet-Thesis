@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import HomePage from "../layouts/HomePage";
+import { getSession } from "next-auth/react";
 
 const Home = () => {
   return (
@@ -17,3 +18,22 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (!session) {
+    // return {
+    //   redirect: {
+    //     destination: "/",
+    //     permanent: false,
+    //   },
+    // };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+};

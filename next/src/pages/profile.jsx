@@ -3,37 +3,19 @@ import Head from "next/head";
 import MainLayout from "../layouts/MainLayout";
 import { useAppContext } from "../context";
 import DisplayCampaigns from "../components/DisplayCampaigns";
-import { set } from "mongoose";
+import { useSession } from "next-auth/react";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
-  const [donators, setDonators] = useState([]);
+  const { data: session, status } = useSession();
+  console.log(session?.user.user.type, status);
 
   const { address, contract, getUserCampaigns, getCampaignsByDonator } =
     useAppContext();
 
-  const [type, setType] = useState("");
-
-  useEffect(() => {
-    fetch("api/getType").then((res) => {
-      res.json().then((data) => {
-        console.log("data", data);
-        setType(data);
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    const donators = JSON.parse(localStorage.getItem("donators"));
-    setDonators(donators);
-    const type = localStorage.getItem("type");
-  }, []);
-
   const fetchCampaigns = async () => {
-    const type = localStorage.getItem("type");
-    console.log("type", type);
-    if (type === "ONG") {
+    if (session?.user.user.type === "ONG") {
       setLoading(true);
       const data = await getUserCampaigns();
       setCampaigns(data);
@@ -43,12 +25,10 @@ const Profile = () => {
 
   useEffect(() => {
     if (contract) fetchCampaigns();
-    const type = localStorage.getItem("type");
   }, [address, contract]);
 
   const fetchDonators = async () => {
-    const type = localStorage.getItem("type");
-    if (type === "Donator") {
+    if (session?.user.user.type === "Donator") {
       setLoading(true);
       const data = await getCampaignsByDonator(address.toLowerCase());
       setCampaigns(data);
@@ -58,8 +38,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (contract) fetchDonators();
-    const type = localStorage.getItem("type");
-    // setType(type);
   }, [contract, address]);
 
   return (

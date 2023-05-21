@@ -21,12 +21,12 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationLogin } from "../lib/validation";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 const UserLogin = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { data: session } = useSession();
+
 
   console.log(type, "aixiß");
 
@@ -134,7 +134,6 @@ const UserLogin = ({ title, messageTitle }) => {
     onSubmit,
   });
 
-  console.log(session?.user, "session");
   return (
     <Box
       sx={{
