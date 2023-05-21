@@ -5,12 +5,13 @@ import { compare } from "bcrypt";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
-
       async authorize(credentials, req) {
         const userAddress = await req.body.address;
+
         if (!req.body)
           return res.status(404).json({ error: "Don't have data" });
 

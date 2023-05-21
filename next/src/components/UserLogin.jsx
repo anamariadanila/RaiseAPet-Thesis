@@ -1,6 +1,6 @@
 "useClient";
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
@@ -27,7 +27,6 @@ const UserLogin = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-
   console.log(type, "aixiß");
 
   const { connect, address } = useAppContext();
@@ -48,47 +47,6 @@ const UserLogin = ({ title, messageTitle }) => {
   const handleChange = (event) => {
     setType(event.target.value);
   };
-
-  // const connect = useConnect();
-
-  // const handleClick = async (values) => {
-  //   //asta era pentru dinator
-  //   try {
-  //     // TODO: NEVER USE DELETE IN OBJECTS, USE SPREAD OPERATOR, IT'S NOT GOOD PRACTICE
-  //     //aici era pt register
-  //     delete values.confirmPassword;
-  //     delete values.ongCode;
-  //     delete values.password;
-  //     const newVal = { address, type };
-  //     const options = {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(newVal),
-  //     };
-
-  //     if (ifRegister) {
-  //       const response = await fetch(
-  //         "http://localhost:3000/api/auth/register",
-  //         options
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           if (data && !data.error) {
-  //             connect();
-  //             router.push("/login");
-  //           }
-  //         });
-
-  //       const data = await response.json();
-  //     } else if (address) {
-  //       router.push("/campaigns");
-  //     } else {
-  //       connect();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const onSubmit = async (values) => {
     const status = await signIn("credentials", {
