@@ -12,12 +12,14 @@ import logo from "../assets/logo.png";
 import { signOut } from "next-auth/react";
 import { useAppContext } from "../context/index.jsx";
 import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Sidebar({}) {
   const router = useRouter();
   const { address } = useAppContext();
   const disconnect = useDisconnect();
-  // const type = localStorage.getItem("type");
+  const { data: session, status } = useSession({ required: true });
+  console.log(session?.user?.user?.type);
 
   const handleSignOut = () => {
     if (address) {
@@ -80,15 +82,25 @@ export default function Sidebar({}) {
             >
               <img src={logo.src} alt="logo" width="80px" height="80px" />
             </IconButton>
-            {sidebarIcons.map((icon, index) => (
-              <IconButton
-                color="secondary"
-                onClick={() => router.push(icon.link)}
-                key={index}
-              >
-                {icon.icon}
-              </IconButton>
-            ))}
+            {session?.user?.user?.type === "ONG"
+              ? sidebarIcons.map((icon, index) => (
+                  <IconButton
+                    color="secondary"
+                    onClick={() => router.push(icon.link)}
+                    key={index}
+                  >
+                    {icon.icon}
+                  </IconButton>
+                ))
+              : donatorIcons.map((icon, index) => (
+                  <IconButton
+                    color="secondary"
+                    onClick={() => router.push(icon.link)}
+                    key={index}
+                  >
+                    {icon.icon}
+                  </IconButton>
+                ))}
 
             <IconButton color="secondary" onClick={handleSignOut}>
               <LogoutOutlinedIcon

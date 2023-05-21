@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "../../../lib/prisma";
 import { compare } from "bcrypt";
 import { signJwtAccessToken, verifyJwtAccessToken } from "../../../lib/jwt";
-import { redirect } from "next/dist/server/api-utils";
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -49,13 +48,14 @@ const handler = NextAuth({
         }
 
         if (req.body.type === "Donator") {
+          const userAddress = await req.body.address;
           let user = await prisma.users.findFirst({
             where: {
               address: credentials?.address,
             },
           });
 
-          if (!user || user.type !== "Donator") {
+          if (!user) {
             throw new Error(
               "No user Found! Register First...!" + req.body.address
             );

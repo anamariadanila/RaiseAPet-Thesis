@@ -67,7 +67,7 @@ const UserLogin = ({ title, messageTitle }) => {
       connect();
     }
   };
-
+  console.log(address, "address");
   const onSubmitDonator = async () => {
     const status = await signIn("credentials", {
       redirect: false,
