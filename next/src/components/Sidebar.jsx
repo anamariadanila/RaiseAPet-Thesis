@@ -13,6 +13,8 @@ import { signOut } from "next-auth/react";
 import { useAppContext } from "../context/index.jsx";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Tooltip from "@mui/material/Tooltip";
+import Grid from "@mui/material/Grid";
 
 export default function Sidebar({}) {
   const router = useRouter();
@@ -103,9 +105,29 @@ export default function Sidebar({}) {
                 ))}
 
             <IconButton color="secondary" onClick={handleSignOut}>
-              <LogoutOutlinedIcon
-                sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-              />
+              <Grid item>
+                <Tooltip
+                  title="Logout"
+                  arrow
+                  placement="right"
+                  componentsProps={{
+                    tooltip: {
+                      sx: {
+                        bgcolor: "icon.main",
+                        "& .MuiTooltip-arrow": {
+                          color: "icon.main",
+                        },
+                        color: "common.black",
+                        fontSize: "0.8rem",
+                      },
+                    },
+                  }}
+                >
+                  <LogoutOutlinedIcon
+                    sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  />
+                </Tooltip>
+              </Grid>
             </IconButton>
           </Box>
           <Box>

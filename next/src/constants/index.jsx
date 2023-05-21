@@ -3,38 +3,120 @@ import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutl
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
+import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
 
 export const sidebarIcons = [
   {
     icon: (
-      <GridViewOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="All campaigns"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <GridViewOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/campaigns",
   },
   {
     icon: (
-      <CreateNewFolderOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="New campaign"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <CreateNewFolderOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/create-campaign",
   },
   {
     icon: (
-      <AccountCircleOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="Profile"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <AccountCircleOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/profile",
   },
 
   {
     icon: (
-      <SettingsOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="Settings"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <SettingsOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/settings",
   },
@@ -43,35 +125,115 @@ export const sidebarIcons = [
 export const donatorIcons = [
   {
     icon: (
-      <GridViewOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="All campaigns"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <GridViewOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/campaigns",
   },
   {
     icon: (
-      <Diversity1OutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="All ongs"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <Diversity1OutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/ongs",
   },
 
   {
     icon: (
-      <AccountCircleOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="Profile"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <AccountCircleOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/profile",
   },
 
   {
     icon: (
-      <SettingsOutlinedIcon
-        sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-      />
+      <Grid item>
+        <Tooltip
+          title="Settings"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <SettingsOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
     ),
     link: "/settings",
   },
