@@ -13,7 +13,9 @@ export default async function handler(req, res) {
     });
 
     if (checkOngCode) {
-      return res.status(409).json({ error: "Ong code already exists" });
+      return res
+        .status(409)
+        .json({ error: "Ong code already exists. Please login" });
     }
 
     const checkAddress = await prisma.users.findFirst({
@@ -23,13 +25,16 @@ export default async function handler(req, res) {
     });
 
     if (checkAddress) {
-      return res.status(409).json({ error: "Address already exists" });
+      return res.status(409).json({
+        error:
+          "Address already exists. Choose another address from MetaMask wallet. ",
+      });
     }
 
     const user = await prisma.users.create({
       data: {
         ongCode: ongCode,
-        password: await bcrypt.hash(password, 10), //salvam parola criptata in bd
+        password: await bcrypt.hash(password, 10),
         address: address,
         type: type,
       },

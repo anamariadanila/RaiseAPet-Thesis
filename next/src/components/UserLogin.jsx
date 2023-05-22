@@ -1,6 +1,6 @@
 "useClient";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
@@ -48,7 +48,14 @@ const UserLogin = ({ title, messageTitle }) => {
     setType(event.target.value);
   };
 
+  console.log(address, "address");
+
+  useEffect(() => {
+    connect();
+  }, [address]);
+
   const onSubmit = async (values) => {
+    connect();
     const status = await signIn("credentials", {
       redirect: false,
       ongCode: values.ongCode,
@@ -57,8 +64,11 @@ const UserLogin = ({ title, messageTitle }) => {
       type: type,
       callbackUrl: "/campaigns",
     });
-
     console.log(status, "status");
+
+    if (status.error) {
+      window.alert(status.error);
+    }
 
     if (status.ok) {
       router.push("/campaigns");
@@ -67,8 +77,9 @@ const UserLogin = ({ title, messageTitle }) => {
       connect();
     }
   };
-  console.log(address, "address");
+
   const onSubmitDonator = async () => {
+    connect();
     const status = await signIn("credentials", {
       redirect: false,
       address: address,
@@ -76,7 +87,13 @@ const UserLogin = ({ title, messageTitle }) => {
       callbackUrl: "/campaigns",
     });
 
+    console.log(status.error, "status.error");
     console.log(status, "status");
+
+    if (status.error) {
+      window.alert(status.error);
+    }
+
     if (status.ok) {
       router.push("/campaigns");
       connect();

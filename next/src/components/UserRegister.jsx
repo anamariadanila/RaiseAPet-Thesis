@@ -19,13 +19,16 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationRegister } from "../lib/validation";
+import { useAddress } from "@thirdweb-dev/react";
 
 const UserRegister = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { connect, address } = useAppContext();
+  const { address, connect } = useAppContext();
+  // const address = useAddress();
+  console.log(address, "address");
 
   console.log(type);
 
@@ -49,6 +52,8 @@ const UserRegister = ({ title, messageTitle }) => {
   //for Donator
   const handleClick = async () => {
     const newVal = { address, type };
+    console.log(newVal, "newVal");
+    connect();
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,12 +65,16 @@ const UserRegister = ({ title, messageTitle }) => {
         if (data && !data.error) {
           router.push("/login");
         }
+        if (data.error) {
+          window.alert(data.error);
+        }
       });
   };
 
   //for ONG
   const onSubmit = async (values) => {
     const newVal = { ...values, address, type };
+    connect();
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -76,6 +85,10 @@ const UserRegister = ({ title, messageTitle }) => {
       .then((data) => {
         if (data && !data.error) {
           router.push("/login");
+        }
+        if (data.error) {
+          window.alert(data.error);
+          router.push("/register");
         }
       });
   };

@@ -28,8 +28,7 @@ export const ContextProvider = ({ children }) => {
 
   const address = useAddress();
   const connect = useMetamask();
-
-  // localStorage.setItem("address", address);
+  console.log("address", address);
 
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),
@@ -251,7 +250,7 @@ export const ContextProvider = ({ children }) => {
 
     const donatedCampaigns = allCampaigns.filter((campaign) =>
       // idsDonatedTo?.includes(campaign.id) ? campaign : null
-      donators[0] === address.toLowerCase() ? campaign : null
+      donators[0] === address?.toLowerCase() ? campaign : null
     );
 
     return donatedCampaigns;

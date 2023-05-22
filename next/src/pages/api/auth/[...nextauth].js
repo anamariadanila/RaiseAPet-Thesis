@@ -23,7 +23,7 @@ const handler = NextAuth({
             },
           });
           if (!user) {
-            throw new Error("No user Found");
+            throw new Error("No user found. Register first!");
           }
 
           const match = await compare(credentials.password, user.password);
@@ -32,7 +32,7 @@ const handler = NextAuth({
           }
 
           if (user.address !== userAddress) {
-            throw new Error("Invalid Address" + req.body.address);
+            throw new Error("Invalid address");
           }
           const accessToken = signJwtAccessToken(user);
 
@@ -41,7 +41,7 @@ const handler = NextAuth({
           const verifyToken = verifyJwtAccessToken(accessToken);
           console.log(verifyToken);
           if (!verifyToken) {
-            throw new Error("Invalid Token, login again");
+            throw new Error("Invalid token, login again");
           }
 
           return user;
@@ -56,9 +56,7 @@ const handler = NextAuth({
           });
 
           if (!user) {
-            throw new Error(
-              "No user Found! Register First...!" + req.body.address
-            );
+            throw new Error("No user found! Register first!");
           }
           const accessToken = signJwtAccessToken(user);
           user = { ...user, accessToken };

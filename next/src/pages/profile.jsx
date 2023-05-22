@@ -30,7 +30,7 @@ const Profile = () => {
   const fetchDonators = async () => {
     if (session?.user.user.type === "Donator") {
       setLoading(true);
-      const data = await getCampaignsByDonator(address.toLowerCase());
+      const data = await getCampaignsByDonator(address?.toLowerCase());
       setCampaigns(data);
       setLoading(false);
     }
@@ -51,7 +51,11 @@ const Profile = () => {
 
       <MainLayout>
         <DisplayCampaigns
-          title="All Campaigns"
+          title={
+            session?.user.user.type === "ONG"
+              ? "My campaigns"
+              : "Campaigns I donated"
+          }
           loading={loading}
           campaigns={campaigns}
         />
