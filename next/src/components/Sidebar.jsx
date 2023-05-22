@@ -76,8 +76,8 @@ export default function Sidebar({}) {
           >
             <IconButton
               onClick={() =>
-                localStorage.getItem("type") === "ONG" ||
-                localStorage.getItem("type") === "Donator"
+                session?.user?.user?.type === "ONG" ||
+                session?.user?.user?.type === "Donator"
                   ? router.push("/campaigns")
                   : router.push("/")
               }

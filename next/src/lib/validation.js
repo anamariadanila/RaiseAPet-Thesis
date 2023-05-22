@@ -80,11 +80,11 @@ export const validationForgotPassword = (values) => {
     errors.ongCode = "Invalid ONG code";
   }
 
-  if (!values.address) {
-    errors.address = "Address is required";
-  } else if (!/^0x[a-fA-F0-9]{40}$/i.test(values.address)) {
-    errors.address = "Invalid address";
-  }
+  // if (!values.address) {
+  //   errors.address = "Address is required";
+  // } else if (!/^0x[a-fA-F0-9]{40}$/i.test(values.address)) {
+  //   errors.address = "Invalid address";
+  // }
 
   if (!values.password) {
     errors.password = "Password is required";

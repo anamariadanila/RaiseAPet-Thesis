@@ -41,8 +41,6 @@ const UserLogin = ({ title, messageTitle }) => {
 
   const handleClickRegister = () => {
     connect();
-
-    //de vazut daca deja exista un cont cu adresa asta sa apara eroare else se face conectare
   };
   const handleChange = (event) => {
     setType(event.target.value);
@@ -323,7 +321,7 @@ const UserLogin = ({ title, messageTitle }) => {
               align="center"
               sx={{
                 fontWeight: "bold",
-                fontSize: 15,
+                fontSize: 16,
                 mt: "4rem",
                 mb: "1rem",
               }}

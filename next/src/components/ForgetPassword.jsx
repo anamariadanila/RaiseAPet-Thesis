@@ -50,12 +50,30 @@ const ForgetPassword = ({ title, messageTitle }) => {
   const onSubmit = async (values) => {
     connect();
     console.log(values, "values");
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    };
+    await fetch("http://localhost:3000/api/changePassword", options)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "data");
+        if (data && !data.error) {
+          router.push("/login");
+        }
+        if (data.error) {
+          window.alert(data.error);
+          router.push("/register");
+        }
+      });
   };
 
   const formik = useFormik({
     initialValues: {
       ongCode: "",
-      address: "",
       password: "",
       confirmPassword: "",
     },
@@ -126,36 +144,6 @@ const ForgetPassword = ({ title, messageTitle }) => {
                 flexDirection: "column",
               }}
             >
-              <TextField
-                required
-                label="Address"
-                color="secondary"
-                sx={{ m: 1, width: "25ch" }}
-                name="address"
-                {...formik.getFieldProps("address")}
-                autoComplete="off"
-              />
-              {formik.errors.address && formik.touched.address ? (
-                <Typography
-                  align="left"
-                  sx={{
-                    fontSize: 12,
-                    color: "error.main",
-                    ml: 1,
-                    width: "30ch",
-                  }}
-                >
-                  {formik.errors.address}
-                </Typography>
-              ) : null}
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
               <FormControl
                 sx={{
                   m: 1,
@@ -167,7 +155,7 @@ const ForgetPassword = ({ title, messageTitle }) => {
                 {...formik.getFieldProps("password")}
               >
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Password
+                  New password
                 </InputLabel>
                 <OutlinedInput
                   name="password"
@@ -189,7 +177,7 @@ const ForgetPassword = ({ title, messageTitle }) => {
                       </IconButton>
                     </InputAdornment>
                   }
-                  label="Password"
+                  label="New password"
                 />
               </FormControl>
               {formik.errors.password && formik.touched.password ? (
@@ -222,7 +210,7 @@ const ForgetPassword = ({ title, messageTitle }) => {
                 {...formik.getFieldProps("confirmPassword")}
               >
                 <InputLabel htmlFor="outlined-adornment-password-2">
-                  Confirm Password
+                  Confirm new password
                 </InputLabel>
                 <OutlinedInput
                   name="confirmPassword"
@@ -248,7 +236,7 @@ const ForgetPassword = ({ title, messageTitle }) => {
                       </IconButton>
                     </InputAdornment>
                   }
-                  label="Confirm password"
+                  label="Confirm new password"
                 />
               </FormControl>
               {formik.errors.confirmPassword &&
