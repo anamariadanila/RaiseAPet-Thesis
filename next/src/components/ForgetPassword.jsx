@@ -1,10 +1,6 @@
-"useClient";
 import * as React from "react";
 import { useState, useEffect } from "react";
-import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -15,25 +11,22 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import ButtonConnect from "./ButtonConnect";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import metamask from "../assets/metamask.png";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import { validationLogin } from "../lib/validation";
-import { signIn } from "next-auth/react";
+import { validationForgotPassword } from "../lib/validation";
 
-const UserLogin = ({ title, messageTitle }) => {
-  const [type, setType] = useState("");
+const ForgetPassword = ({ title, messageTitle }) => {
   const [showPassword, setShowPassword] = useState(false);
-
-  console.log(type, "aixiß");
-
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { connect, address } = useAppContext();
 
   const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -56,131 +49,39 @@ const UserLogin = ({ title, messageTitle }) => {
 
   const onSubmit = async (values) => {
     connect();
-    const status = await signIn("credentials", {
-      redirect: false,
-      ongCode: values.ongCode,
-      password: values.password,
-      address: address,
-      type: type,
-      callbackUrl: "/campaigns",
-    });
-    console.log(status, "status");
-
-    if (status.error) {
-      window.alert(status.error);
-    }
-
-    if (status.ok) {
-      router.push("/campaigns");
-      connect();
-    } else {
-      connect();
-    }
-  };
-
-  const onSubmitDonator = async () => {
-    connect();
-    const status = await signIn("credentials", {
-      redirect: false,
-      address: address,
-      type: type,
-      callbackUrl: "/campaigns",
-    });
-
-    console.log(status.error, "status.error");
-    console.log(status, "status");
-
-    if (status.error) {
-      window.alert(status.error);
-    }
-
-    if (status.ok) {
-      router.push("/campaigns");
-      connect();
-    }
+    console.log(values, "values");
   };
 
   const formik = useFormik({
     initialValues: {
       ongCode: "",
+      address: "",
       password: "",
+      confirmPassword: "",
     },
-    validate: validationLogin,
+    validate: validationForgotPassword,
     onSubmit,
   });
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <form
-        onSubmit={formik.handleSubmit}
-        style={{
+    <>
+      <Box
+        sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
         }}
       >
-        <FormControl
-          sx={{
-            m: 1,
-            width: "25ch",
+        <form
+          onSubmit={formik.handleSubmit}
+          style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
           }}
-          color="secondary"
         >
-          {type !== "ONG" && type !== "Donator" && (
-            <Box
-              sx={{
-                bgcolor: "textBg.main",
-                height: "4rem",
-                borderRadius: "15px",
-                width: "60%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mb: "2rem",
-              }}
-            >
-              <Typography
-                variant="h5"
-                align="center"
-                sx={{ fontWeight: "bold", fontSize: 23 }}
-              >
-                {messageTitle}
-              </Typography>
-            </Box>
-          )}
-          <Select
-            value={type}
-            onChange={handleChange}
-            displayEmpty
-            sx={{ minWidth: "25ch" }}
-          >
-            <MenuItem value="">
-              <em>Select type</em>
-            </MenuItem>
-            <MenuItem value="ONG">ONG</MenuItem>
-            <MenuItem value="Donator">Donator</MenuItem>
-          </Select>
-          {type === "ONG" ? (
-            <FormHelperText>ONG selected</FormHelperText>
-          ) : type === "Donator" ? (
-            <FormHelperText>Donator selected</FormHelperText>
-          ) : (
-            <FormHelperText>Select user type</FormHelperText>
-          )}
-        </FormControl>
-
-        {type === "ONG" ? (
           <Box
             sx={{
               display: "flex",
@@ -215,6 +116,36 @@ const UserLogin = ({ title, messageTitle }) => {
                   }}
                 >
                   {formik.errors.ongCode}
+                </Typography>
+              ) : null}
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <TextField
+                required
+                label="Address"
+                color="secondary"
+                sx={{ m: 1, width: "25ch" }}
+                name="address"
+                {...formik.getFieldProps("address")}
+                autoComplete="off"
+              />
+              {formik.errors.address && formik.touched.address ? (
+                <Typography
+                  align="left"
+                  sx={{
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "30ch",
+                  }}
+                >
+                  {formik.errors.address}
                 </Typography>
               ) : null}
             </Box>
@@ -280,6 +211,66 @@ const UserLogin = ({ title, messageTitle }) => {
             <Box
               sx={{
                 display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <FormControl
+                sx={{ m: 1, width: "25ch" }}
+                variant="outlined"
+                color="secondary"
+                required
+                {...formik.getFieldProps("confirmPassword")}
+              >
+                <InputLabel htmlFor="outlined-adornment-password-2">
+                  Confirm Password
+                </InputLabel>
+                <OutlinedInput
+                  name="confirmPassword"
+                  autoComplete="off"
+                  id="outlined-adornment-password-2"
+                  inputProps={{
+                    autoComplete: "new-password",
+                  }}
+                  type={showConfirmPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowConfirmPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showConfirmPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Confirm password"
+                />
+              </FormControl>
+              {formik.errors.confirmPassword &&
+              formik.touched.confirmPassword ? (
+                <Typography
+                  variant="h6"
+                  align="left"
+                  sx={{
+                    fontSize: 12,
+                    color: "error.main",
+                    ml: 1,
+                    width: "35ch",
+                  }}
+                >
+                  {formik.errors.confirmPassword}
+                </Typography>
+              ) : null}
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
@@ -291,53 +282,10 @@ const UserLogin = ({ title, messageTitle }) => {
               />
             </Box>
           </Box>
-        ) : type === "Donator" ? (
-          <ButtonConnect
-            title="Connect "
-            btnType="button"
-            img={metamask.src}
-            handleClick={onSubmitDonator}
-          />
-        ) : null}
-        <Box>
-          {type !== "Donator" && type !== "ONG" ? (
-            <>
-              <Typography
-                align="center"
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  mt: "3rem",
-                  mb: "1rem",
-                }}
-              >
-                Don't have an account? Register{" "}
-                <Link href="/register" color="#fff">
-                  here.
-                </Link>
-              </Typography>
-            </>
-          ) : null}
-          {type === "ONG" ? (
-            <Typography
-              align="center"
-              sx={{
-                fontWeight: "bold",
-                fontSize: 15,
-                mt: "4rem",
-                mb: "1rem",
-              }}
-            >
-              Forget password? Change it{" "}
-              <Link href="/change-password" color="#fff">
-                here.
-              </Link>
-            </Typography>
-          ) : null}
-        </Box>
-      </form>
-    </Box>
+        </form>
+      </Box>
+    </>
   );
 };
 
-export default UserLogin;
+export default ForgetPassword;

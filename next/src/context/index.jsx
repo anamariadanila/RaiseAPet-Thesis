@@ -28,7 +28,6 @@ export const ContextProvider = ({ children }) => {
 
   const address = useAddress();
   const connect = useMetamask();
-  console.log("address", address);
 
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),

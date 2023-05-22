@@ -19,7 +19,6 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationRegister } from "../lib/validation";
-import { useAddress } from "@thirdweb-dev/react";
 
 const UserRegister = ({ title, messageTitle }) => {
   const [type, setType] = useState("");

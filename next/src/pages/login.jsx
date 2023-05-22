@@ -7,7 +7,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useRouter } from "next/router";
 import UserLogin from "../components/UserLogin";
 import logo from "../assets/logo.png";
-import DisplayError from "../components/DisplayError";
 
 export default function Login() {
   const router = useRouter();
