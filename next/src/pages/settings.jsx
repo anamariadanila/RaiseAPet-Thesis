@@ -1,6 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import MainLayout from "../layouts/MainLayout";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 const Settings = () => {
   return (
@@ -12,7 +14,22 @@ const Settings = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MainLayout></MainLayout>
+      <MainLayout>
+        <Typography
+          align="center"
+          sx={{
+            fontWeight: "bold",
+            fontSize: 16,
+            mt: "4rem",
+            mb: "1rem",
+          }}
+        >
+          Change password{" "}
+          <Link href="/change-password" color="#fff">
+            here.
+          </Link>
+        </Typography>
+      </MainLayout>
     </>
   );
 };

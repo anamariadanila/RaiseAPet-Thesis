@@ -1,5 +1,6 @@
 import prisma from "../../lib/prisma";
 import * as bcrypt from "bcrypt";
+import { signJwtAccessToken, verifyJwtAccessToken } from "../../lib/jwt";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const user = await prisma.users.update({
+    let user = await prisma.users.update({
       where: {
         ongCode: ongCode,
       },
@@ -39,6 +40,15 @@ export default async function handler(req, res) {
         type: type,
       },
     });
+
+    const accessToken = signJwtAccessToken(user);
+
+    user = { ...user, accessToken };
+
+    const verifyToken = verifyJwtAccessToken(accessToken);
+    if (!verifyToken) {
+      throw new Error("Invalid token, login again");
+    }
     if (user) {
       const { password, ...userWithoutPass } = user;
       return res.status(200).json(userWithoutPass);
