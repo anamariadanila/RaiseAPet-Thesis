@@ -11,7 +11,6 @@ import { sidebarIcons, donatorIcons } from "../constants/index.jsx";
 import logo from "../assets/logo.png";
 import { signOut } from "next-auth/react";
 import { useAppContext } from "../context/index.jsx";
-import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
@@ -21,7 +20,7 @@ export default function Sidebar({}) {
   const { address } = useAppContext();
   const disconnect = useDisconnect();
   const { data: session, status } = useSession({ required: true });
-  console.log(session?.user?.user?.type);
+  console.log(session?.user?.user);
 
   const handleSignOut = () => {
     if (address) {
@@ -32,15 +31,8 @@ export default function Sidebar({}) {
         callbackUrl: "/",
       });
       router.push("/");
-
-      //aici notificare cum ca nu e inregistrat si nu poate face logout
     }
-
-    //aici de vazut in functie de tip, daca e ong trb facut signOut cu next-auth si disconnect de la portofel, daca e donator
-    //doar disconnect de la portofel
   };
-
-  //get type from getType request from api
 
   return (
     <Box
