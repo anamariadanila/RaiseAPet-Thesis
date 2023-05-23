@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import CampaignCard from "./CampaignCard";
 import { setGlobalState } from "../globalState";
-import { useAppContext } from "../context";
+import ButtonConnect from "./ButtonConnect";
 
 const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
@@ -16,9 +16,21 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
         pathname: `/campaigns/${campaign.id}`,
         query: { campaign: campaign },
       },
-      `/campaigns/${campaign.id}` //send whole campaign to campaign details page
+      `/campaigns/${campaign.id}`
     );
   };
+
+  const [end, setEnd] = useState(3);
+  const [group, setGroup] = useState([]);
+  const [count, setCount] = useState(3);
+
+  const getGroup = () => {
+    return campaigns.slice(0, end);
+  };
+
+  useEffect(() => {
+    setGroup(getGroup());
+  }, [end, campaigns]);
 
   return (
     <>
@@ -51,9 +63,8 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             mt: "2rem",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-around",
-            width: "80%",
-            ml: "6rem",
+            justifyContent: "space-evenly",
+            width: "100%",
           }}
         >
           {loading && (
@@ -83,7 +94,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
 
           {!loading &&
             campaigns?.length > 0 &&
-            campaigns.map((campaign, i) => (
+            group.map((campaign, i) => (
               <Box
                 sx={{
                   display: "flex",
@@ -99,6 +110,22 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
                 />
               </Box>
             ))}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mt: "2rem",
+          }}
+        >
+          {campaigns.length > 0 && group.length < campaigns.length ? (
+            <ButtonConnect
+              title={"Load more"}
+              btnType="button"
+              handleClick={() => setEnd(end + count)}
+            />
+          ) : null}
         </Box>
       </Box>
     </>

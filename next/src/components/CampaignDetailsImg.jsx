@@ -60,7 +60,7 @@ const CampaignDetailsImg = () => {
           justifyContent: "space-around",
         }}
       >
-        {session?.user?.user?.address !== campaigns[id]?.owner ? (
+        {session?.user?.user?.address === campaigns[id]?.owner ? (
           <>
             <IconButton
               color="secondary"

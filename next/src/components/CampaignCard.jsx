@@ -201,25 +201,37 @@ const CampaignCard = ({
                 </Typography>
               </Box>
               <Box>
-                <Typography
-                  sx={{
-                    fontSize: 18,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "flex-start",
-                    flexDirection: "column",
-                    fontWeight: "bold",
-                  }}
-                  color="secondary.main"
-                >
-                  {remainingDays}
-                </Typography>
-                <Typography
-                  sx={{ fontSize: 15, mb: "0.3rem" }}
-                  color="secondary.main"
-                >
-                  Days left
-                </Typography>
+                {!expired ? (
+                  <>
+                    {" "}
+                    <Typography
+                      sx={{
+                        fontSize: 18,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "flex-start",
+                        flexDirection: "column",
+                        fontWeight: "bold",
+                      }}
+                      color="secondary.main"
+                    >
+                      {remainingDays}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 15, mb: "0.3rem" }}
+                      color="secondary.main"
+                    >
+                      Days left
+                    </Typography>
+                  </>
+                ) : (
+                  <Typography
+                    sx={{ fontSize: 15, mb: "0.3rem" }}
+                    color="secondary.main"
+                  >
+                    Expired
+                  </Typography>
+                )}
               </Box>
             </Box>
             <Box
