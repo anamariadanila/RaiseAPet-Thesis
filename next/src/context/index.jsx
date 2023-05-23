@@ -31,7 +31,7 @@ export const ContextProvider = ({ children }) => {
 
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),
-    totalOngs: statistics.totalOngs.toNumber(),
+    // totalOngs: statistics.totalOngs.toNumber(),
     totalDonations: parseInt(statistics.totalDonations._hex) / 10 ** 18,
     totalDonatots: statistics.totalDonatots.toNumber(),
   });
@@ -127,6 +127,23 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const getCampaignsStatistics = async () => {
+    try {
+      // const stats = await contract.statistics();
+      const stats = await contract.call("getStatistics");
+      const structStatistics = {
+        totalCampaigns: stats.totalCampaigns,
+        // totalOngs: statistics.totalOngs.toNumber(),
+        totalDonations: parseInt(stats.totalDonations._hex) / 10 ** 18,
+        totalDonatots: stats.totalDonatots.toNumber(),
+      };
+
+      return structStatistics;
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   const getCampaigns = async () => {
     try {
       //-------------------
@@ -151,19 +168,9 @@ export const ContextProvider = ({ children }) => {
         status: campaign.status,
       }));
 
+      getCampaignsStatistics();
+
       return parsedCampaings;
-    } catch (e) {
-      console.log("error", e);
-    }
-  };
-
-  const getCampaignsStatistics = async () => {
-    try {
-      // const statistics = await contract.statistics();
-      const statistics = await contract.call("statistics");
-      const structStatistics = structureStatistics(statistics);
-
-      return structStatistics;
     } catch (e) {
       console.log("error", e);
     }

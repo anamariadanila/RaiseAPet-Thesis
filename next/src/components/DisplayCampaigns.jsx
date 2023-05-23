@@ -32,6 +32,8 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
     setGroup(getGroup());
   }, [end, campaigns]);
 
+  
+
   return (
     <>
       <Box

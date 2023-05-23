@@ -34,6 +34,14 @@ export default function Sidebar({}) {
     }
   };
 
+  if (address !== session?.user?.user?.address) {
+    disconnect();
+    signOut({
+      redirect: false,
+      callbackUrl: "/",
+    });
+  }
+
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%" }}

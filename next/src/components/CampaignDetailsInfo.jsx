@@ -323,15 +323,17 @@ const CampaignDetailsInfo = () => {
                 />
               </Box>
               <Box>
-                <ButtonConnect
-                  title="Donate"
-                  btnType="button"
-                  style={{
-                    width: "7rem",
-                    height: "3rem",
-                  }}
-                  handleClick={handleDonate}
-                />
+                {campaigns[id]?.status == 0 ? (
+                  <ButtonConnect
+                    title="Donate"
+                    btnType="button"
+                    style={{
+                      width: "7rem",
+                      height: "3rem",
+                    }}
+                    handleClick={handleDonate}
+                  />
+                ) : null}
               </Box>
             </Box>
           </Box>

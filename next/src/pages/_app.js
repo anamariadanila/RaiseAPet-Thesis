@@ -28,13 +28,9 @@ export default function App({ Component, pageProps, session }) {
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           <ContextProvider>
-            {/* {Component.auth ? (
-              <Auth>
-                <Component {...pageProps} />
-              </Auth>
-            ) : (
+            {/* <Auth>
               <Component {...pageProps} />
-            )} */}
+            </Auth> */}
 
             <Component {...pageProps} />
           </ContextProvider>

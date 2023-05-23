@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import {
   Box,
@@ -12,9 +12,22 @@ import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import ButtonConnect from "../components/ButtonConnect";
 import { useRouter } from "next/router";
 import TableHome from "../components/TableHome";
+import { useAppContext } from "../context";
 
 const HomePage = () => {
   const router = useRouter();
+  const [statistics, setStatistics] = useState([]);
+  const { address, contract, getCampaignsStatistics } = useAppContext();
+
+  const fetchStatistics = async () => {
+    const data = await getCampaignsStatistics();
+    console.log("data", data);
+    setStatistics(data);
+  };
+  useEffect(() => {
+    fetchStatistics();
+  }, []);
+
   return (
     <>
       <Head>

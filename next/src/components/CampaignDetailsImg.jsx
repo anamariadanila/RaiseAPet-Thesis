@@ -30,7 +30,8 @@ const CampaignDetailsImg = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const { contract, address, getCampaigns } = useAppContext();
+  const { contract, address, getCampaigns, getCampaignsStatistics } =
+    useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -44,6 +45,17 @@ const CampaignDetailsImg = () => {
   useEffect(() => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
+
+  const [statistics, setStatistics] = useState([]);
+
+  const fetchStatistics = async () => {
+    const data = await getCampaignsStatistics();
+    console.log("data", data);
+    setStatistics(data);
+  };
+  useEffect(() => {
+    if (contract) fetchStatistics();
+  }, []);
 
   return (
     <Box>
