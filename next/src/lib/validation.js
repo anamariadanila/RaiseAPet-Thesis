@@ -3,7 +3,7 @@ export const validationLogin = (values) => {
 
   if (!values.ongCode) {
     errors.ongCode = "ONG code is required";
-  } else if (!/^\d{4}\/[A-Z]\/\d{4}$/i.test(values.ongCode)) {
+  } else if (!/^\d{1,8}\/[A-Z]\/\d{4}$/i.test(values.ongCode)) {
     errors.ongCode = "Invalid ONG code";
   }
 
@@ -34,7 +34,7 @@ export const validationRegister = (values) => {
 
   if (!values.ongCode) {
     errors.ongCode = "ONG code is required";
-  } else if (!/^\d{4}\/[A-Z]\/\d{4}$/i.test(values.ongCode)) {
+  } else if (!/^\d{1,8}\/[A-Z]\/\d{4}$/i.test(values.ongCode)) {
     errors.ongCode = "Invalid ONG code";
   }
 
@@ -76,15 +76,9 @@ export const validationForgotPassword = (values) => {
 
   if (!values.ongCode) {
     errors.ongCode = "ONG code is required";
-  } else if (!/^\d{4}\/[A-Z]\/\d{4}$/i.test(values.ongCode)) {
+  } else if (!/^\d{1,8}\/[A-Z]\/\d{4}$/i.test(values.ongCode)) {
     errors.ongCode = "Invalid ONG code";
   }
-
-  // if (!values.address) {
-  //   errors.address = "Address is required";
-  // } else if (!/^0x[a-fA-F0-9]{40}$/i.test(values.address)) {
-  //   errors.address = "Invalid address";
-  // }
 
   if (!values.password) {
     errors.password = "Password is required";

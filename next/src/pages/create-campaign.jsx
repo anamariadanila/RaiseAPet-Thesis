@@ -12,7 +12,6 @@ import MainLayout from "../layouts/MainLayout";
 import Head from "next/head";
 import Loader from "../components/Loader";
 import { useSession } from "next-auth/react";
-import { Link } from "@mui/material";
 
 const CreateCampaign = () => {
   const { createCampaign } = useAppContext();
@@ -67,66 +66,17 @@ const CreateCampaign = () => {
       }
     });
   };
-  // if (status === "loading") {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         bgcolor: "textBg.main",
-  //         height: "5rem",
-  //         borderRadius: "15px",
-  //         width: "60%",
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         flexDirection: "column",
-  //         mt: "3rem",
-  //         ml: "20%",
-  //         mr: "20%",
-  //       }}
-  //     >
-  //       <Typography
-  //         align="center"
-  //         sx={{
-  //           fontSize: "25px",
-  //         }}
-  //       >
-  //         Loading...
-  //       </Typography>
-  //     </Box>
-  //   );
-  // }
 
-  // if (status === "unauthenticated") {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         bgcolor: "textBg.main",
-  //         height: "5rem",
-  //         borderRadius: "15px",
-  //         width: "60%",
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         flexDirection: "column",
-  //         mt: "3rem",
-  //         ml: "20%",
-  //         mr: "20%",
-  //       }}
-  //     >
-  //       <Typography
-  //         align="center"
-  //         sx={{
-  //           fontSize: "25px",
-  //         }}
-  //       >
-  //         Access denied. Please login or register first{" "}
-  //         <Link href="/" color="#fff">
-  //           here.
-  //         </Link>
-  //       </Typography>
-  //     </Box>
-  //   );
-  // }
+  //reset form after submit
+  // const resetForm = () => {
+  //   setFormDetails({
+  //     title: "",
+  //     description: "",
+  //     image: "",
+  //     cost: "",
+  //     deadline: "",
+  //   });
+  // };
 
   return (
     <>
