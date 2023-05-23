@@ -4,5 +4,5 @@ const OngDetails = () => {
   return <div>OngDetails</div>;
 };
 
-OngDetails.auth = true;
+// OngDetails.auth = true;
 export default OngDetails;

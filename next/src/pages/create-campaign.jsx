@@ -293,6 +293,6 @@ const CreateCampaign = () => {
   );
 };
 
-CreateCampaign.auth = true;
+// CreateCampaign.auth = true;
 
 export default CreateCampaign;

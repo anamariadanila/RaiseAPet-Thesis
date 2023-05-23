@@ -25,12 +25,6 @@ const CampaignDetailsInfo = () => {
   const { address, getDonators, contract, getCampaigns, donateToCampaign } =
     useAppContext();
 
-  useEffect(() => {
-    if (address) {
-      localStorage.setItem("address", address);
-    }
-  }, []);
-
   const fetchCampaigns = async () => {
     setLoading(true);
     const data = await getCampaigns();

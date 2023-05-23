@@ -4,7 +4,6 @@ import LoginLayout from "../layouts/LoginRegisterLayout";
 import { Typography, Box, IconButton } from "@mui/material";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
-import UserLogin from "../components/UserLogin";
 import logo from "../assets/logo.png";
 import { useRouter } from "next/router";
 import ForgetPassword from "../components/ForgetPassword";

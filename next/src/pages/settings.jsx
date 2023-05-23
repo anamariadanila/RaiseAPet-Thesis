@@ -34,6 +34,6 @@ const Settings = () => {
   );
 };
 
-Settings.auth = true;
+// Settings.auth = true;
 
 export default Settings;

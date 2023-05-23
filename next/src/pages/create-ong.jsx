@@ -163,6 +163,6 @@ const CreateOng = () => {
   );
 };
 
-CreateOng.auth = true;
+// CreateOng.auth = true;
 
 export default CreateOng;

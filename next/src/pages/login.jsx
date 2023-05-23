@@ -5,7 +5,7 @@ import LoginLayout from "../layouts/LoginRegisterLayout";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useRouter } from "next/router";
-import UserLogin from "../components/UserLogin";
+import UserLogin from "../components/Userlogin";
 import logo from "../assets/logo.png";
 
 export default function Login() {
@@ -70,13 +70,6 @@ export default function Login() {
           <LoginLayout messageTitle={"Login"}>
             <UserLogin title={"Connect"} messageTitle={"Login"} />
           </LoginLayout>
-
-          <ButtonConnect
-            title="Next"
-            handleClick={() => {
-              router.push("/campaigns");
-            }}
-          />
         </Box>
       </main>
     </>

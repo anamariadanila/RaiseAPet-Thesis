@@ -41,6 +41,6 @@ const Campaigns = () => {
   );
 };
 
-Campaigns.auth = true;
+// Campaigns.auth = true;
 
 export default Campaigns;

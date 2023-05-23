@@ -48,7 +48,6 @@ const handler = NextAuth({
         }
 
         if (req.body.type === "Donator") {
-          const userAddress = await req.body.address;
           let user = await prisma.users.findFirst({
             where: {
               address: credentials?.address,

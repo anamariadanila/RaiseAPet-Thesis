@@ -17,6 +17,6 @@ const Ongs = () => {
   );
 };
 
-Ongs.auth = true;
+// Ongs.auth = true;
 
 export default Ongs;

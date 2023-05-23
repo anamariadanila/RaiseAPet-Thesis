@@ -64,6 +64,6 @@ const Profile = () => {
   );
 };
 
-Profile.auth = true;
+// Profile.auth = true;
 
 export default Profile;
