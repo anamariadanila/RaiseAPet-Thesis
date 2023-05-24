@@ -215,7 +215,7 @@ const CampaignCard = ({
                       }}
                       color="secondary.main"
                     >
-                      {remainingDays}
+                      {expired ? "0" : remainingDays}
                     </Typography>
                     <Typography
                       sx={{ fontSize: 15, mb: "0.3rem" }}

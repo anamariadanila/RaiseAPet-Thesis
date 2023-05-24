@@ -350,7 +350,10 @@ const CampaignDetailsInfo = () => {
             mt: "1rem",
           }}
         >
-          <BoxCount value={remainingDays} description={"Days left"} />
+          <BoxCount
+            value={expired ? "0 Days" : remainingDays}
+            description={expired ? "Expired" : "Days left"}
+          />
           <BoxCount
             value={campaigns[id]?.raised}
             description={`Raised of ${campaigns[id]?.cost} ETH`}

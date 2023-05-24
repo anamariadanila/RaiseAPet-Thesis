@@ -32,8 +32,6 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
     setGroup(getGroup());
   }, [end, campaigns]);
 
-  
-
   return (
     <>
       <Box
@@ -67,6 +65,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             alignItems: "center",
             justifyContent: "space-evenly",
             width: "100%",
+            px: "5rem",
           }}
         >
           {loading && (
