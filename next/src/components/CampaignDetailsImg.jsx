@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box, CardMedia, IconButton } from "@mui/material";
+import { Box, CardMedia, IconButton, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useAppContext } from "../context";
 import { useSession } from "next-auth/react";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import DeleteModal from "./DeleteModal";
 import { useTheme } from "@mui/material/styles";
@@ -17,22 +16,17 @@ const CampaignDetailsImg = () => {
   console.log(session?.user?.user?.address);
 
   const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const router = useRouter();
   const id = router.query.id;
 
-  const { contract, address, getCampaigns, getCampaignsStatistics } =
-    useAppContext();
+  const {
+    contract,
+    address,
+    getCampaigns,
+    getCampaignsStatistics,
+    payoutCampaign,
+  } = useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -47,16 +41,21 @@ const CampaignDetailsImg = () => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
 
-  const [statistics, setStatistics] = useState([]);
+  // const [statistics, setStatistics] = useState([]);
 
-  const fetchStatistics = async () => {
-    const data = await getCampaignsStatistics();
-    // console.log("data", data);
-    setStatistics(data);
+  // const fetchStatistics = async () => {
+  //   const data = await getCampaignsStatistics();
+  //   // console.log("data", data);
+  //   setStatistics(data);
+  // };
+  // useEffect(() => {
+  //   if (contract) fetchStatistics();
+  // }, []);
+
+  const handlePayout = async () => {
+    await payoutCampaign(campaigns[id]?.id.toString());
+    router.push("/campaigns");
   };
-  useEffect(() => {
-    if (contract) fetchStatistics();
-  }, []);
 
   return (
     <Box>
@@ -65,37 +64,52 @@ const CampaignDetailsImg = () => {
         sx={{ width: "75%", height: "400px", borderRadius: "15px" }}
         src={campaigns[id]?.image}
       />
+
       <Box
         sx={{
-          width: "75%",
+          width: "70%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
         }}
       >
         {session?.user?.user?.address.toLowerCase() === campaigns[id]?.owner ? (
           campaigns[id]?.status !== 3 ? (
             campaigns[id]?.status === 1 ? (
-              <IconButton
-                color="secondary"
-                onClick={() => router.push("/create-campaign")}
-              >
+              <IconButton color="secondary" onClick={handlePayout}>
                 <PaymentsOutlinedIcon
                   sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
                 />
               </IconButton>
-            ) : (
+            ) : campaigns[id]?.status !== 4 ? (
               <>
-                {/* <IconButton
-                  color="secondary"
-                  onClick={() => router.push("/create-campaign")}
-                >
-                  <EditOutlinedIcon
-                    sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-                  />
-                </IconButton> */}
                 <UpdateCampaign campaignsSent={campaigns} />
                 <DeleteModal campaignsSent={campaigns} />
+              </>
+            ) : (
+              <>
+                <Box
+                  sx={{
+                    backgroundColor: "#b3b1b5",
+                    borderRadius: "30px",
+                    width: "40%",
+                    height: "2rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: 17,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Campaign Closed
+                  </Typography>
+                </Box>
               </>
             )
           ) : null
