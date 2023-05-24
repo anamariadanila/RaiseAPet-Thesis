@@ -14,10 +14,12 @@ import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { imageAvailable, isFutureDate } from "../utils/functions";
+import Loader from "./Loader";
 
 export default function UpdateCampaign({ campaignsSent }) {
   const [open, setOpen] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { address, contract, createCampaign, updateCampaign, getCampaigns } =
     useAppContext();
   const router = useRouter();
@@ -43,16 +45,16 @@ export default function UpdateCampaign({ campaignsSent }) {
     return formattedDate;
   }
 
-  const fetchCampaigns = async () => {
-    setLoading(true);
-    const data = await getCampaigns();
-    setCampaigns(data);
-    setLoading(false);
-  };
+  //   const fetchCampaigns = async () => {
+  //     setLoading(true);
+  //     const data = await getCampaigns();
+  //     setCampaigns(data);
+  //     setLoading(false);
+  //   };
 
-  useEffect(() => {
-    if (contract) fetchCampaigns();
-  }, [address, contract]);
+  //   useEffect(() => {
+  //     if (contract) fetchCampaigns();
+  //   }, [address, contract]);
 
   const [formDetails, setFormDetails] = useState({
     title: campaignsSent[id]?.title,
@@ -69,21 +71,6 @@ export default function UpdateCampaign({ campaignsSent }) {
       deadline: timestampToDate(campaignsSent[id]?.deadline),
     });
   }, [campaignsSent]);
-
-  const toTimestamp = (dateStr) => {
-    const dateObj = Date.parse(dateStr);
-    return dateObj / 1000;
-  };
-
-  const [loading, setLoading] = useState(false);
-
-  const params = {
-    id: campaignsSent[id]?.id,
-    title: formDetails.title,
-    description: formDetails.description,
-    deadline: toTimestamp(formDetails.deadline),
-    image: formDetails.image,
-  };
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
@@ -162,15 +149,24 @@ export default function UpdateCampaign({ campaignsSent }) {
           {"Edit campaign details"}
         </DialogTitle>
         <DialogContent>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            {loading && <Loader />}
+          </Box>
           <form onSubmit={handleSubmit}>
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
-                mt: "5rem",
+                mt: "2rem",
                 mr: "6rem",
-                mb: "4rem",
                 flexDirection: "row",
                 width: "100%",
                 flexWrap: "wrap",
@@ -190,6 +186,7 @@ export default function UpdateCampaign({ campaignsSent }) {
                 alignItems: "center",
                 justifyContent: "center",
                 width: "100%",
+                mt: "2rem",
               }}
             >
               <TextField
@@ -210,7 +207,7 @@ export default function UpdateCampaign({ campaignsSent }) {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                mt: "4rem",
+                mt: "2rem",
                 mr: "6rem",
                 flexDirection: "column",
                 width: "100%",
@@ -228,7 +225,7 @@ export default function UpdateCampaign({ campaignsSent }) {
                 onChange={(e) => handleFormChange("deadline", e)}
               />
             </Box>
-            <Box sx={{ mt: "4rem", color: "secondary.main" }}>
+            <Box sx={{ mt: "2rem", color: "secondary.main" }}>
               {/* <label htmlFor="imgUrl">Image URL*</label> */}
               <TextField
                 id="imgUrl"

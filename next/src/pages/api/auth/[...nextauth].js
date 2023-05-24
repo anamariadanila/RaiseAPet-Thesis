@@ -32,7 +32,9 @@ const handler = NextAuth({
           }
 
           if (user.address !== userAddress) {
-            throw new Error("Invalid address");
+            throw new Error(
+              "Wrong address. Choose another one from your wallet"
+            );
           }
           const accessToken = signJwtAccessToken(user);
 

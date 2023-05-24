@@ -95,7 +95,7 @@ const CampaignDetailsImg = () => {
                   />
                 </IconButton> */}
                 <UpdateCampaign campaignsSent={campaigns} />
-                <DeleteModal />
+                <DeleteModal campaignsSent={campaigns} />
               </>
             )
           ) : null

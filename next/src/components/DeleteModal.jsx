@@ -10,9 +10,26 @@ import { useTheme } from "@mui/material/styles";
 import ButtonConnect from "./ButtonConnect";
 import { IconButton } from "@mui/material";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { useAppContext } from "../context";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { Box } from "@mui/material";
 
-export default function ResponsiveDialog() {
-  const [open, setOpen] = React.useState(false);
+export default function DeleteModal({ campaignsSent }) {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const {
+    address,
+    contract,
+    createCampaign,
+    updateCampaign,
+    getCampaigns,
+    deleteCampaign,
+  } = useAppContext();
+  const router = useRouter();
+  const id = router.query.id;
+
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -24,6 +41,14 @@ export default function ResponsiveDialog() {
     setOpen(false);
   };
 
+  const handleDelete = async () => {
+    // e.preventDefault();
+    setLoading(true);
+    await deleteCampaign(campaignsSent[id]?.id.toString());
+    setLoading(false);
+    router.push("/campaigns");
+  };
+
   return (
     <div>
       <IconButton color="secondary" onClick={handleClickOpen}>
@@ -31,6 +56,16 @@ export default function ResponsiveDialog() {
           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
         />
       </IconButton>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        {loading && <Loader />}
+      </Box>
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -40,7 +75,7 @@ export default function ResponsiveDialog() {
         maxWidth="sm"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Delete this campaign?"}
+          {`Delete campaign "${campaignsSent[id]?.title}"?`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>This action cannot be undone.</DialogContentText>
@@ -52,6 +87,8 @@ export default function ResponsiveDialog() {
               width: "7rem",
               height: "3rem",
             }}
+            btnType="button"
+            handleClick={handleDelete}
           />
         </DialogActions>
       </Dialog>
