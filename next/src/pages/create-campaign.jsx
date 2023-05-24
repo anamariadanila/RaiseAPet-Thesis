@@ -26,7 +26,7 @@ const CreateCampaign = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const { data: session, status } = useSession({ required: true });
+  const { data: session, status } = useSession();
   console.log(session?.user, status);
 
   const handleFormChange = (type, e) => {
@@ -218,7 +218,7 @@ const CreateCampaign = () => {
                   />
                 </Box>
                 <Box sx={{ mt: "4rem", color: "secondary.main" }}>
-                  <label htmlFor="imgUrl">Image URL*</label>
+                  {/* <label htmlFor="imgUrl">Image URL*</label> */}
                   <TextField
                     id="imgUrl"
                     type="url"

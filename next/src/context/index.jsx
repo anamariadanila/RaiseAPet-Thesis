@@ -130,7 +130,7 @@ export const ContextProvider = ({ children }) => {
   const getCampaignsStatistics = async () => {
     try {
       // const stats = await contract.statistics();
-      const stats = await contract.call("getStatistics");
+      const stats = await contract.call("statistics");
       const structStatistics = {
         totalCampaigns: stats.totalCampaigns,
         // totalOngs: statistics.totalOngs.toNumber(),

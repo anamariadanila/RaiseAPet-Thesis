@@ -8,11 +8,12 @@ import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import DeleteModal from "./DeleteModal";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import UpdateCampaign from "./UpdateCampaign";
 
 const CampaignDetailsImg = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { data: session, status } = useSession({ required: true });
+  const { data: session, status } = useSession();
   console.log(session?.user?.user?.address);
 
   const [open, setOpen] = React.useState(false);
@@ -40,7 +41,7 @@ const CampaignDetailsImg = () => {
     setLoading(false);
   };
 
-  console.log("campaigns", campaigns);
+  // console.log("campaigns", campaigns);
 
   useEffect(() => {
     if (contract) fetchCampaigns();
@@ -50,7 +51,7 @@ const CampaignDetailsImg = () => {
 
   const fetchStatistics = async () => {
     const data = await getCampaignsStatistics();
-    console.log("data", data);
+    // console.log("data", data);
     setStatistics(data);
   };
   useEffect(() => {
@@ -72,26 +73,32 @@ const CampaignDetailsImg = () => {
           justifyContent: "space-around",
         }}
       >
-        {session?.user?.user?.address === campaigns[id]?.owner ? (
-          <>
-            <IconButton
-              color="secondary"
-              onClick={() => router.push("/create-campaign")}
-            >
-              <EditOutlinedIcon
-                sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-              />
-            </IconButton>
-            <DeleteModal />
-            <IconButton
-              color="secondary"
-              onClick={() => router.push("/create-campaign")}
-            >
-              <PaymentsOutlinedIcon
-                sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-              />
-            </IconButton>
-          </>
+        {session?.user?.user?.address.toLowerCase() === campaigns[id]?.owner ? (
+          campaigns[id]?.status !== 3 ? (
+            campaigns[id]?.status === 1 ? (
+              <IconButton
+                color="secondary"
+                onClick={() => router.push("/create-campaign")}
+              >
+                <PaymentsOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </IconButton>
+            ) : (
+              <>
+                {/* <IconButton
+                  color="secondary"
+                  onClick={() => router.push("/create-campaign")}
+                >
+                  <EditOutlinedIcon
+                    sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  />
+                </IconButton> */}
+                <UpdateCampaign campaignsSent={campaigns} />
+                <DeleteModal />
+              </>
+            )
+          ) : null
         ) : null}
       </Box>
     </Box>

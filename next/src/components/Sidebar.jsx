@@ -19,8 +19,7 @@ export default function Sidebar({}) {
   const router = useRouter();
   const { address } = useAppContext();
   const disconnect = useDisconnect();
-  const { data: session, status } = useSession({ required: true });
-  console.log(session?.user?.user);
+  const { data: session, status } = useSession();
 
   const handleSignOut = () => {
     if (address) {
@@ -34,13 +33,13 @@ export default function Sidebar({}) {
     }
   };
 
-  if (address !== session?.user?.user?.address) {
-    disconnect();
-    signOut({
-      redirect: false,
-      callbackUrl: "/",
-    });
-  }
+  // if (address !== session?.user?.user?.address) {
+  //   disconnect();
+  //   signOut({
+  //     redirect: false,
+  //     callbackUrl: "/",
+  //   });
+  // }
 
   return (
     <Box
