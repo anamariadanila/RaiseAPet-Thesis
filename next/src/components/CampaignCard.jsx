@@ -64,7 +64,7 @@ const CampaignCard = ({
             ) : status == 0 ? (
               <Box
                 sx={{
-                  backgroundColor: "#c72c2c",
+                  backgroundColor: "#a695a6",
                   borderRadius: "30px",
                   width: "30%",
                 }}

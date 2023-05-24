@@ -133,7 +133,7 @@ const CampaignDetailsInfo = () => {
             ) : campaigns[id]?.status == 0 ? (
               <Box
                 sx={{
-                  backgroundColor: "#c72c2c",
+                  backgroundColor: "#a695a6",
                   borderRadius: "30px",
                   width: "40%",
                   height: "2rem",
