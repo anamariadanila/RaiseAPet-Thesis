@@ -322,11 +322,11 @@ const UserLogin = ({ title, messageTitle }) => {
               sx={{
                 fontWeight: "bold",
                 fontSize: 16,
-                mt: "4rem",
+                mt: "2rem",
                 mb: "1rem",
               }}
             >
-              Forget password? Change it{" "}
+              Forgot your password? Change it{" "}
               <Link href="/change-password" color="#fff">
                 here.
               </Link>

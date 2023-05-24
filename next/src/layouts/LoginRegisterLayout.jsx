@@ -11,7 +11,7 @@ const LoginLayout = ({ children }) => {
         bgcolor: "createCampBg.main",
         ml: "10rem",
         mr: "10rem",
-        mt: "3rem",
+        mt: "5rem",
         borderRadius: "15px",
         display: "flex",
         justifyContent: "space-between",
@@ -22,7 +22,7 @@ const LoginLayout = ({ children }) => {
         height: "100%",
       }}
     >
-      <Box sx={{ width: "430px", mr: "3rem" }}>
+      <Box sx={{ width: "400px", mr: "3rem" }}>
         <CardMedia
           component="img"
           src={loginImg.src}
@@ -33,7 +33,7 @@ const LoginLayout = ({ children }) => {
         sx={{
           bgcolor: "containerBg.main",
           width: "55%",
-          height: "500px",
+          height: "430px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

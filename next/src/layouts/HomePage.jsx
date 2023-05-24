@@ -44,7 +44,7 @@ const HomePage = () => {
           width: "100%",
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             alignItems: "flex-start",
@@ -56,7 +56,7 @@ const HomePage = () => {
           <IconButton onClick={() => router.push("/")}>
             <img src={logo.src} alt="logo" width="80px" height="80px" />
           </IconButton>
-        </Box>
+        </Box> */}
 
         <Box
           sx={{
@@ -67,6 +67,7 @@ const HomePage = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            mt: "3rem",
           }}
         >
           <InputAdornment position="start">

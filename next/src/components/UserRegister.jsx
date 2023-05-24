@@ -19,6 +19,7 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationRegister } from "../lib/validation";
+import { Link } from "@mui/material";
 
 const UserRegister = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
@@ -353,6 +354,25 @@ const UserRegister = ({ title, messageTitle }) => {
               img={metamask.src}
               handleClick={handleClick}
             />
+          ) : null}
+
+          {type !== "Donator" && type !== "ONG" ? (
+            <>
+              <Typography
+                align="center"
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: 17,
+                  mt: "3rem",
+                  mb: "1rem",
+                }}
+              >
+                Back to{" "}
+                <Link href="/login" color="#fff">
+                  login.
+                </Link>
+              </Typography>
+            </>
           ) : null}
         </form>
       </Box>

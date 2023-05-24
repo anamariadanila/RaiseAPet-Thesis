@@ -26,7 +26,7 @@ function ForgotPassword() {
           flexDirection: "column",
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             alignItems: "flex-start",
@@ -38,7 +38,7 @@ function ForgotPassword() {
           <IconButton onClick={() => router.push("/")}>
             <img src={logo.src} alt="logo" width="80px" height="80px" />
           </IconButton>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             bgcolor: "textBg.main",
