@@ -22,8 +22,18 @@ const CampaignDetailsInfo = () => {
   const expired =
     new Date().getTime() > Number(campaigns[id]?.deadline + "000");
   const remainingDays = daysLeft(campaigns[id]?.deadline);
-  const { address, getDonators, contract, getCampaigns, donateToCampaign } =
-    useAppContext();
+  const {
+    address,
+    getDonators,
+    contract,
+    getCampaigns,
+    donateToCampaign,
+    totalCampaigns,
+    totalDonations,
+    totalDonators,
+  } = useAppContext();
+
+  console.log("totalCampaigns", totalCampaigns, totalDonations, totalDonators);
 
   const fetchCampaigns = async () => {
     setLoading(true);

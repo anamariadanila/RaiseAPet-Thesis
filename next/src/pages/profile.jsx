@@ -54,7 +54,7 @@ const Profile = () => {
           title={
             session?.user.user.type === "ONG"
               ? "My campaigns"
-              : "Campaigns I donated"
+              : "Campaigns I donated to"
           }
           loading={loading}
           campaigns={campaigns}

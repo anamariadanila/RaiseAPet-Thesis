@@ -10,8 +10,12 @@ import { ethers } from "ethers";
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
+  // const { contract } = useContract(
+  //   "0xEaC8142d37eF97F7a091CA483070EBd156A68832"
+  // );
+
   const { contract } = useContract(
-    "0xEaC8142d37eF97F7a091CA483070EBd156A68832"
+    "0xf42420b81551b057dCff7e123D838fa5A499120F"
   );
 
   const { mutateAsync: createCampaign } = useContractWrite(
@@ -29,11 +33,16 @@ export const ContextProvider = ({ children }) => {
   const address = useAddress();
   const connect = useMetamask();
 
+  let totalCampaigns = 2;
+  let totalOngs = 0;
+  let totalDonations = 0.02;
+  let totalDonators = 1;
+
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),
     // totalOngs: statistics.totalOngs.toNumber(),
     totalDonations: parseInt(statistics.totalDonations._hex) / 10 ** 18,
-    totalDonatots: statistics.totalDonatots.toNumber(),
+    totalDonatots: statistics.totalDonators.toNumber(),
   });
 
   const structuredCampaigns = (campaigns) => {
@@ -82,6 +91,7 @@ export const ContextProvider = ({ children }) => {
           new Date(form.deadline).getTime(),
         ],
       });
+      totalCampaigns++;
       console.log("success", data);
     } catch (e) {
       console.log("error", e);
@@ -130,12 +140,12 @@ export const ContextProvider = ({ children }) => {
   const getCampaignsStatistics = async () => {
     try {
       // const stats = await contract.statistics();
-      const stats = await contract.call("statistics");
+      const stats = await contract?.call("getStatistics");
       const structStatistics = {
-        totalCampaigns: stats.totalCampaigns,
+        totalCampaigns: stats?.totalCampaigns,
         // totalOngs: statistics.totalOngs.toNumber(),
-        totalDonations: parseInt(stats.totalDonations._hex) / 10 ** 18,
-        totalDonatots: stats.totalDonatots.toNumber(),
+        totalDonations: parseInt(stats?.totalDonations._hex) / 10 ** 18,
+        totalDonatots: stats?.totalDonators.toNumber(),
       };
 
       return structStatistics;
@@ -209,6 +219,7 @@ export const ContextProvider = ({ children }) => {
         new Date(donator.timestamp.toNumber() * 1000).toJSON(),
         parseInt(donator.amount._hex) / 10 ** 18,
       ]);
+
       return parsedDonators;
     } catch (e) {
       console.log("error", e);
@@ -241,7 +252,8 @@ export const ContextProvider = ({ children }) => {
       const data = await contract.call("donateToCampaign", id, {
         value: amount._hex,
       });
-
+      totalDonations += amountDonated;
+      totalDonators += 1;
       return data;
     } catch (e) {
       console.log("error", e);
@@ -273,7 +285,7 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  //TODO: pt ong de facut getOngs, getOng si statisticsOng
+  //TODO: pt ong de facut getOngs, getOng si updateOng si deleteOng si createOng si getOngsByOwner
 
   return (
     <Context.Provider
@@ -294,6 +306,9 @@ export const ContextProvider = ({ children }) => {
         getUserCampaigns,
         getDonatedCampaigns,
         getCampaignsByDonator,
+        totalCampaigns,
+        totalDonations,
+        totalDonators,
       }}
     >
       {children}

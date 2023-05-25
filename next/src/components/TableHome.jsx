@@ -4,6 +4,7 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { useAppContext } from "../context";
 
 const TableHome = () => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -17,6 +18,8 @@ const TableHome = () => {
     fontWeight: "bold",
     color: "#fff",
   }));
+
+  const { totalCampaigns, totalDonators, totalDonations } = useAppContext();
 
   return (
     <>
@@ -32,9 +35,9 @@ const TableHome = () => {
           }
           spacing={2}
         >
-          <Item>0 Projects</Item>
-          <Item>0 Donators</Item>
-          <Item>0 ETH Donated</Item>
+          <Item>{totalCampaigns} Campaigns</Item>
+          <Item>{totalDonators} Donators</Item>
+          <Item>{totalDonations} ETH Donated</Item>
         </Stack>
       </Box>
     </>

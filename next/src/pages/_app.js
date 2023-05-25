@@ -7,6 +7,7 @@ import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "../styles/styles.css";
 import { SessionProvider } from "next-auth/react";
 import Auth from "../components/Auth.jsx";
+import { Sepolia } from "@thirdweb-dev/chains";
 
 const darkTheme = createTheme(getDesignTokens("dark"));
 
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps, session }) {
   return (
     <SessionProvider session={session}>
       <ThirdwebProvider
-        activeChain={ChainId.Goerli}
+        activeChain={Sepolia}
         authConfig={{
           authUrl: "/api/auth/register",
           domain: "http://localhost:3000",
