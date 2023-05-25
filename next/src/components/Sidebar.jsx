@@ -33,14 +33,14 @@ export default function Sidebar({}) {
     }
   };
 
-  if (address !== session?.user?.user?.address) {
-    disconnect();
-    signOut({
-      redirect: false,
-      callbackUrl: "/",
-    });
-    router.push("/");
-  }
+  // if (address !== session?.user?.user?.address) {
+  //   disconnect();
+  //   signOut({
+  //     redirect: false,
+  //     callbackUrl: "/",
+  //   });
+  //   // router.push("/");
+  // }
 
   return (
     <Box

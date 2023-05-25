@@ -9,6 +9,7 @@ import { imageAvailable } from "../utils/functions";
 import { useAppContext } from "../context";
 import Head from "next/head";
 import MainLayout from "../layouts/MainLayout";
+import Loader from "../components/Loader";
 
 const CreateOng = () => {
   const { createOng } = useAppContext();
@@ -20,6 +21,7 @@ const CreateOng = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
   };
@@ -76,6 +78,7 @@ const CreateOng = () => {
               flexDirection: "column",
             }}
           >
+            {loading && <Loader />}
             <Box
               sx={{
                 bgcolor: "textBg.main",
@@ -92,7 +95,7 @@ const CreateOng = () => {
                 align="center"
                 sx={{ fontWeight: "bold", fontSize: 25 }}
               >
-                ONG Details
+                Create Ong
               </Typography>
             </Box>
             <Box
@@ -125,33 +128,49 @@ const CreateOng = () => {
                     onChange={(e) => handleFormChange("name", e)}
                   />
                 </Box>
-                <TextField
-                  required
-                  placeholder="ONG Description *"
-                  multiline
-                  rows={6}
+                <Box
                   sx={{
+                    display: "flex",
+                    justifyContent: "center",
                     width: "100%",
                   }}
-                  color="secondary"
-                  value={formDetails.description}
-                  onChange={(e) => handleFormChange("description", e)}
-                />
-                <Box sx={{ mt: "4rem", color: "secondary.main" }}>
-                  <label htmlFor="imgUrl">Image URL*</label>
+                >
+                  <TextField
+                    required
+                    placeholder="ONG Description *"
+                    multiline
+                    rows={6}
+                    sx={{
+                      width: "30rem",
+                    }}
+                    color="secondary"
+                    value={formDetails.description}
+                    onChange={(e) => handleFormChange("description", e)}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    mt: "4rem",
+                    color: "secondary.main",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
                   <TextField
                     id="imgUrl"
                     type="url"
                     placeholder="Image URL*"
                     sx={{
-                      width: "100%",
+                      width: "20rem",
                     }}
                     color="secondary"
                     value={formDetails.image}
                     onChange={(e) => handleFormChange("image", e)}
                   />
                 </Box>
-                <Box sx={{ mt: "2rem" }}>
+                <Box
+                  sx={{ mt: "2rem", display: "flex", justifyContent: "center" }}
+                >
                   <ButtonConnect title="Submit" btnType="submit" />
                 </Box>
               </form>

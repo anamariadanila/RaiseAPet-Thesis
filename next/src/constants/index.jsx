@@ -3,6 +3,8 @@ import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutl
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
+import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
+import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -39,6 +41,34 @@ export const sidebarIcons = [
     icon: (
       <Grid item>
         <Tooltip
+          title="All Ongs"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <PetsOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
+    ),
+    link: "/ongs",
+  },
+  {
+    icon: (
+      <Grid item>
+        <Tooltip
           title="New campaign"
           arrow
           placement="right"
@@ -62,6 +92,34 @@ export const sidebarIcons = [
       </Grid>
     ),
     link: "/create-campaign",
+  },
+  {
+    icon: (
+      <Grid item>
+        <Tooltip
+          title="New Ong"
+          arrow
+          placement="right"
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: "icon.main",
+                "& .MuiTooltip-arrow": {
+                  color: "icon.main",
+                },
+                color: "common.black",
+                fontSize: "0.8rem",
+              },
+            },
+          }}
+        >
+          <AddHomeOutlinedIcon
+            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+          />
+        </Tooltip>
+      </Grid>
+    ),
+    link: "/create-ong",
   },
   {
     icon: (

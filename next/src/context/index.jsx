@@ -285,6 +285,25 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const getOngs = async () => {
+    try {
+      const ongs = await contract.call("getOngs");
+      const parsedOngs = ongs.map((ong) => ({
+        id: ong.id.toNumber(),
+        owner: ong.owner.toLowerCase(),
+        name: ong.name,
+        description: ong.description,
+        image: ong.image,
+        timestamp: new Date(ong.timestamp.toNumber()).getTime(),
+        raised: parseInt(ong.raised._hex) / 10 ** 18,
+        status: ong.status,
+      }));
+      return parsedOngs;
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   //TODO: pt ong de facut getOngs, getOng si updateOng si deleteOng si createOng si getOngsByOwner
 
   return (
@@ -309,6 +328,7 @@ export const ContextProvider = ({ children }) => {
         totalCampaigns,
         totalDonations,
         totalDonators,
+        getOngs,
       }}
     >
       {children}
