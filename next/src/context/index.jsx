@@ -30,6 +30,8 @@ export const ContextProvider = ({ children }) => {
     "updateCampaign"
   );
 
+  const { mutateAsync: updateOng } = useContractWrite(contract, "updateOng");
+
   const address = useAddress();
   const connect = useMetamask();
 
@@ -126,10 +128,32 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const updateOngHandler = async (form) => {
+    try {
+      const data = await updateOng({
+        args: [form.id, form.name, form.description, form.image],
+      });
+      console.log("success", data);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   const deleteCampaignHandler = async (id) => {
     try {
       // await contract.deleteCampaign(id);
       await contract.call("deleteCampaign", id);
+
+      console.log("success", data);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
+  const deleteOngHandler = async (id) => {
+    try {
+      // await contract.deleteOng(id);
+      await contract.call("deleteOng", id);
 
       console.log("success", data);
     } catch (e) {
@@ -227,6 +251,24 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const getDonatorsOng = async (id) => {
+    try {
+      const donators = await contract.call("getDonatorsOng", [id]);
+
+      const parsedDonators = donators.map((donator) => [
+        donator.owner.toLowerCase(),
+        donator.refunding,
+        new Date(donator.timestamp.toNumber() * 1000).toJSON(),
+        parseInt(donator.amount._hex) / 10 ** 18,
+      ]);
+
+      return parsedDonators;
+    } catch (e) {
+      console.log("error", e);
+      alert(JSON.stringify(e.message));
+    }
+  };
+
   const getCampaignsByDonator = async (address) => {
     const allCampaigns = await getCampaigns();
 
@@ -304,7 +346,7 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  //TODO: pt ong de facut getOngs, getOng si updateOng si deleteOng si createOng si getOngsByOwner
+  //TODO: pt ong de facut getOngs, getOng  si getOngsByOwner
 
   return (
     <Context.Provider
@@ -329,6 +371,9 @@ export const ContextProvider = ({ children }) => {
         totalDonations,
         totalDonators,
         getOngs,
+        getDonatorsOng,
+        deleteOng: deleteOngHandler,
+        updateOng: updateOngHandler,
       }}
     >
       {children}

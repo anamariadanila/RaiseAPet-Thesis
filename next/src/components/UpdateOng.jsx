@@ -16,11 +16,11 @@ import { useRouter } from "next/router";
 import { imageAvailable, isFutureDate } from "../utils/functions";
 import Loader from "./Loader";
 
-export default function UpdateCampaign({ campaignsSent }) {
+const UpdateOng = ({ ongsSent }) => {
   const [open, setOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const { updateCampaign } = useAppContext();
+  const { updateOng } = useAppContext();
   const router = useRouter();
   const id = router.query.id;
 
@@ -44,32 +44,19 @@ export default function UpdateCampaign({ campaignsSent }) {
     return formattedDate;
   }
 
-  //   const fetchCampaigns = async () => {
-  //     setLoading(true);
-  //     const data = await getCampaigns();
-  //     setCampaigns(data);
-  //     setLoading(false);
-  //   };
-
-  //   useEffect(() => {
-  //     if (contract) fetchCampaigns();
-  //   }, [address, contract]);
-
   const [formDetails, setFormDetails] = useState({
-    title: campaignsSent[id]?.title,
-    description: campaignsSent[id]?.description,
-    image: campaignsSent[id]?.image,
-    deadline: timestampToDate(campaignsSent[id]?.deadline),
+    name: ongsSent[id]?.name,
+    description: ongsSent[id]?.description,
+    image: ongsSent[id]?.image,
   });
 
   useEffect(() => {
     setFormDetails({
-      title: campaignsSent[id]?.title,
-      description: campaignsSent[id]?.description,
-      image: campaignsSent[id]?.image,
-      deadline: timestampToDate(campaignsSent[id]?.deadline),
+      name: ongsSent[id]?.name,
+      description: ongsSent[id]?.description,
+      image: ongsSent[id]?.image,
     });
-  }, [campaignsSent]);
+  }, [ongsSent]);
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
@@ -77,54 +64,19 @@ export default function UpdateCampaign({ campaignsSent }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
-    await updateCampaign({
+    await updateOng({
       ...formDetails,
-      id: campaignsSent[id]?.id,
+      id: ongsSent[id]?.id,
     });
     setLoading(false);
     setFormDetails({
-      title: formDetails?.title,
+      name: formDetails?.name,
       description: formDetails?.description,
       image: formDetails?.image,
-      deadline: timestampToDate(formDetails.deadline),
     });
 
-    console.log("formDetails432", formDetails);
-    router.push("/campaigns");
-
-    // imageAvailable(formDetails.image, async (isOk) => {
-    //   if (isOk) {
-    //     setLoading(true);
-    //     await updateCampaign({
-    //       ...formDetails,
-    //       //   cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
-    //     });
-    //     setLoading(false);
-    //     console.log("formDetails432", formDetails);
-    //     router.push("/campaigns");
-    //   } else {
-    //     alert("Image is not available");
-    //     setFormDetails({ ...formDetails, image: "" });
-    //   }
-    // });
-
-    // isFutureDate(formDetails.deadline, async (isOk) => {
-    //   if (isOk) {
-    //     setLoading(true);
-    //     await updateCampaign({
-    //       ...formDetails,
-    //       //   cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
-    //     });
-    //     setLoading(false);
-    //     console.log("aiciiiiiiiii", formDetails);
-    //     router.push("/campaigns");
-    //   } else {
-    //     alert("Date is not available");
-    //     setFormDetails({ ...formDetails, deadline: "" });
-    //   }
-    // });
+    router.push("/ongs");
   };
 
   return (
@@ -143,7 +95,7 @@ export default function UpdateCampaign({ campaignsSent }) {
         maxWidth="sm"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Edit campaign details"}
+          {"Edit ong details"}
         </DialogTitle>
         <DialogContent>
           <Box
@@ -170,11 +122,11 @@ export default function UpdateCampaign({ campaignsSent }) {
               }}
             >
               <TextField
-                label="Campaign title"
+                label="Ong name"
                 color="secondary"
                 sx={{ width: "17rem" }}
-                value={formDetails.title}
-                onChange={(e) => handleFormChange("title", e)}
+                value={formDetails.name}
+                onChange={(e) => handleFormChange("name", e)}
               />
             </Box>
             <Box
@@ -187,8 +139,8 @@ export default function UpdateCampaign({ campaignsSent }) {
               }}
             >
               <TextField
-                label="Campaign description"
-                placeholder="Campaign Description"
+                label="Ong description"
+                placeholder="Ong Description"
                 multiline
                 rows={6}
                 sx={{
@@ -200,31 +152,7 @@ export default function UpdateCampaign({ campaignsSent }) {
               />
             </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                mt: "2rem",
-                mr: "6rem",
-                flexDirection: "column",
-                width: "100%",
-                flexWrap: "wrap",
-              }}
-            >
-              <TextField
-                color="secondary"
-                type="date"
-                sx={{
-                  width: "17rem",
-                  "& input": { color: "secondary.main" },
-                }}
-                value={formDetails.deadline}
-                onChange={(e) => handleFormChange("deadline", e)}
-              />
-            </Box>
             <Box sx={{ mt: "2rem", color: "secondary.main" }}>
-              {/* <label htmlFor="imgUrl">Image URL*</label> */}
               <TextField
                 label="Image URL"
                 id="imgUrl"
@@ -243,16 +171,10 @@ export default function UpdateCampaign({ campaignsSent }) {
             </Box>
           </form>
         </DialogContent>
-        <DialogActions>
-          {/* <ButtonConnect
-            title="Delete"
-            style={{
-              width: "7rem",
-              height: "3rem",
-            }}
-          /> */}
-        </DialogActions>
+        <DialogActions></DialogActions>
       </Dialog>
     </div>
   );
-}
+};
+
+export default UpdateOng;

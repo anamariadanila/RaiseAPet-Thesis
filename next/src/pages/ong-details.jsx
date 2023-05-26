@@ -1,8 +1,8 @@
-import React from "react";
+// import React from "react";
 
-const OngDetails = () => {
-  return <div>OngDetails</div>;
-};
+// const OngDetails = () => {
+//   return <div>OngDetails</div>;
+// };
 
-// OngDetails.auth = true;
-export default OngDetails;
+// // OngDetails.auth = true;
+// export default OngDetails;

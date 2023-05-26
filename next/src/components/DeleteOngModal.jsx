@@ -1,4 +1,5 @@
 import * as React from "react";
+import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -14,11 +15,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Box } from "@mui/material";
 
-export default function DeleteModal({ campaignsSent }) {
+const DeleteOngModal = ({ ongsSent }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { deleteCampaign } = useAppContext();
+  const { deleteOng } = useAppContext();
   const router = useRouter();
   const id = router.query.id;
 
@@ -34,11 +35,10 @@ export default function DeleteModal({ campaignsSent }) {
   };
 
   const handleDelete = async () => {
-    // e.preventDefault();
     setLoading(true);
-    await deleteCampaign(campaignsSent[id]?.id.toString());
+    await deleteOng(ongsSent[id]?.id.toString());
     setLoading(false);
-    router.push("/campaigns");
+    router.push("/ongs");
   };
 
   return (
@@ -67,7 +67,7 @@ export default function DeleteModal({ campaignsSent }) {
         maxWidth="sm"
       >
         <DialogTitle id="responsive-dialog-title">
-          {`Delete campaign "${campaignsSent[id]?.title}"?`}
+          {`Delete ong "${ongsSent[id]?.name}"?`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>This action cannot be undone.</DialogContentText>
@@ -86,4 +86,6 @@ export default function DeleteModal({ campaignsSent }) {
       </Dialog>
     </div>
   );
-}
+};
+
+export default DeleteOngModal;

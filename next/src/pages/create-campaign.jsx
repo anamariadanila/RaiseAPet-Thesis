@@ -173,7 +173,7 @@ const CreateCampaign = () => {
                 </Box>
                 <TextField
                   required
-                  placeholder="Campaign Description *"
+                  label="Campaign Description"
                   multiline
                   rows={6}
                   sx={{
@@ -222,7 +222,7 @@ const CreateCampaign = () => {
                   <TextField
                     id="imgUrl"
                     type="url"
-                    placeholder="Image URL*"
+                    label="Image URL *"
                     sx={{
                       width: "100%",
                     }}

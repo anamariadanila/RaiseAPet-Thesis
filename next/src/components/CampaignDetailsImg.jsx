@@ -5,28 +5,17 @@ import { useAppContext } from "../context";
 import { useSession } from "next-auth/react";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import DeleteModal from "./DeleteModal";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import UpdateCampaign from "./UpdateCampaign";
 
 const CampaignDetailsImg = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
   const { data: session, status } = useSession();
-  console.log(session?.user?.user?.address);
-
-  const [open, setOpen] = React.useState(false);
 
   const router = useRouter();
   const id = router.query.id;
 
-  const {
-    contract,
-    address,
-    getCampaigns,
-    getCampaignsStatistics,
-    payoutCampaign,
-  } = useAppContext();
+  const { contract, address, getCampaigns, payoutCampaign } = useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -35,22 +24,9 @@ const CampaignDetailsImg = () => {
     setLoading(false);
   };
 
-  // console.log("campaigns", campaigns);
-
   useEffect(() => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
-
-  // const [statistics, setStatistics] = useState([]);
-
-  // const fetchStatistics = async () => {
-  //   const data = await getCampaignsStatistics();
-  //   // console.log("data", data);
-  //   setStatistics(data);
-  // };
-  // useEffect(() => {
-  //   if (contract) fetchStatistics();
-  // }, []);
 
   const handlePayout = async () => {
     await payoutCampaign(campaigns[id]?.id.toString());

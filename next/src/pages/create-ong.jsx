@@ -137,7 +137,7 @@ const CreateOng = () => {
                 >
                   <TextField
                     required
-                    placeholder="ONG Description *"
+                    label="ONG Description *"
                     multiline
                     rows={6}
                     sx={{
@@ -159,7 +159,7 @@ const CreateOng = () => {
                   <TextField
                     id="imgUrl"
                     type="url"
-                    placeholder="Image URL*"
+                    label="Image URL *"
                     sx={{
                       width: "20rem",
                     }}
