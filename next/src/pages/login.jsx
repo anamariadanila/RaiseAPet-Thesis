@@ -1,17 +1,11 @@
 import Head from "next/head";
-import { Typography, Box, IconButton } from "@mui/material";
-import ButtonConnect from "../components/ButtonConnect";
+import { Typography, Box } from "@mui/material";
 import LoginLayout from "../layouts/LoginRegisterLayout";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
-import { useRouter } from "next/router";
-// import UserLogin from "../components/Userlogin";
 import UserLogin from "../components/UserLogin";
-import logo from "../assets/logo.png";
 
 export default function Login() {
-  const router = useRouter();
-
   return (
     <>
       <Head>
@@ -29,29 +23,23 @@ export default function Login() {
             flexDirection: "column",
           }}
         >
-          {/* <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-start",
-              flexDirection: "column",
-              width: "95%",
-              mt: "1rem",
-            }}
-          >
-            <IconButton onClick={() => router.push("/")}>
-              <img src={logo.src} alt="logo" width="80px" height="80px" />
-            </IconButton>
-          </Box> */}
           <Box
             sx={{
               bgcolor: "textBg.main",
               height: "5rem",
               borderRadius: "15px",
-              width: "25%",
+              width: "25rem",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               mt: "3rem",
+              "@media(max-width: 800px)": {
+                width: "20rem",
+              },
+              "@media(max-width: 400px)": {
+                width: "16rem",
+                ml: "4rem",
+              },
             }}
           >
             <InputAdornment position="start">

@@ -20,13 +20,60 @@ const LoginLayout = ({ children }) => {
         pt: "5rem",
         pb: "5rem",
         height: "100%",
+        "@media(max-width: 600px)": {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "100%",
+        },
+        "@media(max-width: 400px)": {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          // width: "100%",
+          width: "30rem",
+        },
       }}
     >
-      <Box sx={{ width: "400px", mr: "3rem" }}>
+      <Box
+        sx={{
+          width: "400px",
+          mr: "3rem",
+          "@media(max-width: 600px)": {
+            mr: "0rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          },
+        }}
+      >
         <CardMedia
           component="img"
           src={loginImg.src}
-          sx={{ borderRadius: "50%" }}
+          sx={{
+            borderRadius: "50%",
+            "@media(max-width: 600px)": {
+              width: "300px",
+              mb: "2rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              // ml: "4rem",
+            },
+            "@media(max-width: 400px)": {
+              width: "300px",
+              mb: "2rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              ml: "4rem",
+            },
+          }}
         />
       </Box>
       <Container
@@ -39,6 +86,23 @@ const LoginLayout = ({ children }) => {
           alignItems: "center",
           flexDirection: "column",
           borderRadius: "15px",
+          "@media(max-width: 600px)": {
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            // height: "100%",
+          },
+          "@media(max-width: 400px)": {
+            width: "17rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            mr: "4rem",
+            // height: "100%",
+          },
         }}
       >
         {children}
