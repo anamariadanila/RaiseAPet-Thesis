@@ -4,15 +4,24 @@ import MainLayout from "../layouts/MainLayout";
 import { useAppContext } from "../context";
 import DisplayCampaigns from "../components/DisplayCampaigns";
 import { useSession } from "next-auth/react";
+import DisplayOngs from "../components/DisplayOngs";
+import { Box, IconButton } from "@mui/material";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
+  const [ongs, setOngs] = useState([]);
   const { data: session, status } = useSession();
   console.log(session?.user.user.type, status);
 
-  const { address, contract, getUserCampaigns, getCampaignsByDonator } =
-    useAppContext();
+  const {
+    address,
+    contract,
+    getUserCampaigns,
+    getCampaignsByDonator,
+    getOngsByDonator,
+    getOngsByOwner,
+  } = useAppContext();
 
   const fetchCampaigns = async () => {
     if (session?.user.user.type === "ONG") {
@@ -40,6 +49,32 @@ const Profile = () => {
     if (contract) fetchDonators();
   }, [contract, address]);
 
+  const fetchOngs = async () => {
+    if (session?.user.user.type === "ONG") {
+      setLoading(true);
+      const data = await getOngsByOwner(address?.toLowerCase());
+      setOngs(data);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (contract) fetchOngs();
+  }, [contract, address]);
+
+  const fetchOngsDonator = async () => {
+    if (session?.user.user.type === "Donator") {
+      setLoading(true);
+      const data = await getOngsByDonator(address?.toLowerCase());
+      setOngs(data);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (contract) fetchOngsDonator();
+  }, [contract, address]);
+
   return (
     <>
       <Head>
@@ -50,20 +85,35 @@ const Profile = () => {
       </Head>
 
       <MainLayout>
-        <DisplayCampaigns
-          title={
-            session?.user.user.type === "ONG"
-              ? "My campaigns"
-              : "Campaigns I donated to"
-          }
-          loading={loading}
-          campaigns={campaigns}
-        />
+        <Box
+          sx={{
+            display: "flex",
+            // flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mt: "4rem",
+          }}
+        >
+          <DisplayCampaigns
+            title={
+              session?.user.user.type === "ONG"
+                ? "My campaigns"
+                : "Campaigns I donated to"
+            }
+            loading={loading}
+            campaigns={campaigns}
+          />
+          <DisplayOngs
+            title={
+              session?.user.user.type === "ONG" ? "My Ong" : "Ongs I donated to"
+            }
+            loading={loading}
+            ongs={ongs}
+          />
+        </Box>
       </MainLayout>
     </>
   );
 };
-
-// Profile.auth = true;
 
 export default Profile;
