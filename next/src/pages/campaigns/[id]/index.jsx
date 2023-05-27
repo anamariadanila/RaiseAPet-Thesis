@@ -109,7 +109,7 @@ const CampaignDetails = () => {
                 </Typography>
               </Box>
               <Box sx={{ pb: "2rem" }}>
-                <Typography variant="h4" align="left" sx={{ fontSize: 18 }}>
+                <Typography variant="h4" align="center" sx={{ fontSize: 18 }}>
                   {campaigns[id]?.description}
                 </Typography>
               </Box>
@@ -145,19 +145,13 @@ const CampaignDetails = () => {
                   Donators
                 </Typography>
               </Box>
-              {/* <Box sx={{ pb: "2rem" }}>
-                {donators.length > 0 ? (
-                  donators.map((donator, i) => (
-                    <Box key={i}>
-                      {" "}
-                      {donator[0]} {donator[3]}
-                    </Box>
-                  ))
-                ) : (
-                  <Box> No donators yet </Box>
-                )}
-              </Box> */}
-              <TableDonators donators={donators} />
+              {donators.length > 0 ? (
+                <TableDonators donators={donators} />
+              ) : (
+                <Typography align="center" sx={{ fontSize: 18 }}>
+                  No donators yet
+                </Typography>
+              )}
             </Box>
           </Box>
         </Box>
@@ -165,7 +159,5 @@ const CampaignDetails = () => {
     </>
   );
 };
-
-// CampaignDetails.auth = true;
 
 export default CampaignDetails;

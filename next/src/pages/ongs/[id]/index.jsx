@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Box, IconButton } from "@mui/material";
-import CampaignDetailsImg from "../../../components/CampaignDetailsImg";
 import MainLayout from "../../../layouts/MainLayout";
 import { Typography } from "@mui/material";
-import CampaignDetailsInfo from "../../../components/CampaignDetailsInfo";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../../context";
 import Loader from "../../../components/Loader";
-import TableDonators from "../../../components/TableDonators";
+import TableDonatorsOng from "../../../components/TableDonatorsOng";
 import OngDetailsImg from "../../../components/OngDetailsImg";
 import OngDetailsInfo from "../../../components/OngDetailsInfo";
 
@@ -37,14 +35,11 @@ const OngDetails = () => {
     const data = await getDonatorsOng(id);
 
     setDonators(data);
-    console.log("donators", donators);
   };
 
   useEffect(() => {
     if (contract) fetchDonators();
   }, [contract, address]);
-
-  console.log("aiciiiiiiiiii");
 
   return (
     <>
@@ -114,7 +109,7 @@ const OngDetails = () => {
                 </Typography>
               </Box>
               <Box sx={{ pb: "2rem" }}>
-                <Typography variant="h4" align="left" sx={{ fontSize: 18 }}>
+                <Typography variant="h4" align="center" sx={{ fontSize: 18 }}>
                   {ongs[id]?.description}
                 </Typography>
               </Box>
@@ -150,19 +145,13 @@ const OngDetails = () => {
                   Donators
                 </Typography>
               </Box>
-              <Box sx={{ pb: "2rem" }}>
-                {donators.length > 0 ? (
-                  donators.map((donator, i) => (
-                    <Box key={i}>
-                      {" "}
-                      {donator[0]} {donator[3]}
-                    </Box>
-                  ))
-                ) : (
-                  <Box> No donators yet </Box>
-                )}
-              </Box>
-              {donators.length > 0 && <TableDonators donators={donators} />}
+              {donators.length > 0 ? (
+                <TableDonatorsOng donators={donators} />
+              ) : (
+                <Typography align="center" sx={{ fontSize: 18 }}>
+                  No donators yet
+                </Typography>
+              )}
             </Box>
           </Box>
         </Box>
