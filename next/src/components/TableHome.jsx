@@ -23,7 +23,11 @@ const TableHome = () => {
 
   return (
     <>
-      <Box sx={{ width: "100%" }}>
+      <Box
+        sx={{
+          width: "100%",
+        }}
+      >
         <Stack
           direction="row"
           divider={
@@ -33,11 +37,75 @@ const TableHome = () => {
               sx={{ borderRightWidth: 3 }}
             />
           }
-          spacing={2}
+          sx={{
+            "@media(max-width: 730px)": {
+              display: "flex",
+              flexDirection: "column",
+              // width: "100%",
+              // height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              mb: "2rem",
+            },
+          }}
         >
-          <Item>{totalCampaigns} Campaigns</Item>
-          <Item>{totalDonators} Donators</Item>
-          <Item>{totalDonations} ETH Donated</Item>
+          <Item
+            sx={{
+              "@media(max-width: 1350px)": {
+                width: "50%",
+                fontSize: "1rem",
+              },
+              "@media(max-width: 730px)": {
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: "2rem",
+              },
+            }}
+          >
+            {totalCampaigns} Campaigns
+          </Item>
+          <Item
+            sx={{
+              "@media(max-width: 1350px)": {
+                width: "50%",
+                fontSize: "1rem",
+              },
+              "@media(max-width: 730px)": {
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: "2rem",
+              },
+            }}
+          >
+            {totalDonators} Donators
+          </Item>
+          <Item
+            sx={{
+              "@media(max-width: 1350px)": {
+                width: "50%",
+                fontSize: "1rem",
+              },
+              "@media(max-width: 730px)": {
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                // mt: "2rem",
+              },
+            }}
+          >
+            {totalDonations} ETH Donated
+          </Item>
         </Stack>
       </Box>
     </>

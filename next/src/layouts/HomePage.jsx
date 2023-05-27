@@ -44,30 +44,22 @@ const HomePage = () => {
           width: "100%",
         }}
       >
-        {/* <Box
-          sx={{
-            display: "flex",
-            alignItems: "flex-start",
-            flexDirection: "column",
-            width: "95%",
-            mt: "1rem",
-          }}
-        >
-          <IconButton onClick={() => router.push("/")}>
-            <img src={logo.src} alt="logo" width="80px" height="80px" />
-          </IconButton>
-        </Box> */}
-
         <Box
           sx={{
             bgcolor: "textBg.main",
             height: "5rem",
             borderRadius: "15px",
-            width: "25%",
+            width: "25rem",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             mt: "3rem",
+            "@media(max-width: 800px)": {
+              width: "20rem",
+            },
+            "@media(max-width: 350px)": {
+              width: "16rem",
+            },
           }}
         >
           <InputAdornment position="start">
@@ -76,7 +68,13 @@ const HomePage = () => {
           <Typography
             variant="h4"
             align="center"
-            sx={{ fontWeight: "bold", fontSize: 30 }}
+            sx={{
+              fontWeight: "bold",
+              fontSize: 30,
+              "@media(max-width: 800px)": {
+                fontSize: 25,
+              },
+            }}
           >
             Welcome
           </Typography>
@@ -101,6 +99,11 @@ const HomePage = () => {
               alignItems: "center",
               flexDirection: "column",
               borderRadius: "15px",
+              "@media(max-width: 730px)": {
+                pb: "2rem",
+                pt: "5rem",
+                height: "100%",
+              },
             }}
           >
             <Box
@@ -119,6 +122,9 @@ const HomePage = () => {
                   fontSize: 24,
                   width: "70%",
                   color: "textBg.main",
+                  "@media(max-width: 730px)": {
+                    fontSize: 20,
+                  },
                 }}
               >
                 Support animal welfare ONG and help them save and improve the
@@ -132,9 +138,22 @@ const HomePage = () => {
                   alignItems: "center",
                   flexDirection: "row",
                   mt: "4rem",
+                  "@media(max-width: 430px)": {
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  },
                 }}
               >
-                <Box sx={{ mr: "2rem" }}>
+                <Box
+                  sx={{
+                    mr: "2rem",
+                    "@media(max-width: 430px)": {
+                      mr: "0rem",
+                    },
+                  }}
+                >
                   <ButtonConnect
                     title={"Login"}
                     btnType="button"
