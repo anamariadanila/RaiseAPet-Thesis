@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-contract OngContract {
+contract OngContract2 {
 
     address public owner;
     uint public campaignCount;
@@ -330,8 +330,6 @@ contract OngContract {
         campaigns[_id].raised += msg.value;
         campaigns[_id].donators += 1;
 
-         payTo(campaigns[_id].owner, msg.value);
-
         donatorsOf[_id].push(donatorsStruct(msg.sender, msg.value, block.timestamp, false));
 
         emit Action(_id, block.timestamp, "Donation to campaign", msg.sender);
@@ -365,17 +363,15 @@ contract OngContract {
         ongs[_id].raised += msg.value;
         ongs[_id].donators += 1;
 
-         payTo(ongs[_id].owner, msg.value);
-
         donatorsOfOng[_id].push(donatorsStruct(msg.sender, msg.value, block.timestamp, false));
 
         emit Action(_id, block.timestamp, "Donation to ong", msg.sender);
 
-        // balance += ongs[_id].raised;
-        // payoutOng(_id);
-       
+        balance += ongs[_id].raised;
+        payoutOng(_id);
+      
         if (ongs[_id].status == ongStatusEnum.DELETED) {
-            payoutOng(_id);
+            refund(_id);
             return true;
         }
 

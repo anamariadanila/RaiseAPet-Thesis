@@ -10,6 +10,7 @@ import { useAppContext } from "../../../context";
 import Loader from "../../../components/Loader";
 import TableDonators from "../../../components/TableDonators";
 import OngDetailsImg from "../../../components/OngDetailsImg";
+import OngDetailsInfo from "../../../components/OngDetailsInfo";
 
 const OngDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -78,7 +79,9 @@ const OngDetails = () => {
           >
             <OngDetailsImg />
 
-            <CampaignDetailsInfo />
+            <OngDetailsInfo />
+
+            {/* <CampaignDetailsInfo /> */}
           </Box>
 
           <Box
@@ -159,7 +162,7 @@ const OngDetails = () => {
                   <Box> No donators yet </Box>
                 )}
               </Box>
-              <TableDonators donators={donators} />
+              {donators.length > 0 && <TableDonators donators={donators} />}
             </Box>
           </Box>
         </Box>

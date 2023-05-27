@@ -11,7 +11,6 @@ const DisplayOngs = ({ title, loading, ongs }) => {
   const router = useRouter();
 
   const handleRoute = (ong) => {
-    // setGlobalState("ong", ong);
     router.push(
       {
         pathname: `/ongs/${ong.id}`,

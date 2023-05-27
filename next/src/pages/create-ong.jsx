@@ -36,7 +36,7 @@ const CreateOng = () => {
           ...formDetails,
         });
         setLoading(false);
-        router.push("/");
+        router.push("/ongs");
       } else {
         alert("Image is not available");
         setFormDetails({ ...formDetails, image: "" });
@@ -137,7 +137,7 @@ const CreateOng = () => {
                 >
                   <TextField
                     required
-                    label="ONG Description *"
+                    label="ONG Description"
                     multiline
                     rows={6}
                     sx={{

@@ -13,7 +13,6 @@ import { useAppContext } from "../context";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { imageAvailable, isFutureDate } from "../utils/functions";
 import Loader from "./Loader";
 
 const UpdateOng = ({ ongsSent }) => {

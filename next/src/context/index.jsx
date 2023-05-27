@@ -13,10 +13,22 @@ export const ContextProvider = ({ children }) => {
   // const { contract } = useContract(
   //   "0xEaC8142d37eF97F7a091CA483070EBd156A68832"
   // );
+  // contract cu goerli OngCrowdfunding
+
+  // const { contract } = useContract(
+  //   "0xf42420b81551b057dCff7e123D838fa5A499120F"
+  // );
+  //primul contract cu sepolia OngContract
+
+  // const { contract } = useContract(
+  //   "0x1a766864def59aB0a2E612036f7c0FA32F77561F"
+  // );
+  //al doilea contract cu sepolia OngContract2
 
   const { contract } = useContract(
-    "0xf42420b81551b057dCff7e123D838fa5A499120F"
+    "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
   );
+  //contract final cu sepolia OngContractFinal
 
   const { mutateAsync: createCampaign } = useContractWrite(
     contract,
@@ -35,7 +47,7 @@ export const ContextProvider = ({ children }) => {
   const address = useAddress();
   const connect = useMetamask();
 
-  let totalCampaigns = 2;
+  let totalCampaigns = 0;
   let totalOngs = 0;
   let totalDonations = 0.02;
   let totalDonators = 1;
@@ -70,6 +82,19 @@ export const ContextProvider = ({ children }) => {
       refunding: donator.refunding,
       timestamp: new Date(donator.timestamp.toNumber() * 1000).toJSON(),
       amount: parseInt(donator.amount._hex) / 10 ** 18,
+    }));
+  };
+
+  const structuredOngs = (ongs) => {
+    ongs.map((ong) => ({
+      id: ong.id.toNumber(),
+      owner: ong.owner.toLowerCase(),
+      name: ong.name,
+      description: ong.description,
+      image: ong.image,
+      timestamp: new Date(ong.timestamp.toNumber()).getTime(),
+      raised: parseInt(ong.raised._hex) / 10 ** 18,
+      donations: ong.donations,
     }));
   };
 
@@ -180,12 +205,6 @@ export const ContextProvider = ({ children }) => {
 
   const getCampaigns = async () => {
     try {
-      //-------------------
-      // const campaigns = await contract.call("getCampaigns");
-      // const structCampaigns = structuredCampaigns(campaigns);
-      // console.log("structCampaigns", structCampaigns);
-      // return structCampaigns;
-      //-------------------
       const campaigns = await contract.call("getCampaigns");
       const parsedCampaings = campaigns.map((campaign, i) => ({
         id: campaign.id.toNumber(),
@@ -212,7 +231,6 @@ export const ContextProvider = ({ children }) => {
 
   const getCampaign = async (id) => {
     try {
-      // const campaign = await contract.getCampaign(id);
       const campaign = await contract.call("getCampaign", [id]);
       const structCampaign = structuredCampaigns([campaign])[0];
       return structCampaign;
@@ -303,6 +321,21 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const donateToOng = async (id, amountDonated) => {
+    try {
+      const amount = ethers.utils.parseEther(amountDonated);
+      const data = await contract.call("donateToOng", id, {
+        value: amount._hex,
+      });
+      totalDonations += amountDonated;
+      totalDonators += 1;
+      return data;
+    } catch (e) {
+      console.log("error", e);
+      alert(JSON.stringify(e.message));
+    }
+  };
+
   const getDonatedCampaigns = async () => {
     const allCampaigns = await getCampaigns();
 
@@ -346,7 +379,46 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  //TODO: pt ong de facut getOngs, getOng  si getOngsByOwner
+  const getOng = async (id) => {
+    try {
+      const ong = await contract.call("getOng", [id]);
+      const structOng = structuredOngs([ong])[0];
+      return structOng;
+    } catch (e) {
+      console.log("error", e);
+      alert(JSON.stringify(e.message));
+    }
+  };
+
+  const getOngsByOwner = async (address) => {
+    const allOngs = await getOngs();
+
+    const ongsByOwner = allOngs.filter(
+      (ong) => ong.owner === address?.toLowerCase()
+    );
+
+    return ongsByOwner;
+  };
+
+  const getOngsByDonator = async (address) => {
+    const allOngs = await getOngs();
+
+    const ongsByDonator = [];
+
+    for (let i = 0; i < allOngs.length; i++) {
+      const donators = await getDonatorsOng(allOngs[i].id);
+
+      const hasDonated = donators.some(
+        (donator) => donator[0].toLowerCase() === address?.toLowerCase()
+      );
+
+      if (hasDonated) {
+        ongsByDonator.push(allOngs[i]);
+      }
+
+      return ongsByDonator;
+    }
+  };
 
   return (
     <Context.Provider
@@ -374,6 +446,10 @@ export const ContextProvider = ({ children }) => {
         getDonatorsOng,
         deleteOng: deleteOngHandler,
         updateOng: updateOngHandler,
+        donateToOng,
+        getOng,
+        getOngsByOwner,
+        getOngsByDonator,
       }}
     >
       {children}
