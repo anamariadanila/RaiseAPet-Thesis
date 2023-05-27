@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   useAddress,
   useContract,
@@ -47,10 +47,10 @@ export const ContextProvider = ({ children }) => {
   const address = useAddress();
   const connect = useMetamask();
 
-  let totalCampaigns = 0;
-  let totalOngs = 0;
-  let totalDonations = 0.02;
-  let totalDonators = 1;
+  const [totalCampaigns, setTotalCampaigns] = useState(2);
+  const [totalOngs, setTotalOngs] = useState(1);
+  const [totalDonations, setTotalDonations] = useState(0.02);
+  const [totalDonators, setTotalDonators] = useState(1);
 
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),
@@ -118,7 +118,7 @@ export const ContextProvider = ({ children }) => {
           new Date(form.deadline).getTime(),
         ],
       });
-      totalCampaigns++;
+      setTotalCampaigns(totalCampaigns + 1);
       console.log("success", data);
     } catch (e) {
       console.log("error", e);
@@ -130,6 +130,7 @@ export const ContextProvider = ({ children }) => {
       const data = await createOng({
         args: [form.name, form.description, form.image],
       });
+      setTotalOngs(totalOngs + 1);
       console.log("success", data);
     } catch (e) {
       console.log("error", e);
@@ -312,8 +313,8 @@ export const ContextProvider = ({ children }) => {
       const data = await contract.call("donateToCampaign", id, {
         value: amount._hex,
       });
-      totalDonations += amountDonated;
-      totalDonators += 1;
+      setTotalDonations(totalDonations + amountDonated);
+      setTotalDonators(totalDonators + 1);
       return data;
     } catch (e) {
       console.log("error", e);
@@ -327,8 +328,8 @@ export const ContextProvider = ({ children }) => {
       const data = await contract.call("donateToOng", id, {
         value: amount._hex,
       });
-      totalDonations += amountDonated;
-      totalDonators += 1;
+      setTotalDonations(totalDonations + amountDonated);
+      setTotalDonators(totalDonators + 1);
       return data;
     } catch (e) {
       console.log("error", e);

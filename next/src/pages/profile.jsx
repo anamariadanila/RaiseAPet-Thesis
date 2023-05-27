@@ -5,7 +5,7 @@ import { useAppContext } from "../context";
 import DisplayCampaigns from "../components/DisplayCampaigns";
 import { useSession } from "next-auth/react";
 import DisplayOngs from "../components/DisplayOngs";
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
