@@ -11,7 +11,7 @@ const LoginLayout = ({ children }) => {
         bgcolor: "createCampBg.main",
         ml: "10rem",
         mr: "10rem",
-        mt: "5rem",
+        mt: "3rem",
         borderRadius: "15px",
         display: "flex",
         justifyContent: "space-between",

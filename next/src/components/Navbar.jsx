@@ -24,7 +24,8 @@ const Navbar = () => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        mt: "2vh",
+        mt: "1rem",
+        width: "100%",
       }}
       position="static"
     >
@@ -41,14 +42,14 @@ const Navbar = () => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "center",
+            // justifyContent: "center",
             width: "80%",
             alignItems: "center",
           }}
         >
-          <Box sx={{ ml: "2rem", mr: "2rem" }}>
+          {/* <Box>
             <Search />
-          </Box>
+          </Box> */}
         </Box>
 
         <Box

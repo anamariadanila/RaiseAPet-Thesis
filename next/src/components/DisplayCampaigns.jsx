@@ -47,7 +47,12 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
         }}
       >
         <Box
-          sx={{ display: "flex", alignItems: "center", justifyContent: "left" }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "left",
+            // mt: "2rem",
+          }}
         >
           <Typography
             sx={{ fontSize: "25px", fontWeight: "bold", color: "white.main" }}
