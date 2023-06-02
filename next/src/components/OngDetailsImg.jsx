@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, CardMedia, IconButton, Typography } from "@mui/material";
+import { Box, CardMedia, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useAppContext } from "../context";
 import { useSession } from "next-auth/react";

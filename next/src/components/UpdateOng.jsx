@@ -10,7 +10,6 @@ import { IconButton } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Box, TextField } from "@mui/material";
 import { useAppContext } from "../context";
-import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Loader from "./Loader";

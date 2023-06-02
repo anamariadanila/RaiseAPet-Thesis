@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import CampaignDetailsImg from "../../../components/CampaignDetailsImg";
 import MainLayout from "../../../layouts/MainLayout";
 import { Typography } from "@mui/material";
@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import { useAppContext } from "../../../context";
 import Loader from "../../../components/Loader";
 import TableDonators from "../../../components/TableDonators";
-import { campaignDetailsIcons } from "../../../constants/campaignDetailsIcons";
 
 const CampaignDetails = () => {
   const [loading, setLoading] = useState(false);

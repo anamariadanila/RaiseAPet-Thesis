@@ -6,8 +6,6 @@ import Head from "next/head";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import UserRegister from "../components/UserRegister";
-import { IconButton } from "@mui/material";
-import logo from "../assets/logo.png";
 
 const Register = () => {
   return (
@@ -66,17 +64,6 @@ const Register = () => {
           </InputAdornment>
         </Box>
         <LoginLayout>
-          {/* <UserRegister
-            showMessage={false}
-            title={"Register"}
-            messageTitle={"Register"}
-          /> */}
-          {/* <SelectUserType
-            showMessage={false}
-            title={"Register"}
-            ifRegister={true}
-            messageTitle={"Register"}
-          /> */}
           <UserRegister
             showMessage={true}
             title={"Register"}

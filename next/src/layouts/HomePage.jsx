@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import {
-  Box,
-  IconButton,
-  Container,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
-import logo from "../assets/logo.png";
+import { Box, Container, InputAdornment, Typography } from "@mui/material";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import ButtonConnect from "../components/ButtonConnect";
 import { useRouter } from "next/router";

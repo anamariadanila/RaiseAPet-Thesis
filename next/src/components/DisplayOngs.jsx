@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
-import CampaignCard from "./CampaignCard";
-import { setGlobalState } from "../globalState";
 import ButtonConnect from "./ButtonConnect";
 import OngCard from "./OngCard";
 
