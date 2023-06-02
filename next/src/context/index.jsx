@@ -118,6 +118,7 @@ export const ContextProvider = ({ children }) => {
           new Date(form.deadline).getTime(),
         ],
       });
+
       setTotalCampaigns(totalCampaigns + 1);
       console.log("success", data);
     } catch (e) {
@@ -420,6 +421,13 @@ export const ContextProvider = ({ children }) => {
       return ongsByDonator;
     }
   };
+
+  useEffect(() => {
+    setTotalCampaigns(totalCampaigns);
+    setTotalOngs(totalOngs);
+    setTotalDonations(totalDonations);
+    setTotalDonators(totalDonators);
+  }, [totalCampaigns, totalOngs, totalDonations, totalDonators]);
 
   return (
     <Context.Provider

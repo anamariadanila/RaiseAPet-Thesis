@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import OngDetailsImg from "./OngDetailsImg";
+import NewOngModal from "./NewOngModal";
 
 const OngDetailsInfo = () => {
   const router = useRouter();
@@ -29,15 +30,6 @@ const OngDetailsInfo = () => {
     totalDonations,
     totalDonators,
   } = useAppContext();
-
-  console.log(
-    "total donators",
-    totalDonators,
-    "total donations",
-    totalDonations,
-    "total campaigns",
-    totalCampaigns
-  );
 
   const fetchOngs = async () => {
     setLoading(true);
@@ -80,6 +72,7 @@ const OngDetailsInfo = () => {
         flexWrap: "wrap",
       }}
     >
+      <NewOngModal />
       <Box
         sx={{
           display: "flex",

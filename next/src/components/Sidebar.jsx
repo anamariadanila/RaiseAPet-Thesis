@@ -7,13 +7,18 @@ import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useDisconnect } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
-import { sidebarIcons, donatorIcons } from "../constants/index.jsx";
+import {
+  sidebarIcons,
+  donatorIcons,
+  sidebarIconsSecond,
+} from "../constants/index.jsx";
 import logo from "../assets/logo.png";
 import { signOut } from "next-auth/react";
 import { useAppContext } from "../context/index.jsx";
 import { useSession } from "next-auth/react";
 import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
+import NewOngModal from "./NewOngModal.jsx";
 
 export default function Sidebar({}) {
   const router = useRouter();
@@ -84,6 +89,7 @@ export default function Sidebar({}) {
             >
               <img src={logo.src} alt="logo" width="80px" height="80px" />
             </IconButton>
+            {session?.user?.user?.type === "ONG" && <NewOngModal />}
             {session?.user?.user?.type === "ONG"
               ? sidebarIcons.map((icon, index) => (
                   <IconButton

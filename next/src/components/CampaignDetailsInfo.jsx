@@ -68,6 +68,8 @@ const CampaignDetailsInfo = () => {
     setLoading(false);
   };
 
+  //asign value 2 to campaign status
+
   console.log(campaigns[id]?.cost, campaigns[id]?.raised);
   return (
     <Container

@@ -19,8 +19,7 @@ const CampaignDetails = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const { getDonators, contract, address, getCampaigns, payoutCampaign } =
-    useAppContext();
+  const { getDonators, contract, address, getCampaigns } = useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -43,11 +42,6 @@ const CampaignDetails = () => {
   useEffect(() => {
     if (contract) fetchDonators();
   }, [contract, address]);
-
-  const handlePayout = async () => {
-    await payoutCampaign(campaigns[id]?.id.toString());
-    router.push("/campaigns");
-  };
 
   return (
     <>

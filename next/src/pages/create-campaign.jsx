@@ -27,7 +27,6 @@ const CreateCampaign = () => {
   const [loading, setLoading] = useState(false);
 
   const { data: session, status } = useSession();
-  console.log(session?.user, status);
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
@@ -143,9 +142,8 @@ const CreateCampaign = () => {
                     display: "flex",
                     justifyContent: "space-around",
                     alignItems: "center",
-                    mt: "5rem",
+                    mt: "3rem",
                     mr: "6rem",
-                    mb: "4rem",
                     flexDirection: "row",
                     width: "100%",
                     flexWrap: "wrap",
@@ -167,6 +165,7 @@ const CreateCampaign = () => {
                   rows={6}
                   sx={{
                     width: "100%",
+                    mt: "3rem",
                   }}
                   color="secondary"
                   value={formDetails.description}
@@ -177,7 +176,7 @@ const CreateCampaign = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    mt: "4rem",
+                    mt: "3rem",
                     mr: "6rem",
                     flexDirection: "row",
                     width: "100%",
@@ -206,7 +205,7 @@ const CreateCampaign = () => {
                     onChange={(e) => handleFormChange("deadline", e)}
                   />
                 </Box>
-                <Box sx={{ mt: "4rem", color: "secondary.main" }}>
+                <Box sx={{ mt: "3rem", color: "secondary.main" }}>
                   {/* <label htmlFor="imgUrl">Image URL*</label> */}
                   <TextField
                     id="imgUrl"

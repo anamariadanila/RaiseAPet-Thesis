@@ -95,7 +95,7 @@ const CreateOng = () => {
                 align="center"
                 sx={{ fontWeight: "bold", fontSize: 25 }}
               >
-                Create Ong
+                Create ONG
               </Typography>
             </Box>
             <Box
@@ -111,9 +111,8 @@ const CreateOng = () => {
                     display: "flex",
                     justifyContent: "space-around",
                     alignItems: "center",
-                    mt: "5rem",
+                    mt: "3rem",
                     mr: "6rem",
-                    mb: "4rem",
                     flexDirection: "row",
                     width: "100%",
                     flexWrap: "wrap",
@@ -142,6 +141,7 @@ const CreateOng = () => {
                     rows={6}
                     sx={{
                       width: "30rem",
+                      mt: "3rem",
                     }}
                     color="secondary"
                     value={formDetails.description}
@@ -150,7 +150,7 @@ const CreateOng = () => {
                 </Box>
                 <Box
                   sx={{
-                    mt: "4rem",
+                    mt: "3rem",
                     color: "secondary.main",
                     display: "flex",
                     justifyContent: "center",
