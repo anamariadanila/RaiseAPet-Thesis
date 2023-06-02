@@ -33,7 +33,6 @@ const Layout = ({ children }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          // ml: "20vh",
           ml: "7rem",
         }}
       >

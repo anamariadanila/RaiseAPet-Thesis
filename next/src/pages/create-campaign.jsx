@@ -67,17 +67,6 @@ const CreateCampaign = () => {
     });
   };
 
-  //reset form after submit
-  // const resetForm = () => {
-  //   setFormDetails({
-  //     title: "",
-  //     description: "",
-  //     image: "",
-  //     cost: "",
-  //     deadline: "",
-  //   });
-  // };
-
   return (
     <>
       <Head>
@@ -90,14 +79,14 @@ const CreateCampaign = () => {
         <Container
           sx={{
             bgcolor: "createCampBg.main",
-            mt: "5vh",
-            mb: "2vh",
+            mb: "2rem",
             borderRadius: "15px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
             height: "100%",
+            width: "55%",
             pt: "2rem",
             pb: "2rem",
             flexWrap: "wrap",
