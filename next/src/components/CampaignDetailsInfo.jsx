@@ -9,9 +9,12 @@ import BoxCount from "./BoxCount";
 import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
+import CampaignDetailsImg from "./CampaignDetailsImg";
+import { useSession } from "next-auth/react";
 
 const CampaignDetailsInfo = () => {
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -70,33 +73,37 @@ const CampaignDetailsInfo = () => {
     <Container
       sx={{
         bgcolor: "containerBg.main",
-        width: "60%",
-        height: "400px",
+        height: "450px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
         borderRadius: "15px",
         flexWrap: "wrap",
+        width: "100%",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
           flexDirection: "row",
           width: "100%",
+          height: "100%",
         }}
       >
+        <Box sx={{ width: "120%" }}>
+          <CampaignDetailsImg />
+        </Box>
+
         <Container
           sx={{
-            width: "80%",
+            width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "left",
             flexDirection: "column",
-            ml: "1rem",
             backgroundColor: "textBg.main",
             height: "80%",
             flexWrap: "wrap",
@@ -104,6 +111,7 @@ const CampaignDetailsInfo = () => {
           }}
         >
           {loading && <Loader />}
+
           <Box
             sx={{
               display: "flex",
@@ -351,7 +359,7 @@ const CampaignDetailsInfo = () => {
 
         <Box
           sx={{
-            width: "20%",
+            width: "35%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

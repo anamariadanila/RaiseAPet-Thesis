@@ -213,7 +213,7 @@ export const donatorIcons = [
     icon: (
       <Grid item>
         <Tooltip
-          title="All ongs"
+          title="All Ongs"
           arrow
           placement="right"
           componentsProps={{
@@ -229,7 +229,7 @@ export const donatorIcons = [
             },
           }}
         >
-          <Diversity1OutlinedIcon
+          <PetsOutlinedIcon
             sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
           />
         </Tooltip>

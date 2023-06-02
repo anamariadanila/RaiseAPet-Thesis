@@ -57,6 +57,7 @@ const OngDetails = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
+            mb: "3rem",
           }}
         >
           {loading && <Loader />}
@@ -66,92 +67,93 @@ const OngDetails = () => {
               justifyContent: "space-around",
               alignItems: "center",
               flexDirection: "row",
-              ml: "8rem",
-              mr: "5rem",
-              mt: "3rem",
-              width: "80%",
+              mt: "1rem",
+              width: "100%",
             }}
           >
-            <OngDetailsImg />
-
             <OngDetailsInfo />
-
-            {/* <CampaignDetailsInfo /> */}
           </Box>
 
           <Box
             sx={{
-              ml: "8rem",
-              mr: "5rem",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "90%",
               mt: "3rem",
-
-              width: "80%",
             }}
           >
             <Box
               sx={{
-                bgcolor: "textBg.main",
-                borderRadius: "15px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
+                ml: "5rem",
+                mt: "3rem",
               }}
             >
-              <Box sx={{ mb: "1rem", mt: "1rem" }}>
-                <Typography
-                  variant="h4"
-                  align="left"
-                  sx={{ fontWeight: "bold", fontSize: 25 }}
-                >
-                  Story
-                </Typography>
-              </Box>
-              <Box sx={{ pb: "2rem" }}>
-                <Typography variant="h4" align="center" sx={{ fontSize: 18 }}>
-                  {ongs[id]?.description}
-                </Typography>
+              <Box
+                sx={{
+                  bgcolor: "textBg.main",
+                  borderRadius: "15px",
+                  width: "450px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <Box sx={{ mb: "1rem", mt: "1rem" }}>
+                  <Typography
+                    variant="h4"
+                    align="left"
+                    sx={{ fontWeight: "bold", fontSize: 25 }}
+                  >
+                    Story
+                  </Typography>
+                </Box>
+                <Box sx={{ pb: "2rem" }}>
+                  <Typography variant="h4" align="center" sx={{ fontSize: 18 }}>
+                    {ongs[id]?.description}
+                  </Typography>
+                </Box>
               </Box>
             </Box>
-          </Box>
 
-          <Box
-            sx={{
-              ml: "8rem",
-              mr: "5rem",
-              mt: "3rem",
-
-              width: "80%",
-            }}
-          >
             <Box
               sx={{
-                bgcolor: "textBg.main",
-                borderRadius: "15px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
+                ml: "8rem",
+                mr: "5rem",
+                mt: "3rem",
+                width: "80%",
               }}
             >
-              <Box sx={{ mb: "1rem", mt: "1rem" }}>
-                <Typography
-                  variant="h4"
-                  align="left"
-                  sx={{ fontWeight: "bold", fontSize: 25 }}
-                >
-                  Donators
-                </Typography>
+              <Box
+                sx={{
+                  bgcolor: "textBg.main",
+                  borderRadius: "15px",
+                  width: "850px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <Box sx={{ mb: "1rem", mt: "1rem" }}>
+                  <Typography
+                    variant="h4"
+                    align="left"
+                    sx={{ fontWeight: "bold", fontSize: 25 }}
+                  >
+                    Donators
+                  </Typography>
+                </Box>
+                {donators.length > 0 ? (
+                  <TableDonatorsOng donators={donators} />
+                ) : (
+                  <Typography align="center" sx={{ fontSize: 18 }}>
+                    No donators yet
+                  </Typography>
+                )}
               </Box>
-              {donators.length > 0 ? (
-                <TableDonatorsOng donators={donators} />
-              ) : (
-                <Typography align="center" sx={{ fontSize: 18 }}>
-                  No donators yet
-                </Typography>
-              )}
             </Box>
           </Box>
         </Box>

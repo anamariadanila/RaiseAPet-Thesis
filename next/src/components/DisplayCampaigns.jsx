@@ -9,7 +9,6 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
 
   const handleRoute = (campaign) => {
-    setGlobalState("campaign", campaign);
     router.push(
       {
         pathname: `/campaigns/${campaign.id}`,

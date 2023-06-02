@@ -28,19 +28,27 @@ const OngDetailsImg = () => {
   }, [address, contract]);
 
   return (
-    <Box>
-      <CardMedia
-        component="img"
-        sx={{ width: "75%", height: "400px", borderRadius: "15px" }}
-        src={ongs[id]?.image}
-      />
-
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      <Box>
+        <CardMedia
+          component="img"
+          sx={{ width: "100%", height: "400px", borderRadius: "15px" }}
+          src={ongs[id]?.image}
+        />
+      </Box>
       <Box
         sx={{
-          width: "70%",
+          width: "25%",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-evenly",
+          flexDirection: "column",
         }}
       >
         {session?.user?.user?.address.toLowerCase() === ongs[id]?.owner ? (

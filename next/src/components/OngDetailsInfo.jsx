@@ -8,6 +8,7 @@ import BoxCount from "./BoxCount";
 import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
+import OngDetailsImg from "./OngDetailsImg";
 
 const OngDetailsInfo = () => {
   const router = useRouter();
@@ -69,8 +70,8 @@ const OngDetailsInfo = () => {
     <Container
       sx={{
         bgcolor: "containerBg.main",
-        width: "60%",
-        height: "400px",
+        width: "100%",
+        height: "450px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -86,11 +87,16 @@ const OngDetailsInfo = () => {
           alignItems: "center",
           flexDirection: "row",
           width: "100%",
+          height: "100%",
         }}
       >
+        <Box sx={{ width: "120%" }}>
+          <OngDetailsImg />
+        </Box>
+
         <Container
           sx={{
-            width: "80%",
+            width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "left",
@@ -100,7 +106,6 @@ const OngDetailsInfo = () => {
             height: "80%",
             flexWrap: "wrap",
             borderRadius: "15px",
-            height: "100%",
           }}
         >
           {loading && <Loader />}
@@ -235,7 +240,7 @@ const OngDetailsInfo = () => {
 
         <Box
           sx={{
-            width: "20%",
+            width: "35%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
