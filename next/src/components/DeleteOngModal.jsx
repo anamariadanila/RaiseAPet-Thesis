@@ -47,7 +47,7 @@ const DeleteOngModal = ({ ongsSent }) => {
   };
 
   const handleDeleteOngWithCampaigns = async () => {
-    router.push("/ongs");
+    router.push("/campaigns");
   };
 
   const fetchCampaigns = async () => {

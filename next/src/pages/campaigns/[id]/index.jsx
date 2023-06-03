@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import CampaignDetailsImg from "../../../components/CampaignDetailsImg";
 import MainLayout from "../../../layouts/MainLayout";
 import { Typography } from "@mui/material";
@@ -52,42 +52,37 @@ const CampaignDetails = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainLayout>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            mb: "3rem",
-          }}
-        >
-          {loading && <Loader />}
+        <Container sx={{ width: "100%" }}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "center",
               alignItems: "center",
-              flexDirection: "row",
-              mt: "1rem",
-              width: "100%",
+              flexDirection: "column",
+              mb: "3rem",
             }}
           >
-            <CampaignDetailsInfo />
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "90%",
-              mt: "3rem",
-            }}
-          >
+            {loading && <Loader />}
             <Box
               sx={{
-                ml: "5rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                mt: "1rem",
+                width: "100%",
+              }}
+            >
+              <CampaignDetailsInfo />
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
                 mt: "3rem",
               }}
             >
@@ -100,6 +95,7 @@ const CampaignDetails = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   flexDirection: "column",
+                  mr: "2rem",
                 }}
               >
                 <Box sx={{ mb: "1rem", mt: "1rem" }}>
@@ -117,16 +113,7 @@ const CampaignDetails = () => {
                   </Typography>
                 </Box>
               </Box>
-            </Box>
 
-            <Box
-              sx={{
-                ml: "8rem",
-                mr: "5rem",
-                mt: "3rem",
-                width: "80%",
-              }}
-            >
               <Box
                 sx={{
                   bgcolor: "textBg.main",
@@ -157,7 +144,7 @@ const CampaignDetails = () => {
               </Box>
             </Box>
           </Box>
-        </Box>
+        </Container>
       </MainLayout>
     </>
   );

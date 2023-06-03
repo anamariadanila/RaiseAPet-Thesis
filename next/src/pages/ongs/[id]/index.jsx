@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import MainLayout from "../../../layouts/MainLayout";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/router";
@@ -51,42 +51,36 @@ const OngDetails = () => {
       </Head>
 
       <MainLayout>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            mb: "3rem",
-          }}
-        >
-          {loading && <Loader />}
+        <Container sx={{ width: "100%" }}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "center",
               alignItems: "center",
-              flexDirection: "row",
-              mt: "1rem",
-              width: "100%",
+              flexDirection: "column",
+              mb: "3rem",
             }}
           >
-            <OngDetailsInfo />
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "90%",
-              mt: "3rem",
-            }}
-          >
+            {loading && <Loader />}
             <Box
               sx={{
-                ml: "5rem",
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
+                mt: "1rem",
+                width: "100%",
+              }}
+            >
+              <OngDetailsInfo />
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
                 mt: "3rem",
               }}
             >
@@ -99,6 +93,7 @@ const OngDetails = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   flexDirection: "column",
+                  mr: "2rem",
                 }}
               >
                 <Box sx={{ mb: "1rem", mt: "1rem" }}>
@@ -116,16 +111,7 @@ const OngDetails = () => {
                   </Typography>
                 </Box>
               </Box>
-            </Box>
 
-            <Box
-              sx={{
-                ml: "8rem",
-                mr: "5rem",
-                mt: "3rem",
-                width: "80%",
-              }}
-            >
               <Box
                 sx={{
                   bgcolor: "textBg.main",
@@ -146,6 +132,7 @@ const OngDetails = () => {
                     Donators
                   </Typography>
                 </Box>
+
                 {donators.length > 0 ? (
                   <TableDonatorsOng donators={donators} />
                 ) : (
@@ -156,7 +143,7 @@ const OngDetails = () => {
               </Box>
             </Box>
           </Box>
-        </Box>
+        </Container>
       </MainLayout>
     </>
   );

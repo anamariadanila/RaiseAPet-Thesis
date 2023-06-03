@@ -72,7 +72,6 @@ const OngDetailsInfo = () => {
         flexWrap: "wrap",
       }}
     >
-      <NewOngModal />
       <Box
         sx={{
           display: "flex",
