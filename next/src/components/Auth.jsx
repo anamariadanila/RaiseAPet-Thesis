@@ -7,6 +7,7 @@ import { signOut } from "next-auth/react";
 import { useDisconnect } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import { useAppContext } from "../context/index.jsx";
+import { useMetamask } from "@thirdweb-dev/react";
 
 const Auth = ({ children }) => {
   const disconnect = useDisconnect();
@@ -25,13 +26,15 @@ const Auth = ({ children }) => {
   //     //   router.push("/");
   //   }
   // }
-  if (address !== session?.user?.user?.address) {
-    disconnect();
-    signOut({
-      redirect: false,
-      callbackUrl: "/",
-    });
-  }
+  // console.log("address", address, session?.user?.user?.address);
+  // if (address !== session?.user?.user?.address) {
+  //   disconnect();
+  //   signOut({
+  //     redirect: false,
+  //     callbackUrl: "/",
+  //   });
+  //   // router.push("/");
+  // }
 
   // if (status === "unauthenticated") {
   //   //access all routes

@@ -17,6 +17,7 @@ const Navbar = () => {
       connect();
     }
   };
+
   return (
     <Box
       sx={{

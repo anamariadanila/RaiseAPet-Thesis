@@ -20,10 +20,11 @@ import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
 import NewOngModal from "./NewOngModal.jsx";
 import OngAlreadyCreatedModal from "./OngAlreadyCreatedModal.jsx";
+import { useEffect } from "react";
 
 export default function Sidebar({}) {
   const router = useRouter();
-  const { address } = useAppContext();
+  const { address, connect } = useAppContext();
   const disconnect = useDisconnect();
   const { data: session, status } = useSession();
 
@@ -38,14 +39,19 @@ export default function Sidebar({}) {
     }
   };
 
-  if (address !== session?.user?.user?.address) {
-    disconnect();
-    signOut({
-      redirect: false,
-      callbackUrl: "/",
-    });
-    // router.push("/");
-  }
+  connect();
+  // console.log("address", address, session?.user?.user?.address);
+
+  useEffect(() => {
+    if (address !== session?.user?.user?.address) {
+      disconnect();
+      signOut({
+        redirect: false,
+        callbackUrl: "/",
+      });
+      router.push("/");
+    }
+  }, []);
 
   return (
     <Box

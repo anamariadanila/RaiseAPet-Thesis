@@ -39,8 +39,24 @@ const DeleteOngModal = ({ ongsSent }) => {
     setOpen(false);
   };
 
+  // console.log(session?.user?.user?.ongCode);
+
   const handleDelete = async () => {
     setLoading(true);
+    const response = await fetch("http://localhost:3000/api/deleteOng", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ongCode: session?.user?.user?.ongCode,
+      }),
+    });
+
+    if (!response.ok) {
+      window.alert("Error deleting ong");
+    }
+
     await deleteOng(ongsSent[id]?.id.toString());
     setLoading(false);
     router.push("/ongs");
