@@ -47,7 +47,7 @@ const DeleteOngModal = ({ ongsSent }) => {
   };
 
   const handleDeleteOngWithCampaigns = async () => {
-    router.push("/campaigns");
+    router.push("/profile");
   };
 
   const fetchCampaigns = async () => {
@@ -57,7 +57,6 @@ const DeleteOngModal = ({ ongsSent }) => {
       owner: campaign.owner,
       status: campaign.status,
     }));
-    console.log(val);
     setAddresses(val);
     setCampaigns(data);
     setLoading(false);
@@ -66,8 +65,6 @@ const DeleteOngModal = ({ ongsSent }) => {
   useEffect(() => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
-
-  console.log(addresses);
 
   return (
     <div>

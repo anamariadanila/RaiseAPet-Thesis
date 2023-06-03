@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 
 const Logo = () => {
   const router = useRouter();
-  console.log("logo", logo);
   return (
     <Box
       sx={{

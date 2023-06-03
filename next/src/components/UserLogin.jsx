@@ -27,8 +27,6 @@ const UserLogin = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  console.log(type, "aixiß");
-
   const { connect, address } = useAppContext();
 
   const router = useRouter();
@@ -46,8 +44,6 @@ const UserLogin = ({ title, messageTitle }) => {
     setType(event.target.value);
   };
 
-  console.log(address, "address");
-
   useEffect(() => {
     connect();
   }, [address]);
@@ -62,7 +58,6 @@ const UserLogin = ({ title, messageTitle }) => {
       type: type,
       callbackUrl: "/campaigns",
     });
-    console.log(status, "status");
 
     if (status.error) {
       window.alert(status.error);
@@ -84,9 +79,6 @@ const UserLogin = ({ title, messageTitle }) => {
       type: type,
       callbackUrl: "/campaigns",
     });
-
-    console.log(status.error, "status.error");
-    console.log(status, "status");
 
     if (status.error) {
       window.alert(status.error);

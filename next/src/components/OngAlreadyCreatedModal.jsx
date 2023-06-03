@@ -9,6 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import ButtonConnect from "./ButtonConnect";
 import { IconButton } from "@mui/material";
 import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
+import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -16,7 +17,7 @@ import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
 import Loader from "./Loader";
 
-const NewOngModal = () => {
+const OngAlreadyCreatedModal = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [ongs, setOngs] = useState([]);
@@ -26,7 +27,7 @@ const NewOngModal = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -56,29 +57,8 @@ const NewOngModal = () => {
     <div>
       {ongExists.includes(session?.user?.user?.address.toLowerCase()) ? (
         <>
-          <IconButton
-            color="secondary"
-            onClick={() => router.push("/create-campaign")}
-          >
-            <CreateNewFolderOutlinedIcon
-              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-            />
-          </IconButton>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            {loading && <Loader />}
-          </Box>
-        </>
-      ) : (
-        <>
           <IconButton color="secondary" onClick={handleClickOpen}>
-            <CreateNewFolderOutlinedIcon
+            <AddHomeOutlinedIcon
               sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
             />
           </IconButton>
@@ -101,29 +81,50 @@ const NewOngModal = () => {
             maxWidth="sm"
           >
             <DialogTitle id="responsive-dialog-title">
-              You have to create an ONG first
+              ONG already created
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Before creating a campaign you have to create an ONG first.
+                You can only create one ONG per account
               </DialogContentText>
             </DialogContent>
             <DialogActions>
               <ButtonConnect
-                title="Create ONG"
+                title="Cancel"
                 style={{
                   width: "7rem",
                   height: "3rem",
                 }}
                 btnType="button"
-                handleClick={() => router.push("/create-ong")}
+                handleClick={() => router.push("/campaigns")}
               />
             </DialogActions>
           </Dialog>
+        </>
+      ) : (
+        <>
+          <IconButton
+            color="secondary"
+            onClick={() => router.push("/create-ong")}
+          >
+            <AddHomeOutlinedIcon
+              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+            />
+          </IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            {loading && <Loader />}
+          </Box>
         </>
       )}
     </div>
   );
 };
 
-export default NewOngModal;
+export default OngAlreadyCreatedModal;

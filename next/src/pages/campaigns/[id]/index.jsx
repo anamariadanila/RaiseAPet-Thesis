@@ -34,9 +34,7 @@ const CampaignDetails = () => {
 
   const fetchDonators = async () => {
     const data = await getDonators(id);
-
     setDonators(data);
-    console.log("donators", donators);
   };
 
   useEffect(() => {

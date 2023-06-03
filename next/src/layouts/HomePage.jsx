@@ -14,7 +14,6 @@ const HomePage = () => {
 
   const fetchStatistics = async () => {
     const data = await getCampaignsStatistics();
-    console.log("data", data);
     setStatistics(data);
   };
   useEffect(() => {

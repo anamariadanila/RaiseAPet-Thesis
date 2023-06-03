@@ -19,6 +19,7 @@ import { useSession } from "next-auth/react";
 import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
 import NewOngModal from "./NewOngModal.jsx";
+import OngAlreadyCreatedModal from "./OngAlreadyCreatedModal.jsx";
 
 export default function Sidebar({}) {
   const router = useRouter();
@@ -28,7 +29,6 @@ export default function Sidebar({}) {
 
   const handleSignOut = () => {
     if (address) {
-      console.log("address", address);
       disconnect();
       signOut({
         redirect: false,
@@ -38,14 +38,14 @@ export default function Sidebar({}) {
     }
   };
 
-  // if (address !== session?.user?.user?.address) {
-  //   disconnect();
-  //   signOut({
-  //     redirect: false,
-  //     callbackUrl: "/",
-  //   });
-  //   // router.push("/");
-  // }
+  if (address !== session?.user?.user?.address) {
+    disconnect();
+    signOut({
+      redirect: false,
+      callbackUrl: "/",
+    });
+    // router.push("/");
+  }
 
   return (
     <Box
@@ -90,6 +90,7 @@ export default function Sidebar({}) {
               <img src={logo.src} alt="logo" width="80px" height="80px" />
             </IconButton>
             {session?.user?.user?.type === "ONG" && <NewOngModal />}
+            {session?.user?.user?.type === "ONG" && <OngAlreadyCreatedModal />}
             {session?.user?.user?.type === "ONG"
               ? sidebarIcons.map((icon, index) => (
                   <IconButton

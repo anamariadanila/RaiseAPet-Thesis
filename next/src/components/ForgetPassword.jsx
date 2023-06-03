@@ -34,14 +34,11 @@ const ForgetPassword = ({ title, messageTitle }) => {
 
   const handleClickRegister = () => {
     connect();
-
-    //de vazut daca deja exista un cont cu adresa asta sa apara eroare else se face conectare
   };
+
   const handleChange = (event) => {
     setType(event.target.value);
   };
-
-  console.log(address, "address");
 
   useEffect(() => {
     connect();
@@ -49,7 +46,6 @@ const ForgetPassword = ({ title, messageTitle }) => {
 
   const onSubmit = async (values) => {
     connect();
-    console.log(values, "values");
     const options = {
       method: "POST",
       headers: {
@@ -60,7 +56,6 @@ const ForgetPassword = ({ title, messageTitle }) => {
     await fetch("http://localhost:3000/api/changePassword", options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "data");
         if (data && !data.error) {
           router.push("/login");
         }

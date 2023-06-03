@@ -27,10 +27,6 @@ const UserRegister = ({ title, messageTitle }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { address, connect } = useAppContext();
-  // const address = useAddress();
-  console.log(address, "address");
-
-  console.log(type);
 
   const router = useRouter();
 
@@ -47,12 +43,9 @@ const UserRegister = ({ title, messageTitle }) => {
     setType(event.target.value);
   };
 
-  console.log(address);
-
   //for Donator
   const handleClick = async () => {
     const newVal = { address, type };
-    console.log(newVal, "newVal");
     connect();
     const options = {
       method: "POST",

@@ -88,8 +88,6 @@ export default function UpdateCampaign({ campaignsSent }) {
       image: formDetails?.image,
       deadline: timestampToDate(formDetails.deadline),
     });
-
-    console.log("formDetails432", formDetails);
     router.push("/campaigns");
 
     // imageAvailable(formDetails.image, async (isOk) => {
@@ -116,7 +114,6 @@ export default function UpdateCampaign({ campaignsSent }) {
     //       //   cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
     //     });
     //     setLoading(false);
-    //     console.log("aiciiiiiiiii", formDetails);
     //     router.push("/campaigns");
     //   } else {
     //     alert("Date is not available");

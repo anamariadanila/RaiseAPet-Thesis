@@ -36,16 +36,12 @@ const CampaignDetailsInfo = () => {
     totalDonators,
   } = useAppContext();
 
-  console.log("totalCampaigns", totalCampaigns, totalDonations, totalDonators);
-
   const fetchCampaigns = async () => {
     setLoading(true);
     const data = await getCampaigns();
     setCampaigns(data);
     setLoading(false);
   };
-
-  console.log("campaigns", campaigns);
 
   useEffect(() => {
     if (contract) fetchCampaigns();
@@ -54,7 +50,6 @@ const CampaignDetailsInfo = () => {
   const fetchDonators = async () => {
     const data = await getDonators(id);
     setDonators(data);
-    console.log("donators", donators);
   };
 
   useEffect(() => {
@@ -68,9 +63,6 @@ const CampaignDetailsInfo = () => {
     setLoading(false);
   };
 
-  //asign value 2 to campaign status
-
-  console.log(campaigns[id]?.cost, campaigns[id]?.raised);
   return (
     <Container
       sx={{

@@ -243,7 +243,6 @@ export const ContextProvider = ({ children }) => {
   };
 
   const getUserCampaigns = async () => {
-    console.log("adresa aici", address);
     const allCampaigns = await getCampaigns();
 
     const userCampaigns = allCampaigns.filter(
