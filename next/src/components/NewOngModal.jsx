@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
 import Loader from "./Loader";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 const NewOngModal = () => {
   const [open, setOpen] = useState(false);
@@ -103,16 +104,29 @@ const NewOngModal = () => {
             {loading && <Loader />}
           </Box>
           <Dialog
-            fullScreen={fullScreen}
             open={open}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"
             fullWidth
             maxWidth="sm"
           >
-            <DialogTitle id="responsive-dialog-title">
-              You have to create an ONG first
-            </DialogTitle>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <DialogTitle id="responsive-dialog-title">
+                You have to create an ONG first
+              </DialogTitle>
+              <IconButton color="secondary" onClick={handleClose}>
+                <CloseOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </IconButton>
+            </Box>
             <DialogContent>
               <DialogContentText>
                 Before creating a campaign you have to create an ONG first.

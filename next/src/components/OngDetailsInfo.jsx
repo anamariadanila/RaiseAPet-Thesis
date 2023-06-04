@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import OngDetailsImg from "./OngDetailsImg";
-import NewOngModal from "./NewOngModal";
 
 const OngDetailsInfo = () => {
   const router = useRouter();

@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
 import Loader from "./Loader";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 const OngAlreadyCreatedModal = () => {
   const [open, setOpen] = useState(false);
@@ -80,9 +81,23 @@ const OngAlreadyCreatedModal = () => {
             fullWidth
             maxWidth="sm"
           >
-            <DialogTitle id="responsive-dialog-title">
-              ONG already created
-            </DialogTitle>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <DialogTitle id="responsive-dialog-title">
+                ONG already created
+              </DialogTitle>
+              <IconButton color="secondary" onClick={handleClose}>
+                <CloseOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </IconButton>
+            </Box>
             <DialogContent>
               <DialogContentText>
                 You can only create one ONG per account

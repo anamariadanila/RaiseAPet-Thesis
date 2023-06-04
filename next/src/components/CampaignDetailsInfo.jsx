@@ -10,12 +10,9 @@ import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import CampaignDetailsImg from "./CampaignDetailsImg";
-import { useSession } from "next-auth/react";
 
 const CampaignDetailsInfo = () => {
   const router = useRouter();
-  const { data: session, status } = useSession();
-
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
   const [donators, setDonators] = useState([]);
@@ -25,16 +22,8 @@ const CampaignDetailsInfo = () => {
   const expired =
     new Date().getTime() > Number(campaigns[id]?.deadline + "000");
   const remainingDays = daysLeft(campaigns[id]?.deadline);
-  const {
-    address,
-    getDonators,
-    contract,
-    getCampaigns,
-    donateToCampaign,
-    totalCampaigns,
-    totalDonations,
-    totalDonators,
-  } = useAppContext();
+  const { address, getDonators, contract, getCampaigns, donateToCampaign } =
+    useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);

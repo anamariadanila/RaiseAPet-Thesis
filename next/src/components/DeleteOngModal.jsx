@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import Loader from "./Loader";
 import { useSession } from "next-auth/react";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 const DeleteOngModal = ({ ongsSent }) => {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,7 @@ const DeleteOngModal = ({ ongsSent }) => {
   const id = router.query.id;
 
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  // const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -86,16 +87,31 @@ const DeleteOngModal = ({ ongsSent }) => {
       {addresses.find((address) => address.owner === ongsSent[id]?.owner) &&
       addresses.find((address) => address.status !== 3) ? (
         <Dialog
-          fullScreen={fullScreen}
           open={open}
           onClose={handleClose}
           aria-labelledby="responsive-dialog-title"
           fullWidth
           maxWidth="sm"
         >
-          <DialogTitle id="responsive-dialog-title">
-            Cannot close the ONG
-          </DialogTitle>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <DialogTitle id="responsive-dialog-title">
+              Cannot close the ONG
+            </DialogTitle>
+
+            <IconButton color="secondary" onClick={handleClose}>
+              <CloseOutlinedIcon
+                sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+              />
+            </IconButton>
+          </Box>
+
           <DialogContent>
             <DialogContentText>
               This ONG has active campaigns. Please delete them first.
@@ -115,16 +131,30 @@ const DeleteOngModal = ({ ongsSent }) => {
         </Dialog>
       ) : (
         <Dialog
-          fullScreen={fullScreen}
           open={open}
           onClose={handleClose}
           aria-labelledby="responsive-dialog-title"
           fullWidth
           maxWidth="sm"
         >
-          <DialogTitle id="responsive-dialog-title">
-            {`Close ONG "${ongsSent[id]?.name}"?`}
-          </DialogTitle>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <DialogTitle id="responsive-dialog-title">
+              {`Close ONG "${ongsSent[id]?.name}"?`}
+            </DialogTitle>
+
+            <IconButton color="secondary" onClick={handleClose}>
+              <CloseOutlinedIcon
+                sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+              />
+            </IconButton>
+          </Box>
           <DialogContent>
             <DialogContentText>
               <strong>Attention!</strong> This action is irreversible. Another
