@@ -7,13 +7,15 @@ import { useRouter } from "next/router";
 import { useAppContext } from "../../../context";
 import Loader from "../../../components/Loader";
 import TableDonatorsOng from "../../../components/TableDonatorsOng";
-import OngDetailsImg from "../../../components/OngDetailsImg";
 import OngDetailsInfo from "../../../components/OngDetailsInfo";
+import { useSession } from "next-auth/react";
 
 const OngDetails = () => {
   const [loading, setLoading] = useState(false);
   const [donators, setDonators] = useState([]);
   const [ongs, setOngs] = useState([]);
+  const { data: session, status } = useSession();
+  console.log(session, "session");
 
   const router = useRouter();
   const id = router.query.id;

@@ -70,7 +70,10 @@ export default function DeleteModal({ campaignsSent }) {
           {`Delete campaign "${campaignsSent[id]?.title}"?`}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>This action cannot be undone.</DialogContentText>
+          <DialogContentText>
+            <strong>Attention!</strong> This action is irreversible. After
+            deletion the campaign cannot be reopened!
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <ButtonConnect

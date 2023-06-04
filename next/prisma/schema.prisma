@@ -17,4 +17,3 @@ model Users {
   address  String @unique
   type String
 }
-

@@ -39,24 +39,8 @@ const DeleteOngModal = ({ ongsSent }) => {
     setOpen(false);
   };
 
-  // console.log(session?.user?.user?.ongCode);
-
   const handleDelete = async () => {
     setLoading(true);
-    const response = await fetch("http://localhost:3000/api/deleteOng", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ongCode: session?.user?.user?.ongCode,
-      }),
-    });
-
-    if (!response.ok) {
-      window.alert("Error deleting ong");
-    }
-
     await deleteOng(ongsSent[id]?.id.toString());
     setLoading(false);
     router.push("/ongs");
@@ -110,7 +94,7 @@ const DeleteOngModal = ({ ongsSent }) => {
           maxWidth="sm"
         >
           <DialogTitle id="responsive-dialog-title">
-            Can not delete ONG
+            Cannot close the ONG
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -139,10 +123,13 @@ const DeleteOngModal = ({ ongsSent }) => {
           maxWidth="sm"
         >
           <DialogTitle id="responsive-dialog-title">
-            {`Delete ong "${ongsSent[id]?.name}"?`}
+            {`Close ONG "${ongsSent[id]?.name}"?`}
           </DialogTitle>
           <DialogContent>
-            <DialogContentText>This action cannot be undone.</DialogContentText>
+            <DialogContentText>
+              <strong>Attention!</strong> This action is irreversible. Another
+              account for this ONG cannot be created!
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <ButtonConnect

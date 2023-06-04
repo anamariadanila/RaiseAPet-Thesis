@@ -21,6 +21,7 @@ const NewOngModal = () => {
   const [loading, setLoading] = useState(false);
   const [ongs, setOngs] = useState([]);
   const [ongExists, setOngExists] = useState([]);
+  const [ongStatus, setOngStatus] = useState([]);
 
   const { address, contract, getOngs } = useAppContext();
   const router = useRouter();
@@ -44,6 +45,11 @@ const NewOngModal = () => {
     const data = await getOngs();
     const val = data.map((ong) => (ong.owner = ong.owner.toLowerCase()));
     setOngExists(val);
+    const ongStat = data.map((ong) => ({
+      ongStatus: ong.status,
+      ongOwner: ong.owner,
+    }));
+    setOngStatus(ongStat);
     setOngs(data);
     setLoading(false);
   };
@@ -59,6 +65,10 @@ const NewOngModal = () => {
           <IconButton
             color="secondary"
             onClick={() => router.push("/create-campaign")}
+            {...(ongStatus.find(
+              (ong) =>
+                ong.ongOwner === session?.user?.user?.address.toLowerCase()
+            )?.ongStatus === 1 && { disabled: true })}
           >
             <CreateNewFolderOutlinedIcon
               sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
@@ -116,7 +126,13 @@ const NewOngModal = () => {
                   height: "3rem",
                 }}
                 btnType="button"
-                handleClick={() => router.push("/create-ong")}
+                handleClick={() => {
+                  if (router.pathname === "/create-ong") {
+                    handleClose();
+                  } else {
+                    router.push("/create-ong");
+                  }
+                }}
               />
             </DialogActions>
           </Dialog>

@@ -96,7 +96,13 @@ const OngAlreadyCreatedModal = () => {
                   height: "3rem",
                 }}
                 btnType="button"
-                handleClick={() => router.push("/campaigns")}
+                handleClick={() => {
+                  if (router.pathname === "/campaigns") {
+                    handleClose();
+                  } else {
+                    router.push("/campaigns");
+                  }
+                }}
               />
             </DialogActions>
           </Dialog>
