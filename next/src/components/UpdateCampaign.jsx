@@ -3,8 +3,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import ButtonConnect from "./ButtonConnect";
 import { IconButton } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
@@ -13,6 +11,7 @@ import { useAppContext } from "../context";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Loader from "./Loader";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 export default function UpdateCampaign({ campaignsSent }) {
   const [open, setOpen] = useState(false);
@@ -21,9 +20,6 @@ export default function UpdateCampaign({ campaignsSent }) {
   const { updateCampaign } = useAppContext();
   const router = useRouter();
   const id = router.query.id;
-
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -130,16 +126,29 @@ export default function UpdateCampaign({ campaignsSent }) {
         />
       </IconButton>
       <Dialog
-        fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         fullWidth
         maxWidth="sm"
       >
-        <DialogTitle id="responsive-dialog-title">
-          {"Edit campaign details"}
-        </DialogTitle>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <DialogTitle id="responsive-dialog-title">
+            Edit campaign details
+          </DialogTitle>
+          <IconButton color="secondary" onClick={handleClose}>
+            <CloseOutlinedIcon
+              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+            />
+          </IconButton>
+        </Box>
         <DialogContent>
           <Box
             sx={{
