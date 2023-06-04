@@ -10,25 +10,15 @@ import { ethers } from "ethers";
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  // const { contract } = useContract(
-  //   "0xEaC8142d37eF97F7a091CA483070EBd156A68832"
-  // );
-  // contract cu goerli OngCrowdfunding
-
-  // const { contract } = useContract(
-  //   "0xf42420b81551b057dCff7e123D838fa5A499120F"
-  // );
-  //primul contract cu sepolia OngContract
-
-  // const { contract } = useContract(
-  //   "0x1a766864def59aB0a2E612036f7c0FA32F77561F"
-  // );
-  //al doilea contract cu sepolia OngContract2
-
   const { contract } = useContract(
     "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
   );
   //contract final cu sepolia OngContractFinal
+
+  // const { contract } = useContract(
+  //   "0x5E319C15bBd1B1991e5E0C5ae01363B9507F282A"
+  // );
+  //contract final cu sepolia OngContractFinal2
 
   const { mutateAsync: createCampaign } = useContractWrite(
     contract,
@@ -238,7 +228,8 @@ export const ContextProvider = ({ children }) => {
       return structCampaign;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      // alert(JSON.stringify(e.message));
+      alert("Campaigns not found. Something went wrong");
     }
   };
 
@@ -266,7 +257,7 @@ export const ContextProvider = ({ children }) => {
       return parsedDonators;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      alert("Campaign's donators not found. Something went wrong");
     }
   };
 
@@ -284,7 +275,7 @@ export const ContextProvider = ({ children }) => {
       return parsedDonators;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      alert("ONG's donators not found. Something went wrong");
     }
   };
 
@@ -318,7 +309,7 @@ export const ContextProvider = ({ children }) => {
       return data;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      alert("You declined the transaction");
     }
   };
 
@@ -333,14 +324,12 @@ export const ContextProvider = ({ children }) => {
       return data;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      alert("You declined the transaction");
     }
   };
 
   const getDonatedCampaigns = async () => {
     const allCampaigns = await getCampaigns();
-
-    const donators = JSON.parse(localStorage.getItem("donators"));
 
     const donatedCampaigns = allCampaigns.filter((campaign) =>
       // idsDonatedTo?.includes(campaign.id) ? campaign : null
@@ -357,7 +346,7 @@ export const ContextProvider = ({ children }) => {
       return data;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      alert("Campaign can not be paid out. Something went wrong");
     }
   };
 
@@ -387,7 +376,7 @@ export const ContextProvider = ({ children }) => {
       return structOng;
     } catch (e) {
       console.log("error", e);
-      alert(JSON.stringify(e.message));
+      alert("ONG not found. Something went wrong");
     }
   };
 

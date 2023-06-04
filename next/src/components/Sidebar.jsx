@@ -39,8 +39,7 @@ export default function Sidebar({}) {
     }
   };
 
-  connect();
-  // console.log("address", address, session?.user?.user?.address);
+  // connect();
 
   useEffect(() => {
     if (address !== session?.user?.user?.address) {
