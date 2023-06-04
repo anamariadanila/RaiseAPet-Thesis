@@ -182,6 +182,4 @@ const CreateOng = () => {
   );
 };
 
-// CreateOng.auth = true;
-
 export default CreateOng;

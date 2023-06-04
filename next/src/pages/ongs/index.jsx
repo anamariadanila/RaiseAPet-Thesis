@@ -37,6 +37,4 @@ const Ongs = () => {
   );
 };
 
-// Ongs.auth = true;
-
 export default Ongs;

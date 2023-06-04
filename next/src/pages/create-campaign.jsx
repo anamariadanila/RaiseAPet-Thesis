@@ -231,6 +231,4 @@ const CreateCampaign = () => {
   );
 };
 
-// CreateCampaign.auth = true;
-
 export default CreateCampaign;
