@@ -81,9 +81,7 @@ const DeleteOngModal = ({ ongsSent }) => {
           alignItems: "center",
           flexDirection: "column",
         }}
-      >
-        {loading && <Loader />}
-      </Box>
+      ></Box>
       {addresses.find((address) => address.owner === ongsSent[id]?.owner) &&
       addresses.find((address) => address.status !== 3) ? (
         <Dialog
@@ -101,6 +99,7 @@ const DeleteOngModal = ({ ongsSent }) => {
               alignItems: "center",
             }}
           >
+            {loading && <Loader />}
             <DialogTitle id="responsive-dialog-title">
               Cannot close the ONG
             </DialogTitle>

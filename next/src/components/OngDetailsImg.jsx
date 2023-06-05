@@ -52,37 +52,36 @@ const OngDetailsImg = () => {
         }}
       >
         {session?.user?.user?.address.toLowerCase() === ongs[id]?.owner ? (
-          ongs[id]?.status !== 2 ? (
+          ongs[id]?.status !== 1 ? (
             <>
               <UpdateOng ongsSent={ongs} />
               <DeleteOngModal ongsSent={ongs} />
             </>
-          ) : (
-            <>
-              <Box
-                sx={{
-                  backgroundColor: "#b3b1b5",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Ong Closed
-                </Typography>
-              </Box>
-            </>
-          )
+          ) : // <>
+          //   <Box
+          //     sx={{
+          //       backgroundColor: "#b3b1b5",
+          //       borderRadius: "30px",
+          //       width: "40%",
+          //       height: "2rem",
+          //       display: "flex",
+          //       justifyContent: "center",
+          //       alignItems: "center",
+          //       flexDirection: "column",
+          //     }}
+          //   >
+          //     <Typography
+          //       sx={{
+          //         fontSize: 17,
+          //         textAlign: "center",
+          //         fontWeight: "bold",
+          //       }}
+          //     >
+          //       Ong Closed
+          //     </Typography>
+          //   </Box>
+          // </>
+          null
         ) : null}
       </Box>
     </Box>

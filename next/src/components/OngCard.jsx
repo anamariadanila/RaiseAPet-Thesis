@@ -54,7 +54,7 @@ const OngCard = ({
             ) : status == 1 ? (
               <Box
                 sx={{
-                  backgroundColor: "#4ca84c",
+                  backgroundColor: "#c72c2c",
                   borderRadius: "30px",
                   width: "30%",
                 }}

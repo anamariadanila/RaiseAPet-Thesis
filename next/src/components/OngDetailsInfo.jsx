@@ -139,7 +139,7 @@ const OngDetailsInfo = () => {
             ) : ongs[id]?.status == 1 ? (
               <Box
                 sx={{
-                  backgroundColor: "#4ca84c",
+                  backgroundColor: "#c72c2c",
                   borderRadius: "30px",
                   width: "40%",
                   height: "2rem",

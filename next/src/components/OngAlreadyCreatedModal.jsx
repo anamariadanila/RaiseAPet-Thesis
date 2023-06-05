@@ -4,11 +4,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import ButtonConnect from "./ButtonConnect";
 import { IconButton } from "@mui/material";
-import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
@@ -26,12 +23,8 @@ const OngAlreadyCreatedModal = () => {
 
   const { address, contract, getOngs } = useAppContext();
   const router = useRouter();
-  const id = router.query.id;
 
   const { data: session } = useSession();
-
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,6 +38,7 @@ const OngAlreadyCreatedModal = () => {
     setLoading(true);
     const data = await getOngs();
     const val = data.map((ong) => (ong.owner = ong.owner.toLowerCase()));
+
     setOngExists(val);
     setOngs(data);
     setLoading(false);
@@ -74,7 +68,6 @@ const OngAlreadyCreatedModal = () => {
             {loading && <Loader />}
           </Box>
           <Dialog
-            fullScreen={fullScreen}
             open={open}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"
@@ -100,7 +93,9 @@ const OngAlreadyCreatedModal = () => {
             </Box>
             <DialogContent>
               <DialogContentText>
-                You can only create one ONG per account
+                You can create only one ONG per account. <br />{" "}
+                <b>Attention!</b> If the ONG has been deleted another one cannot
+                be created.
               </DialogContentText>
             </DialogContent>
             <DialogActions>
