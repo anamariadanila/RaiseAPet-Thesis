@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
-import CampaignDetailsImg from "../../../components/CampaignDetailsImg";
 import MainLayout from "../../../layouts/MainLayout";
 import { Typography } from "@mui/material";
 import CampaignDetailsInfo from "../../../components/CampaignDetailsInfo";
