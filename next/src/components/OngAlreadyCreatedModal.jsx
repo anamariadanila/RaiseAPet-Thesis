@@ -14,6 +14,8 @@ import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
 import Loader from "./Loader";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
 
 const OngAlreadyCreatedModal = () => {
   const [open, setOpen] = useState(false);
@@ -53,9 +55,29 @@ const OngAlreadyCreatedModal = () => {
       {ongExists.includes(session?.user?.user?.address.toLowerCase()) ? (
         <>
           <IconButton color="secondary" onClick={handleClickOpen}>
-            <AddHomeOutlinedIcon
-              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-            />
+            <Grid item>
+              <Tooltip
+                title="New Ong"
+                arrow
+                placement="right"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "icon.main",
+                      "& .MuiTooltip-arrow": {
+                        color: "icon.main",
+                      },
+                      color: "common.black",
+                      fontSize: "0.8rem",
+                    },
+                  },
+                }}
+              >
+                <AddHomeOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </Tooltip>
+            </Grid>
           </IconButton>
           <Box
             sx={{
@@ -123,9 +145,29 @@ const OngAlreadyCreatedModal = () => {
             color="secondary"
             onClick={() => router.push("/create-ong")}
           >
-            <AddHomeOutlinedIcon
-              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-            />
+            <Grid item>
+              <Tooltip
+                title="New Ong"
+                arrow
+                placement="right"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "icon.main",
+                      "& .MuiTooltip-arrow": {
+                        color: "icon.main",
+                      },
+                      color: "common.black",
+                      fontSize: "0.8rem",
+                    },
+                  },
+                }}
+              >
+                <AddHomeOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </Tooltip>
+            </Grid>
           </IconButton>
           <Box
             sx={{

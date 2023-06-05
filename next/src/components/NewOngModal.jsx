@@ -16,6 +16,8 @@ import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
 import Loader from "./Loader";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
 
 const NewOngModal = () => {
   const [open, setOpen] = useState(false);
@@ -71,9 +73,29 @@ const NewOngModal = () => {
                 ong.ongOwner === session?.user?.user?.address.toLowerCase()
             )?.ongStatus === 1 && { disabled: true })}
           >
-            <CreateNewFolderOutlinedIcon
-              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-            />
+            <Grid item>
+              <Tooltip
+                title="New Campaign"
+                arrow
+                placement="right"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "icon.main",
+                      "& .MuiTooltip-arrow": {
+                        color: "icon.main",
+                      },
+                      color: "common.black",
+                      fontSize: "0.8rem",
+                    },
+                  },
+                }}
+              >
+                <CreateNewFolderOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </Tooltip>
+            </Grid>
           </IconButton>
           <Box
             sx={{
@@ -89,9 +111,29 @@ const NewOngModal = () => {
       ) : (
         <>
           <IconButton color="secondary" onClick={handleClickOpen}>
-            <CreateNewFolderOutlinedIcon
-              sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-            />
+            <Grid item>
+              <Tooltip
+                title="New Campaign"
+                arrow
+                placement="right"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "icon.main",
+                      "& .MuiTooltip-arrow": {
+                        color: "icon.main",
+                      },
+                      color: "common.black",
+                      fontSize: "0.8rem",
+                    },
+                  },
+                }}
+              >
+                <CreateNewFolderOutlinedIcon
+                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                />
+              </Tooltip>
+            </Grid>
           </IconButton>
           <Box
             sx={{
