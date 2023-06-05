@@ -243,6 +243,16 @@ export const ContextProvider = ({ children }) => {
     return userCampaigns;
   };
 
+  const getCampaignsByOwner = async (address2) => {
+    const allCampaigns = await getCampaigns();
+
+    const campaignsByOwner = allCampaigns.filter(
+      (campaign) => campaign.owner === address2?.toLowerCase()
+    );
+
+    return campaignsByOwner;
+  };
+
   const getDonators = async (id) => {
     try {
       const donators = await contract.call("getDonators", [id]);
@@ -447,6 +457,7 @@ export const ContextProvider = ({ children }) => {
         getOng,
         getOngsByOwner,
         getOngsByDonator,
+        getCampaignsByOwner,
       }}
     >
       {children}

@@ -5,10 +5,11 @@ export const config = {
     "/profile",
     "/settings",
     "/ongs",
+    "/ongs/:path*",
     "/campaigns",
     "/campaigns/:path*",
-    "/ong-details",
     "/create-ong",
     "/create-campaign",
+    "/campaigns-by-ong",
   ],
 };

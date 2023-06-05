@@ -25,9 +25,7 @@ const OngDetailsInfo = () => {
     getDonatorsOng,
     getOngs,
     donateToOng,
-    totalCampaigns,
-    totalDonations,
-    totalDonators,
+    getCampaignsByOwner,
   } = useAppContext();
 
   const fetchOngs = async () => {
@@ -56,6 +54,17 @@ const OngDetailsInfo = () => {
     router.push("/ongs");
     setLoading(false);
   };
+
+  const handleGetCampaignsByOng = async () => {
+    setLoading(true);
+    await getCampaignsByOwner(ongs[id]?.owner);
+    // router.push("/ongs");
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (contract) handleGetCampaignsByOng();
+  }, [contract, address]);
 
   return (
     <Container
@@ -242,6 +251,23 @@ const OngDetailsInfo = () => {
         >
           <BoxCount value={ongs[id]?.raised} description={"ETH raised"} />
           <BoxCount value={donators?.length} description={"Total donators"} />
+          <ButtonConnect
+            title="Campaigns"
+            btnType="button"
+            style={{
+              width: "7rem",
+              height: "3rem",
+            }}
+            handleClick={() => {
+              router.push(
+                {
+                  pathname: "/campaigns-by-ong",
+                  query: { id: id, ongs: ongs[id]?.owner },
+                },
+                "/campaigns-by-ong"
+              );
+            }}
+          />
         </Box>
       </Box>
     </Container>
