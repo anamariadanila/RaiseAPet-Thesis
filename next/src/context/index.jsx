@@ -390,11 +390,11 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  const getOngsByOwner = async (address) => {
+  const getOngsByOwner = async (address2) => {
     const allOngs = await getOngs();
 
     const ongsByOwner = allOngs.filter(
-      (ong) => ong.owner === address?.toLowerCase()
+      (ong) => ong.owner === address2?.toLowerCase()
     );
 
     return ongsByOwner;

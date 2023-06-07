@@ -43,10 +43,14 @@ const UserRegister = ({ title, messageTitle }) => {
     setType(event.target.value);
   };
 
+  // connect();
+  console.log(address);
+
   //for Donator
   const handleClick = async () => {
     const newVal = { address, type };
     connect();
+    console.log(newVal);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -19,9 +19,7 @@ const CampaignsByOng = () => {
   const fetchCampaignsByOng = async () => {
     setLoading(true);
     const data = await getCampaignsByOwner(ongs);
-    console.log(ongs, "aici");
     setCampaigns(data);
-    console.log(data, "data");
     // router.push("/ongs");
     setLoading(false);
   };

@@ -17,13 +17,20 @@ const CampaignDetailsInfo = () => {
   const [loading, setLoading] = useState(false);
   const [donators, setDonators] = useState([]);
   const [amount, setAmount] = useState("");
+  const [ongs, setOngs] = useState([]);
   const id = router.query.id;
 
   const expired =
     new Date().getTime() > Number(campaigns[id]?.deadline + "000");
   const remainingDays = daysLeft(campaigns[id]?.deadline);
-  const { address, getDonators, contract, getCampaigns, donateToCampaign } =
-    useAppContext();
+  const {
+    address,
+    getDonators,
+    contract,
+    getCampaigns,
+    donateToCampaign,
+    getOngs,
+  } = useAppContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -51,6 +58,24 @@ const CampaignDetailsInfo = () => {
     router.push("/campaigns");
     setLoading(false);
   };
+
+  const fetchOngs = async () => {
+    setLoading(true);
+    const data = await getOngs();
+    console.log(data, "data");
+    const val = data.map((val) => {
+      if (val.owner === campaigns[id]?.owner.toLowerCase()) {
+        return val.id;
+      }
+    });
+    console.log(val, "val");
+    setOngs(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (contract) fetchOngs();
+  }, [address, contract]);
 
   return (
     <Container
