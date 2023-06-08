@@ -22,4 +22,5 @@ model Users {
   password  String?
   address  String @unique
   type String
+  deleted Boolean @default(false)
 }

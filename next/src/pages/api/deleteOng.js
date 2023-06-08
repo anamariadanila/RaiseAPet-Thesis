@@ -1,17 +1,43 @@
 import prisma from "../../lib/prisma";
-import { NextApiResponse } from "next";
 
-export default async function handler(req, res = NextApiResponse) {
+export default async function handler(req, res) {
   res.json({ message: "Hello Everyone!" });
+  const { ongCode, address } = req.body;
+  res.json({ ongCode, address });
 
-  if (req.method === "DELETE") {
-    const { ongCode } = req.body;
+  if (req.method === "POST") {
+    const { ongCode, address } = req.body;
 
-    if (!ongCode) return res.status(400).json({ error: "Missing ongCode" });
+    // if (!ongCode) return res.status(400).json({ error: "Missing ongCode" });
 
-    const user = await prisma.users.delete({
+    const checkOngCode = await prisma.users.findFirst({
       where: {
         ongCode: ongCode,
+      },
+    });
+
+    if (!checkOngCode) {
+      return res.status(409).json({ error: "Ong code not found" });
+    }
+
+    const checkAddress = await prisma.users.findFirst({
+      where: {
+        address: address,
+      },
+    });
+
+    if (!checkAddress) {
+      return res.status(409).json({
+        error: "Address not found.",
+      });
+    }
+
+    let user = await prisma.users.update({
+      where: {
+        ongCode: ongCode,
+      },
+      data: {
+        deleted: true,
       },
     });
 

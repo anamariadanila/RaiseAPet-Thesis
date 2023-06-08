@@ -2,8 +2,7 @@ import jwt from "jsonwebtoken";
 import jwt_decode from "jwt-decode";
 
 const DEFAULT_SIGN_OPTIONS = {
-  // expiresIn: 60 * 60 * 24 * 30, // 30 days
-  expiresIn: 30,
+  expiresIn: 60 * 60 * 24 * 30, // 30 days
 };
 
 export const signJwtAccessToken = (payload, options = DEFAULT_SIGN_OPTIONS) => {

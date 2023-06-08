@@ -27,6 +27,8 @@ const OngDetailsImg = () => {
     if (contract) fetchOngs();
   }, [address, contract]);
 
+  console.log(ongs, "ongs");
+
   return (
     <Box
       sx={{

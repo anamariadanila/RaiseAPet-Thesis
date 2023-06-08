@@ -13,7 +13,6 @@ const Navbar = () => {
   const { data: session, status } = useSession();
   const [ongs, setOngs] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log(session, "session");
   const { address, connect, getOngsByOwner, contract } = useAppContext();
 
   const fetchOngs = async () => {

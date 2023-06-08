@@ -4,7 +4,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ButtonConnect from "./ButtonConnect";
 import { IconButton } from "@mui/material";
@@ -14,23 +13,20 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import Loader from "./Loader";
-import { useSession } from "next-auth/react";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { useSession } from "next-auth/react";
 
 const DeleteOngModal = ({ ongsSent }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
   const [addresses, setAddresses] = useState([]);
-
   const { data: session, status } = useSession();
+  console.log(session?.user?.user, "session");
 
   const { deleteOng, contract, address, getCampaigns } = useAppContext();
   const router = useRouter();
   const id = router.query.id;
-
-  const theme = useTheme();
-  // const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,6 +38,45 @@ const DeleteOngModal = ({ ongsSent }) => {
 
   const handleDelete = async () => {
     setLoading(true);
+    // const res = await fetch("http://localhost:3000/api/deleteOng", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     ongCode: session?.user?.user?.ongCode,
+    //     address: session?.user?.user?.address,
+    //   }),
+    // });
+    // const data = await res.json();
+    // console.log(data, "data");
+    // if (data && !data.error) {
+    //   router.push("/");
+    // }
+    // if (data.error) {
+    //   window.alert(data.error);
+    //   router.push("/");
+    // }
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(
+        session?.user?.user?.ongCode,
+        session?.user?.user?.address
+      ),
+    };
+    await fetch("http://localhost:3000/api/deleteOng", options)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && !data.error) {
+          router.push("/");
+        }
+        if (data.error) {
+          window.alert(data.error);
+          router.push("/");
+        }
+      });
+
     await deleteOng(ongsSent[id]?.id.toString());
     setLoading(false);
     router.push("/ongs");
@@ -82,6 +117,7 @@ const DeleteOngModal = ({ ongsSent }) => {
           flexDirection: "column",
         }}
       ></Box>
+      {loading && <Loader />}
       {addresses.find((address) => address.owner === ongsSent[id]?.owner) &&
       addresses.find((address) => address.status !== 3) ? (
         <Dialog
@@ -99,7 +135,6 @@ const DeleteOngModal = ({ ongsSent }) => {
               alignItems: "center",
             }}
           >
-            {loading && <Loader />}
             <DialogTitle id="responsive-dialog-title">
               Cannot close the ONG
             </DialogTitle>

@@ -38,17 +38,6 @@ export default function UpdateCampaign({ campaignsSent }) {
     return formattedDate;
   }
 
-  //   const fetchCampaigns = async () => {
-  //     setLoading(true);
-  //     const data = await getCampaigns();
-  //     setCampaigns(data);
-  //     setLoading(false);
-  //   };
-
-  //   useEffect(() => {
-  //     if (contract) fetchCampaigns();
-  //   }, [address, contract]);
-
   const [formDetails, setFormDetails] = useState({
     title: campaignsSent[id]?.title,
     description: campaignsSent[id]?.description,
