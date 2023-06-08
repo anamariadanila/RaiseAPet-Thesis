@@ -44,12 +44,13 @@ const UserRegister = ({ title, messageTitle }) => {
   };
 
   // connect();
-  console.log(address);
+  console.log(address, "aici");
 
   //for Donator
   const handleClick = async () => {
-    const newVal = { address, type };
     connect();
+    const newVal = { address, type };
+    // connect();
     console.log(newVal);
     const options = {
       method: "POST",
@@ -70,8 +71,9 @@ const UserRegister = ({ title, messageTitle }) => {
 
   //for ONG
   const onSubmit = async (values) => {
-    const newVal = { ...values, address, type };
     connect();
+    const newVal = { ...values, address, type };
+    // connect();
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

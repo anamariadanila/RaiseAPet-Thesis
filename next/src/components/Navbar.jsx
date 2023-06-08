@@ -1,18 +1,36 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Search from "./Search";
 import ButtonConnect from "./ButtonConnect";
 import UserAvatar from "./Avatar";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { truncate } from "../utils/functions";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const router = useRouter();
-  const { address, connect } = useAppContext();
+  const { data: session, status } = useSession();
+  const [ongs, setOngs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  console.log(session, "session");
+  const { address, connect, getOngsByOwner, contract } = useAppContext();
+
+  const fetchOngs = async () => {
+    if (session?.user.user.type === "ONG") {
+      setLoading(true);
+      const data = await getOngsByOwner(address?.toLowerCase());
+      setOngs(data);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (contract) fetchOngs();
+  }, [contract, address]);
+
   const handleClick = () => {
     if (address) {
-      router.push("/create-campaign");
     } else {
       connect();
     }
@@ -64,7 +82,15 @@ const Navbar = () => {
         >
           <ButtonConnect
             title={
-              !address ? "Connect" : `Connected ${truncate(address, 4, 4, 11)}`
+              !address
+                ? "Connect"
+                : session?.user.user.type === "ONG"
+                ? `Connected ${
+                    ongs[0]?.name === undefined
+                      ? truncate(address, 4, 4, 11)
+                      : ongs[0]?.name
+                  }`
+                : `Connected ${truncate(address, 4, 4, 11)}`
             }
             handleClick={handleClick}
           />

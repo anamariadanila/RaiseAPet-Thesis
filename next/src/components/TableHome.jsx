@@ -66,7 +66,7 @@ const TableHome = () => {
               },
             }}
           >
-            {totalCampaigns} Campaigns
+            Create Campaigns
           </Item>
           <Item
             sx={{
@@ -85,7 +85,7 @@ const TableHome = () => {
               },
             }}
           >
-            {totalDonators} Donators
+            Donate ETH
           </Item>
           <Item
             sx={{
@@ -104,7 +104,7 @@ const TableHome = () => {
               },
             }}
           >
-            {totalDonations} ETH Donated
+            Help Souls
           </Item>
         </Stack>
       </Box>
