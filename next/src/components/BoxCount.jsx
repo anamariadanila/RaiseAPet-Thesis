@@ -14,6 +14,22 @@ const BoxCount = ({ value, description }) => {
         alignItems: "center",
         flexDirection: "column",
         mb: "1rem",
+        "@media(max-width: 750px)": {
+          width: "4.5rem",
+          height: "6rem",
+        },
+        "@media(max-width: 570px)": {
+          width: "4rem",
+          height: "5rem",
+        },
+        "@media(max-width: 410px)": {
+          width: "3.3rem",
+          height: "5rem",
+        },
+        "@media(max-width: 330px)": {
+          width: "2.7rem",
+          height: "4.4rem",
+        },
       }}
     >
       <Box
@@ -27,7 +43,13 @@ const BoxCount = ({ value, description }) => {
       >
         <Typography
           textAlign="center"
-          sx={{ fontWeight: "bold", fontSize: "24px" }}
+          sx={{
+            fontWeight: "bold",
+            fontSize: "1.8rem",
+            "@media(max-width: 570px)": {
+              fontSize: "1.2rem",
+            },
+          }}
         >
           {value}
         </Typography>
@@ -43,9 +65,39 @@ const BoxCount = ({ value, description }) => {
           alignItems: "center",
           borderBottomRightRadius: "7px",
           borderBottomLeftRadius: "7px",
+          "@media(max-width: 750px)": {
+            width: "4.5rem",
+            height: "2.7rem",
+          },
+          "@media(max-width: 570px)": {
+            width: "4rem",
+            height: "1.9rem",
+          },
+          "@media(max-width: 410px)": {
+            width: "3.3rem",
+            height: "1.9rem",
+          },
+          "@media(max-width: 330px)": {
+            width: "2.7rem",
+            height: "1.9rem",
+          },
         }}
       >
-        <Typography textAlign="center" sx={{ fontWeight: "bold" }}>
+        <Typography
+          textAlign="center"
+          sx={{
+            fontWeight: "bold",
+            "@media(max-width: 750px)": {
+              fontSize: "0.8rem",
+            },
+            "@media(max-width: 570px)": {
+              fontSize: "0.6rem",
+            },
+            "@media(max-width: 330px)": {
+              fontSize: "0.5rem",
+            },
+          }}
+        >
           {description}
         </Typography>
       </Box>

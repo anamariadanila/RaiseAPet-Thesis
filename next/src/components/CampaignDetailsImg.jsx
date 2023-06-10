@@ -39,12 +39,60 @@ const CampaignDetailsImg = () => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "space-between",
+        "@media(max-width: 1010px)": {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+        },
       }}
     >
       <Box>
         <CardMedia
           component="img"
-          sx={{ width: "100%", height: "400px", borderRadius: "15px" }}
+          sx={{
+            width: "100%",
+            height: "400px",
+            borderRadius: "15px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+
+            "@media(max-width: 1010px)": {
+              width: "100%",
+              height: "250px",
+              mt: "1rem",
+            },
+            "@media(max-width: 550px)": {
+              width: "17rem",
+              height: "250px",
+              mt: "1rem",
+              ml: "1rem",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+            "@media(max-width: 430px)": {
+              width: "13rem",
+              height: "230px",
+              mt: "1rem",
+              ml: "1rem",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+            "@media(max-width: 330px)": {
+              width: "12rem",
+              height: "200px",
+              mt: "1rem",
+              // ml: "1rem",
+            },
+            "@media(max-width: 300px)": {
+              width: "10.5rem",
+              height: "170px",
+              mt: "1rem",
+              ml: "1rem",
+            },
+          }}
           src={campaigns[id]?.image}
         />
       </Box>
@@ -56,6 +104,12 @@ const CampaignDetailsImg = () => {
           alignItems: "center",
           justifyContent: "space-evenly",
           flexDirection: "column",
+          "@media(max-width: 1010px)": {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+          },
         }}
       >
         {session?.user?.user?.address.toLowerCase() === campaigns[id]?.owner ? (

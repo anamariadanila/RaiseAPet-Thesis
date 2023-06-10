@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import CampaignDetailsImg from "./CampaignDetailsImg";
+import { truncate } from "../utils/functions";
 
 const CampaignDetailsInfo = () => {
   const router = useRouter();
@@ -88,7 +89,27 @@ const CampaignDetailsInfo = () => {
         flexDirection: "column",
         borderRadius: "15px",
         flexWrap: "wrap",
-        width: "100%",
+        width: "80rem",
+        "@media(max-width: 1320px)": {
+          height: "100%",
+          width: "50rem",
+        },
+        "@media(max-width: 1010px)": {
+          height: "100%",
+          width: "40rem",
+        },
+        "@media(max-width: 815px)": {
+          height: "100%",
+          width: "100%",
+        },
+        "@media(max-width: 580px)": {
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          ml: "1rem",
+        },
       }}
     >
       <Box
@@ -99,9 +120,28 @@ const CampaignDetailsInfo = () => {
           flexDirection: "row",
           width: "100%",
           height: "100%",
+          "@media(max-width: 1320px)": {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          },
         }}
       >
-        <Box sx={{ width: "120%" }}>
+        <Box
+          sx={{
+            width: "120%",
+            "@media(max-width: 1320px)": {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "80%",
+              height: "70%",
+              mb: "1rem",
+            },
+          }}
+        >
           <CampaignDetailsImg />
         </Box>
 
@@ -116,6 +156,10 @@ const CampaignDetailsInfo = () => {
             height: "80%",
             flexWrap: "wrap",
             borderRadius: "15px",
+            "@media(max-width: 1320px)": {
+              pt: "1rem",
+              pb: "1rem",
+            },
           }}
         >
           {loading && <Loader />}
@@ -127,12 +171,36 @@ const CampaignDetailsInfo = () => {
               mb: "1rem",
             }}
           >
-            <Typography sx={{ fontSize: "25px", fontWeight: "bold" }}>
+            <Typography
+              sx={{
+                fontSize: "25px",
+                fontWeight: "bold",
+                "@media(max-width: 1320px)": {
+                  fontSize: "20px",
+                },
+                "@media(max-width: 1010px)": {
+                  fontSize: "18px",
+                },
+                "@media(max-width: 815px)": {
+                  fontSize: "16px",
+                },
+                "@media(max-width: 580px)": {
+                  fontSize: "14px",
+                },
+              }}
+            >
               {campaigns[id]?.title}
             </Typography>
           </Box>
 
-          <Box sx={{ width: "50%" }}>
+          <Box
+            sx={{
+              width: "50%",
+              "@media(max-width: 580px)": {
+                width: "100%",
+              },
+            }}
+          >
             {expired ? (
               <Box
                 sx={{
@@ -283,7 +351,20 @@ const CampaignDetailsInfo = () => {
                 width: "60%",
               }}
             >
-              <Box sx={{ mr: "1rem" }}>
+              <Box
+                sx={{
+                  mr: "1rem",
+                  "@media(max-width: 1200px)": {
+                    mr: "0.5rem",
+                  },
+                  "@media(max-width: 650px)": {
+                    mr: "0.3rem",
+                  },
+                  "@media(max-width: 500px)": {
+                    mr: "0.2rem",
+                  },
+                }}
+              >
                 <Identicon
                   size={25}
                   string={campaigns[id]?.owner.toLowerCase()}
@@ -293,9 +374,15 @@ const CampaignDetailsInfo = () => {
               <Box>
                 <Typography
                   align="center"
-                  sx={{ fontWeight: "bold", fontSize: 15 }}
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: 15,
+                    "@media(max-width: 330px)": {
+                      fontSize: 12,
+                    },
+                  }}
                 >
-                  {campaigns[id]?.owner.toLowerCase()}
+                  {truncate(campaigns[id]?.owner.toLowerCase(), 8, 8, 19)}
                 </Typography>
               </Box>
             </Box>
@@ -307,6 +394,15 @@ const CampaignDetailsInfo = () => {
                 height: "0.5rem",
                 backgroundColor: "#b9b8ba",
                 borderRadius: "30px",
+                "@media(max-width: 650px)": {
+                  width: "20rem",
+                },
+                "@media(max-width: 500px)": {
+                  width: "15rem",
+                },
+                "@media(max-width: 400px)": {
+                  width: "9rem",
+                },
               }}
             >
               <Box
@@ -321,7 +417,7 @@ const CampaignDetailsInfo = () => {
                   height: "100%",
                   borderRadius: "30px",
                 }}
-              ></Box>
+              />
             </Box>
 
             <Box
@@ -331,9 +427,20 @@ const CampaignDetailsInfo = () => {
                 alignItems: "center",
                 flexDirection: "row",
                 mt: "1rem",
+                "@media(max-width: 510px)": {
+                  width: "100%",
+                  flexDirection: "column",
+                },
               }}
             >
-              <Box sx={{ mr: "1rem" }}>
+              <Box
+                sx={{
+                  mr: "1rem",
+                  "@media(max-width: 510px)": {
+                    // ml: "3rem",
+                  },
+                }}
+              >
                 <TextField
                   required
                   label="ETH"
@@ -344,7 +451,21 @@ const CampaignDetailsInfo = () => {
                     min: 0,
                   }}
                   value={amount}
-                  sx={{ width: "14rem" }}
+                  sx={{
+                    width: "14rem",
+                    "@media(max-width: 800px)": {
+                      width: "12rem",
+                    },
+                    "@media(max-width: 360px)": {
+                      width: "9rem",
+                    },
+                    "@media(max-width: 290px)": {
+                      width: "8rem",
+                    },
+                    // "@media(max-width: 400px)": {
+                    //   width: "10rem",
+                    // },
+                  }}
                   onChange={(e) => setAmount(e.target.value)}
                 />
               </Box>
@@ -374,6 +495,13 @@ const CampaignDetailsInfo = () => {
             flexDirection: "column",
             height: "90%",
             mt: "1rem",
+            "@media(max-width: 1320px)": {
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              width: "80%",
+            },
           }}
         >
           <BoxCount
