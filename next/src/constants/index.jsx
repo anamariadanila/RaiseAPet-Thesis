@@ -9,34 +9,6 @@ import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 
 export const sidebarIcons = [
-  // {
-  //   icon: (
-  //     <Grid item>
-  //       <Tooltip
-  //         title="New Ong"
-  //         arrow
-  //         placement="right"
-  //         componentsProps={{
-  //           tooltip: {
-  //             sx: {
-  //               bgcolor: "icon.main",
-  //               "& .MuiTooltip-arrow": {
-  //                 color: "icon.main",
-  //               },
-  //               color: "common.black",
-  //               fontSize: "0.8rem",
-  //             },
-  //           },
-  //         }}
-  //       >
-  //         <AddHomeOutlinedIcon
-  //           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-  //         />
-  //       </Tooltip>
-  //     </Grid>
-  //   ),
-  //   link: "/create-ong",
-  // },
   {
     icon: (
       <Grid item>
@@ -123,34 +95,34 @@ export const sidebarIcons = [
     link: "/profile",
   },
 
-  {
-    icon: (
-      <Grid item>
-        <Tooltip
-          title="Settings"
-          arrow
-          placement="right"
-          componentsProps={{
-            tooltip: {
-              sx: {
-                bgcolor: "icon.main",
-                "& .MuiTooltip-arrow": {
-                  color: "icon.main",
-                },
-                color: "common.black",
-                fontSize: "0.8rem",
-              },
-            },
-          }}
-        >
-          <SettingsOutlinedIcon
-            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-          />
-        </Tooltip>
-      </Grid>
-    ),
-    link: "/settings",
-  },
+  // {
+  //   icon: (
+  //     <Grid item>
+  //       <Tooltip
+  //         title="Settings"
+  //         arrow
+  //         placement="right"
+  //         componentsProps={{
+  //           tooltip: {
+  //             sx: {
+  //               bgcolor: "icon.main",
+  //               "& .MuiTooltip-arrow": {
+  //                 color: "icon.main",
+  //               },
+  //               color: "common.black",
+  //               fontSize: "0.8rem",
+  //             },
+  //           },
+  //         }}
+  //       >
+  //         <SettingsOutlinedIcon
+  //           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+  //         />
+  //       </Tooltip>
+  //     </Grid>
+  //   ),
+  //   link: "/settings",
+  // },
 ];
 
 export const donatorIcons = [
@@ -240,32 +212,32 @@ export const donatorIcons = [
     link: "/profile",
   },
 
-  {
-    icon: (
-      <Grid item>
-        <Tooltip
-          title="Settings"
-          arrow
-          placement="right"
-          componentsProps={{
-            tooltip: {
-              sx: {
-                bgcolor: "icon.main",
-                "& .MuiTooltip-arrow": {
-                  color: "icon.main",
-                },
-                color: "common.black",
-                fontSize: "0.8rem",
-              },
-            },
-          }}
-        >
-          <SettingsOutlinedIcon
-            sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-          />
-        </Tooltip>
-      </Grid>
-    ),
-    link: "/settings",
-  },
+  // {
+  //   icon: (
+  //     <Grid item>
+  //       <Tooltip
+  //         title="Settings"
+  //         arrow
+  //         placement="right"
+  //         componentsProps={{
+  //           tooltip: {
+  //             sx: {
+  //               bgcolor: "icon.main",
+  //               "& .MuiTooltip-arrow": {
+  //                 color: "icon.main",
+  //               },
+  //               color: "common.black",
+  //               fontSize: "0.8rem",
+  //             },
+  //           },
+  //         }}
+  //       >
+  //         <SettingsOutlinedIcon
+  //           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+  //         />
+  //       </Tooltip>
+  //     </Grid>
+  //   ),
+  //   link: "/settings",
+  // },
 ];

@@ -92,8 +92,9 @@ const Navbar = () => {
                 : `Connected ${truncate(address, 4, 4, 11)}`
             }
             handleClick={handleClick}
+            style={{ fontSize: "0.8rem" }}
           />
-          <UserAvatar />
+          {/* <UserAvatar /> */}
         </Box>
       </Box>
     </Box>

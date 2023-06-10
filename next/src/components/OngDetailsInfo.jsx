@@ -206,21 +206,24 @@ const OngDetailsInfo = () => {
                 mt: "1rem",
               }}
             >
-              <Box sx={{ mr: "1rem" }}>
-                <TextField
-                  required
-                  label="ETH"
-                  color="secondary"
-                  type="number"
-                  inputProps={{
-                    step: 0.01,
-                    min: 0,
-                  }}
-                  value={amount}
-                  sx={{ width: "14rem" }}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </Box>
+              {ongs[id]?.status == 0 ? (
+                <Box sx={{ mr: "1rem" }}>
+                  <TextField
+                    required
+                    label="ETH"
+                    color="secondary"
+                    type="number"
+                    inputProps={{
+                      step: 0.01,
+                      min: 0,
+                    }}
+                    value={amount}
+                    sx={{ width: "14rem" }}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </Box>
+              ) : null}
+
               <Box>
                 {ongs[id]?.status == 0 ? (
                   <ButtonConnect

@@ -88,28 +88,55 @@ const Profile = () => {
         <Box
           sx={{
             display: "flex",
-            // flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            // justifyContent: "center",
             // mt: "4rem",
+            width: "100%",
           }}
         >
-          <DisplayCampaigns
-            title={
-              session?.user.user.type === "ONG"
-                ? "My campaigns"
-                : "Campaigns I donated to"
-            }
-            loading={loading}
-            campaigns={campaigns}
-          />
-          <DisplayOngs
-            title={
-              session?.user.user.type === "ONG" ? "My Ong" : "Ongs I donated to"
-            }
-            loading={loading}
-            ongs={ongs}
-          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              // justifyContent: "center",
+              // mt: "4rem",
+              width: "100%",
+              flexWrap: "wrap",
+            }}
+          >
+            <DisplayOngs
+              title={
+                session?.user.user.type === "ONG"
+                  ? "My Ong"
+                  : "Ongs I donated to"
+              }
+              loading={loading}
+              ongs={ongs}
+            />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              // justifyContent: "center",
+              // mt: "4rem",
+              width: "100%",
+              flexWrap: "wrap",
+            }}
+          >
+            <DisplayCampaigns
+              title={
+                session?.user.user.type === "ONG"
+                  ? "My campaigns"
+                  : "Campaigns I donated to"
+              }
+              loading={loading}
+              campaigns={campaigns}
+            />
+          </Box>
         </Box>
       </MainLayout>
     </>
