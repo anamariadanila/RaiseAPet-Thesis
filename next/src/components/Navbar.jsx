@@ -30,6 +30,7 @@ const Navbar = () => {
 
   const handleClick = () => {
     if (address) {
+      router.push("/ongs");
     } else {
       connect();
     }
@@ -42,7 +43,7 @@ const Navbar = () => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        mt: "1rem",
+        mt: "0.5rem",
         width: "100%",
       }}
       position="static"
@@ -61,7 +62,7 @@ const Navbar = () => {
             display: "flex",
             flexDirection: "row",
             // justifyContent: "center",
-            width: "80%",
+            width: "100%",
             alignItems: "center",
           }}
         >

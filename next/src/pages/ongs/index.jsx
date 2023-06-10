@@ -31,7 +31,7 @@ const Ongs = () => {
       </Head>
 
       <MainLayout>
-        <DisplayOngs title="All ongs" loading={loading} ongs={ongs} />
+        <DisplayOngs title="All ONGs" loading={loading} ongs={ongs} />
       </MainLayout>
     </>
   );

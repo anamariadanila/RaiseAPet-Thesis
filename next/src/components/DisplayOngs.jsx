@@ -44,6 +44,11 @@ const DisplayOngs = ({ title, loading, ongs }) => {
           mr: "7rem",
           mb: "2rem",
           width: "90%",
+          "@media(max-width: 600px)": {
+            ml: "2rem",
+            mr: "2rem",
+            mb: "2rem",
+          },
         }}
       >
         <Box

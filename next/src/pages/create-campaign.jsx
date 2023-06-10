@@ -85,79 +85,124 @@ const CreateCampaign = () => {
             alignItems: "center",
             flexDirection: "column",
             height: "100%",
-            width: "55%",
+            width: "50rem",
             pt: "2rem",
             pb: "2rem",
             flexWrap: "wrap",
+            "@media(max-width: 1250px)": {
+              width: "40rem",
+            },
+            "@media(max-width: 880px)": {
+              width: "30rem",
+            },
+            "@media(max-width: 670px)": {
+              width: "25rem",
+            },
+            "@media(max-width: 500px)": {
+              width: "20rem",
+            },
+            "@media(max-width: 350px)": {
+              width: "17rem",
+              ml: "1rem",
+            },
           }}
         >
-          <Container
+          {/* <Container
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              // justifyContent: "space-between",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          > */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
             }}
           >
-            <Box
+            {loading && <Loader />}
+          </Box>
+          <Box
+            sx={{
+              bgcolor: "textBg.main",
+              height: "5rem",
+              borderRadius: "15px",
+              // width: "40%",
+              width: "20rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              "@media(max-width: 880px)": {
+                width: "15rem",
+              },
+              "@media(max-width: 670px)": {
+                width: "13rem",
+              },
+              "@media(max-width: 500px)": {
+                width: "10rem",
+              },
+            }}
+          >
+            <Typography
+              variant="h4"
+              align="center"
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
+                fontWeight: "bold",
+                fontSize: 25,
+                "@media(max-width: 880px)": {
+                  fontSize: 20,
+                },
+                "@media(max-width: 500px)": {
+                  fontSize: 18,
+                },
               }}
             >
-              {loading && <Loader />}
-            </Box>
-            <Box
-              sx={{
-                bgcolor: "textBg.main",
-                height: "5rem",
-                borderRadius: "15px",
-                width: "40%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                variant="h4"
-                align="center"
-                sx={{ fontWeight: "bold", fontSize: 25 }}
-              >
-                Create a Campaign
-              </Typography>
-            </Box>
+              Create a Campaign
+            </Typography>
+          </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <form onSubmit={handleSubmit}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                    mt: "3rem",
-                    mr: "6rem",
-                    flexDirection: "row",
-                    width: "100%",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <TextField
-                    required
-                    label="Campaign title"
-                    color="secondary"
-                    sx={{ width: "20rem" }}
-                    value={formDetails.title}
-                    onChange={(e) => handleFormChange("title", e)}
-                  />
-                </Box>
+          <Box
+            sx={{
+              width: "60%",
+            }}
+          >
+            <form onSubmit={handleSubmit}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  mt: "3rem",
+                  flexDirection: "row",
+                  width: "100%",
+                  flexWrap: "wrap",
+                  "@media(max-width: 500px)": {
+                    mt: "1rem",
+                  },
+                }}
+              >
+                <TextField
+                  required
+                  label="Campaign title"
+                  color="secondary"
+                  sx={{ width: "100%" }}
+                  value={formDetails.title}
+                  onChange={(e) => handleFormChange("title", e)}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  width: "100%",
+                  flexWrap: "wrap",
+                }}
+              >
                 <TextField
                   required
                   label="Campaign Description"
@@ -165,66 +210,100 @@ const CreateCampaign = () => {
                   rows={6}
                   sx={{
                     width: "100%",
-                    mt: "3rem",
+                    mt: "2rem",
+                    "@media(max-width: 500px)": {
+                      mt: "1rem",
+                    },
                   }}
                   color="secondary"
                   value={formDetails.description}
                   onChange={(e) => handleFormChange("description", e)}
                 />
-                <Box
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mt: "2rem",
+                  flexDirection: "row",
+                  width: "100%",
+                  flexWrap: "wrap",
+                  "@media(max-width: 1080px)": {
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    mt: "2rem",
+                  },
+                  "@media(max-width: 500px)": {
+                    mt: "1rem",
+                  },
+                }}
+              >
+                <TextField
+                  required
+                  label="Cost"
+                  color="secondary"
+                  type="number"
                   sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    mt: "3rem",
-                    mr: "6rem",
-                    flexDirection: "row",
-                    width: "100%",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <TextField
-                    required
-                    label="Cost"
-                    color="secondary"
-                    type="number"
-                    sx={{ width: "20rem" }}
-                    inputProps={{ step: "0.01", min: "0" }}
-                    value={formDetails.cost}
-                    onChange={(e) => handleFormChange("cost", e)}
-                  />
-                  <TextField
-                    required
-                    color="secondary"
-                    type="date"
-                    sx={{
-                      width: "20rem",
-                      "& input": { color: "secondary.main" },
-                    }}
-                    value={formDetails.deadline}
-                    onChange={(e) => handleFormChange("deadline", e)}
-                  />
-                </Box>
-                <Box sx={{ mt: "3rem", color: "secondary.main" }}>
-                  {/* <label htmlFor="imgUrl">Image URL*</label> */}
-                  <TextField
-                    id="imgUrl"
-                    type="url"
-                    label="Image URL *"
-                    sx={{
+                    width: "45%",
+                    mr: "1rem",
+                    "@media(max-width: 1250px)": {
+                      mr: "0rem",
+                      mb: "2rem",
                       width: "100%",
-                    }}
-                    color="secondary"
-                    value={formDetails.image}
-                    onChange={(e) => handleFormChange("image", e)}
-                  />
-                </Box>
-                <Box sx={{ mt: "2rem" }}>
-                  <ButtonConnect title="Submit" btnType="submit" />
-                </Box>
-              </form>
-            </Box>
-          </Container>
+                    },
+                    "@media(max-width: 500px)": {
+                      mb: "1rem",
+                    },
+                  }}
+                  inputProps={{ step: "0.01", min: "0" }}
+                  value={formDetails.cost}
+                  onChange={(e) => handleFormChange("cost", e)}
+                />
+                <TextField
+                  required
+                  color="secondary"
+                  type="date"
+                  sx={{
+                    width: "45%",
+                    "& input": { color: "secondary.main" },
+                    "@media(max-width: 1250px)": {
+                      width: "100%",
+                    },
+                  }}
+                  value={formDetails.deadline}
+                  onChange={(e) => handleFormChange("deadline", e)}
+                />
+              </Box>
+              <Box
+                sx={{
+                  mt: "2rem",
+                  color: "secondary.main",
+                  "@media(max-width: 500px)": {
+                    mt: "1rem",
+                  },
+                }}
+              >
+                {/* <label htmlFor="imgUrl">Image URL*</label> */}
+                <TextField
+                  id="imgUrl"
+                  type="url"
+                  label="Image URL *"
+                  sx={{
+                    width: "100%",
+                  }}
+                  color="secondary"
+                  value={formDetails.image}
+                  onChange={(e) => handleFormChange("image", e)}
+                />
+              </Box>
+              <Box sx={{ mt: "2rem" }}>
+                <ButtonConnect title="Submit" btnType="submit" />
+              </Box>
+            </form>
+          </Box>
+          {/* </Container> */}
         </Container>
       </MainLayout>
     </>

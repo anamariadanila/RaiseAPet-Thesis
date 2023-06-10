@@ -54,7 +54,13 @@ export default function Sidebar({}) {
 
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+
+        display: { xs: "none", sm: "block" },
+      }}
       position="fixed"
     >
       <AppBar
