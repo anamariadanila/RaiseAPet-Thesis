@@ -64,118 +64,172 @@ const CreateOng = () => {
             alignItems: "center",
             flexDirection: "column",
             height: "100%",
-            width: "55%",
+            width: "48rem",
             pt: "2rem",
             pb: "2rem",
             flexWrap: "wrap",
+            "@media(max-width: 1250px)": {
+              width: "40rem",
+            },
+            "@media(max-width: 880px)": {
+              width: "30rem",
+              mt: "3rem",
+            },
+            "@media(max-width: 670px)": {
+              width: "25rem",
+            },
+            "@media(max-width: 500px)": {
+              width: "20rem",
+              // mr: "1rem",
+            },
+            "@media(max-width: 350px)": {
+              width: "17rem",
+              // ml: "2rem",
+              justifyContent: "center",
+              alignItems: "center",
+              // mr: "2rem",
+            },
           }}
         >
-          <Container
+          {/* <Container
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               flexDirection: "column",
             }}
+          > */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
           >
             {loading && <Loader />}
-            <Box
+          </Box>
+          <Box
+            sx={{
+              bgcolor: "textBg.main",
+              height: "5rem",
+              borderRadius: "15px",
+              width: "20rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              "@media(max-width: 880px)": {
+                width: "15rem",
+              },
+              "@media(max-width: 670px)": {
+                width: "13rem",
+              },
+              "@media(max-width: 500px)": {
+                width: "10rem",
+              },
+            }}
+          >
+            <Typography
+              variant="h4"
+              align="center"
               sx={{
-                bgcolor: "textBg.main",
-                height: "5rem",
-                borderRadius: "15px",
-                width: "40%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                fontWeight: "bold",
+                fontSize: 25,
+                "@media(max-width: 880px)": {
+                  fontSize: 20,
+                },
+                "@media(max-width: 500px)": {
+                  fontSize: 18,
+                },
               }}
             >
-              <Typography
-                variant="h4"
-                align="center"
-                sx={{ fontWeight: "bold", fontSize: 25 }}
+              Create ONG
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              width: "55%",
+            }}
+          >
+            <form onSubmit={handleSubmit}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  mt: "3rem",
+                  flexDirection: "row",
+                  width: "100%",
+                  flexWrap: "wrap",
+                  "@media(max-width: 500px)": {
+                    mt: "1rem",
+                  },
+                }}
               >
-                Create ONG
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <form onSubmit={handleSubmit}>
-                <Box
+                <TextField
+                  required
+                  label="ONG Name"
+                  color="secondary"
+                  sx={{ width: "100%" }}
+                  value={formDetails.name}
+                  onChange={(e) => handleFormChange("name", e)}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  width: "100%",
+                  flexWrap: "wrap",
+                }}
+              >
+                <TextField
+                  required
+                  label="ONG Description"
+                  multiline
+                  rows={6}
                   sx={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                    mt: "3rem",
-                    mr: "6rem",
-                    flexDirection: "row",
                     width: "100%",
-                    flexWrap: "wrap",
+                    mt: "2rem",
                   }}
-                >
-                  <TextField
-                    required
-                    label="ONG Name"
-                    color="secondary"
-                    sx={{ width: "20rem" }}
-                    value={formDetails.name}
-                    onChange={(e) => handleFormChange("name", e)}
-                  />
-                </Box>
-                <Box
+                  color="secondary"
+                  value={formDetails.description}
+                  onChange={(e) => handleFormChange("description", e)}
+                />
+              </Box>
+              <Box
+                sx={{
+                  mt: "2rem",
+                  color: "secondary.main",
+                  display: "flex",
+                  justifyContent: "center",
+                  "@media(max-width: 500px)": {
+                    mt: "1rem",
+                  },
+                }}
+              >
+                <TextField
+                  id="imgUrl"
+                  type="url"
+                  label="Image URL *"
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
                     width: "100%",
                   }}
-                >
-                  <TextField
-                    required
-                    label="ONG Description"
-                    multiline
-                    rows={6}
-                    sx={{
-                      width: "30rem",
-                      mt: "3rem",
-                    }}
-                    color="secondary"
-                    value={formDetails.description}
-                    onChange={(e) => handleFormChange("description", e)}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    mt: "3rem",
-                    color: "secondary.main",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <TextField
-                    id="imgUrl"
-                    type="url"
-                    label="Image URL *"
-                    sx={{
-                      width: "20rem",
-                    }}
-                    color="secondary"
-                    value={formDetails.image}
-                    onChange={(e) => handleFormChange("image", e)}
-                  />
-                </Box>
-                <Box
-                  sx={{ mt: "2rem", display: "flex", justifyContent: "center" }}
-                >
-                  <ButtonConnect title="Submit" btnType="submit" />
-                </Box>
-              </form>
-            </Box>
-          </Container>
+                  color="secondary"
+                  value={formDetails.image}
+                  onChange={(e) => handleFormChange("image", e)}
+                />
+              </Box>
+              <Box
+                sx={{ mt: "2rem", display: "flex", justifyContent: "center" }}
+              >
+                <ButtonConnect title="Submit" btnType="submit" />
+              </Box>
+            </form>
+          </Box>
+          {/* </Container> */}
         </Container>
       </MainLayout>
     </>

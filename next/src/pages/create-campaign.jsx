@@ -11,7 +11,6 @@ import { useAppContext } from "../context";
 import MainLayout from "../layouts/MainLayout";
 import Head from "next/head";
 import Loader from "../components/Loader";
-import { useSession } from "next-auth/react";
 
 const CreateCampaign = () => {
   const { createCampaign } = useAppContext();
@@ -25,8 +24,6 @@ const CreateCampaign = () => {
   });
 
   const [loading, setLoading] = useState(false);
-
-  const { data: session, status } = useSession();
 
   const handleFormChange = (type, e) => {
     setFormDetails({ ...formDetails, [type]: e.target.value });
@@ -104,6 +101,8 @@ const CreateCampaign = () => {
             "@media(max-width: 350px)": {
               width: "17rem",
               ml: "1rem",
+              justifyContent: "center",
+              alignItems: "center",
             },
           }}
         >
@@ -298,7 +297,9 @@ const CreateCampaign = () => {
                   onChange={(e) => handleFormChange("image", e)}
                 />
               </Box>
-              <Box sx={{ mt: "2rem" }}>
+              <Box
+                sx={{ mt: "2rem", display: "flex", justifyContent: "center" }}
+              >
                 <ButtonConnect title="Submit" btnType="submit" />
               </Box>
             </form>
