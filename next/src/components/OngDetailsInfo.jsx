@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import OngDetailsImg from "./OngDetailsImg";
+import { truncate } from "../utils/functions";
 
 const OngDetailsInfo = () => {
   const router = useRouter();
@@ -70,7 +71,6 @@ const OngDetailsInfo = () => {
     <Container
       sx={{
         bgcolor: "containerBg.main",
-        width: "100%",
         height: "450px",
         display: "flex",
         justifyContent: "center",
@@ -78,19 +78,59 @@ const OngDetailsInfo = () => {
         flexDirection: "column",
         borderRadius: "15px",
         flexWrap: "wrap",
+        width: "80rem",
+        "@media(max-width: 1320px)": {
+          height: "100%",
+          width: "50rem",
+        },
+        "@media(max-width: 1010px)": {
+          height: "100%",
+          width: "40rem",
+        },
+        "@media(max-width: 815px)": {
+          height: "100%",
+          width: "30rem",
+        },
+        "@media(max-width: 580px)": {
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          ml: "1rem",
+        },
       }}
     >
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
           flexDirection: "row",
           width: "100%",
           height: "100%",
+          "@media(max-width: 1320px)": {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          },
         }}
       >
-        <Box sx={{ width: "120%" }}>
+        <Box
+          sx={{
+            width: "120%",
+            "@media(max-width: 1320px)": {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "80%",
+              height: "70%",
+              mb: "1rem",
+            },
+          }}
+        >
           <OngDetailsImg />
         </Box>
 
@@ -101,11 +141,14 @@ const OngDetailsInfo = () => {
             justifyContent: "center",
             alignItems: "left",
             flexDirection: "column",
-            ml: "1rem",
             backgroundColor: "textBg.main",
             height: "80%",
             flexWrap: "wrap",
             borderRadius: "15px",
+            "@media(max-width: 1320px)": {
+              pt: "1rem",
+              pb: "1rem",
+            },
           }}
         >
           {loading && <Loader />}
@@ -116,12 +159,30 @@ const OngDetailsInfo = () => {
               mb: "1rem",
             }}
           >
-            <Typography sx={{ fontSize: "25px", fontWeight: "bold" }}>
+            <Typography
+              sx={{
+                fontSize: "25px",
+                fontWeight: "bold",
+                "@media(max-width: 1320px)": {
+                  fontSize: "22px",
+                },
+                "@media(max-width: 1010px)": {
+                  fontSize: "20px",
+                },
+              }}
+            >
               {ongs[id]?.name}
             </Typography>
           </Box>
 
-          <Box sx={{ width: "50%" }}>
+          <Box
+            sx={{
+              width: "50%",
+              "@media(max-width: 580px)": {
+                width: "100%",
+              },
+            }}
+          >
             {ongs[id]?.status == 0 ? (
               <Box
                 sx={{
@@ -180,7 +241,20 @@ const OngDetailsInfo = () => {
                 width: "60%",
               }}
             >
-              <Box sx={{ mr: "1rem" }}>
+              <Box
+                sx={{
+                  mr: "1rem",
+                  "@media(max-width: 1200px)": {
+                    mr: "0.5rem",
+                  },
+                  "@media(max-width: 650px)": {
+                    mr: "0.3rem",
+                  },
+                  "@media(max-width: 500px)": {
+                    mr: "0.2rem",
+                  },
+                }}
+              >
                 <Identicon
                   size={25}
                   string={ongs[id]?.owner.toLowerCase()}
@@ -190,9 +264,15 @@ const OngDetailsInfo = () => {
               <Box>
                 <Typography
                   align="center"
-                  sx={{ fontWeight: "bold", fontSize: 15 }}
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: 15,
+                    "@media(max-width: 330px)": {
+                      fontSize: 12,
+                    },
+                  }}
                 >
-                  {ongs[id]?.owner.toLowerCase()}
+                  {truncate(ongs[id]?.owner.toLowerCase(), 8, 8, 19)}
                 </Typography>
               </Box>
             </Box>
@@ -204,6 +284,10 @@ const OngDetailsInfo = () => {
                 alignItems: "center",
                 flexDirection: "row",
                 mt: "1rem",
+                "@media(max-width: 510px)": {
+                  width: "100%",
+                  flexDirection: "column",
+                },
               }}
             >
               {ongs[id]?.status == 0 ? (
@@ -218,7 +302,18 @@ const OngDetailsInfo = () => {
                       min: 0,
                     }}
                     value={amount}
-                    sx={{ width: "14rem" }}
+                    sx={{
+                      width: "14rem",
+                      "@media(max-width: 800px)": {
+                        width: "12rem",
+                      },
+                      "@media(max-width: 360px)": {
+                        width: "9rem",
+                      },
+                      "@media(max-width: 290px)": {
+                        width: "8rem",
+                      },
+                    }}
                     onChange={(e) => setAmount(e.target.value)}
                   />
                 </Box>
@@ -232,6 +327,7 @@ const OngDetailsInfo = () => {
                     style={{
                       width: "7rem",
                       height: "3rem",
+                      fontSize: "14px",
                     }}
                     handleClick={handleDonate}
                   />
@@ -250,27 +346,63 @@ const OngDetailsInfo = () => {
             flexDirection: "column",
             height: "90%",
             mt: "1rem",
+            "@media(max-width: 1320px)": {
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              width: "80%",
+            },
+            "@media(max-width: 400px)": {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              width: "80%",
+            },
           }}
         >
-          <BoxCount value={ongs[id]?.raised} description={"ETH raised"} />
-          <BoxCount value={donators?.length} description={"Total donators"} />
-          <ButtonConnect
-            title="Campaigns"
-            btnType="button"
-            style={{
-              width: "7rem",
-              height: "3rem",
+          <Box
+            sx={{
+              "@media(max-width: 1320px)": {
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                width: "80%",
+              },
             }}
-            handleClick={() => {
-              router.push(
-                {
-                  pathname: "/campaigns-by-ong",
-                  query: { id: id, ongs: ongs[id]?.owner },
-                },
-                "/campaigns-by-ong"
-              );
+          >
+            <BoxCount value={ongs[id]?.raised} description={"ETH raised"} />
+            <BoxCount value={donators?.length} description={"Total donators"} />
+          </Box>
+          <Box
+            sx={{
+              "@media(max-width: 500px)": {
+                mb: "1rem",
+                width: "50%",
+              },
             }}
-          />
+          >
+            <ButtonConnect
+              title="Campaigns"
+              btnType="button"
+              style={{
+                width: "7rem",
+                height: "3rem",
+                fontSize: "12px",
+              }}
+              handleClick={() => {
+                router.push(
+                  {
+                    pathname: "/campaigns-by-ong",
+                    query: { id: id, ongs: ongs[id]?.owner },
+                  },
+                  "/campaigns-by-ong"
+                );
+              }}
+            />
+          </Box>
         </Box>
       </Box>
     </Container>

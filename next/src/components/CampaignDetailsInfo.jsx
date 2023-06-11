@@ -100,7 +100,8 @@ const CampaignDetailsInfo = () => {
         },
         "@media(max-width: 815px)": {
           height: "100%",
-          width: "100%",
+          width: "30rem",
+          // mr: "1rem",
         },
         "@media(max-width: 580px)": {
           height: "100%",
@@ -176,16 +177,10 @@ const CampaignDetailsInfo = () => {
                 fontSize: "25px",
                 fontWeight: "bold",
                 "@media(max-width: 1320px)": {
-                  fontSize: "20px",
+                  fontSize: "22px",
                 },
                 "@media(max-width: 1010px)": {
-                  fontSize: "18px",
-                },
-                "@media(max-width: 815px)": {
-                  fontSize: "16px",
-                },
-                "@media(max-width: 580px)": {
-                  fontSize: "14px",
+                  fontSize: "20px",
                 },
               }}
             >
@@ -477,6 +472,7 @@ const CampaignDetailsInfo = () => {
                     style={{
                       width: "7rem",
                       height: "3rem",
+                      fontSize: "14px",
                     }}
                     handleClick={handleDonate}
                   />

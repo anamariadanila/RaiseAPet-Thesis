@@ -110,7 +110,7 @@ const CampaignDetails = () => {
                     width: "40rem",
                   },
                   "@media(max-width: 815px)": {
-                    width: "100%",
+                    width: "30rem",
                     mr: "0rem",
                     mb: "2rem",
                   },
@@ -172,10 +172,10 @@ const CampaignDetails = () => {
                     width: "40rem",
                   },
                   "@media(max-width: 815px)": {
-                    width: "90%",
+                    width: "30rem",
                   },
                   "@media(max-width: 580px)": {
-                    width: "90%",
+                    width: "100%",
                   },
                 }}
               >

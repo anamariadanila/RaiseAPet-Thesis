@@ -79,7 +79,7 @@ const BoxCount = ({ value, description }) => {
           },
           "@media(max-width: 330px)": {
             width: "2.7rem",
-            height: "1.9rem",
+            height: "1.95rem",
           },
         }}
       >
@@ -88,13 +88,13 @@ const BoxCount = ({ value, description }) => {
           sx={{
             fontWeight: "bold",
             "@media(max-width: 750px)": {
-              fontSize: "0.8rem",
+              fontSize: "0.9rem",
             },
             "@media(max-width: 570px)": {
-              fontSize: "0.6rem",
+              fontSize: "0.7rem",
             },
-            "@media(max-width: 330px)": {
-              fontSize: "0.5rem",
+            "@media(max-width: 400px)": {
+              fontSize: "0.6rem",
             },
           }}
         >

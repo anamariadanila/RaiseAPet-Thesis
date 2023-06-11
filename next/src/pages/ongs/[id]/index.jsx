@@ -81,6 +81,12 @@ const OngDetails = () => {
                 alignItems: "center",
                 width: "100%",
                 mt: "3rem",
+                "@media(max-width: 1320px)": {
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
               }}
             >
               <Box
@@ -93,19 +99,58 @@ const OngDetails = () => {
                   alignItems: "center",
                   flexDirection: "column",
                   mr: "2rem",
+                  "@media(max-width: 1320px)": {
+                    width: "50rem",
+                    mr: "0rem",
+                    mb: "2rem",
+                  },
+                  "@media(max-width: 1010px)": {
+                    mr: "0rem",
+                    mb: "2rem",
+                    width: "40rem",
+                  },
+                  "@media(max-width: 815px)": {
+                    width: "30rem",
+                    mr: "0rem",
+                    mb: "2rem",
+                  },
+                  "@media(max-width: 580px)": {
+                    width: "100%",
+                    mr: "0rem",
+                    mb: "2rem",
+                    ml: "1rem",
+                  },
                 }}
               >
                 <Box sx={{ mb: "1rem", mt: "1rem" }}>
                   <Typography
                     variant="h4"
                     align="left"
-                    sx={{ fontWeight: "bold", fontSize: 25 }}
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: 25,
+                      "@media(max-width: 1320px)": {
+                        fontSize: "22px",
+                      },
+                      "@media(max-width: 1010px)": {
+                        fontSize: "20px",
+                      },
+                    }}
                   >
                     Story
                   </Typography>
                 </Box>
-                <Box sx={{ pb: "2rem" }}>
-                  <Typography variant="h4" align="center" sx={{ fontSize: 18 }}>
+                <Box sx={{ pb: "2rem", pl: "0.8rem", pr: "0.8rem" }}>
+                  <Typography
+                    variant="h4"
+                    align="center"
+                    sx={{
+                      fontSize: 18,
+                      "@media(max-width: 815px)": {
+                        fontSize: "16px",
+                      },
+                    }}
+                  >
                     {ongs[id]?.description}
                   </Typography>
                 </Box>
@@ -120,13 +165,34 @@ const OngDetails = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   flexDirection: "column",
+                  "@media(max-width: 1320px)": {
+                    width: "50rem",
+                  },
+                  "@media(max-width: 1010px)": {
+                    width: "40rem",
+                  },
+                  "@media(max-width: 815px)": {
+                    width: "30rem",
+                  },
+                  "@media(max-width: 580px)": {
+                    width: "100%",
+                  },
                 }}
               >
                 <Box sx={{ mb: "1rem", mt: "1rem" }}>
                   <Typography
                     variant="h4"
                     align="left"
-                    sx={{ fontWeight: "bold", fontSize: 25 }}
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: 25,
+                      "@media(max-width: 1320px)": {
+                        fontSize: "22px",
+                      },
+                      "@media(max-width: 1010px)": {
+                        fontSize: "20px",
+                      },
+                    }}
                   >
                     Donators
                   </Typography>
@@ -135,7 +201,16 @@ const OngDetails = () => {
                 {donators.length > 0 ? (
                   <TableDonatorsOng donators={donators} />
                 ) : (
-                  <Typography align="center" sx={{ fontSize: 18 }}>
+                  <Typography
+                    align="center"
+                    sx={{
+                      fontSize: 18,
+                      pb: "0.8rem",
+                      "@media(max-width: 815px)": {
+                        fontSize: "16px",
+                      },
+                    }}
+                  >
                     No donators yet
                   </Typography>
                 )}
