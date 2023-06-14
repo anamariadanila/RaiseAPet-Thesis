@@ -10,14 +10,14 @@ import { ethers } from "ethers";
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  // const { contract } = useContract(
-  //   "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
-  // );
+  const { contract } = useContract(
+    "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
+  );
   //contract final cu sepolia OngContractFinal
 
-  const { contract } = useContract(
-    "0x5E319C15bBd1B1991e5E0C5ae01363B9507F282A"
-  );
+  // const { contract } = useContract(
+  //   "0x5E319C15bBd1B1991e5E0C5ae01363B9507F282A"
+  // );
   //contract final cu sepolia OngContractFinal2
 
   const { mutateAsync: createCampaign } = useContractWrite(

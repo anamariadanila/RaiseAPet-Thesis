@@ -32,6 +32,8 @@ const DisplayOngs = ({ title, loading, ongs }) => {
     setGroup(getGroup());
   }, [end, ongs]);
 
+  ongs = ongs.filter((ong) => ong.id !== 3);
+
   return (
     <>
       <Box

@@ -19,15 +19,17 @@ const OngDetailsImg = () => {
   const fetchOngs = async () => {
     setLoading(true);
     const data = await getOngs();
-    setOngs(data);
+    const newData = data.filter((ong, index) => index !== 3);
+    console.log(newData, "newData");
+    setOngs(newData);
     setLoading(false);
   };
+
+  console.log(ongs, "ongs");
 
   useEffect(() => {
     if (contract) fetchOngs();
   }, [address, contract]);
-
-  console.log(ongs, "ongs");
 
   return (
     <Box

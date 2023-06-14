@@ -22,7 +22,6 @@ const DeleteOngModal = ({ ongsSent }) => {
   const [campaigns, setCampaigns] = useState([]);
   const [addresses, setAddresses] = useState([]);
   const { data: session, status } = useSession();
-  console.log(session?.user?.user, "session");
 
   const { deleteOng, contract, address, getCampaigns } = useAppContext();
   const router = useRouter();
@@ -38,17 +37,19 @@ const DeleteOngModal = ({ ongsSent }) => {
 
   const handleDelete = async () => {
     setLoading(true);
+    const ongCode = session?.user?.user?.ongCode;
+    const address = session?.user?.user?.address;
+    const newVal = { ongCode, address };
+
     // const res = await fetch("http://localhost:3000/api/deleteOng", {
     //   method: "POST",
-    //   body: JSON.stringify({
-    //     ongCode: session?.user?.user?.ongCode,
-    //     address: session?.user?.user?.address,
-    //   }),
+    //   body: JSON.stringify(newVal),
     // });
     // const data = await res.json();
     // console.log(data, "data");
     // if (data && !data.error) {
-    //   router.push("/");
+    //   // router.push("/");
+    //   console.log(data, "data binee 22");
     // }
     // if (data.error) {
     //   window.alert(data.error);
@@ -60,15 +61,13 @@ const DeleteOngModal = ({ ongsSent }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(
-        session?.user?.user?.ongCode,
-        session?.user?.user?.address
-      ),
+      body: JSON.stringify(newVal),
     };
     await fetch("http://localhost:3000/api/deleteOng", options)
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.error) {
+          handleClose();
           router.push("/");
         }
         if (data.error) {
@@ -79,7 +78,7 @@ const DeleteOngModal = ({ ongsSent }) => {
 
     await deleteOng(ongsSent[id]?.id.toString());
     setLoading(false);
-    router.push("/ongs");
+    //   // router.push("/ongs");
   };
 
   const handleDeleteOngWithCampaigns = async () => {

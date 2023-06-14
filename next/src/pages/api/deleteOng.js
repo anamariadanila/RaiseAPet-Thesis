@@ -1,12 +1,10 @@
 import prisma from "../../lib/prisma";
 
 export default async function handler(req, res) {
-  res.json({ message: "Hello Everyone!" });
-  const { ongCode, address } = req.body;
-  res.json({ ongCode, address });
-
   if (req.method === "POST") {
+    if (!req.body) return res.status(404).json({ error: "Don't have data" });
     const { ongCode, address } = req.body;
+    res.json({ ongCode, address });
 
     // if (!ongCode) return res.status(400).json({ error: "Missing ongCode" });
 
