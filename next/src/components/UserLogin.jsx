@@ -48,6 +48,30 @@ const UserLogin = ({ title, messageTitle }) => {
     connect();
   }, [address]);
 
+  const [ongDeleted, setOngDeleted] = useState(false);
+
+  // const handleDelete = async () => {
+  //   const newVal = { address };
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(newVal),
+  //   };
+  //   await fetch("http://localhost:3000/api/getDeletedOng", options)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data, "data");
+  //       if (data && !data.error) {
+  //         setOngDeleted(true);
+  //       }
+  //       if (data.error) {
+  //         window.alert(data.error);
+  //       }
+  //     });
+  // };
+
   const onSubmit = async (values) => {
     connect();
     const status = await signIn("credentials", {
@@ -56,17 +80,47 @@ const UserLogin = ({ title, messageTitle }) => {
       password: values.password,
       address: address,
       type: type,
-      callbackUrl: "/campaigns",
+      // callbackUrl: "/campaigns",
     });
-
     if (status.error) {
       window.alert(status.error);
     }
 
-    if (status.ok) {
-      router.push("/campaigns");
+    const newVal = { address };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newVal),
+    };
+    await fetch("http://localhost:3000/api/getDeletedOng", options)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "data");
+        if (data && !data.error) {
+        }
+        if (data.error) {
+          setOngDeleted(true);
+          window.alert(data.error);
+          router.push("/");
+        }
+      });
+    console.log(ongDeleted, "ongDeleted");
+
+    // if (status.ok && ongDeleted === false) {
+    //   router.push("/campaigns");
+    //   connect();
+    // } else if (ongDeleted === true) {
+    //   connect();
+    //   router.push("/");
+    // }
+
+    if (ongDeleted === true) {
       connect();
-    } else {
+      router.push("/");
+    } else if (status.ok && ongDeleted === false) {
+      router.push("/campaigns");
       connect();
     }
   };
