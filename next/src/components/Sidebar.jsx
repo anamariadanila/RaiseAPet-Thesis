@@ -21,6 +21,7 @@ import Grid from "@mui/material/Grid";
 import NewOngModal from "./NewOngModal.jsx";
 import OngAlreadyCreatedModal from "./OngAlreadyCreatedModal.jsx";
 import { useEffect } from "react";
+import SwitchMode from "./SwitchMode.jsx";
 
 export default function Sidebar({}) {
   const router = useRouter();
@@ -148,7 +149,7 @@ export default function Sidebar({}) {
               </Grid>
             </IconButton>
           </Box>
-          <Box>
+          {/* <Box>
             <IconButton color="secondary" aria-label="dashboard">
               <Brightness5OutlinedIcon
                 sx={{
@@ -158,7 +159,8 @@ export default function Sidebar({}) {
                 }}
               />
             </IconButton>
-          </Box>
+          </Box> */}
+          <SwitchMode />
         </Toolbar>
       </AppBar>
     </Box>

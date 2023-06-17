@@ -6,6 +6,7 @@ import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useRouter } from "next/router";
 import ForgetPassword from "../components/ForgetPassword";
+import SwitchMode from "../components/SwitchMode";
 
 function ForgotPassword() {
   const router = useRouter();
@@ -25,19 +26,22 @@ function ForgotPassword() {
           flexDirection: "column",
         }}
       >
-        {/* <Box
+        <Box
           sx={{
             display: "flex",
-            alignItems: "flex-start",
-            flexDirection: "column",
-            width: "95%",
-            mt: "1rem",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            flexDirection: "row",
+            width: "100%",
+            mr: "4rem",
+            "@media(max-width: 400px)": {
+              width: "100%",
+              ml: "12rem",
+            },
           }}
         >
-          <IconButton onClick={() => router.push("/")}>
-            <img src={logo.src} alt="logo" width="80px" height="80px" />
-          </IconButton>
-        </Box> */}
+          <SwitchMode />
+        </Box>
         <Box
           sx={{
             bgcolor: "textBg.main",
@@ -48,6 +52,13 @@ function ForgotPassword() {
             justifyContent: "center",
             alignItems: "center",
             mt: "3rem",
+            "@media(max-width: 800px)": {
+              width: "20rem",
+            },
+            "@media(max-width: 400px)": {
+              width: "16rem",
+              ml: "4rem",
+            },
           }}
         >
           <InputAdornment position="start">

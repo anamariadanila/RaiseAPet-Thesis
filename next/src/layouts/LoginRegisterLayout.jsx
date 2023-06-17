@@ -3,8 +3,12 @@ import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import Container from "@mui/material/Container";
 import loginImg from "../assets/login.png";
+import loginGeneral from "../assets/loginGeneral.png";
+import loginLight from "../assets/loginLight.png";
+import { useTheme } from "@mui/material/styles";
 
 const LoginLayout = ({ children }) => {
+  const theme = useTheme();
   return (
     <Container
       sx={{
@@ -34,6 +38,8 @@ const LoginLayout = ({ children }) => {
           flexDirection: "column",
           // width: "100%",
           width: "30rem",
+          borderRadius: "0px",
+          // pl: "2rem",
         },
       }}
     >
@@ -52,7 +58,7 @@ const LoginLayout = ({ children }) => {
       >
         <CardMedia
           component="img"
-          src={loginImg.src}
+          src={theme.palette.mode === "dark" ? loginImg.src : loginLight.src}
           sx={{
             borderRadius: "50%",
             "@media(max-width: 600px)": {
@@ -71,7 +77,7 @@ const LoginLayout = ({ children }) => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
-              ml: "4rem",
+              ml: "5rem",
             },
           }}
         />
@@ -92,6 +98,7 @@ const LoginLayout = ({ children }) => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
+
             // height: "100%",
           },
           "@media(max-width: 400px)": {
@@ -100,7 +107,7 @@ const LoginLayout = ({ children }) => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            mr: "4rem",
+            mr: "3rem",
             // height: "100%",
           },
         }}

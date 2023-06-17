@@ -6,19 +6,20 @@ import ButtonConnect from "../components/ButtonConnect";
 import { useRouter } from "next/router";
 import TableHome from "../components/TableHome";
 import { useAppContext } from "../context";
+import SwitchMode from "../components/SwitchMode";
 
 const HomePage = () => {
   const router = useRouter();
-  const [statistics, setStatistics] = useState([]);
-  const { address, contract, getCampaignsStatistics } = useAppContext();
+  // const [statistics, setStatistics] = useState([]);
+  // const { address, contract, getCampaignsStatistics } = useAppContext();
 
-  const fetchStatistics = async () => {
-    const data = await getCampaignsStatistics();
-    setStatistics(data);
-  };
-  useEffect(() => {
-    fetchStatistics();
-  }, []);
+  // const fetchStatistics = async () => {
+  //   const data = await getCampaignsStatistics();
+  //   setStatistics(data);
+  // };
+  // useEffect(() => {
+  //   fetchStatistics();
+  // }, []);
 
   return (
     <>
@@ -36,6 +37,18 @@ const HomePage = () => {
           width: "100%",
         }}
       >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            flexDirection: "row",
+            width: "90%",
+          }}
+        >
+          <SwitchMode />
+        </Box>
+
         <Box
           sx={{
             bgcolor: "textBg.main",
@@ -113,7 +126,7 @@ const HomePage = () => {
                   fontWeight: "bold",
                   fontSize: 24,
                   width: "70%",
-                  color: "textBg.main",
+                  color: "secondary.main",
                   "@media(max-width: 730px)": {
                     fontSize: 20,
                   },

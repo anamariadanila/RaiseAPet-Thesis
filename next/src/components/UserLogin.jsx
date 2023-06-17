@@ -22,14 +22,19 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationLogin } from "../lib/validation";
 import { signIn } from "next-auth/react";
+import { useTheme } from "@mui/material/styles";
 
 const UserLogin = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [ongDeleted, setOngDeleted] = useState(false);
+  const [dataError, setDataError] = useState("");
 
   const { connect, address } = useAppContext();
 
   const router = useRouter();
+
+  const theme = useTheme();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -47,8 +52,6 @@ const UserLogin = ({ title, messageTitle }) => {
   useEffect(() => {
     connect();
   }, [address]);
-
-  const [ongDeleted, setOngDeleted] = useState(false);
 
   // const handleDelete = async () => {
   //   const newVal = { address };
@@ -80,7 +83,7 @@ const UserLogin = ({ title, messageTitle }) => {
       password: values.password,
       address: address,
       type: type,
-      // callbackUrl: "/campaigns",
+      callbackUrl: "/campaigns",
     });
     if (status.error) {
       window.alert(status.error);
@@ -97,33 +100,34 @@ const UserLogin = ({ title, messageTitle }) => {
     await fetch("http://localhost:3000/api/getDeletedOng", options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "data");
         if (data && !data.error) {
         }
         if (data.error) {
-          setOngDeleted(true);
+          const verification = data.error.includes("Ong already deleted");
+          setDataError(data.error);
           window.alert(data.error);
+          setOngDeleted(verification);
           router.push("/");
         }
       });
-    console.log(ongDeleted, "ongDeleted");
-
-    // if (status.ok && ongDeleted === false) {
+    // if (status.ok) {
     //   router.push("/campaigns");
     //   connect();
-    // } else if (ongDeleted === true) {
+    // } else {
     //   connect();
-    //   router.push("/");
     // }
-
-    if (ongDeleted === true) {
+    if (ongDeleted) {
       connect();
       router.push("/");
-    } else if (status.ok && ongDeleted === false) {
-      router.push("/campaigns");
+    }
+    if (!dataError) {
       connect();
+      router.push("/campaigns");
     }
   };
+
+  console.log(dataError, "dataError");
+  console.log(type, "type");
 
   const onSubmitDonator = async () => {
     connect();
@@ -137,6 +141,8 @@ const UserLogin = ({ title, messageTitle }) => {
     if (status.error) {
       window.alert(status.error);
     }
+
+    console.log(status, "status");
 
     if (status.ok) {
       router.push("/campaigns");
@@ -356,7 +362,10 @@ const UserLogin = ({ title, messageTitle }) => {
                 }}
               >
                 Don't have an account? Register{" "}
-                <Link href="/register" color="#fff">
+                <Link
+                  href="/register"
+                  color={theme.palette.mode === "dark" ? "#fff" : "#000"}
+                >
                   here.
                 </Link>
               </Typography>
@@ -373,7 +382,10 @@ const UserLogin = ({ title, messageTitle }) => {
               }}
             >
               Forgot your password? Change it{" "}
-              <Link href="/change-password" color="#fff">
+              <Link
+                href="/change-password"
+                color={theme.palette.mode === "dark" ? "#fff" : "#000"}
+              >
                 here.
               </Link>
             </Typography>

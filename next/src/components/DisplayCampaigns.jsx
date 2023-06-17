@@ -58,7 +58,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
           }}
         >
           <Typography
-            sx={{ fontSize: "25px", fontWeight: "bold", color: "white.main" }}
+            sx={{ fontSize: "25px", fontWeight: "bold", color: "title.main" }}
           >
             {title} ({campaigns?.length})
           </Typography>
@@ -93,7 +93,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
                 sx={{
                   fontSize: "18px",
                   fontWeight: "bold",
-                  color: "white.main",
+                  color: "title.main",
                 }}
               >
                 No campaigns found

@@ -20,6 +20,7 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { validationRegister } from "../lib/validation";
 import { Link } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const UserRegister = ({ title, messageTitle }) => {
   const [type, setType] = useState("");
@@ -27,6 +28,8 @@ const UserRegister = ({ title, messageTitle }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { address, connect } = useAppContext();
+
+  const theme = useTheme();
 
   const router = useRouter();
 
@@ -367,7 +370,10 @@ const UserRegister = ({ title, messageTitle }) => {
                 }}
               >
                 Back to{" "}
-                <Link href="/login" color="#fff">
+                <Link
+                  href="/login"
+                  color={theme.palette.mode === "dark" ? "#fff" : "#000"}
+                >
                   login.
                 </Link>
               </Typography>

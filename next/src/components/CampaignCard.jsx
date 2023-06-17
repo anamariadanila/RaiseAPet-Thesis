@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Identicons from "react-identicons";
 import { daysLeft } from "../utils/functions";
 import { truncate } from "../utils/functions";
+import theme from "../utils/theme";
 
 const CampaignCard = ({
   owner,
@@ -31,7 +32,12 @@ const CampaignCard = ({
   return (
     <Box sx={{ mt: "2rem" }}>
       <Card
-        sx={{ maxWidth: 300, maxHeight: 500, borderRadius: "1rem" }}
+        sx={{
+          maxWidth: 300,
+          maxHeight: 500,
+          borderRadius: "1rem",
+          // backgroundColor: theme === "dark" ? "#1f1f1f" : "#1f1f1f",
+        }}
         onClick={handleClick}
       >
         <CardActionArea>

@@ -4,6 +4,7 @@ import LoginLayout from "../layouts/LoginRegisterLayout";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import UserLogin from "../components/Userlogin";
+import SwitchMode from "../components/SwitchMode";
 // import UserLogin from "../components/UserLogin";
 
 export default function Login() {
@@ -26,6 +27,22 @@ export default function Login() {
         >
           <Box
             sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              flexDirection: "row",
+              width: "100%",
+              mr: "4rem",
+              "@media(max-width: 400px)": {
+                width: "100%",
+                ml: "12rem",
+              },
+            }}
+          >
+            <SwitchMode />
+          </Box>
+          <Box
+            sx={{
               bgcolor: "textBg.main",
               height: "5rem",
               borderRadius: "15px",
@@ -40,6 +57,7 @@ export default function Login() {
               "@media(max-width: 400px)": {
                 width: "16rem",
                 ml: "4rem",
+                borderRadius: "15px",
               },
             }}
           >

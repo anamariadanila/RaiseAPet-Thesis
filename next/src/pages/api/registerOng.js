@@ -37,6 +37,7 @@ export default async function handler(req, res) {
         password: await bcrypt.hash(password, 10),
         address: address,
         type: type,
+        deleted: false,
       },
     });
     if (user) {

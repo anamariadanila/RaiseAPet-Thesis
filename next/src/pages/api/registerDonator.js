@@ -23,6 +23,7 @@ export default async function handler(req, res) {
         type: type,
         ongCode: null,
         password: null,
+        deleted: false,
       },
     });
     if (user) {

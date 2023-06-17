@@ -57,7 +57,7 @@ const DisplayOngs = ({ title, loading, ongs }) => {
           sx={{ display: "flex", alignItems: "center", justifyContent: "left" }}
         >
           <Typography
-            sx={{ fontSize: "25px", fontWeight: "bold", color: "white.main" }}
+            sx={{ fontSize: "25px", fontWeight: "bold", color: "title.main" }}
           >
             {title} ({ongs?.length})
           </Typography>
@@ -92,7 +92,7 @@ const DisplayOngs = ({ title, loading, ongs }) => {
                 sx={{
                   fontSize: "18px",
                   fontWeight: "bold",
-                  color: "white.main",
+                  color: "title.main",
                 }}
               >
                 No ongs found

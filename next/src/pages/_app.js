@@ -8,14 +8,33 @@ import "../styles/styles.css";
 import { SessionProvider } from "next-auth/react";
 import Auth from "../components/Auth.jsx";
 import { Sepolia } from "@thirdweb-dev/chains";
+import { useMemo } from "react";
+import { useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-const darkTheme = createTheme(getDesignTokens("dark"));
+// const darkTheme = createTheme(getDesignTokens("light"));
 
 export const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
 });
-
 export default function App({ Component, pageProps, session }) {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [mode, setMode] = useState("dark");
+
+  const colorMode = useMemo(
+    () => ({
+      // The dark mode switch would invoke this method
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+    }),
+    []
+  );
+
+  // Update the theme only if the mode changes
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
     <SessionProvider session={session}>
       <ThirdwebProvider
@@ -26,16 +45,18 @@ export default function App({ Component, pageProps, session }) {
           loginRedirect: "/campaigns",
         }}
       >
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
-          <ContextProvider>
-            {/* <Auth>
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <ContextProvider>
+              {/* <Auth>
               <Component {...pageProps} />
             </Auth> */}
 
-            <Component {...pageProps} />
-          </ContextProvider>
-        </ThemeProvider>
+              <Component {...pageProps} />
+            </ContextProvider>
+          </ThemeProvider>
+        </ColorModeContext.Provider>
       </ThirdwebProvider>
     </SessionProvider>
   );

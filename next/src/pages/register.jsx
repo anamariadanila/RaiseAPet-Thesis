@@ -6,6 +6,7 @@ import Head from "next/head";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import UserRegister from "../components/UserRegister";
+import SwitchMode from "../components/SwitchMode";
 
 const Register = () => {
   return (
@@ -24,19 +25,22 @@ const Register = () => {
           flexDirection: "column",
         }}
       >
-        {/* <Box
+        <Box
           sx={{
             display: "flex",
-            alignItems: "flex-start",
-            flexDirection: "column",
-            width: "95%",
-            mt: "1rem",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            flexDirection: "row",
+            width: "100%",
+            mr: "4rem",
+            "@media(max-width: 400px)": {
+              width: "100%",
+              ml: "12rem",
+            },
           }}
         >
-          <IconButton onClick={() => router.push("/")}>
-            <img src={logo.src} alt="logo" width="80px" height="80px" />
-          </IconButton>
-        </Box> */}
+          <SwitchMode />
+        </Box>
         <Box
           sx={{
             bgcolor: "textBg.main",
