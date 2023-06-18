@@ -74,7 +74,14 @@ const OngAlreadyCreatedModal = () => {
                 }}
               >
                 <AddHomeOutlinedIcon
-                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  sx={{
+                    fontSize: "2rem",
+                    m: "0.5rem",
+                    color: "icon.main",
+                    "@media(max-width: 600px)": {
+                      m: "0rem",
+                    },
+                  }}
                 />
               </Tooltip>
             </Grid>
@@ -109,7 +116,11 @@ const OngAlreadyCreatedModal = () => {
               </DialogTitle>
               <IconButton color="secondary" onClick={handleClose}>
                 <CloseOutlinedIcon
-                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  sx={{
+                    fontSize: "2rem",
+                    m: "0.5rem",
+                    color: "icon.main",
+                  }}
                 />
               </IconButton>
             </Box>
@@ -164,7 +175,14 @@ const OngAlreadyCreatedModal = () => {
                 }}
               >
                 <AddHomeOutlinedIcon
-                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  sx={{
+                    fontSize: "2rem",
+                    m: "0.5rem",
+                    color: "icon.main",
+                    "@media(max-width: 600px)": {
+                      m: "0rem",
+                    },
+                  }}
                 />
               </Tooltip>
             </Grid>

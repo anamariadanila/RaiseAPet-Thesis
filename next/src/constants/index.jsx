@@ -179,3 +179,65 @@ export const donatorIcons = [
     link: "/profile",
   },
 ];
+
+export const ongHamburgerIcons = [
+  {
+    icon: (
+      <GridViewOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.2rem", color: "icon.main" }}
+      />
+    ),
+    link: "/campaigns",
+    name: "Campaigns",
+  },
+  {
+    icon: (
+      <PetsOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.2rem", color: "icon.main" }}
+      />
+    ),
+    link: "/ongs",
+    name: "ONGs",
+  },
+
+  {
+    icon: (
+      <AccountCircleOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.2rem", color: "icon.main" }}
+      />
+    ),
+    link: "/profile",
+    name: "Profile",
+  },
+];
+
+export const donatorHamburgerIcons = [
+  {
+    icon: (
+      <GridViewOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.2rem", color: "icon.main" }}
+      />
+    ),
+    link: "/campaigns",
+    name: "Campaigns",
+  },
+  {
+    icon: (
+      <PetsOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.2rem", color: "icon.main" }}
+      />
+    ),
+    link: "/ongs",
+    name: "ONGs",
+  },
+
+  {
+    icon: (
+      <AccountCircleOutlinedIcon
+        sx={{ fontSize: "2rem", m: "0.2rem", color: "icon.main" }}
+      />
+    ),
+    link: "/profile",
+    name: "Profile",
+  },
+];

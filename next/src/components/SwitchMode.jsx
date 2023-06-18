@@ -67,7 +67,6 @@ const SwitchMode = () => {
 
   return (
     <IconButton
-      sx={{ ml: 1 }}
       onClick={colorMode.toggleColorMode}
       color="secondary"
       aria-label="dashboard"
@@ -78,6 +77,9 @@ const SwitchMode = () => {
             fontSize: "2rem",
             m: "0.5rem",
             color: "iconDark.main",
+            "@media(max-width: 600px)": {
+              m: "0rem",
+            },
           }}
         />
       ) : (
@@ -86,6 +88,9 @@ const SwitchMode = () => {
             fontSize: "2rem",
             m: "0.5rem",
             color: "iconDark.main",
+            "@media(max-width: 600px)": {
+              m: "0rem",
+            },
           }}
         />
       )}

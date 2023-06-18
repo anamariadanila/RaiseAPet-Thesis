@@ -92,7 +92,14 @@ const NewOngModal = () => {
                 }}
               >
                 <CreateNewFolderOutlinedIcon
-                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  sx={{
+                    fontSize: "2rem",
+                    m: "0.5rem",
+                    color: "icon.main",
+                    "@media(max-width: 600px)": {
+                      m: "0.1rem",
+                    },
+                  }}
                 />
               </Tooltip>
             </Grid>
@@ -130,7 +137,14 @@ const NewOngModal = () => {
                 }}
               >
                 <CreateNewFolderOutlinedIcon
-                  sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                  sx={{
+                    fontSize: "2rem",
+                    m: "0.5rem",
+                    color: "icon.main",
+                    "@media(max-width: 600px)": {
+                      m: "0.1rem",
+                    },
+                  }}
                 />
               </Tooltip>
             </Grid>

@@ -20,6 +20,7 @@ import SwitchMode from "./SwitchMode.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
+import HamburgerMenu from "./HamburgerMenu.jsx";
 
 export default function Sidebar({}) {
   const router = useRouter();
@@ -156,17 +157,17 @@ export default function Sidebar({}) {
       </Box>
       {/* <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          flexGrow: 1,
-          width: "100%",
-          mb: "2rem",
+          // display: "flex",
+          // flexDirection: "column",
+          // height: "100%",
+          // flexGrow: 1,
+          // width: "100%",
+          // mb: "2rem",
           display: { xs: "block", sm: "none" },
         }}
-        position="fixed"
+        // position="fixed"
       >
-        <AppBar position="static">
+        {/* <AppBar position="static">
           <Toolbar>
             <IconButton
               size="large"
@@ -178,8 +179,9 @@ export default function Sidebar({}) {
               <MenuIcon />
             </IconButton>
           </Toolbar>
-        </AppBar>
-      </Box> */}
+        </AppBar> */}
+      {/* <HamburgerMenu />
+      </Box>  */}
     </>
   );
 }

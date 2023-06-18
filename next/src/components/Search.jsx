@@ -26,11 +26,6 @@ const Search = ({ data, campaigns }) => {
     setSearchResults(filteredResults);
   };
 
-  const catTitle = data?.filter((item) => {
-    item?.toLowerCase().includes("cat ");
-  });
-  console.log(catTitle, "catTitle");
-
   // console.log(data, "data");
   console.log(searchTerm, "searchTerm");
   console.log(searchResults, "searchResults");
