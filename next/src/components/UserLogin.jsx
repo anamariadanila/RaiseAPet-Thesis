@@ -79,9 +79,10 @@ const UserLogin = ({ title, messageTitle }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.error) {
+          router.push("/campaigns");
         }
         if (data.error) {
-          const verification = data.error.includes("Ong already deleted");
+          const verification = data.error.includes("ONG already deleted");
           setDataError(data.error);
           window.alert(data.error);
           setOngDeleted(verification);
@@ -94,14 +95,14 @@ const UserLogin = ({ title, messageTitle }) => {
     // } else {
     //   connect();
     // }
-    if (ongDeleted) {
-      connect();
-      router.push("/");
-    }
-    if (!dataError) {
-      connect();
-      router.push("/campaigns");
-    }
+    // if (ongDeleted === "ONG already deleted") {
+    //   // connect();
+    //  router.push("/");
+    // }
+    // if (!dataError) {
+    //   connect();
+    //   router.push("/campaigns");
+    // }
   };
 
   console.log(dataError, "dataError");
@@ -123,8 +124,8 @@ const UserLogin = ({ title, messageTitle }) => {
     console.log(status, "status");
 
     if (status.ok) {
-      router.push("/campaigns");
       connect();
+      router.push("/campaigns");
     }
   };
 
@@ -337,7 +338,7 @@ const UserLogin = ({ title, messageTitle }) => {
               >
                 Don't have an account? Register{" "}
                 <Link
-                  href="/register"
+                  onClick={() => router.push("/register")}
                   color={theme.palette.mode === "dark" ? "#fff" : "#000"}
                 >
                   here.
@@ -357,7 +358,7 @@ const UserLogin = ({ title, messageTitle }) => {
             >
               Forgot your password? Change it{" "}
               <Link
-                href="/change-password"
+                onClick={() => router.push("/change-password")}
                 color={theme.palette.mode === "dark" ? "#fff" : "#000"}
               >
                 here.

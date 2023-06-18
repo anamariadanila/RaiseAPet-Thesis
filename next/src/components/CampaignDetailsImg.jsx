@@ -126,7 +126,7 @@ const CampaignDetailsImg = () => {
               </>
             ) : (
               <>
-                <Box
+                {/* <Box
                   sx={{
                     backgroundColor: "#b3b1b5",
                     borderRadius: "30px",
@@ -147,7 +147,7 @@ const CampaignDetailsImg = () => {
                   >
                     Campaign Closed
                   </Typography>
-                </Box>
+                </Box> */}
               </>
             )
           ) : null

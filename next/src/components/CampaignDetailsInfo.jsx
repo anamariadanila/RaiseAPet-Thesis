@@ -20,6 +20,8 @@ const CampaignDetailsInfo = () => {
   const [amount, setAmount] = useState("");
   const [ongs, setOngs] = useState([]);
   const id = router.query.id;
+  const [ongId, setOngId] = useState("");
+  const [ongData, setOngData] = useState({});
 
   const expired =
     new Date().getTime() > Number(campaigns[id]?.deadline + "000");
@@ -62,20 +64,40 @@ const CampaignDetailsInfo = () => {
 
   const fetchOngs = async () => {
     setLoading(true);
-    const data = await getOngs();
-    const val = data.map((val) => {
-      if (val.owner === campaigns[id]?.owner.toLowerCase()) {
-        return val.id;
-      }
+    await getOngs().then((res) => {
+      const valFinal = res.filter((val) => {
+        return val.owner.toLowerCase() === campaigns[id]?.owner.toLowerCase();
+      });
+      console.log(valFinal, "valFinal");
+      setOngData(valFinal[0]);
+      setOngId(valFinal[0]?.id);
+      setOngs(res);
+      setLoading(false);
     });
-    console.log(val, "val");
-    setOngs(data);
-    setLoading(false);
+
+    // console.log(data[0], "data");
+
+    // const valFinal = data.find((val) => {
+    //   console.log(val, "val");
+
+    //   return val.owner.toLowerCase() === campaigns[id]?.owner.toLowerCase();
+    // });
+
+    // console.log(valFinal, "valFinal");
+    // setOngId(valFinal?.id);
+    // setOngs(data);
+    // setLoading(false);
   };
 
+  const getToOng = () => {
+    router.push(`/ongs/${ongId}`);
+  };
+
+  console.log(ongData?.name, "ongData");
+
   useEffect(() => {
-    if (contract) fetchOngs();
-  }, [address, contract]);
+    if (contract && campaigns) fetchOngs();
+  }, [address, contract, campaigns]);
 
   return (
     <Container
@@ -341,14 +363,14 @@ const CampaignDetailsInfo = () => {
                 alignItems: "center",
                 flexDirection: "row",
                 mt: "1rem",
-                width: "60%",
+                width: "80%",
               }}
             >
               <Box
                 sx={{
-                  mr: "1rem",
+                  // mr: "0.3rem",
                   "@media(max-width: 1200px)": {
-                    mr: "0.5rem",
+                    mr: "0.4rem",
                   },
                   "@media(max-width: 650px)": {
                     mr: "0.3rem",
@@ -357,6 +379,7 @@ const CampaignDetailsInfo = () => {
                     mr: "0.2rem",
                   },
                 }}
+                onClick={getToOng}
               >
                 <Identicon
                   size={25}
@@ -364,18 +387,20 @@ const CampaignDetailsInfo = () => {
                   bg="white"
                 />
               </Box>
-              <Box>
+              <Box sx={{ width: "100%" }}>
                 <Typography
                   align="center"
                   sx={{
                     fontWeight: "bold",
-                    fontSize: 15,
+                    fontSize: 16,
+
                     "@media(max-width: 330px)": {
                       fontSize: 12,
                     },
                   }}
+                  onClick={getToOng}
                 >
-                  {truncate(campaigns[id]?.owner.toLowerCase(), 8, 8, 19)}
+                  {ongData?.name}
                 </Typography>
               </Box>
             </Box>

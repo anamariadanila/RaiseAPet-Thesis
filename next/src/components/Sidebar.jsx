@@ -17,6 +17,9 @@ import NewOngModal from "./NewOngModal.jsx";
 import OngAlreadyCreatedModal from "./OngAlreadyCreatedModal.jsx";
 import { useEffect } from "react";
 import SwitchMode from "./SwitchMode.jsx";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 export default function Sidebar({}) {
   const router = useRouter();
@@ -46,107 +49,137 @@ export default function Sidebar({}) {
       });
       router.push("/");
     }
-  }, []);
+  }, [address]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-
-        display: { xs: "none", sm: "block" },
-      }}
-      position="fixed"
-    >
-      <AppBar
-        position="static"
+    <>
+      <Box
         sx={{
-          width: "4.5rem",
+          display: "flex",
+          flexDirection: "column",
           height: "100%",
+
+          display: { xs: "none", sm: "block" },
         }}
+        position="fixed"
       >
-        <Toolbar
+        <AppBar
+          position="static"
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexDirection: "column",
+            width: "4.5rem",
             height: "100%",
-            width: "100%",
-            mt: "1.5rem",
-            mb: "1.5rem",
           }}
         >
-          <Box
+          <Toolbar
             sx={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "space-between",
               flexDirection: "column",
+              height: "100%",
               width: "100%",
+              mt: "1.5rem",
+              mb: "1.5rem",
             }}
           >
-            <IconButton
-              onClick={() =>
-                session?.user?.user?.type === "ONG" ||
-                session?.user?.user?.type === "Donator"
-                  ? router.push("/campaigns")
-                  : router.push("/")
-              }
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+                width: "100%",
+              }}
             >
-              <img src={logo.src} alt="logo" width="80px" height="80px" />
-            </IconButton>
-            {session?.user?.user?.type === "ONG" && <NewOngModal />}
-            {session?.user?.user?.type === "ONG" && <OngAlreadyCreatedModal />}
-            {session?.user?.user?.type === "ONG"
-              ? sidebarIcons.map((icon, index) => (
-                  <IconButton
-                    color="secondary"
-                    onClick={() => router.push(icon.link)}
-                    key={index}
-                  >
-                    {icon.icon}
-                  </IconButton>
-                ))
-              : donatorIcons.map((icon, index) => (
-                  <IconButton
-                    color="secondary"
-                    onClick={() => router.push(icon.link)}
-                    key={index}
-                  >
-                    {icon.icon}
-                  </IconButton>
-                ))}
+              <IconButton
+                onClick={() =>
+                  session?.user?.user?.type === "ONG" ||
+                  session?.user?.user?.type === "Donator"
+                    ? router.push("/campaigns")
+                    : router.push("/")
+                }
+              >
+                <img src={logo.src} alt="logo" width="80px" height="80px" />
+              </IconButton>
+              {session?.user?.user?.type === "ONG" && <NewOngModal />}
+              {session?.user?.user?.type === "ONG" && (
+                <OngAlreadyCreatedModal />
+              )}
+              {session?.user?.user?.type === "ONG"
+                ? sidebarIcons.map((icon, index) => (
+                    <IconButton
+                      color="secondary"
+                      onClick={() => router.push(icon.link)}
+                      key={index}
+                    >
+                      {icon.icon}
+                    </IconButton>
+                  ))
+                : donatorIcons.map((icon, index) => (
+                    <IconButton
+                      color="secondary"
+                      onClick={() => router.push(icon.link)}
+                      key={index}
+                    >
+                      {icon.icon}
+                    </IconButton>
+                  ))}
 
-            <IconButton color="secondary" onClick={handleSignOut}>
-              <Grid item>
-                <Tooltip
-                  title="Logout"
-                  arrow
-                  placement="right"
-                  componentsProps={{
-                    tooltip: {
-                      sx: {
-                        bgcolor: "icon.main",
-                        "& .MuiTooltip-arrow": {
-                          color: "icon.main",
+              <IconButton color="secondary" onClick={handleSignOut}>
+                <Grid item>
+                  <Tooltip
+                    title="Logout"
+                    arrow
+                    placement="right"
+                    componentsProps={{
+                      tooltip: {
+                        sx: {
+                          bgcolor: "icon.main",
+                          "& .MuiTooltip-arrow": {
+                            color: "icon.main",
+                          },
+                          color: "common.black",
+                          fontSize: "0.8rem",
                         },
-                        color: "common.black",
-                        fontSize: "0.8rem",
                       },
-                    },
-                  }}
-                >
-                  <LogoutOutlinedIcon
-                    sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-                  />
-                </Tooltip>
-              </Grid>
+                    }}
+                  >
+                    <LogoutOutlinedIcon
+                      sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
+                    />
+                  </Tooltip>
+                </Grid>
+              </IconButton>
+            </Box>
+            <SwitchMode />
+          </Toolbar>
+        </AppBar>
+      </Box>
+      {/* <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          flexGrow: 1,
+          width: "100%",
+          mb: "2rem",
+          display: { xs: "block", sm: "none" },
+        }}
+        position="fixed"
+      >
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
             </IconButton>
-          </Box>
-          <SwitchMode />
-        </Toolbar>
-      </AppBar>
-    </Box>
+          </Toolbar>
+        </AppBar>
+      </Box> */}
+    </>
   );
 }

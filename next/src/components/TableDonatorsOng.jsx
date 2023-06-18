@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import moment from "moment";
 import Identicon from "react-identicons";
+import { truncate } from "../utils/functions";
 
 export default function TableDonatorsOng({ donators }) {
   return (
@@ -43,8 +44,8 @@ export default function TableDonatorsOng({ donators }) {
                   <Box sx={{ mr: "1rem" }}>
                     <Identicon string={donator[0]} size={30} />
                   </Box>
-
-                  {donator[0]}
+                  {truncate(donator[0], 8, 8, 19)}
+                  {/* {donator[0]} */}
                 </Box>
               </TableCell>
               <TableCell align="right" sx={{ fontSize: "18px" }}>

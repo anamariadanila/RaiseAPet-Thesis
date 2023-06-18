@@ -366,7 +366,7 @@ const UserRegister = ({ title, messageTitle }) => {
               >
                 Back to{" "}
                 <Link
-                  href="/login"
+                  onClick={() => router.push("/login")}
                   color={theme.palette.mode === "dark" ? "#fff" : "#000"}
                 >
                   login.

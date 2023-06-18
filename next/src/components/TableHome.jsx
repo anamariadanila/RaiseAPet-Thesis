@@ -10,7 +10,7 @@ const TableHome = () => {
     backgroundColor: theme.palette.mode === "dark" ? "#3b3247" : "#ebe8f2",
     padding: theme.spacing(4),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    color: `${theme.palette.mode === "light" ? "secondary.main" : "#fff"}`,
     height: "100px",
     width: "300px",
     fontSize: "1.3rem",

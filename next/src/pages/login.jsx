@@ -32,7 +32,9 @@ export default function Login() {
               alignItems: "center",
               flexDirection: "row",
               width: "100%",
+              height: "1rem",
               mr: "4rem",
+              mt: "1rem",
               "@media(max-width: 400px)": {
                 width: "100%",
                 ml: "12rem",

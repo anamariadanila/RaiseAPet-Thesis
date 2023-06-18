@@ -66,6 +66,7 @@ const Profile = () => {
     if (session?.user.user.type === "Donator") {
       setLoading(true);
       const data = await getOngsByDonator(address?.toLowerCase());
+      console.log(data, "data");
       setOngs(data);
       setLoading(false);
     }

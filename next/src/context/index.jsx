@@ -10,15 +10,25 @@ import { ethers } from "ethers";
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const { contract } = useContract(
-    "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
-  );
+  // const { contract } = useContract(
+  //   "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
+  // );
   //contract final cu sepolia OngContractFinal
 
   // const { contract } = useContract(
   //   "0x5E319C15bBd1B1991e5E0C5ae01363B9507F282A"
   // );
   //contract final cu sepolia OngContractFinal2
+
+  // const { contract } = useContract(
+  //   "0xA99AbeF5Eb7053C455Ee544bAD2B8078965b1134"
+  // );
+  //contract 3 cu sepolia
+
+  const { contract } = useContract(
+    "0x1d0A1B3D09a0B313902a610537Bb968a27876E9a"
+  );
+  //contract final sper
 
   const { mutateAsync: createCampaign } = useContractWrite(
     contract,
@@ -415,9 +425,8 @@ export const ContextProvider = ({ children }) => {
       if (hasDonated) {
         ongsByDonator.push(allOngs[i]);
       }
-
-      return ongsByDonator;
     }
+    return ongsByDonator;
   };
 
   useEffect(() => {

@@ -56,8 +56,10 @@ const handler = NextAuth({
             },
           });
 
-          if (!user) {
-            throw new Error("No user found! Register first!");
+          if (!user || user.type !== "Donator") {
+            throw new Error(
+              "No user found! Choose another address or register first!"
+            );
           }
           const accessToken = signJwtAccessToken(user);
           user = { ...user, accessToken };

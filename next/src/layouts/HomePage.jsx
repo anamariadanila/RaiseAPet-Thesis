@@ -5,21 +5,12 @@ import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import ButtonConnect from "../components/ButtonConnect";
 import { useRouter } from "next/router";
 import TableHome from "../components/TableHome";
-import { useAppContext } from "../context";
+import { useTheme } from "@mui/material/styles";
 import SwitchMode from "../components/SwitchMode";
 
 const HomePage = () => {
   const router = useRouter();
-  // const [statistics, setStatistics] = useState([]);
-  // const { address, contract, getCampaignsStatistics } = useAppContext();
-
-  // const fetchStatistics = async () => {
-  //   const data = await getCampaignsStatistics();
-  //   setStatistics(data);
-  // };
-  // useEffect(() => {
-  //   fetchStatistics();
-  // }, []);
+  const theme = useTheme();
 
   return (
     <>
@@ -43,7 +34,10 @@ const HomePage = () => {
             justifyContent: "flex-end",
             alignItems: "center",
             flexDirection: "row",
-            width: "90%",
+            height: "1rem",
+            mr: "4rem",
+            mt: "1rem",
+            width: "100%",
           }}
         >
           <SwitchMode />
@@ -126,7 +120,9 @@ const HomePage = () => {
                   fontWeight: "bold",
                   fontSize: 24,
                   width: "70%",
-                  color: "secondary.main",
+                  color: `${
+                    theme.palette.mode === "light" ? "secondary.main" : "#fff"
+                  }`,
                   "@media(max-width: 730px)": {
                     fontSize: 20,
                   },

@@ -44,6 +44,7 @@ const Navbar = () => {
         alignItems: "center",
         mt: "0.5rem",
         width: "100%",
+        display: { xs: "none", sm: "block" },
       }}
       position="static"
     >
