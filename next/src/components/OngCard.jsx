@@ -7,6 +7,7 @@ import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import Identicons from "react-identicons";
 import { truncate } from "../utils/functions";
+import { useTheme } from "@emotion/react";
 
 const OngCard = ({
   owner,
@@ -18,10 +19,18 @@ const OngCard = ({
   status,
   handleClick,
 }) => {
+  const theme = useTheme();
   return (
     <Box sx={{ mt: "2rem" }}>
       <Card
-        sx={{ maxWidth: 300, maxHeight: 500, borderRadius: "1rem" }}
+        sx={{
+          maxWidth: 300,
+          maxHeight: 500,
+          borderRadius: "1rem",
+          backgroundColor: `${
+            theme.palette.mode === "light" ? "#f7f7f7" : "#3a274f"
+          }`,
+        }}
         onClick={handleClick}
       >
         <CardActionArea>

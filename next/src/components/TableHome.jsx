@@ -15,7 +15,6 @@ const TableHome = () => {
     width: "300px",
     fontSize: "1.3rem",
     fontWeight: "bold",
-    // color: "#fff",
   }));
 
   return (
@@ -38,8 +37,6 @@ const TableHome = () => {
             "@media(max-width: 730px)": {
               display: "flex",
               flexDirection: "column",
-              // width: "100%",
-              // height: "100%",
               justifyContent: "center",
               alignItems: "center",
               mb: "2rem",
@@ -97,7 +94,6 @@ const TableHome = () => {
                 height: "100%",
                 justifyContent: "center",
                 alignItems: "center",
-                // mt: "2rem",
               },
             }}
           >

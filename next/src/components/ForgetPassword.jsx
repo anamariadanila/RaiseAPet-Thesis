@@ -258,11 +258,7 @@ const ForgetPassword = ({ title, messageTitle }) => {
                 alignItems: "center",
               }}
             >
-              <ButtonConnect
-                title={title}
-                btnType="submit"
-                // handleClick={handleClickRegister}
-              />
+              <ButtonConnect title={title} btnType="submit" />
             </Box>
           </Box>
         </form>

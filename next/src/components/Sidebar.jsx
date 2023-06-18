@@ -3,15 +3,10 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useDisconnect } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
-import {
-  sidebarIcons,
-  donatorIcons,
-  sidebarIconsSecond,
-} from "../constants/index.jsx";
+import { sidebarIcons, donatorIcons } from "../constants/index.jsx";
 import logo from "../assets/logo.png";
 import { signOut } from "next-auth/react";
 import { useAppContext } from "../context/index.jsx";
@@ -149,17 +144,6 @@ export default function Sidebar({}) {
               </Grid>
             </IconButton>
           </Box>
-          {/* <Box>
-            <IconButton color="secondary" aria-label="dashboard">
-              <Brightness5OutlinedIcon
-                sx={{
-                  fontSize: "2rem",
-                  m: "0.5rem",
-                  color: "icon.main",
-                }}
-              />
-            </IconButton>
-          </Box> */}
           <SwitchMode />
         </Toolbar>
       </AppBar>

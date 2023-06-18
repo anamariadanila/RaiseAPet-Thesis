@@ -78,7 +78,6 @@ const SwitchMode = () => {
             fontSize: "2rem",
             m: "0.5rem",
             color: "iconDark.main",
-            // color: "icon.main",
           }}
         />
       ) : (
@@ -86,7 +85,6 @@ const SwitchMode = () => {
           sx={{
             fontSize: "2rem",
             m: "0.5rem",
-            // color: "icon.main",
             color: "iconDark.main",
           }}
         />
@@ -96,17 +94,3 @@ const SwitchMode = () => {
 };
 
 export default SwitchMode;
-
-{
-  /* <Box>
-            <IconButton color="secondary" aria-label="dashboard">
-              <Brightness5OutlinedIcon
-                sx={{
-                  fontSize: "2rem",
-                  m: "0.5rem",
-                  color: "icon.main",
-                }}
-              />
-            </IconButton>
-          </Box> */
-}

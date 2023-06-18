@@ -6,7 +6,6 @@ import { ContextProvider } from "../context";
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "../styles/styles.css";
 import { SessionProvider } from "next-auth/react";
-import Auth from "../components/Auth.jsx";
 import { Sepolia } from "@thirdweb-dev/chains";
 import { useMemo } from "react";
 import { useState } from "react";
@@ -49,10 +48,6 @@ export default function App({ Component, pageProps, session }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <ContextProvider>
-              {/* <Auth>
-              <Component {...pageProps} />
-            </Auth> */}
-
               <Component {...pageProps} />
             </ContextProvider>
           </ThemeProvider>

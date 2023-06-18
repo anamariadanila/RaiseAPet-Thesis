@@ -4,6 +4,7 @@ import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import CampaignCard from "./CampaignCard";
 import ButtonConnect from "./ButtonConnect";
+import Search from "./Search";
 
 const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
@@ -30,6 +31,9 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
     setGroup(getGroup());
   }, [end, campaigns]);
 
+  console.log(campaigns, "campaigns");
+  const campaignsTitle = campaigns?.map((campaign) => campaign.title);
+
   return (
     <>
       <Box
@@ -49,12 +53,12 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
           },
         }}
       >
+        {/* <Search data={campaignsTitle} campaigns={campaigns} /> */}
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "left",
-            // mt: "2rem",
           }}
         >
           <Typography

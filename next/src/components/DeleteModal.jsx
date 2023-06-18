@@ -30,7 +30,6 @@ export default function DeleteModal({ campaignsSent }) {
   };
 
   const handleDelete = async () => {
-    // e.preventDefault();
     setLoading(true);
     await deleteCampaign(campaignsSent[id]?.id.toString());
     setLoading(false);

@@ -217,7 +217,6 @@ export default function UpdateCampaign({ campaignsSent }) {
               />
             </Box>
             <Box sx={{ mt: "2rem", color: "secondary.main" }}>
-              {/* <label htmlFor="imgUrl">Image URL*</label> */}
               <TextField
                 label="Image URL"
                 id="imgUrl"

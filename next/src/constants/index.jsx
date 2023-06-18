@@ -1,9 +1,5 @@
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
-import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
 import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
@@ -94,35 +90,6 @@ export const sidebarIcons = [
     ),
     link: "/profile",
   },
-
-  // {
-  //   icon: (
-  //     <Grid item>
-  //       <Tooltip
-  //         title="Settings"
-  //         arrow
-  //         placement="right"
-  //         componentsProps={{
-  //           tooltip: {
-  //             sx: {
-  //               bgcolor: "icon.main",
-  //               "& .MuiTooltip-arrow": {
-  //                 color: "icon.main",
-  //               },
-  //               color: "common.black",
-  //               fontSize: "0.8rem",
-  //             },
-  //           },
-  //         }}
-  //       >
-  //         <SettingsOutlinedIcon
-  //           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-  //         />
-  //       </Tooltip>
-  //     </Grid>
-  //   ),
-  //   link: "/settings",
-  // },
 ];
 
 export const donatorIcons = [
@@ -211,33 +178,4 @@ export const donatorIcons = [
     ),
     link: "/profile",
   },
-
-  // {
-  //   icon: (
-  //     <Grid item>
-  //       <Tooltip
-  //         title="Settings"
-  //         arrow
-  //         placement="right"
-  //         componentsProps={{
-  //           tooltip: {
-  //             sx: {
-  //               bgcolor: "icon.main",
-  //               "& .MuiTooltip-arrow": {
-  //                 color: "icon.main",
-  //               },
-  //               color: "common.black",
-  //               fontSize: "0.8rem",
-  //             },
-  //           },
-  //         }}
-  //       >
-  //         <SettingsOutlinedIcon
-  //           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
-  //         />
-  //       </Tooltip>
-  //     </Grid>
-  //   ),
-  //   link: "/settings",
-  // },
 ];

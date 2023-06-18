@@ -47,7 +47,6 @@ const UserRegister = ({ title, messageTitle }) => {
   };
 
   // connect();
-  console.log(address, "aici");
 
   //for Donator
   const handleClick = async () => {
@@ -342,11 +341,7 @@ const UserRegister = ({ title, messageTitle }) => {
                   alignItems: "center",
                 }}
               >
-                <ButtonConnect
-                  title={title}
-                  btnType="submit"
-                  // handleClick={handleClickRegister}
-                />
+                <ButtonConnect title={title} btnType="submit" />
               </Box>
             </Box>
           ) : type === "Donator" ? (

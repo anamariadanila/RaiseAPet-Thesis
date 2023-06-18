@@ -13,11 +13,11 @@ export default async function handler(req, res) {
     });
 
     if (!user) {
-      return res.status(409).json({ error: "Ong not found" });
+      return res.status(409).json({ error: "ONG not found" });
     }
 
     if (user.deleted === true) {
-      return res.status(409).json({ error: "Ong already deleted" });
+      return res.status(409).json({ error: "ONG already deleted" });
     }
 
     if (user) {

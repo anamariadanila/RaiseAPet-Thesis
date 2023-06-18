@@ -84,7 +84,6 @@ const CampaignDetailsImg = () => {
               width: "12rem",
               height: "200px",
               mt: "1rem",
-              // ml: "1rem",
             },
             "@media(max-width: 300px)": {
               width: "10.5rem",

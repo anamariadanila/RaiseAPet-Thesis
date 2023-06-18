@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Identicons from "react-identicons";
 import { daysLeft } from "../utils/functions";
 import { truncate } from "../utils/functions";
-import theme from "../utils/theme";
+import { useTheme } from "@mui/material/styles";
 
 const CampaignCard = ({
   owner,
@@ -22,6 +22,7 @@ const CampaignCard = ({
   status,
   handleClick,
 }) => {
+  const theme = useTheme();
   const remainingDays = daysLeft(deadline);
   const dateTime = new Date(timestamp * 1000);
   const timeFormatted = dateTime.toLocaleTimeString("en-GB");
@@ -36,7 +37,9 @@ const CampaignCard = ({
           maxWidth: 300,
           maxHeight: 500,
           borderRadius: "1rem",
-          // backgroundColor: theme === "dark" ? "#1f1f1f" : "#1f1f1f",
+          backgroundColor: `${
+            theme.palette.mode === "light" ? "#f7f7f7" : "#3a274f"
+          }`,
         }}
         onClick={handleClick}
       >

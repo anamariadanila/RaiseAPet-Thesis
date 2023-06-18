@@ -63,7 +63,6 @@ const CampaignDetailsInfo = () => {
   const fetchOngs = async () => {
     setLoading(true);
     const data = await getOngs();
-    console.log(data, "data");
     const val = data.map((val) => {
       if (val.owner === campaigns[id]?.owner.toLowerCase()) {
         return val.id;
@@ -101,7 +100,6 @@ const CampaignDetailsInfo = () => {
         "@media(max-width: 815px)": {
           height: "100%",
           width: "30rem",
-          // mr: "1rem",
         },
         "@media(max-width: 580px)": {
           height: "100%",
@@ -457,9 +455,6 @@ const CampaignDetailsInfo = () => {
                     "@media(max-width: 290px)": {
                       width: "8rem",
                     },
-                    // "@media(max-width: 400px)": {
-                    //   width: "10rem",
-                    // },
                   }}
                   onChange={(e) => setAmount(e.target.value)}
                 />

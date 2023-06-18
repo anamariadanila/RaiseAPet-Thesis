@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import ButtonConnect from "./ButtonConnect";
-import UserAvatar from "./Avatar";
 import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { truncate } from "../utils/functions";
@@ -61,15 +60,10 @@ const Navbar = () => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            // justifyContent: "center",
             width: "100%",
             alignItems: "center",
           }}
-        >
-          {/* <Box>
-            <Search />
-          </Box> */}
-        </Box>
+        ></Box>
 
         <Box
           sx={{
@@ -95,11 +89,9 @@ const Navbar = () => {
             handleClick={handleClick}
             style={{ fontSize: "0.8rem" }}
           />
-          {/* <UserAvatar /> */}
         </Box>
       </Box>
     </Box>
   );
 };
-//TODO: Hamburger menu
 export default Navbar;

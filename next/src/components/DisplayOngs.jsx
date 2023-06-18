@@ -4,11 +4,9 @@ import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import ButtonConnect from "./ButtonConnect";
 import OngCard from "./OngCard";
-import { useSession } from "next-auth/react";
 
 const DisplayOngs = ({ title, loading, ongs }) => {
   const router = useRouter();
-  const { data: session, status } = useSession();
 
   const handleRoute = (ong) => {
     router.push(

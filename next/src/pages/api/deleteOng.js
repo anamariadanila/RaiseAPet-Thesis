@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     });
 
     if (!checkOngCode) {
-      return res.status(409).json({ error: "Ong code not found" });
+      return res.status(409).json({ error: "ONG code not found" });
     }
 
     const checkAddress = await prisma.users.findFirst({
