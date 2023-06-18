@@ -80,9 +80,9 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             px: "5rem",
           }}
         >
-          {loading && (
+          {/* {loading && (
             <img src={loader.src} alt="loader" width="100" height="100" />
-          )}
+          )} */}
 
           {!loading && campaigns?.length === 0 && (
             <Box

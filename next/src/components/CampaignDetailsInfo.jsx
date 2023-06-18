@@ -11,6 +11,7 @@ import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import CampaignDetailsImg from "./CampaignDetailsImg";
 import { truncate } from "../utils/functions";
+import Skeleton from "@mui/material/Skeleton";
 
 const CampaignDetailsInfo = () => {
   const router = useRouter();
@@ -217,143 +218,209 @@ const CampaignDetailsInfo = () => {
             }}
           >
             {expired ? (
-              <Box
-                sx={{
-                  backgroundColor: "#c72c2c",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Expired
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#c72c2c",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Expired
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : campaigns[id]?.status == 0 ? (
-              <Box
-                sx={{
-                  backgroundColor: "#a695a6",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Open
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#a695a6",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Open
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : campaigns[id]?.status == 1 ? (
-              <Box
-                sx={{
-                  backgroundColor: "#4ca84c",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Accepted
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#4ca84c",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Accepted
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : campaigns[id]?.status == 2 ? (
-              <Box
-                sx={{
-                  backgroundColor: "#b3b1b5",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Reverted
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#b3b1b5",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Reverted
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : campaigns[id]?.status == 3 ? (
-              <Box
-                sx={{
-                  backgroundColor: "#c72c2c",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Deleted
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#c72c2c",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Deleted
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : (
-              <Box
-                sx={{
-                  backgroundColor: "#e39639",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Paid
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#e39639",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Paid
+                    </Typography>
+                  </Box>
+                )}
+              </>
             )}
 
             <Box
@@ -381,11 +448,15 @@ const CampaignDetailsInfo = () => {
                 }}
                 onClick={getToOng}
               >
-                <Identicon
-                  size={25}
-                  string={campaigns[id]?.owner.toLowerCase()}
-                  bg="white"
-                />
+                {loading ? (
+                  <Skeleton variant="circular" width={26} height={26} />
+                ) : (
+                  <Identicon
+                    size={25}
+                    string={campaigns[id]?.owner.toLowerCase()}
+                    bg="white"
+                  />
+                )}
               </Box>
               <Box sx={{ width: "100%" }}>
                 <Typography
@@ -523,12 +594,18 @@ const CampaignDetailsInfo = () => {
           <BoxCount
             value={expired ? "0 Days" : remainingDays}
             description={expired ? "Expired" : "Days left"}
+            loading={loading}
           />
           <BoxCount
             value={campaigns[id]?.raised}
             description={`Raised of ${campaigns[id]?.cost} ETH`}
+            loading={loading}
           />
-          <BoxCount value={donators?.length} description={"Total donators"} />
+          <BoxCount
+            value={donators?.length}
+            description={"Total donators"}
+            loading={loading}
+          />
         </Box>
       </Box>
     </Container>

@@ -73,9 +73,9 @@ const DisplayOngs = ({ title, loading, ongs }) => {
             px: "5rem",
           }}
         >
-          {loading && (
+          {/* {loading && (
             <img src={loader.src} alt="loader" width="100" height="100" />
-          )}
+          )} */}
 
           {!loading && ongs?.length === 0 && (
             <Box

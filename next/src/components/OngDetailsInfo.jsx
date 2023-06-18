@@ -10,6 +10,7 @@ import ButtonConnect from "./ButtonConnect";
 import Loader from "./Loader";
 import OngDetailsImg from "./OngDetailsImg";
 import { truncate } from "../utils/functions";
+import Skeleton from "@mui/material/Skeleton";
 
 const OngDetailsInfo = () => {
   const router = useRouter();
@@ -184,51 +185,73 @@ const OngDetailsInfo = () => {
             }}
           >
             {ongs[id]?.status == 0 ? (
-              <Box
-                sx={{
-                  backgroundColor: "#a695a6",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Active
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#a695a6",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Active
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : ongs[id]?.status == 1 ? (
-              <Box
-                sx={{
-                  backgroundColor: "#c72c2c",
-                  borderRadius: "30px",
-                  width: "40%",
-                  height: "2rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Deleted
-                </Typography>
-              </Box>
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant="rounded"
+                    width="40%"
+                    height="2rem"
+                    sx={{ borderRadius: "30px" }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      backgroundColor: "#c72c2c",
+                      borderRadius: "30px",
+                      width: "40%",
+                      height: "2rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 17,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Deleted
+                    </Typography>
+                  </Box>
+                )}
+              </>
             ) : null}
 
             <Box
@@ -255,11 +278,15 @@ const OngDetailsInfo = () => {
                   },
                 }}
               >
-                <Identicon
-                  size={25}
-                  string={ongs[id]?.owner.toLowerCase()}
-                  bg="white"
-                />
+                {loading ? (
+                  <Skeleton variant="circular" width={26} height={26} />
+                ) : (
+                  <Identicon
+                    size={25}
+                    string={ongs[id]?.owner.toLowerCase()}
+                    bg="white"
+                  />
+                )}
               </Box>
               <Box>
                 <Typography
@@ -373,8 +400,16 @@ const OngDetailsInfo = () => {
               },
             }}
           >
-            <BoxCount value={ongs[id]?.raised} description={"ETH raised"} />
-            <BoxCount value={donators?.length} description={"Total donators"} />
+            <BoxCount
+              value={ongs[id]?.raised}
+              description={"ETH raised"}
+              loading={loading}
+            />
+            <BoxCount
+              value={donators?.length}
+              description={"Total donators"}
+              loading={loading}
+            />
           </Box>
           <Box
             sx={{
