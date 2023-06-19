@@ -6,6 +6,7 @@ import DisplayCampaigns from "../components/DisplayCampaigns";
 import { useSession } from "next-auth/react";
 import DisplayOngs from "../components/DisplayOngs";
 import { Box } from "@mui/material";
+import Loader from "../components/Loader";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
@@ -96,6 +97,7 @@ const Profile = () => {
             width: "100%",
           }}
         >
+          {loading && <Loader />}
           <Box
             sx={{
               display: "flex",

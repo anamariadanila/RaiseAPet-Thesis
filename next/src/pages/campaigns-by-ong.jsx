@@ -6,11 +6,13 @@ import { useAppContext } from "../context";
 import { useEffect, useState } from "react";
 import DisplayCampaigns from "../components/DisplayCampaigns";
 import { truncate } from "../utils/functions";
+import Loader from "../components/Loader";
 
 const CampaignsByOng = () => {
   const router = useRouter();
-  const { id, ongs } = router.query;
+  const { id, ongs, ongName } = router.query;
   console.log(id, "id", ongs, "ongs");
+
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
 
@@ -37,9 +39,10 @@ const CampaignsByOng = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainLayout>
+        {loading && <Loader />}
         <DisplayCampaigns
           campaigns={campaigns}
-          title={`Campaigns by ${truncate(ongs, 4, 4, 11)}`}
+          title={`Campaigns by ${ongName}`}
           loading={loading}
         />
       </MainLayout>

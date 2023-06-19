@@ -431,7 +431,11 @@ const OngDetailsInfo = () => {
                 router.push(
                   {
                     pathname: "/campaigns-by-ong",
-                    query: { id: id, ongs: ongs[id]?.owner },
+                    query: {
+                      id: id,
+                      ongs: ongs[id]?.owner,
+                      ongName: ongs[id]?.name,
+                    },
                   },
                   "/campaigns-by-ong"
                 );

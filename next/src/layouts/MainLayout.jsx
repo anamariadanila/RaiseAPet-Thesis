@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
           display: { xs: "block", sm: "none" },
           position: "relative",
           top: "0",
-          mb: "1rem",
+          mb: "1.5rem",
           ml: "85%",
           height: "100%",
           zIndex: "1",

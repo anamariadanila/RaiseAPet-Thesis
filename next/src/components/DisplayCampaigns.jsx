@@ -24,7 +24,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const [count, setCount] = useState(3);
 
   const getGroup = () => {
-    return campaigns.slice(0, end);
+    return campaigns?.slice(0, end);
   };
 
   useEffect(() => {
@@ -132,7 +132,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             mt: "2rem",
           }}
         >
-          {campaigns.length > 0 && group.length < campaigns.length ? (
+          {campaigns?.length > 0 && group.length < campaigns.length ? (
             <ButtonConnect
               title={"Load more"}
               btnType="button"

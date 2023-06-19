@@ -61,7 +61,7 @@ const UserLogin = ({ title, messageTitle }) => {
       password: values.password,
       address: address,
       type: type,
-      callbackUrl: "/campaigns",
+      // callbackUrl: "/campaigns",
     });
     if (status.error) {
       window.alert(status.error);
