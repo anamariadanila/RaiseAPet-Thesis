@@ -69,7 +69,7 @@ export default function DeleteModal({ campaignsSent }) {
           }}
         >
           <DialogTitle id="responsive-dialog-title">
-            {`Delete campaign "${campaignsSent[id]?.title}"?`}
+            {`Delete campaign?`}
           </DialogTitle>
 
           <IconButton color="secondary" onClick={handleClose}>

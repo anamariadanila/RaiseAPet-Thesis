@@ -19,7 +19,7 @@ export const ColorModeContext = React.createContext({
 });
 export default function App({ Component, pageProps, session }) {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
     () => ({

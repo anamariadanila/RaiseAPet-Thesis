@@ -178,7 +178,7 @@ const DeleteOngModal = ({ ongsSent }) => {
             }}
           >
             <DialogTitle id="responsive-dialog-title">
-              {`Close ONG "${ongsSent[id]?.name}"?`}
+              {`Close ONG?`}
             </DialogTitle>
 
             <IconButton color="secondary" onClick={handleClose}>
