@@ -112,8 +112,8 @@ const Profile = () => {
             <DisplayOngs
               title={
                 session?.user.user.type === "ONG"
-                  ? "My Ong"
-                  : "Ongs I donated to"
+                  ? "My ONG"
+                  : "ONGs I donated to"
               }
               loading={loading}
               ongs={ongs}
