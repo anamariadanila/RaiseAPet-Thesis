@@ -12,6 +12,7 @@ import { useAppContext } from "../context";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Box } from "@mui/material";
+import Loader from "./Loader";
 
 export default function DeleteModal({ campaignsSent }) {
   const [open, setOpen] = useState(false);
@@ -43,6 +44,7 @@ export default function DeleteModal({ campaignsSent }) {
           sx={{ fontSize: "2rem", m: "0.5rem", color: "icon.main" }}
         />
       </IconButton>
+
       <Box
         sx={{
           display: "flex",
@@ -50,9 +52,7 @@ export default function DeleteModal({ campaignsSent }) {
           alignItems: "center",
           flexDirection: "column",
         }}
-      >
-        {loading && <Loader />}
-      </Box>
+      ></Box>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -60,6 +60,7 @@ export default function DeleteModal({ campaignsSent }) {
         fullWidth
         maxWidth="sm"
       >
+        {loading && <Loader />}
         <Box
           sx={{
             display: "flex",
