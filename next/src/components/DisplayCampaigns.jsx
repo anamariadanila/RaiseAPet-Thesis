@@ -31,7 +31,6 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
     setGroup(getGroup());
   }, [end, campaigns]);
 
-  console.log(campaigns, "campaigns");
   const campaignsTitle = campaigns?.map((campaign) => campaign.title);
 
   return (

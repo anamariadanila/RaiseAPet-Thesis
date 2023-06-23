@@ -16,19 +16,13 @@ const Search = ({ data, campaigns }) => {
     const searchTerm = event.target.value?.toLowerCase();
     setSearchTerm(searchTerm);
 
-    console.log(data, "data");
     const filteredResults = data?.filter((item) => {
       item?.toLowerCase().includes(searchTerm);
-      console.log(item?.toLowerCase(), "item");
     });
 
-    console.log(filteredResults, "filteredResults");
     setSearchResults(filteredResults);
   };
 
-  // console.log(data, "data");
-  console.log(searchTerm, "searchTerm");
-  console.log(searchResults, "searchResults");
   return (
     <Box
       component="form"

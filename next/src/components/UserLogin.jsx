@@ -105,9 +105,6 @@ const UserLogin = ({ title, messageTitle }) => {
     // }
   };
 
-  console.log(dataError, "dataError");
-  console.log(type, "type");
-
   const onSubmitDonator = async () => {
     connect();
     const status = await signIn("credentials", {
@@ -120,8 +117,6 @@ const UserLogin = ({ title, messageTitle }) => {
     if (status.error) {
       window.alert(status.error);
     }
-
-    console.log(status, "status");
 
     if (status.ok) {
       connect();

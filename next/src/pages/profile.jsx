@@ -13,7 +13,6 @@ const Profile = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [ongs, setOngs] = useState([]);
   const { data: session, status } = useSession();
-  console.log(session?.user.user.type, status);
 
   const {
     address,
@@ -67,7 +66,6 @@ const Profile = () => {
     if (session?.user.user.type === "Donator") {
       setLoading(true);
       const data = await getOngsByDonator(address?.toLowerCase());
-      console.log(data, "data");
       setOngs(data);
       setLoading(false);
     }

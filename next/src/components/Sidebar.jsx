@@ -155,33 +155,6 @@ export default function Sidebar({}) {
           </Toolbar>
         </AppBar>
       </Box>
-      {/* <Box
-        sx={{
-          // display: "flex",
-          // flexDirection: "column",
-          // height: "100%",
-          // flexGrow: 1,
-          // width: "100%",
-          // mb: "2rem",
-          display: { xs: "block", sm: "none" },
-        }}
-        // position="fixed"
-      >
-        {/* <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar> */}
-      {/* <HamburgerMenu />
-      </Box>  */}
     </>
   );
 }

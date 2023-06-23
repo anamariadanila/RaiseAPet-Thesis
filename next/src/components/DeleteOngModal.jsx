@@ -100,8 +100,6 @@ const DeleteOngModal = ({ ongsSent }) => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
 
-  console.log(addresses, "aici", ongsSent[id]?.owner);
-
   return (
     <div>
       <IconButton color="secondary" onClick={handleClickOpen}>
@@ -121,8 +119,6 @@ const DeleteOngModal = ({ ongsSent }) => {
       {addresses.find((address) => {
         const findOwner = address.owner === ongsSent[id]?.owner;
         const findStatus = address.status === 0;
-        console.log(address.owner, "address.owner");
-        console.log(address.status, "address.status aici");
         return findOwner && findStatus;
       }) ? (
         <Dialog

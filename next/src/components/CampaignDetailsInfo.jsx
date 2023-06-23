@@ -69,32 +69,16 @@ const CampaignDetailsInfo = () => {
       const valFinal = res.filter((val) => {
         return val.owner.toLowerCase() === campaigns[id]?.owner.toLowerCase();
       });
-      console.log(valFinal, "valFinal");
       setOngData(valFinal[0]);
       setOngId(valFinal[0]?.id);
       setOngs(res);
       setLoading(false);
     });
-
-    // console.log(data[0], "data");
-
-    // const valFinal = data.find((val) => {
-    //   console.log(val, "val");
-
-    //   return val.owner.toLowerCase() === campaigns[id]?.owner.toLowerCase();
-    // });
-
-    // console.log(valFinal, "valFinal");
-    // setOngId(valFinal?.id);
-    // setOngs(data);
-    // setLoading(false);
   };
 
   const getToOng = () => {
     router.push(`/ongs/${ongId}`);
   };
-
-  console.log(ongData?.name, "ongData");
 
   useEffect(() => {
     if (contract && campaigns) fetchOngs();

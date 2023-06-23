@@ -11,7 +11,6 @@ import Loader from "../components/Loader";
 const CampaignsByOng = () => {
   const router = useRouter();
   const { id, ongs, ongName } = router.query;
-  console.log(id, "id", ongs, "ongs");
 
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);

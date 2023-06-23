@@ -53,7 +53,6 @@ const UserRegister = ({ title, messageTitle }) => {
     connect();
     const newVal = { address, type };
     // connect();
-    console.log(newVal);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -20,12 +20,9 @@ const OngDetailsImg = () => {
     setLoading(true);
     const data = await getOngs();
     const newData = data.filter((ong, index) => index !== 3);
-    console.log(newData, "newData");
     setOngs(newData);
     setLoading(false);
   };
-
-  console.log(ongs, "ongs");
 
   useEffect(() => {
     if (contract) fetchOngs();
