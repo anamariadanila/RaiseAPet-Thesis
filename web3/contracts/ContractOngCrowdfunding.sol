@@ -288,7 +288,7 @@ contract OngContractFinal {
         uint tax = raised * campaignTax / 100;
 
         campaigns[_id].status = statusEnum.PAIDOUT;
-        // payTo(campaigns[_id].owner, raised - tax);
+        payTo(campaigns[_id].owner, raised - tax);
         payTo(owner, tax);
         balance -= raised;
 
@@ -305,7 +305,7 @@ contract OngContractFinal {
         uint tax = raised * ongTax / 100;
 
         ongs[_id].status = ongStatusEnum.PAIDOUT;
-        // payTo(ongs[_id].owner, raised - tax);
+        payTo(ongs[_id].owner, raised - tax);
         payTo(owner, tax);
         balance -= raised;
 
