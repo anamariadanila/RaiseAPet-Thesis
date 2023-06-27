@@ -21,9 +21,9 @@ export default function TableDonators({ donators }) {
             <TableCell align="right" sx={{ fontSize: "18px" }}>
               Amount
             </TableCell>
-            <TableCell align="right" sx={{ fontSize: "18px" }}>
+            {/* <TableCell align="right" sx={{ fontSize: "18px" }}>
               Refund
-            </TableCell>
+            </TableCell> */}
             <TableCell align="right" sx={{ fontSize: "18px" }}>
               Time
             </TableCell>
@@ -54,9 +54,9 @@ export default function TableDonators({ donators }) {
               <TableCell align="right" sx={{ fontSize: "18px" }}>
                 {donator[3]} ETH
               </TableCell>
-              <TableCell align="right" sx={{ fontSize: "18px" }}>
+              {/* <TableCell align="right" sx={{ fontSize: "18px" }}>
                 {donator[1] ? "Yes" : "No"}
-              </TableCell>
+              </TableCell> */}
               <TableCell align="right" sx={{ fontSize: "18px" }}>
                 {moment(donator[2]).fromNow()}
               </TableCell>

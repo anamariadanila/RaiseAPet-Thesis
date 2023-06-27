@@ -506,39 +506,41 @@ const CampaignDetailsInfo = () => {
                 },
               }}
             >
-              <Box
-                sx={{
-                  mr: "1rem",
-                  "@media(max-width: 510px)": {
-                    // ml: "3rem",
-                  },
-                }}
-              >
-                <TextField
-                  required
-                  label="ETH"
-                  color="secondary"
-                  type="number"
-                  inputProps={{
-                    step: 0.01,
-                    min: 0,
-                  }}
-                  value={amount}
+              {campaigns[id]?.status == 0 ? (
+                <Box
                   sx={{
-                    width: "14rem",
-                    "@media(max-width: 800px)": {
-                      width: "12rem",
-                    },
-                    "@media(max-width: 360px)": {
-                      width: "9rem",
-                    },
-                    "@media(max-width: 290px)": {
-                      width: "8rem",
+                    mr: "1rem",
+                    "@media(max-width: 510px)": {
+                      // ml: "3rem",
                     },
                   }}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </Box>
+                >
+                  <TextField
+                    required
+                    label="ETH"
+                    color="secondary"
+                    type="number"
+                    inputProps={{
+                      step: 0.01,
+                      min: 0,
+                    }}
+                    value={amount}
+                    sx={{
+                      width: "14rem",
+                      "@media(max-width: 800px)": {
+                        width: "12rem",
+                      },
+                      "@media(max-width: 360px)": {
+                        width: "9rem",
+                      },
+                      "@media(max-width: 290px)": {
+                        width: "8rem",
+                      },
+                    }}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </Box>
+              ) : null}
               <Box>
                 {campaigns[id]?.status == 0 ? (
                   <ButtonConnect

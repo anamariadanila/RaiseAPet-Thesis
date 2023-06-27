@@ -19,8 +19,8 @@ const OngDetailsImg = () => {
   const fetchOngs = async () => {
     setLoading(true);
     const data = await getOngs();
-    const newData = data.filter((ong, index) => index !== 3);
-    setOngs(newData);
+    // const newData = data.filter((ong, index) => index !== 3);
+    setOngs(data);
     setLoading(false);
   };
 
