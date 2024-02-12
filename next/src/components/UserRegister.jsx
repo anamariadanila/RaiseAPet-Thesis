@@ -46,13 +46,10 @@ const UserRegister = ({ title, messageTitle }) => {
     setType(event.target.value);
   };
 
-  // connect();
-
   //for Donator
   const handleClick = async () => {
     connect();
     const newVal = { address, type };
-    // connect();
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -74,7 +71,6 @@ const UserRegister = ({ title, messageTitle }) => {
   const onSubmit = async (values) => {
     connect();
     const newVal = { ...values, address, type };
-    // connect();
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

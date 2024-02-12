@@ -89,20 +89,6 @@ const UserLogin = ({ title, messageTitle }) => {
           router.push("/");
         }
       });
-    // if (status.ok) {
-    //   router.push("/campaigns");
-    //   connect();
-    // } else {
-    //   connect();
-    // }
-    // if (ongDeleted === "ONG already deleted") {
-    //   // connect();
-    //  router.push("/");
-    // }
-    // if (!dataError) {
-    //   connect();
-    //   router.push("/campaigns");
-    // }
   };
 
   const onSubmitDonator = async () => {

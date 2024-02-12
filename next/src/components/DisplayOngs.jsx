@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import ButtonConnect from "./ButtonConnect";
 import OngCard from "./OngCard";
@@ -71,10 +70,6 @@ const DisplayOngs = ({ title, loading, ongs }) => {
             px: "5rem",
           }}
         >
-          {/* {loading && (
-            <img src={loader.src} alt="loader" width="100" height="100" />
-          )} */}
-
           {!loading && ongs?.length === 0 && (
             <Box
               sx={{

@@ -80,25 +80,14 @@ const CreateOng = () => {
             },
             "@media(max-width: 500px)": {
               width: "20rem",
-              // mr: "1rem",
             },
             "@media(max-width: 350px)": {
               width: "17rem",
-              // ml: "2rem",
               justifyContent: "center",
               alignItems: "center",
-              // mr: "2rem",
             },
           }}
         >
-          {/* <Container
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          > */}
           <Box
             sx={{
               display: "flex",
@@ -229,7 +218,6 @@ const CreateOng = () => {
               </Box>
             </form>
           </Box>
-          {/* </Container> */}
         </Container>
       </MainLayout>
     </>

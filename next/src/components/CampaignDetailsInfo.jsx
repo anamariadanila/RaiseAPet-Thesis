@@ -419,7 +419,6 @@ const CampaignDetailsInfo = () => {
             >
               <Box
                 sx={{
-                  // mr: "0.3rem",
                   "@media(max-width: 1200px)": {
                     mr: "0.4rem",
                   },
@@ -510,9 +509,7 @@ const CampaignDetailsInfo = () => {
                 <Box
                   sx={{
                     mr: "1rem",
-                    "@media(max-width: 510px)": {
-                      // ml: "3rem",
-                    },
+                    "@media(max-width: 510px)": {},
                   }}
                 >
                   <TextField

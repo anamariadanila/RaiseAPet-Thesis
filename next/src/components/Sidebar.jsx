@@ -39,8 +39,6 @@ export default function Sidebar({}) {
     }
   };
 
-  // connect();
-
   useEffect(() => {
     if (address !== session?.user?.user?.address) {
       disconnect();

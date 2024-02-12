@@ -10,25 +10,9 @@ import { ethers } from "ethers";
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  // const { contract } = useContract(
-  //   "0xFd868dE190a58cd6Acf3D6C1cAD05D9aD455a8e9"
-  // );
-  //contract final cu sepolia OngContractFinal
-
-  // const { contract } = useContract(
-  //   "0x5E319C15bBd1B1991e5E0C5ae01363B9507F282A"
-  // );
-  //contract final cu sepolia OngContractFinal2
-
-  // const { contract } = useContract(
-  //   "0xA99AbeF5Eb7053C455Ee544bAD2B8078965b1134"
-  // );
-  //contract 3 cu sepolia
-
   const { contract } = useContract(
     "0x1d0A1B3D09a0B313902a610537Bb968a27876E9a"
   );
-  //contract final sper
 
   const { mutateAsync: createCampaign } = useContractWrite(
     contract,
@@ -54,7 +38,6 @@ export const ContextProvider = ({ children }) => {
 
   const structureStatistics = (statistics) => ({
     totalCampaigns: statistics.totalCampaigns.toNumber(),
-    // totalOngs: statistics.totalOngs.toNumber(),
     totalDonations: parseInt(statistics.totalDonations._hex) / 10 ** 18,
     totalDonatots: statistics.totalDonators.toNumber(),
   });
@@ -179,7 +162,6 @@ export const ContextProvider = ({ children }) => {
 
   const deleteOngHandler = async (id) => {
     try {
-      // await contract.deleteOng(id);
       await contract.call("deleteOng", id);
 
       console.log("success", data);
@@ -190,11 +172,9 @@ export const ContextProvider = ({ children }) => {
 
   const getCampaignsStatistics = async () => {
     try {
-      // const stats = await contract.statistics();
       const stats = await contract?.call("getStatistics");
       const structStatistics = {
         totalCampaigns: stats?.totalCampaigns,
-        // totalOngs: statistics.totalOngs.toNumber(),
         totalDonations: parseInt(stats?.totalDonations._hex) / 10 ** 18,
         totalDonatots: stats?.totalDonators.toNumber(),
       };
@@ -238,7 +218,6 @@ export const ContextProvider = ({ children }) => {
       return structCampaign;
     } catch (e) {
       console.log("error", e);
-      // alert(JSON.stringify(e.message));
       alert("Campaigns not found. Something went wrong");
     }
   };

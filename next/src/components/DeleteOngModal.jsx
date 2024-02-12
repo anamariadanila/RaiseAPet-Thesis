@@ -40,21 +40,6 @@ const DeleteOngModal = ({ ongsSent }) => {
     const address = session?.user?.user?.address;
     const newVal = { ongCode, address };
 
-    // const res = await fetch("http://localhost:3000/api/deleteOng", {
-    //   method: "POST",
-    //   body: JSON.stringify(newVal),
-    // });
-    // const data = await res.json();
-    // console.log(data, "data");
-    // if (data && !data.error) {
-    //   // router.push("/");
-    //   console.log(data, "data binee 22");
-    // }
-    // if (data.error) {
-    //   window.alert(data.error);
-    //   router.push("/");
-    // }
-
     const options = {
       method: "POST",
       headers: {
@@ -77,7 +62,6 @@ const DeleteOngModal = ({ ongsSent }) => {
 
     await deleteOng(ongsSent[id]?.id.toString());
     setLoading(false);
-    //   // router.push("/ongs");
   };
 
   const handleDeleteOngWithCampaigns = async () => {

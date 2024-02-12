@@ -21,7 +21,6 @@ const CampaignsByOng = () => {
     setLoading(true);
     const data = await getCampaignsByOwner(ongs);
     setCampaigns(data);
-    // router.push("/ongs");
     setLoading(false);
   };
 

@@ -4,7 +4,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     if (!req.body) return res.status(404).json({ error: "Don't have data" });
     const { address } = req.body;
-    // res.json({ address });
 
     const user = await prisma.users.findFirst({
       where: {

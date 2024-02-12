@@ -6,8 +6,6 @@ export default async function handler(req, res) {
     const { ongCode, address } = req.body;
     res.json({ ongCode, address });
 
-    // if (!ongCode) return res.status(400).json({ error: "Missing ongCode" });
-
     const checkOngCode = await prisma.users.findFirst({
       where: {
         ongCode: ongCode,

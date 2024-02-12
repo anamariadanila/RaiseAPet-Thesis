@@ -106,14 +106,6 @@ const CreateCampaign = () => {
             },
           }}
         >
-          {/* <Container
-            sx={{
-              display: "flex",
-              // justifyContent: "space-between",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          > */}
           <Box
             sx={{
               display: "flex",
@@ -129,7 +121,6 @@ const CreateCampaign = () => {
               bgcolor: "textBg.main",
               height: "5rem",
               borderRadius: "15px",
-              // width: "40%",
               width: "20rem",
               display: "flex",
               justifyContent: "center",
@@ -284,7 +275,6 @@ const CreateCampaign = () => {
                   },
                 }}
               >
-                {/* <label htmlFor="imgUrl">Image URL*</label> */}
                 <TextField
                   id="imgUrl"
                   type="url"
@@ -304,7 +294,6 @@ const CreateCampaign = () => {
               </Box>
             </form>
           </Box>
-          {/* </Container> */}
         </Container>
       </MainLayout>
     </>

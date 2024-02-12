@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import loader from "../assets/loader.svg";
 import { Box, Typography } from "@mui/material";
 import CampaignCard from "./CampaignCard";
 import ButtonConnect from "./ButtonConnect";
-import Search from "./Search";
 
 const DisplayCampaigns = ({ title, loading, campaigns }) => {
   const router = useRouter();
@@ -52,7 +50,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
           },
         }}
       >
-        {/* <Search data={campaignsTitle} campaigns={campaigns} /> */}
+        {}
         <Box
           sx={{
             display: "flex",
@@ -79,9 +77,7 @@ const DisplayCampaigns = ({ title, loading, campaigns }) => {
             px: "5rem",
           }}
         >
-          {/* {loading && (
-            <img src={loader.src} alt="loader" width="100" height="100" />
-          )} */}
+          {}
 
           {!loading && campaigns?.length === 0 && (
             <Box

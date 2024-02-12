@@ -12,8 +12,6 @@ import { useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-// const darkTheme = createTheme(getDesignTokens("light"));
-
 export const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
 });

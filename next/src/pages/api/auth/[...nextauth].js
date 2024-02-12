@@ -73,7 +73,6 @@ const handler = NextAuth({
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  // secret: process.env.SECRET_KEY,
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -88,7 +87,6 @@ const handler = NextAuth({
   },
   pages: {
     signIn: "/",
-    // signOut: "/",
   },
 });
 

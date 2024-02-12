@@ -15,61 +15,6 @@ const Auth = ({ children }) => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  // if (session?.user?.user?.accessToken) {
-  //   const tokenExpired = isJwtExpired(session?.user?.user?.accessToken);
-  //   if (tokenExpired) {
-  //     disconnect();
-  //     signOut({
-  //       redirect: false,
-  //       callbackUrl: "/",
-  //     });
-  //     //   router.push("/");
-  //   }
-  // }
-  // console.log("address", address, session?.user?.user?.address);
-  // if (address !== session?.user?.user?.address) {
-  //   disconnect();
-  //   signOut({
-  //     redirect: false,
-  //     callbackUrl: "/",
-  //   });
-  //   // router.push("/");
-  // }
-
-  // if (status === "unauthenticated") {
-  //   //access all routes
-  //   router.push("/");
-  // }
-
-  // if (status === "loading") {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         bgcolor: "textBg.main",
-  //         height: "5rem",
-  //         borderRadius: "15px",
-  //         width: "60%",
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         flexDirection: "column",
-  //         mt: "3rem",
-  //         ml: "20%",
-  //         mr: "20%",
-  //       }}
-  //     >
-  //       <Typography
-  //         align="center"
-  //         sx={{
-  //           fontSize: "25px",
-  //         }}
-  //       >
-  //         Loading...
-  //       </Typography>
-  //     </Box>
-  //   );
-  // }
-
   return children;
 };
 

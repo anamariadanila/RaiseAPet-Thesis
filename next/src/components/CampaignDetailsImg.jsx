@@ -125,30 +125,7 @@ const CampaignDetailsImg = () => {
                 <DeleteModal campaignsSent={campaigns} />
               </>
             ) : (
-              <>
-                {/* <Box
-                  sx={{
-                    backgroundColor: "#b3b1b5",
-                    borderRadius: "30px",
-                    width: "40%",
-                    height: "2rem",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: 17,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Campaign Closed
-                  </Typography>
-                </Box> */}
-              </>
+              <></>
             )
           ) : null
         ) : null}

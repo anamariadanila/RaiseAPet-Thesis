@@ -60,7 +60,7 @@ const OngDetailsInfo = () => {
   const handleGetCampaignsByOng = async () => {
     setLoading(true);
     await getCampaignsByOwner(ongs[id]?.owner);
-    // router.push("/ongs");
+
     setLoading(false);
   };
 

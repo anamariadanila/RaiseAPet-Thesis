@@ -74,37 +74,6 @@ export default function UpdateCampaign({ campaignsSent }) {
       deadline: timestampToDate(formDetails.deadline),
     });
     router.push("/campaigns");
-
-    // imageAvailable(formDetails.image, async (isOk) => {
-    //   if (isOk) {
-    //     setLoading(true);
-    //     await updateCampaign({
-    //       ...formDetails,
-    //       //   cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
-    //     });
-    //     setLoading(false);
-    //     console.log("formDetails432", formDetails);
-    //     router.push("/campaigns");
-    //   } else {
-    //     alert("Image is not available");
-    //     setFormDetails({ ...formDetails, image: "" });
-    //   }
-    // });
-
-    // isFutureDate(formDetails.deadline, async (isOk) => {
-    //   if (isOk) {
-    //     setLoading(true);
-    //     await updateCampaign({
-    //       ...formDetails,
-    //       //   cost: ethers.utils.parseUnits(formDetails.cost, 18), //wei value
-    //     });
-    //     setLoading(false);
-    //     router.push("/campaigns");
-    //   } else {
-    //     alert("Date is not available");
-    //     setFormDetails({ ...formDetails, deadline: "" });
-    //   }
-    // });
   };
 
   return (
@@ -235,15 +204,6 @@ export default function UpdateCampaign({ campaignsSent }) {
             </Box>
           </form>
         </DialogContent>
-        <DialogActions>
-          {/* <ButtonConnect
-            title="Delete"
-            style={{
-              width: "7rem",
-              height: "3rem",
-            }}
-          /> */}
-        </DialogActions>
       </Dialog>
     </div>
   );

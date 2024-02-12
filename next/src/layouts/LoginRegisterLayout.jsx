@@ -36,10 +36,8 @@ const LoginLayout = ({ children }) => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          // width: "100%",
           width: "30rem",
           borderRadius: "0px",
-          // pl: "2rem",
         },
       }}
     >
@@ -68,7 +66,6 @@ const LoginLayout = ({ children }) => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
-              // ml: "4rem",
             },
             "@media(max-width: 400px)": {
               width: "300px",
@@ -98,8 +95,6 @@ const LoginLayout = ({ children }) => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-
-            // height: "100%",
           },
           "@media(max-width: 400px)": {
             width: "17rem",
@@ -108,7 +103,6 @@ const LoginLayout = ({ children }) => {
             alignItems: "center",
             flexDirection: "column",
             mr: "3rem",
-            // height: "100%",
           },
         }}
       >

@@ -90,8 +90,6 @@ const Profile = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            // justifyContent: "center",
-            // mt: "4rem",
             width: "100%",
           }}
         >
@@ -101,8 +99,6 @@ const Profile = () => {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              // justifyContent: "center",
-              // mt: "4rem",
               width: "100%",
               flexWrap: "wrap",
             }}
@@ -122,8 +118,6 @@ const Profile = () => {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              // justifyContent: "center",
-              // mt: "4rem",
               width: "100%",
               flexWrap: "wrap",
             }}
